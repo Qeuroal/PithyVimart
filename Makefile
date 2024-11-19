@@ -6,13 +6,16 @@
 i install:
 	@rm -rf ~/.local/share/nvim
 	@rm -rf ~/.config/nvim
+	@rm -rf ~/.cache/nvim
 	@ln -sf `realpath ./` ~/.config/nvim
 
 l local:
 	@rm -rf ~/.local/share/nvim/
+	@rm -rf ~/.cache/nvim
 	@cp ./local/lazy.lua ./lua/config/lazy.lua
 
 c clean:
+	@rm -rf ~/.cache/nvim
 	@rm -rf ~/.local/share/nvim
 
 gm gitmerge:
