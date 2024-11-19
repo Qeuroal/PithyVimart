@@ -10,7 +10,7 @@ i install:
 
 l local:
 	@rm -rf ~/.local/share/nvim/lazy/PithyVim
-	@ln -sf `realpath ./PithyVim` ~/.local/share/nvim/lazy/PithyVim
+	@cp ./local/lazy.lua ./lua/config/lazy.lua
 
 c clean:
 	@rm -rf ~/.local/share/nvim
