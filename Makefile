@@ -12,7 +12,7 @@ i install:
 l local:
 	@rm -rf ~/.local/share/nvim/
 	@rm -rf ~/.cache/nvim
-	@cp ./local/lazy.lua ./lua/config/lazy.lua
+	@cp ./local/lazy.lua ./nvim/lua/config/lazy.lua
 
 c clean:
 	@rm -rf ~/.cache/nvim
