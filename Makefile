@@ -17,6 +17,7 @@ l local:
 c clean:
 	@rm -rf ~/.cache/nvim
 	@rm -rf ~/.local/share/nvim
+	@rm -rf ./nvim/lazy-lock.json
 
 gm gitmerge:
 	@git switch master && git merge --no-ff -m "merge dev" dev && git push && git switch dev
