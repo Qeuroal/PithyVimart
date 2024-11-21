@@ -7,7 +7,7 @@ i install:
 	@rm -rf ~/.local/share/nvim
 	@rm -rf ~/.config/nvim
 	@rm -rf ~/.cache/nvim
-	@ln -sf `realpath ./` ~/.config/nvim
+	@ln -sf `realpath ./nvim` ~/.config/nvim
 
 l local:
 	@rm -rf ~/.local/share/nvim/
