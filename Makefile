@@ -17,7 +17,7 @@ l local:
 	@rm -rf ~/.cache/nvim
 	@cp ./local/lazy.lua ./nvim/lua/config/lazy.lua
 	@rm -rf ~/.config/nvim
-	@rm -rf ./lua/pithyvim
+	@rm -rf ./nvim/lua/pithyvim
 	@eval "ln -sf `realpath ${nvimCorePath}/lua/pithyvim` ./nvim/lua/pithyvim"
 	@ln -sf `realpath ./nvim` ~/.config/nvim
 
