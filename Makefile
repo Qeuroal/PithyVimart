@@ -14,6 +14,8 @@ l local:
 	@rm -rf ~/.local/share/nvim/
 	@rm -rf ~/.cache/nvim
 	@cp ./local/lazy.lua ./nvim/lua/config/lazy.lua
+	@rm -rf ~/.config/nvim
+	@ln -sf `realpath ./nvim` ~/.config/nvim
 
 c clean:
 	@rm -rf ~/.cache/nvim
