@@ -7,16 +7,18 @@ i install:
 	@rm -rf ~/.local/share/nvim
 	@rm -rf ~/.config/nvim
 	@rm -rf ~/.cache/nvim
-	@ln -sf `realpath ./` ~/.config/nvim
+	@rm -rf ./nvim/lazy-lock.json
+	@ln -sf `realpath ./nvim` ~/.config/nvim
 
 l local:
 	@rm -rf ~/.local/share/nvim/
 	@rm -rf ~/.cache/nvim
-	@cp ./local/lazy.lua ./lua/config/lazy.lua
+	@cp ./local/lazy.lua ./nvim/lua/config/lazy.lua
 
 c clean:
 	@rm -rf ~/.cache/nvim
 	@rm -rf ~/.local/share/nvim
+	@rm -rf ./nvim/lazy-lock.json
 
 gm gitmerge:
 	@git switch master && git merge --no-ff -m "merge dev" dev && git push && git switch dev
