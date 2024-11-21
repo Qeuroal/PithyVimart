@@ -7,6 +7,7 @@ i install:
 	@rm -rf ~/.local/share/nvim
 	@rm -rf ~/.config/nvim
 	@rm -rf ~/.cache/nvim
+	@rm -rf ./nvim/lazy-lock.json
 	@ln -sf `realpath ./nvim` ~/.config/nvim
 
 l local:
