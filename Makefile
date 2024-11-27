@@ -1,3 +1,5 @@
+nvimCorePath = "../pithyvim"
+
 .PHONY: i install \
 	l local \
 	c clean \
@@ -14,6 +16,10 @@ l local:
 	@rm -rf ~/.local/share/nvim/
 	@rm -rf ~/.cache/nvim
 	@cp ./local/lazy.lua ./nvim/lua/config/lazy.lua
+	@rm -rf ~/.config/nvim
+	@rm -rf ./nvim/lua/pithyvim
+	@eval "ln -sf `realpath ${nvimCorePath}/lua/pithyvim` ./nvim/lua/pithyvim"
+	@ln -sf `realpath ./nvim` ~/.config/nvim
 
 c clean:
 	@rm -rf ~/.cache/nvim
