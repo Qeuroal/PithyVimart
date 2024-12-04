@@ -1,5 +1,5 @@
 indent_type = "Spaces"
-indent_width = 4
+indent_width = 2
 # 设置代码每行的最大字符宽度（即代码长度限制），超过限制的行会被拆分换行
 column_width = 120
 # 指定行尾字符的风格
