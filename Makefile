@@ -3,6 +3,7 @@ nvimCorePath = "../pithyvim"
 .PHONY: i install \
 	l local \
 	c clean \
+	ca cleanall \
 	gm gitmerge
 
 i install:
@@ -29,6 +30,9 @@ c clean:
 	@rm -rf ~/.local/state/nvim
 	@rm -rf ./nvim/lazy-lock.json
 	@rm -rf ./nvim/lua/pithyvim
+
+ca cleanall: clean
+	@git restore . && git clean -fd
 
 gm gitmerge:
 	@git switch master && git merge --no-ff -m "merge dev" dev && git push && git switch dev
