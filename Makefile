@@ -22,6 +22,7 @@ l local:
 	@ln -sf `realpath ./nvim` ~/.config/nvim
 
 c clean:
+	@rm -rf ~/.config/nvim
 	@rm -rf ~/.cache/nvim
 	@rm -rf ~/.local/share/nvim
 	@rm -rf ~/.local/state/nvim
