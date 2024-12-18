@@ -1,0 +1,12 @@
+{
+  "Inline Math — $ $": {
+    "prefix": "im",
+    "body": "\\$ ${1} \\$${0}",
+    "description": "Inline Math"
+  },
+  "Bold Italic Math": {
+    "prefix": "bi",
+    "body": "\\boldsymbol{${1:${TM_SELECTED_TEXT:text}}}${0}",
+    "description": "math bold and italic font"
+  }
+}
