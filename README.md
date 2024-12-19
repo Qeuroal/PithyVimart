@@ -44,8 +44,8 @@
 
 - 必选项
 
-    - [neovim](https://github.com/neovim/neovim/blob/master/INSTALL.md#install-from-download) ([win64](https://github.com/neovim/neovim/releases/latest/download/nvim-win64.msi))
-    - [mingw](https://github.com/niXman/mingw-builds-binaries), [[github](https://github.com/niXman/mingw-builds-binaries)]
-    - [npm(node.js)](https://nodejs.cn/download/)
+    - neovim ([官网](https://github.com/neovim/neovim/blob/master/INSTALL.md#install-from-download), [win64](https://github.com/neovim/neovim/releases/latest/download/nvim-win64.msi))
+    - [mingw] ([官网](https://www.mingw-w64.org/downloads/), [github](https://github.com/niXman/mingw-builds-binaries))
+    - npm(node.js) ([官网](https://nodejs.cn/download/))
 
 
