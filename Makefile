@@ -33,6 +33,7 @@ c clean:
 
 ca cleanall: clean
 	@git restore . && git clean -fd
+	@rm -rf ./nvim/pithyvim.json
 
 gm gitmerge:
 	@git switch master && git merge --no-ff -m "merge dev" dev && git push && git switch dev
