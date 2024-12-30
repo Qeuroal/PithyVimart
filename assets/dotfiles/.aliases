@@ -70,6 +70,7 @@ fi
 
 # curl
 alias curla='curl -A "Google Chrome"'
+alias curlao='curl -A "Google Chrome" -JLO'
 
 
 
