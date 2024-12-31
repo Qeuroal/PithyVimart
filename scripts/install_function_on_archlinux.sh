@@ -1,3 +1,4 @@
+#!/bin/bash
 
 function install_software_on_archlinux() {
     # sudo pacman -S --noconfirm vim ctags automake gcc cmake python3 python2 ack git fontconfig
@@ -5,31 +6,6 @@ function install_software_on_archlinux() {
     sudo pacman -S --noconfirm vim ctags automake gcc cmake python3 python2 ack git fontconfig ripgrep fzf
     sudo ln -s /usr/lib/libtinfo.so.6 /usr/lib/libtinfo.so.5
 }
-
-# function install_cpt_on_archlinux() {
-#     local cptScheme=$(get_complete_scheme)
-#     if [ "${cptScheme}" = "2" ]; then
-#         color_print "warning" "Installing ycm..."
-#
-#         # python3 install.py --all --verbose 需要安装的依赖
-#         local install_choice=n
-#         read -n1 -p "Would you like to install dependencies of ycm? [y/n]" install_choice
-#         echo ""
-#         if [ "${install_choice}" = 'y' -o "${install_choice}" = 'Y' ]; then
-#             color_print "warning" "Installing dependencies of ycm..."
-#             # install go
-#             sudo pacman -S --noconfirm go
-#             # install npm
-#             sudo pacman -S --noconfirm npm
-#             # install java
-#             sudo pacman -S --noconfirm jdk8-openjdk
-#         fi
-#     elif [ "${cptScheme}" = "3" ]; then
-#         color_print "warning" "Installing cpt..."
-#         # install npm
-#         sudo pacman -S --noconfirm npm
-#     fi
-# }
 
 #{{{> configure plugins
 function configure_plugins_on_archlinux() {
