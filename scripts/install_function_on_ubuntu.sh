@@ -12,49 +12,49 @@ function get_ubuntu_version() {
 }
 # <}}}
 
-# {{{> 在ubuntu上源代码安装vim
-function compile_vim_on_ubuntu() {
-    # reference: https://github.com/ycm-core/YouCompleteMe/wiki/Building-Vim-from-source
-
-    # remove vim*
-    sudo apt-get remove --purge -y vim vim-runtime gvim vim-tiny vim-common vim-gui-common vim-nox
-    # Install all the prerequisite libraries (including Git)
-    sudo apt install -y libncurses5-dev libgtk2.0-dev libatk1.0-dev \
-        libcairo2-dev libx11-dev libxpm-dev libxt-dev python2-dev \
-        python3-dev ruby-dev lua5.2 liblua5.2-dev libperl-dev git
-
-    if [ ! -d ~/.vimsrc ]; then
-        rm -rf ~/.vimsrc
-        git clone https://github.com/qeuroal/vimsrc.git ~/.vimsrc
-    fi
-    cd ~/.vimsrc
-    ./configure --with-features=huge \
-            --enable-multibyte \
-            --enable-rubyinterp=yes \
-            --enable-python3interp=yes \
-            --with-python3-config-dir=$(python3-config --configdir) \
-            --enable-perlinterp=yes \
-            --enable-luainterp=yes \
-            --enable-gui=gtk3 \
-            --enable-cscope \
-            --prefix=/usr/local
-
-    make VIMRUNTIMEDIR=/usr/local/share/vim/vim91
-    sudo make install
-
-    # Set vim as your default editor with update-alternatives.
-    # sudo update-alternatives --install /usr/bin/editor editor /usr/local/bin/vim 1
-    # sudo update-alternatives --set editor /usr/local/bin/vim
-    # sudo update-alternatives --install /usr/bin/vi vi /usr/local/bin/vim 1
-    # sudo update-alternatives --set vi /usr/local/bin/vim
-
-    cd -
-    # rm -rf ~/.vimsrc
-}
-# <}}}
+# # {{{> 在ubuntu上源代码安装vim
+# function compile_vim_on_ubuntu() {
+#     # reference: https://github.com/ycm-core/YouCompleteMe/wiki/Building-Vim-from-source
+#
+#     # remove vim*
+#     sudo apt-get remove --purge -y vim vim-runtime gvim vim-tiny vim-common vim-gui-common vim-nox
+#     # Install all the prerequisite libraries (including Git)
+#     sudo apt install -y libncurses5-dev libgtk2.0-dev libatk1.0-dev \
+#         libcairo2-dev libx11-dev libxpm-dev libxt-dev python2-dev \
+#         python3-dev ruby-dev lua5.2 liblua5.2-dev libperl-dev git
+#
+#     if [ ! -d ~/.vimsrc ]; then
+#         rm -rf ~/.vimsrc
+#         git clone https://github.com/qeuroal/vimsrc.git ~/.vimsrc
+#     fi
+#     cd ~/.vimsrc
+#     ./configure --with-features=huge \
+#             --enable-multibyte \
+#             --enable-rubyinterp=yes \
+#             --enable-python3interp=yes \
+#             --with-python3-config-dir=$(python3-config --configdir) \
+#             --enable-perlinterp=yes \
+#             --enable-luainterp=yes \
+#             --enable-gui=gtk3 \
+#             --enable-cscope \
+#             --prefix=/usr/local
+#
+#     make VIMRUNTIMEDIR=/usr/local/share/vim/vim91
+#     sudo make install
+#
+#     # Set vim as your default editor with update-alternatives.
+#     # sudo update-alternatives --install /usr/bin/editor editor /usr/local/bin/vim 1
+#     # sudo update-alternatives --set editor /usr/local/bin/vim
+#     # sudo update-alternatives --install /usr/bin/vi vi /usr/local/bin/vim 1
+#     # sudo update-alternatives --set vi /usr/local/bin/vim
+#
+#     cd -
+#     # rm -rf ~/.vimsrc
+# }
+# # <}}}
 
 # {{{> 安装ubuntu必备软件
-function install_software_on_ubuntu() {
+function install_dependency_on_ubuntu() {
     # echo -e "\033[32m===> Installing softwares...\033[0m"
     color_print "info" "Installing softwares..."
     sudo apt-get update
@@ -140,17 +140,11 @@ function configure_plugins_on_ubuntu() {
 
 # {{{> 在ubuntu上安装vimart
 function install_vimart_on_ubuntu() {
-    # backup data
     backup_vim_data
-    # install prepare software
-    install_software_on_ubuntu
-
-    # copy files
+    install_dependency_on_ubuntu
     copy_files
-    # install fonts
     install_fonts_on_linux
     configure_plugins_on_ubuntu
-    # print end
     print_logo
 }
 # <}}}
