@@ -23,6 +23,10 @@
       {
         "language": "tex",
         "path": "./snippets/tex/tex.json"
+      },
+      {
+        "language": "markdown",
+        "path": "./snippets/markdown/markdown.json"
       }
     ]
   }
