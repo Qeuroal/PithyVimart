@@ -1,6 +1,7 @@
 nvimCorePath = "../pithyvim"
 
 .PHONY: i install \
+	build \
 	l local \
 	c clean \
 	ca cleanall \
@@ -38,4 +39,6 @@ ca cleanall: clean
 gm gitmerge:
 	@git switch master && git merge --no-ff -m "merge dev" dev && git push && git switch dev
 
+build:
+	@bash scripts/install.sh
 
