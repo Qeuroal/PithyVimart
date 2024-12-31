@@ -7,16 +7,16 @@ function install_softwares_on_mac() {
     # echo -e "\033[32m===> Installing softwares...\033[0m"
     color_print "info" "Installing softwares..."
     # xcode-select --install
-    brew install macvim gcc cmake ctags-exuberant ack ripgrep
-    local macvimPath=`realpath \`which mvim\` | awk -F / '{
-        path=""
-        for (i = 1; i < NF - 2; i++)
-        {
-            if ($i) path=path"/"$i
-        }
-        print path
-    }'`
-    ln -sf ${macvimPath} /Applications
+    brew install gcc cmake ctags-exuberant ack ripgrep fzf
+    # local macvimPath=`realpath \`which mvim\` | awk -F / '{
+    #     path=""
+    #     for (i = 1; i < NF - 2; i++)
+    #     {
+    #         if ($i) path=path"/"$i
+    #     }
+    #     print path
+    # }'`
+    # ln -sf ${macvimPath} /Applications
 
 }
 # <}}}
@@ -27,7 +27,7 @@ function install_fonts_on_mac() {
     color_print "info" "Installing fonts..."
 
     # 解压fonts
-    tar -zxvf ./assets/packages/font/fonts.tar.gz -C ./
+    tar -zxvf ./assets/font/fonts.tar.gz -C ./
 
     # instal Droid Sans
     rm -rf ~/Library/Fonts/droid_sans_mono
@@ -64,35 +64,35 @@ function install_fonts_on_mac() {
 }
 # <}}}
 
-# {{{> install ycm
-function install_cpt_on_mac() {
-    local cptScheme=$(get_complete_scheme)
-
-    if [ "${cptScheme}" = "2" ]; then
-        color_print "warning" "Installing ycm..."
-
-        #########################################
-        ## 待测试 !!!!!!!!!!!!!!!!!!!          ##
-        #########################################
-
-        # install dependency
-        local install_choice=n
-        read -n1 -p "Would you like to install dependencies of ycm? [y/n]" install_choice
-        echo ""
-        if [ "${install_choice}" = 'y' -o "${install_choice}" = 'Y' ]; then
-            color_print "warning" "Installing dependencies of ycm..."
-            brew install cmake python go nodejs
-        fi
-        # brew install java
-
-        # python 编译
-        # python3 ~/.vim/plugged/YouCompleteMe/install.py --all
-    elif [ "${cptScheme}" = "3" ]; then
-        color_print "warning" "Installing coc..."
-        brew install nodejs
-    fi
-}
-# <}}}
+# # {{{> install ycm
+# function install_cpt_on_mac() {
+#     local cptScheme=$(get_complete_scheme)
+#
+#     if [ "${cptScheme}" = "2" ]; then
+#         color_print "warning" "Installing ycm..."
+#
+#         #########################################
+#         ## 待测试 !!!!!!!!!!!!!!!!!!!          ##
+#         #########################################
+#
+#         # install dependency
+#         local install_choice=n
+#         read -n1 -p "Would you like to install dependencies of ycm? [y/n]" install_choice
+#         echo ""
+#         if [ "${install_choice}" = 'y' -o "${install_choice}" = 'Y' ]; then
+#             color_print "warning" "Installing dependencies of ycm..."
+#             brew install cmake python go nodejs
+#         fi
+#         # brew install java
+#
+#         # python 编译
+#         # python3 ~/.vim/plugged/YouCompleteMe/install.py --all
+#     elif [ "${cptScheme}" = "3" ]; then
+#         color_print "warning" "Installing coc..."
+#         brew install nodejs
+#     fi
+# }
+# # <}}}
 
 #{{{> configure fzf
 function configure_fzf_on_mac() {
@@ -131,7 +131,7 @@ function configure_plugins_on_mac() {
     configure_fzf_on_mac
     configure_tmux
     configure_shell
-    configureCtags
+    # configureCtags
 }
 #<}}}
 
@@ -141,18 +141,15 @@ function install_vimart_on_mac() {
     backup_vim_data
     # install prepare software
     install_softwares_on_mac
-    # copy files
     copy_files
-    #install fonts
     install_fonts_on_mac
-    # choose & install cpt
-    choose_complete_scheme
-    install_cpt_on_mac
-    # install vim plugins
-    install_vim_plugins
-    # config vim plugins
+
+    # # choose & install cpt
+    # choose_complete_scheme
+    # install_cpt_on_mac
+
+    # install_vim_plugins
     configure_plugins_on_mac
-    # print end
     print_logo
 }
 # <}}}

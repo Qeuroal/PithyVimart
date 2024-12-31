@@ -25,56 +25,56 @@ function copy_files() {
     color_print "info" "srcPath: $srcPath"
     color_print "info" "dstPath: $destPath"
 
-    # .vimrc
-    rm -rf ${destPath}/.vimrc
-    ln -s ${srcPath}/configuration/.vimrc ${destPath}
+    # # .vimrc
+    # rm -rf ${destPath}/.vimrc
+    # ln -s ${srcPath}/configuration/.vimrc ${destPath}
 
     # vim-plug by download from github
         # curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
         # https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-    # .vimrc.custom.plugins
-    # rm -rf ${destPath}/.vimrc.custom.plugins
-    if [ ! -e "${destPath}/.vimrc.custom.plugins" ]; then
-        cp ${srcPath}/configuration/.vimrc.custom.plugins ${destPath}
-    fi
+    # # .vimrc.custom.plugins
+    # # rm -rf ${destPath}/.vimrc.custom.plugins
+    # if [ ! -e "${destPath}/.vimrc.custom.plugins" ]; then
+    #     cp ${srcPath}/configuration/.vimrc.custom.plugins ${destPath}
+    # fi
 
-    # .vimrc.custom.config
-    # rm -rf ${destPath}/.vimrc.custom.config
-    if [ ! -e "${destPath}/.vimrc.custom.config" ]; then
-        cp ${srcPath}/configuration/.vimrc.custom.config ${destPath}
-    fi
+    # # .vimrc.custom.config
+    # # rm -rf ${destPath}/.vimrc.custom.config
+    # if [ ! -e "${destPath}/.vimrc.custom.config" ]; then
+    #     cp ${srcPath}/configuration/.vimrc.custom.config ${destPath}
+    # fi
 
-    # .vim/color
-    mkdir -p ${destPath}/.vim
-    rm -rf ${destPath}/.vim/colors
-    ln -s ${srcPath}/colors ${destPath}/.vim/
+    # # .vim/color
+    # mkdir -p ${destPath}/.vim
+    # rm -rf ${destPath}/.vim/colors
+    # ln -s ${srcPath}/colors ${destPath}/.vim/
 
-    # .vim/bin
-    mkdir -p ${destPath}/.vim/bin
+    # # .vim/bin
+    # mkdir -p ${destPath}/.vim/bin
 
-    # vim-plug by copy
-    cp -rf ${srcPath}/autoload ${destPath}/.vim/
+    # # vim-plug by copy
+    # cp -rf ${srcPath}/autoload ${destPath}/.vim/
 
-    # ftplugin
-    rm -rf ${destPath}/.vim/ftplugin
-    ln -s ${srcPath}/ftplugin ${destPath}/.vim/
+    # # ftplugin
+    # rm -rf ${destPath}/.vim/ftplugin
+    # ln -s ${srcPath}/ftplugin ${destPath}/.vim/
 
-    # settings
-    rm -rf ${destPath}/.vim/settings
-    ln -s ${srcPath}/settings ${destPath}/.vim/
+    # # settings
+    # rm -rf ${destPath}/.vim/settings
+    # ln -s ${srcPath}/settings ${destPath}/.vim/
 
-    # ultisnips
-    rm -rf ${destPath}/.vim/UltiSnips
-    ln -s ${srcPath}/plugin_configuration/UltiSnips ${destPath}/.vim/UltiSnips
+    # # ultisnips
+    # rm -rf ${destPath}/.vim/UltiSnips
+    # ln -s ${srcPath}/plugin_configuration/UltiSnips ${destPath}/.vim/UltiSnips
 
-    # .vimart
-    rm -rf ${destPath}/.vimart
-    ln -s ${srcPath} ${destPath}/.vimart
+    # # .vimart
+    # rm -rf ${destPath}/.vimart
+    # ln -s ${srcPath} ${destPath}/.vimart
 
-    # .vimrc.cpt.config
-    rm -rf ~/.vimrc.cpt.config
-    ln -s ${PWD}/configuration/vimrc.cpt.config ~/.vimrc.cpt.config
+    # # .vimrc.cpt.config
+    # rm -rf ~/.vimrc.cpt.config
+    # ln -s ${PWD}/configuration/vimrc.cpt.config ~/.vimrc.cpt.config
 }
 #<}}}
 
@@ -142,14 +142,14 @@ function config_vim_cpt() {
 }
 #<}}}
 
-#{{{> install vim plugins
-function install_vim_plugins() {
-    # echo -e "\033[32m===> Installing plugins...\033[0m"
-    color_print "info" "Installing plugins..."
-    vim -c "PlugInstall" -c "q" -c "q"
-    config_vim_cpt
-}
-#<}}}
+##{{{> install vim plugins
+#function install_vim_plugins() {
+#    # echo -e "\033[32m===> Installing plugins...\033[0m"
+#    color_print "info" "Installing plugins..."
+#    vim -c "PlugInstall" -c "q" -c "q"
+#    config_vim_cpt
+#}
+##<}}}
 
 #{{{> print vimart's logo
 function print_logo() {
@@ -157,14 +157,12 @@ function print_logo() {
     local normal="$(tput sgr0)"
     printf "${color}"
     echo ''
-    echo '888     888 d8b                      d8888         888    '
-    echo '888     888 Y8P                     d88888         888    '
-    echo '888     888                        d88P888         888    '
-    echo 'Y88b   d88P 888 88888b.d88b.      d88P 888 888d888 888888 '
-    echo ' Y88b d88P  888 888 "888 "88b    d88P  888 888P"   888    '
-    echo '  Y88o88P   888 888  888  888   d88P   888 888     888    '
-    echo '   Y888P    888 888  888  888  d8888888888 888     Y88b.  '
-    echo '    Y8P     888 888  888  888 d88P     888 888      "Y888 by Qeuroal.'
+    echo '________ _____ _____ ______           ___    _______                             _____ '
+    echo '___  __ \___(_)__  /____  /_ _____  ____ |  / /___(_)_______ ___ ______ ___________  /_'
+    echo '__  /_/ /__  / _  __/__  __ \__  / / /__ | / / __  / __  __ `__ \_  __ `/__  ___/_  __/'
+    echo '_  ____/ _  /  / /_  _  / / /_  /_/ / __ |/ /  _  /  _  / / / / // /_/ / _  /    / /_  '
+    echo '/_/      /_/   \__/  /_/ /_/ _\__, /  _____/   /_/   /_/ /_/ /_/ \__,_/  /_/     \__/  by Qeuroal.'
+    echo '                             /____/                                                    '
     echo ''
     echo 'Finish vimart installment!'
     echo 'Just enjoy it!'
@@ -421,95 +419,95 @@ function configure_shell() {
 }
 #<}}}
 
-#{{{> config ctags
-function configureCtags() {
-    local srcPath=${PWD}
-    local destPath=$HOME
-    if [ "$#" = "1" ]; then
-        srcPath=${PWD}
-        destPath="$1"
-    elif [ "$#" = "2" ]; then
-        srcPath="$1"
-        destPath="$2"
-    fi
+##{{{> config ctags
+#function configureCtags() {
+#    local srcPath=${PWD}
+#    local destPath=$HOME
+#    if [ "$#" = "1" ]; then
+#        srcPath=${PWD}
+#        destPath="$1"
+#    elif [ "$#" = "2" ]; then
+#        srcPath="$1"
+#        destPath="$2"
+#    fi
+#
+#    local targetFile="${destPath}/.ctags"
+#    if [[ ! -f ${targetFile} ]]; then
+#        touch ${targetFile}
+#    fi
+#
+#    # copy mdctags
+#    type=$(uname)
+#    if [ "${type}" = "Darwin" ]; then
+#        cp -rf ${srcPath}/assets/packages/mdctags/mdctags_Darwin ${destPath}/.vim/bin/mdctags
+#    elif [ ${type} = "Linux" ]; then
+#        local tp=$(uname -a)
+#        if [[ $tp =~ "Android" ]]; then
+#            echo "mdctags doesn't support platform type: Android"
+#        else
+#            local distro=`get_linux_distro`
+#            local targetFile="${srcPath}/assets/packages/mdctags/mdctags_${distro}"
+#            if [[ -f ${targetFile} ]]; then
+#                cp -rf ${targetFile} ${destPath}/.vim/bin/mdctags
+#            fi
+#        fi
+#    else
+#        echo "mdctags doesn't support platform type: "${type}
+#    fi
+#}
+##<}}}
 
-    local targetFile="${destPath}/.ctags"
-    if [[ ! -f ${targetFile} ]]; then
-        touch ${targetFile}
-    fi
-
-    # copy mdctags
-    type=$(uname)
-    if [ "${type}" = "Darwin" ]; then
-        cp -rf ${srcPath}/assets/packages/mdctags/mdctags_Darwin ${destPath}/.vim/bin/mdctags
-    elif [ ${type} = "Linux" ]; then
-        local tp=$(uname -a)
-        if [[ $tp =~ "Android" ]]; then
-            echo "mdctags doesn't support platform type: Android"
-        else
-            local distro=`get_linux_distro`
-            local targetFile="${srcPath}/assets/packages/mdctags/mdctags_${distro}"
-            if [[ -f ${targetFile} ]]; then
-                cp -rf ${targetFile} ${destPath}/.vim/bin/mdctags
-            fi
-        fi
-    else
-        echo "mdctags doesn't support platform type: "${type}
-    fi
-}
-#<}}}
-
-#{{{> choose cpt
-function choose_complete_scheme() {
-    local srcPath=${PWD}
-    local destPath=$HOME
-    if [ "$#" = "1" ]; then
-        srcPath=${PWD}
-        destPath="$1"
-    elif [ "$#" = "2" ]; then
-        srcPath="$1"
-        destPath="$2"
-    fi
-
-    opt_print "Complete schemes:" "0. build-in" "1. vimautosense & vimdicts" "2. YouCompleteMe" "3. coc"
-    local opt=""
-    local defaultOpt=2
-    read -n1 -p "Please choose a complete scheme (default ${defaultOpt}):" opt
-    if [ -z "${opt}" ]; then
-        opt=${defaultOpt}
-    fi
-
-    if [ "$(uname)" = "Darwin" ]; then
-        if [ "${opt}" = "0" ]; then
-            sed -i "" 's/let g:completeScheme=1/let g:completeScheme=0/g' ${destPath}/.vimrc.custom.config
-        elif [ "${opt}" = "1" ]; then
-            sed -i "" 's/let g:completeScheme=1/let g:completeScheme=1/g' ${destPath}/.vimrc.custom.config
-        elif [ "${opt}" = "2" ]; then
-            sed -i "" 's/let g:completeScheme=1/let g:completeScheme=2/g' ${destPath}/.vimrc.custom.config
-        elif [ "${opt}" = "3" ]; then
-            sed -i "" 's/let g:completeScheme=1/let g:completeScheme=3/g' ${destPath}/.vimrc.custom.config
-        fi
-    elif [ "$(uname)" = "Linux" ]; then
-        if [ "${opt}" = "0" ]; then
-            sed -i 's/let g:completeScheme=1/let g:completeScheme=0/g' ${destPath}/.vimrc.custom.config
-        elif [ "${opt}" = "1" ]; then
-            sed -i  's/let g:completeScheme=1/let g:completeScheme=1/g' ${destPath}/.vimrc.custom.config
-        elif [ "${opt}" = "2" ]; then
-            sed -i 's/let g:completeScheme=1/let g:completeScheme=2/g' ${destPath}/.vimrc.custom.config
-        elif [ "${opt}" = "3" ]; then
-            sed -i 's/let g:completeScheme=1/let g:completeScheme=3/g' ${destPath}/.vimrc.custom.config
-        fi
-    else
-        color_print "error" "don't support sed"
-        exit 1
-    fi
-
-    if [ "${opt}" = "3" ]; then
-        rm -rf ${destPath}/.vim/coc-settings.json
-        cp -rf ${srcPath}/plugin_configuration/coc/coc-settings.json ${destPath}/.vim/coc-settings.json
-    fi
-}
-#<}}}
+##{{{> choose cpt
+#function choose_complete_scheme() {
+#    local srcPath=${PWD}
+#    local destPath=$HOME
+#    if [ "$#" = "1" ]; then
+#        srcPath=${PWD}
+#        destPath="$1"
+#    elif [ "$#" = "2" ]; then
+#        srcPath="$1"
+#        destPath="$2"
+#    fi
+#
+#    opt_print "Complete schemes:" "0. build-in" "1. vimautosense & vimdicts" "2. YouCompleteMe" "3. coc"
+#    local opt=""
+#    local defaultOpt=2
+#    read -n1 -p "Please choose a complete scheme (default ${defaultOpt}):" opt
+#    if [ -z "${opt}" ]; then
+#        opt=${defaultOpt}
+#    fi
+#
+#    if [ "$(uname)" = "Darwin" ]; then
+#        if [ "${opt}" = "0" ]; then
+#            sed -i "" 's/let g:completeScheme=1/let g:completeScheme=0/g' ${destPath}/.vimrc.custom.config
+#        elif [ "${opt}" = "1" ]; then
+#            sed -i "" 's/let g:completeScheme=1/let g:completeScheme=1/g' ${destPath}/.vimrc.custom.config
+#        elif [ "${opt}" = "2" ]; then
+#            sed -i "" 's/let g:completeScheme=1/let g:completeScheme=2/g' ${destPath}/.vimrc.custom.config
+#        elif [ "${opt}" = "3" ]; then
+#            sed -i "" 's/let g:completeScheme=1/let g:completeScheme=3/g' ${destPath}/.vimrc.custom.config
+#        fi
+#    elif [ "$(uname)" = "Linux" ]; then
+#        if [ "${opt}" = "0" ]; then
+#            sed -i 's/let g:completeScheme=1/let g:completeScheme=0/g' ${destPath}/.vimrc.custom.config
+#        elif [ "${opt}" = "1" ]; then
+#            sed -i  's/let g:completeScheme=1/let g:completeScheme=1/g' ${destPath}/.vimrc.custom.config
+#        elif [ "${opt}" = "2" ]; then
+#            sed -i 's/let g:completeScheme=1/let g:completeScheme=2/g' ${destPath}/.vimrc.custom.config
+#        elif [ "${opt}" = "3" ]; then
+#            sed -i 's/let g:completeScheme=1/let g:completeScheme=3/g' ${destPath}/.vimrc.custom.config
+#        fi
+#    else
+#        color_print "error" "don't support sed"
+#        exit 1
+#    fi
+#
+#    if [ "${opt}" = "3" ]; then
+#        rm -rf ${destPath}/.vim/coc-settings.json
+#        cp -rf ${srcPath}/plugin_configuration/coc/coc-settings.json ${destPath}/.vim/coc-settings.json
+#    fi
+#}
+##<}}}
 
 #{{{> get_complete_scheme
 function get_complete_scheme() {
