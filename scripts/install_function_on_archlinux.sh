@@ -1,10 +1,13 @@
 #!/bin/bash
 
 function install_software_on_archlinux() {
-    # sudo pacman -S --noconfirm vim ctags automake gcc cmake python3 python2 ack git fontconfig
+    sudo pacman -S --noconfirm ctags automake gcc cmake python3 python2 ack git fontconfig ripgrep fzf
+    # node.js
+    sudo pacman -S --noconfirm npm
+
+    # # 解决vim ycm 问题: ImportError: libtinfo.so.5: cannot open shared object file: No such file or directory
+    # # 详见: https://github.com/chxuan/vimplus/issues/74
     # sudo ln -s /usr/lib/libtinfo.so.6 /usr/lib/libtinfo.so.5
-    sudo pacman -S --noconfirm ctags automake gcc cmake python3 python2 ack git fontconfig ripgrep fzf npm
-    sudo ln -s /usr/lib/libtinfo.so.6 /usr/lib/libtinfo.so.5
 }
 
 #{{{> configure plugins
