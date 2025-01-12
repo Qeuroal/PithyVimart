@@ -6,7 +6,7 @@ source ${PWD}/scripts/color_print.sh
 function install_dependency_on_mac() {
     color_print "info" "Installing softwares..."
     # xcode-select --install
-    brew install gcc cmake ctags-exuberant ack ripgrep fzf
+    brew install gcc cmake ctags-exuberant ack ripgrep fzf node
 
 }
 # <}}}

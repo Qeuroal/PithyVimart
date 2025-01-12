@@ -50,3 +50,26 @@
    - npm (node.js) ([官网](https://nodejs.cn/download/))
 
 
+# 插件
+
+## 依赖项
+
+> [!NOTE]
+> 方便起见, 可以先不安装这些插件的依赖项, 如果有报错再根据错误信息安装相应的依赖项即可 (`<leader>n` 可以用来查看通知历史, 包括错误信息).
+
+- global
+
+   - npm
+
+      - archlinux: `sudo pacman -S --noconfirm npm` 
+      - ubuntu: `sudo apt-get -y install npm`
+      - fedora: `sudo dnf install -y npm`
+      - macos: `brew install node`
+
+- markdown
+
+   - markdownlint-cli2
+
+      - archlinux: `sudo pacman -S --noconfirm markdownlint-cli2` 
+
+

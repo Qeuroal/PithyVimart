@@ -7,7 +7,7 @@ function install_software_on_fedora() {
     color_print "info" "Installing softwares..."
 
     # sudo dnf install -y vim-enhanced ctags automake gcc gcc-c++ kernel-devel cmake python-devel python3-devel fontconfig ack git
-    sudo dnf install -y vim-enhanced ctags gcc make gcc gcc-c++ cmake python3-devel fontconfig ripgrep fzf
+    sudo dnf install -y vim-enhanced ctags gcc make gcc gcc-c++ cmake python3-devel fontconfig ripgrep fzf npm
 }
 # <}}}
 
