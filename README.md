@@ -87,8 +87,6 @@
       - macos: `brew install markdownlint-cli2`
       - ubuntu: `sudo apt install markdownlint`
 
-# 补充
-
 # QAs
 
 ## Linux
