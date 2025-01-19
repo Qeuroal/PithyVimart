@@ -85,6 +85,7 @@
 
       - archlinux: `sudo pacman -S --noconfirm markdownlint-cli2` 
       - macos: `brew install markdownlint-cli2`
+      - ubuntu: `sudo apt install markdownlint`
 
 # 补充
 
