@@ -14,7 +14,7 @@ return {
 
   -- Configure PithyVim to load gruvbox
   {
-    "qeuroal/PithyVim",
+    "Qeuroal/PithyVim",
     opts = {
       colorscheme = "gruvbox",
     },
