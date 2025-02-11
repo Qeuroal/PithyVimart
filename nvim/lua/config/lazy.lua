@@ -17,7 +17,7 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
   spec = {
     -- add PithyVim and import its plugins
-    { "qeuroal/PithyVim", import = "pithyvim.plugins", branch = "dev" },
+    { "Qeuroal/PithyVim", import = "pithyvim.plugins", branch = "dev" },
     -- import/override with your plugins
     { import = "plugins" },
   },

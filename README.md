@@ -85,8 +85,7 @@
 
       - archlinux: `sudo pacman -S --noconfirm markdownlint-cli2` 
       - macos: `brew install markdownlint-cli2`
-
-# 补充
+      - ubuntu: `sudo apt install markdownlint`
 
 # QAs
 
@@ -125,6 +124,47 @@
    nvim
    ```
 
+- Python module
+
+   - archlinux
+
+      The Python module is available from the community repository:
+
+      ```bash
+      sudo pacman -S python-pynvim
+      ```
+
+   - ubuntu
+
+      Python (`:python`) support is installable via the package manager on Debian unstable.
+
+      ```bash
+      sudo apt-get install python3-neovim
+      ```
+
+   - fedora
+
+      Neovim is in [Fedora](https://src.fedoraproject.org/rpms/neovim) starting with Fedora 25:
+
+      ```bash
+      sudo dnf install -y neovim python3-neovim
+      ```
+
+      You can also get nightly builds of git master from the [Copr automated build system](https://copr.fedoraproject.org/coprs/agriffis/neovim-nightly/):
+
+      ```bash
+      dnf copr enable agriffis/neovim-nightly
+      dnf install -y neovim python3-neovim
+      ```
+
+      See the [blog post](https://arongriffis.com/2019-03-02-neovim-nightly-builds) for information on how these are built.
+
+- Ruby modules
+
+   - archlinux
+
+      (currently only supported in `neovim-git`) are available from the AUR as [`ruby-neovim`](https://aur.archlinux.org/packages/ruby-neovim).
+
 ## Windows
 
 - 缺失 `VCRUNTIME140.dll`
@@ -155,3 +195,7 @@
 
    2. Run `:checkhealth` and read `:help provider-python`.
 
+
+## 参考
+
+- [官网文档](https://github.com/neovim/neovim/blob/master/INSTALL.md)
