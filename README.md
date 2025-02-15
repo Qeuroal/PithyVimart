@@ -165,6 +165,23 @@
 
       (currently only supported in `neovim-git`) are available from the AUR as [`ruby-neovim`](https://aur.archlinux.org/packages/ruby-neovim).
 
+
+## MacOS
+
+- Mac 系统没有 Alt 键，Option 键也不管用，如何设置 Command 快捷键
+
+   在我们的配置中，Mac 系统的 Option 键对应的是 Windows 系统的 Alt 键，如果你的 Option 键没有反应，通常需要设置一下你的终端，将 Option 键设置为 Meta 键。
+
+   - Item2: 设置方式为 Preference -> Profiles -> Default --> Keys --> Left Option key --> 选中 Esc+
+
+   - alacritty: 设置 `[window]` 的 `option_as_alt` 为 `OnlyLeft`, 如下所示:
+
+      ```toml
+      [window]
+      option_as_alt = "OnlyLeft"
+      ```
+
+
 ## Windows
 
 - 缺失 `VCRUNTIME140.dll`
@@ -194,6 +211,14 @@
       ```
 
    2. Run `:checkhealth` and read `:help provider-python`.
+
+- windows 的 ubuntu 子系统下安装插件报错 could not find executable "unzip" in path?
+
+   因为缺少压缩解压软件, 需要安装 zip unzip.
+
+   ```bash
+   sudo apt-get install zip unzip
+   ```
 
 
 ## 参考
