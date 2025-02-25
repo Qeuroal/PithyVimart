@@ -63,9 +63,9 @@ fi
 
 # nvim replace vim
 if command -v nvim > /dev/null; then
-    alias vim="nvim"
-    alias vi="nvim"
-    alias vimdiff="nvim -d"
+    alias vim="nvim -V1"
+    alias vi="vim"
+    alias vimdiff="vim -d"
 fi
 
 # curl
