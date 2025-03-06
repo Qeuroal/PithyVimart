@@ -1,5 +1,6 @@
+// reference:
+//    https://github.com/DavidAnson/markdownlint/blob/main/schema/.markdownlint.jsonc
 {
-  // MD007/ul-indent : Unordered list indentation : https://github.com/DavidAnson/markdownlint/blob/v0.32.1/doc/md007.md
   "MD007": {
     // Spaces for indent
     "indent": 3,
@@ -12,5 +13,10 @@
     // Consecutive blank lines
     "maximum": 2
   },
+  "MD013": {
+    "line_length": -1,
+  },
+  "MD024": false,
+  "MD025": false
 }
 
