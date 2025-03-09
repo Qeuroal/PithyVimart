@@ -42,3 +42,8 @@ gm gitmerge:
 build:
 	@bash scripts/install.sh
 
+update:
+	@cp -r ./assets/dotfiles/.aliases ~
+	@cp -r ./assets/dotfiles/.tmux.conf ~
+
+
