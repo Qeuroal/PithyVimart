@@ -10,14 +10,14 @@ NVIM_CORE_PATH = "../pithyvim"
 i install:
 	@rm -rf ~/.config/nvim
 	@rm -rf ./nvim/lazy-lock.json
-	@rm -rf ./nvim/pithyvim
+	@rm -rf ./nvim/lua/pithyvim
 	@ln -sf `realpath ./nvim` ~/.config/nvim
 
 l local:
 	@rm -rf ~/.config/nvim
 	@cp ./local/lazy.lua ./nvim/lua/config/lazy.lua
-	@rm -rf ./nvim/pithyvim
-	@eval "ln -sf `realpath ${NVIM_CORE_PATH}` ./nvim/pithyvim"
+	@rm -rf ./nvim/lua/pithyvim
+	@eval "ln -sf `realpath ${NVIM_CORE_PATH}/lua/pithyvim` ./nvim/lua/pithyvim"
 	@ln -sf `realpath ./nvim` ~/.config/nvim
 
 c clean:
@@ -26,7 +26,7 @@ c clean:
 	@rm -rf ~/.local/share/nvim
 	@rm -rf ~/.local/state/nvim
 	@rm -rf ./nvim/lazy-lock.json
-	@rm -rf ./nvim/pithyvim
+	@rm -rf ./nvim/lua/pithyvim
 
 ca cleanall: clean
 	@git restore . && git clean -fd
