@@ -8,16 +8,12 @@ NVIM_CORE_PATH = "../pithyvim"
 	gm gitmerge
 
 i install:
-	# @rm -rf ~/.local/share/nvim
-	# @rm -rf ~/.local/state/nvim
 	@rm -rf ~/.config/nvim
 	@rm -rf ./nvim/lazy-lock.json
 	@rm -rf ./nvim/lua/pithyvim
 	@ln -sf `realpath ./nvim` ~/.config/nvim
 
 l local:
-	# @rm -rf ~/.local/share/nvim
-	# @rm -rf ~/.local/state/nvim
 	@rm -rf ~/.config/nvim
 	@cp ./local/lazy.lua ./nvim/lua/config/lazy.lua
 	@rm -rf ./nvim/lua/pithyvim
