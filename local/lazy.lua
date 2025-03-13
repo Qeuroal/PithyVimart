@@ -17,7 +17,7 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
   spec = {
     -- add PithyVim and import its plugins
-    { dir = "~/.config/nvim/lua/pithyvim", import = "pithyvim.plugins" },
+    { dir = "~/.config/nvim/pithyvim", import = "pithyvim.plugins" },
     -- import/override with your plugins
     { import = "plugins" },
   },
