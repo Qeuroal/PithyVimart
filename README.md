@@ -11,13 +11,19 @@
 下载页面为 [Releases](https://github.com/neovim/neovim/releases).
 
 - Latest [stable release](https://github.com/neovim/neovim/releases/latest)
-    - [macOS x86](https://github.com/neovim/neovim/releases/latest/download/nvim-macos-x86_64.tar.gz)
-    - [macOS arm](https://github.com/neovim/neovim/releases/latest/download/nvim-macos-arm64.tar.gz)
-    - [Linux](https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz)
-    - [Windows](https://github.com/neovim/neovim/releases/latest/download/nvim-win64.msi)
+   - [macOS x86](https://github.com/neovim/neovim/releases/latest/download/nvim-macos-x86_64.tar.gz)
+   - [macOS arm](https://github.com/neovim/neovim/releases/latest/download/nvim-macos-arm64.tar.gz)
+   - [Linux](https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz)
+   - [Windows](https://github.com/neovim/neovim/releases/latest/download/nvim-win64.msi)
 - Latest [development prerelease](https://github.com/neovim/neovim/releases/nightly)
 
 # 安装
+
+**配置入口文件:**
+
+- Unix: `~/.config/nvim/init.vim` (or `init.lua`)
+- Windows: `~/AppData/Local/nvim/init.vim` (or `init.lua`)
+- [\$XDG_CONFIG_HOME](https://neovim.io/doc/user/starting.html#%24XDG_CONFIG_HOME): `$XDG_CONFIG_HOME/nvim/init.vim` (or `init.lua`)
 
 ## Linux/MacOS
 
@@ -51,6 +57,10 @@
 
       1. 重启终端
 
+   > [!TIP]
+   > proxy
+   > linux/macos: `export HTTP_PROXY=http://127.0.0.1:7890 HTTPS_PROXY=http://127.0.0.1:7890 FTP_PROXY=http://127.0.0.1:7890 ALL_PROXY=socks://127.0.0.1:7890 NO_PROXY=localhost,127.0.0.0/8,::1 http_proxy=http://127.0.0.1:7890 https_proxy=http://127.0.0.1:7890 ftp_proxy=http://127.0.0.1:7890 all_proxy=socks://127.0.0.1:7890 no_proxy=localhost,127.0.0.0/8,::1`
+
 ## Windows
 
 ### 依赖项
@@ -61,6 +71,43 @@
    - git
    - mingw ([官网](https://www.mingw-w64.org/downloads/), [github](https://github.com/niXman/mingw-builds-binaries))
    - npm (node.js) ([官网](https://nodejs.cn/download/))
+
+### 安装步骤
+
+Install the [PithyVimart](https://github.com/qeuroal/Pithyvimart) with [PowerShell](https://github.com/PowerShell/PowerShell)
+
+- Make a backup of your current Neovim files:
+
+   ```powershell
+   # required
+   Move-Item $env:LOCALAPPDATA\nvim $env:LOCALAPPDATA\nvim.bak
+   
+   # optional but recommended, which makes a backup
+   Move-Item $env:LOCALAPPDATA\nvim-data $env:LOCALAPPDATA\nvim-data.bak
+   ```
+
+- Clone the starter
+
+   ```powershell
+   git clone https://github.com/qeuroal/pithyvimart.git $env:LOCALAPPDATA\nvim
+   ```
+
+- **(optional but not recommended)** Remove the `.git` folder, so you can add it to your own repo later
+
+   ```powershell
+   Remove-Item $env:LOCALAPPDATA\nvim\.git -Recurse -Force
+   ```
+
+- Start Neovim!
+
+   ```powershell
+   nvim
+   ```
+
+> [!TIP]
+> proxy
+> POWERSHELL: `$Env:http_proxy="http://127.0.0.1:7890";$Env:https_proxy="http://127.0.0.1:7890";$Env:socket_proxy="http://127.0.0.1:7890";$Env:all_proxy="http://127.0.0.1:7890"`
+> CMD: `set http_proxy=http://127.0.0.1:7890; set https_proxy=http://127.0.0.1:7890; set all_proxy=http://127.0.0.1:7890; set socket_proxy=http://127.0.0.1:7890`
 
 
 # 插件
@@ -74,7 +121,7 @@
 
    - npm
 
-      - archlinux: `sudo pacman -S --noconfirm npm` 
+      - archlinux: `sudo pacman -S --noconfirm npm`
       - ubuntu: `sudo apt-get -y install npm`
       - fedora: `sudo dnf install -y npm`
       - macos: `brew install node`
@@ -83,11 +130,24 @@
 
    - markdownlint-cli2
 
-      - archlinux: `sudo pacman -S --noconfirm markdownlint-cli2` 
+      - archlinux: `sudo pacman -S --noconfirm markdownlint-cli2`
       - macos: `brew install markdownlint-cli2`
       - ubuntu: `sudo apt install markdownlint`
 
 # QAs
+
+- 如何查看配置路径
+
+   ```vim
+   :echo stdpath('config')
+   ```
+
+- create your [init.vim](https://neovim.io/doc/user/starting.html#init.vim) (user config) file:
+
+   ```vim
+   :exe 'edit '.stdpath('config').'/init.vim'
+   :write ++p
+   ```
 
 ## Linux
 
@@ -187,10 +247,10 @@
 - 缺失 `VCRUNTIME140.dll`
 
    1. If you are missing `VCRUNTIME140.dll`, install the [Visual Studio 2015 C++ redistributable](https://support.microsoft.com/en-us/kb/2977003) (choose x86_64 or x86 depending on your system).
-   2. Choose a package (**nvim-winXX.zip**) from the [releases page](https://github.com/neovim/neovim/releases).
-   3. Unzip the package. Any location is fine, administrator privileges are _not_ required.
-   - `$VIMRUNTIME` will be set to that location automatically.
-   4. Run `nvim.exe` from a terminal.
+   1. Choose a package (**nvim-winXX.zip**) from the [releases page](https://github.com/neovim/neovim/releases).
+   1. Unzip the package. Any location is fine, administrator privileges are _not_ required.
+   1. `$VIMRUNTIME` will be set to that location automatically.
+   1. Run `nvim.exe` from a terminal.
 
 - Windows 系统无法使用 `nvim` 编辑文件
 
@@ -204,7 +264,7 @@
 
 - For Python plugins you need the `pynvim` module. "Virtual envs" are recommended.
 
-   1. After activating the virtual env do `pip install pynvim` (in *both*). Edit your `init.vim` so that it contains the path to the env's Python executable:
+   1. After activating the virtual env do `pip install pynvim` (in _both_). Edit your `init.vim` so that it contains the path to the env's Python executable:
 
       ```vim
       let g:python3_host_prog='C:/Users/foo/Envs/neovim3/Scripts/python.exe'
@@ -223,4 +283,7 @@
 
 ## 参考
 
-- [官网文档](https://github.com/neovim/neovim/blob/master/INSTALL.md)
+- [neovim安装官方教程](https://github.com/neovim/neovim/blob/master/INSTALL.md)
+- [neovim初始化官方教程](https://neovim.io/doc/user/starting.html#_initialization)
+- [nvim.html](https://neovim.io/doc/user/nvim.html)
+
