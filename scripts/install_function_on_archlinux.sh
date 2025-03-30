@@ -1,6 +1,11 @@
 #!/bin/bash
 
 function install_software_on_archlinux() {
+    if [ "$(has_sudo)" == "0" ]; then
+        color_print "warning" "You are not the root user."
+        return
+    fi
+
     sudo pacman -S --noconfirm ctags automake gcc cmake python3 python2 ack git fontconfig ripgrep fzf
     # node.js
     sudo pacman -S --noconfirm npm

@@ -129,7 +129,11 @@ function copy_reference_usr_file() {
     local userhome=$(eval echo ~${referenceUser})
 
     if [ -d "${userhome}/.vim" ]; then
-        sudo cp -rf ${userhome}/.vim ${destPath}
+        if [ "$(has_sudo)" == "1" ]; then
+            sudo cp -rf ${userhome}/.vim ${destPath}
+        else
+            color_print "warning" "You are not the root user."
+        fi
     else
         color_print "warning" "don't exist ${userhome}/.vim"
     fi

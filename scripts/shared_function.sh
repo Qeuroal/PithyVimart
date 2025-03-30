@@ -308,3 +308,15 @@ function configure_shell() {
 }
 #<}}}
 
+#{{{> has sudo
+function has_sudo() {
+    sudo -v &>/dev/null
+    # sudo or root
+    if [ $? -ne 0 ] && [ "$(id -u)" != "0" ]; then
+        echo 0
+    else
+        echo 1
+    fi
+}
+#<}}}
+
