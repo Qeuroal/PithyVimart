@@ -15,6 +15,8 @@ function install_software_on_fedora() {
     sudo dnf install -y vim-enhanced ctags gcc make gcc gcc-c++ cmake python3-devel fontconfig ripgrep fzf
     # node.js
     sudo dnf install -y npm
+    # snack.nvim 依赖: fd-find
+    sudo dnf install fd-find
 }
 # <}}}
 

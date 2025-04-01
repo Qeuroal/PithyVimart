@@ -9,6 +9,8 @@ function install_dependency_on_mac() {
     brew install gcc cmake ctags-exuberant ack ripgrep fzf
     # node.js
     brew install node
+    # snack.nvim 依赖: fd-find
+    brew install fd
 }
 # <}}}
 
