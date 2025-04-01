@@ -36,6 +36,8 @@ function install_dependency_on_ubuntu() {
     sudo apt-get install -y universal-ctags || sudo apt-get install -y exuberant-ctags
     # node.js
     sudo apt-get install -y npm
+    # snack.nvim 依赖: fd-find
+    sudo apt-get install -y fd-find
 }
 # <}}}
 

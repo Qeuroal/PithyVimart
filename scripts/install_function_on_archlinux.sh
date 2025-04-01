@@ -9,6 +9,8 @@ function install_software_on_archlinux() {
     sudo pacman -S --noconfirm ctags automake gcc cmake python3 python2 ack git fontconfig ripgrep fzf
     # node.js
     sudo pacman -S --noconfirm npm
+    # snack.nvim 依赖: fd-find
+    sudo pacman -S fd
 
     # # 解决vim ycm 问题: ImportError: libtinfo.so.5: cannot open shared object file: No such file or directory
     # # 详见: https://github.com/chxuan/vimplus/issues/74
