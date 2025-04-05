@@ -72,6 +72,10 @@ fi
 alias curla='curl -A "Google Chrome"'
 alias curlao='curl -A "Google Chrome" -JLO'
 
+# tmux
+alias tmuxa='tmux attach'
+alias tmuxt='tmux attach -t'
+
 # yazi
 function y() {
     local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
