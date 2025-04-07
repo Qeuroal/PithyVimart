@@ -76,6 +76,7 @@ alias curlao='curl -A "Google Chrome" -JLO'
 alias tmuxa='tmux attach'
 alias tmuxt='tmux attach -t'
 alias tmuxd='tmux detach'
+alias tmuxn='tmux new -s'
 
 # yazi
 function y() {
