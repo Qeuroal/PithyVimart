@@ -97,19 +97,19 @@ function install_vimart_on_linux() {
 
 #{{{> copy ycm config
 function copy_cpt_config() {
-    srcPath=${PWD}
-    destPath=$HOME
+    srcpath=${PWD}
+    destpath=$HOME
     if [ "$#" = "1"  ]; then
-        srcPath=${PWD}
-        destPath=$1
+        srcpath=${PWD}
+        destpath=$1
     elif [ "$#" = "2"  ]; then
-        srcPath=$1
-        destPath=$2
+        srcpath=$1
+        destpath=$2
     fi
 
-    if [ `ls ${destPath}/.vim/plugged | grep -c YouCompleteMe` != 0  ]; then
-        rm -rf ${destPath}/.vimrc.cpt.config
-        ln -s ${srcPath}/configuration/vimrc.cpt.config ${destPath}/.vimrc.cpt.config
+    if [ `ls ${destpath}/.vim/plugged | grep -c YouCompleteMe` != 0  ]; then
+        rm -rf ${destpath}/.vimrc.cpt.config
+        ln -s ${srcpath}/configuration/vimrc.cpt.config ${destpath}/.vimrc.cpt.config
     fi
 }
 #<}}}
@@ -122,15 +122,15 @@ function copy_reference_usr_file() {
     fi
 
     color_print "warning" "reference user: ${referenceUser}, userhome: ${userhome}"
-    destPath=$HOME
+    destpath=$HOME
     if [ "$#" = "1" ]; then
-        destPath=$1
+        destpath=$1
     fi
     local userhome=$(eval echo ~${referenceUser})
 
     if [ -d "${userhome}/.vim" ]; then
         if [ "$(has_sudo)" == "1" ]; then
-            sudo cp -rf ${userhome}/.vim ${destPath}
+            sudo cp -rf ${userhome}/.vim ${destpath}
         else
             color_print "warning" "You are not the root user."
         fi
@@ -139,25 +139,25 @@ function copy_reference_usr_file() {
     fi
 
     if [ -f "${userhome}/.vimrc.custom.config" ]; then
-        cp -f ${userhome}/.vimrc.custom.config ${destPath}
+        cp -f ${userhome}/.vimrc.custom.config ${destpath}
     else
         color_print "warning" "don't exist ${userhome}/.vimrc.custom.config"
     fi
 
     if [ -f "${userhome}/.vimrc.custom.plugins" ]; then
-        cp -f ${userhome}/.vimrc.custom.plugins ${destPath}
+        cp -f ${userhome}/.vimrc.custom.plugins ${destpath}
     else
         color_print "warning" "don't exist ${userhome}/.vimrc.custom.plugins"
     fi
 
     if [ -f "${userhome}/.vim/coc-settings.json" ]; then
-        rm -rf ${destPath}/.vim/coc-settings.json
-        cp -f `realpath ${userhome}/.vim/coc-settings.json` ${destPath}/.vim/coc-settings.json
+        rm -rf ${destpath}/.vim/coc-settings.json
+        cp -f `realpath ${userhome}/.vim/coc-settings.json` ${destpath}/.vim/coc-settings.json
     fi
 
     if [ -d "${userhome}/.config/coc" ]; then
-        rm -rf ${destPath}/.config/coc
-        cp -rf `realpath ${userhome}/.config/coc` ${destPath}/.config/
+        rm -rf ${destpath}/.config/coc
+        cp -rf `realpath ${userhome}/.config/coc` ${destpath}/.config/
     fi
 }
 #<}}}
@@ -166,23 +166,23 @@ function copy_reference_usr_file() {
 function config_vimart_dependency() {
     color_print "info" "Configuring vimart dependency..."
 
-    srcPath=${PWD}
-    destPath=$HOME
+    srcpath=${PWD}
+    destpath=$HOME
     if [ "$#" = "1" ]; then
-        srcPath=${PWD}
-        destPath=$1
+        srcpath=${PWD}
+        destpath=$1
     elif [ "$#" = "2" ]; then
-        srcPath=$1
-        destPath=$2
+        srcpath=$1
+        destpath=$2
     fi
 
-    configure_fzf_on_linux ${srcPath} ${destPath}
-    configure_tmux ${srcPath} ${destPath}
-    configure_aliases ".zshrc" ${srcPath} ${destPath}
-    configure_aliases ".bashrc" ${srcPath} ${destPath}
-    configure_aliases ".bash_profile" ${srcPath} ${destPath}
-    configure_eof ${srcPath} ${destPath}
-    configureCtags ${srcPath} ${destPath}
+    configure_fzf_on_linux ${srcpath} ${destpath}
+    configure_tmux ${srcpath} ${destpath}
+    configure_aliases ".zshrc" ${srcpath} ${destpath}
+    configure_aliases ".bashrc" ${srcpath} ${destpath}
+    configure_aliases ".bash_profile" ${srcpath} ${destpath}
+    configure_eof ${srcpath} ${destpath}
+    configureCtags ${srcpath} ${destpath}
 }
 #<}}}
 
@@ -245,27 +245,27 @@ function chown_user_permission() {
 
 #{{{> local install vimart
 function local_install_vimart_on_linux() {
-    srcPath="${VIMART_SRC_PATH}"
-    if [ "${srcPath}" = "" ]; then
-        srcPath=${PWD}
+    srcpath="${VIMART_SRC_PATH}"
+    if [ "${srcpath}" = "" ]; then
+        srcpath=${PWD}
     else
-        srcPath="`realpath ${VIMART_SRC_PATH}`"
+        srcpath="`realpath ${VIMART_SRC_PATH}`"
     fi
-    color_print "info" "source path: $srcPath"
+    color_print "info" "source path: $srcpath"
 
-    destPath="${VIMART_DEST_PATH}"
-    if [ "${destPath}" = "" ]; then
-        destPath=$HOME
+    destpath="${VIMART_DEST_PATH}"
+    if [ "${destpath}" = "" ]; then
+        destpath=$HOME
     else
-        destPath="`realpath ${VIMART_DEST_PATH}`"
+        destpath="`realpath ${VIMART_DEST_PATH}`"
     fi
-    color_print "info" "destination path: $destPath"
+    color_print "info" "destination path: $destpath"
 
-    copy_reference_usr_file ${destPath}
-    copy_files ${srcPath} ${destPath}
-    copy_cpt_config ${srcPath} ${destPath}
-    config_vim_cpt ${srcPath} ${destPath}
-    config_vimart_dependency ${srcPath} ${destPath}
+    copy_reference_usr_file ${destpath}
+    copy_files ${srcpath} ${destpath}
+    copy_cpt_config ${srcpath} ${destpath}
+    config_vim_cpt ${srcpath} ${destpath}
+    config_vimart_dependency ${srcpath} ${destpath}
     chown_user_permission
 }
 #<}}}
