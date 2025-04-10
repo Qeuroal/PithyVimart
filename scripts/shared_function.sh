@@ -298,6 +298,41 @@ function configureEof() {
 }
 #<}}}
 
+#{{{> config export
+function configureTerm() {
+    local destFile=".zshrc"
+    local srcPath=${PWD}
+    local destPath=$HOME
+    if [ "$#" = "1" ]; then
+        destFile="$1"
+    elif [ "$#" = "2" ]; then
+        destFile="$1"
+        destPath="$2"
+    elif [ "$#" = "3" ]; then
+        destFile="$1"
+        srcPath="$2"
+        destPath="$3"
+    fi
+
+    local dstpath="${destPath}/${destFile}"
+    if [[ ! -f "${dstpath}" ]]; then
+        return
+    fi
+
+    if [ `cat ${dstpath} | grep -c "export TERM"` = 1 ]; then
+        echo "${dstpath}: `cat ${dstpath} | grep \"export TERM\"`"
+    else
+        # getting proper colors
+        echo "" | tee -a ${dstpath} > /dev/null
+        echo '# getting proper colors' | tee -a ${dstpath} > /dev/null
+        echo 'export TERM="xterm-256color"' | tee -a ${dstpath} > /dev/null
+        echo "" | tee -a ${dstpath} > /dev/null
+    fi
+
+}
+#<}}}
+
+
 #{{{> config shell
 function configure_shell() {
     configureAliases ".zshrc"
@@ -305,6 +340,9 @@ function configure_shell() {
     configureAliases ".bash_profile"
 
     configureEof
+    configureTerm ".zshrc"
+    configureTerm ".bashrc"
+    configureTerm ".bash_profile"
 }
 #<}}}
 
