@@ -23,7 +23,7 @@ function copy_files() {
     fi
 
     color_print "info" "srcpath: $srcpath"
-    color_print "info" "dstfilepath: $destpath"
+    color_print "info" "destfilepath: $destpath"
 
 }
 #<}}}
@@ -231,19 +231,19 @@ function configure_aliases() {
         destpath="$3"
     fi
 
-    local dstfilepath="${destpath}/${destFile}"
+    local destfilepath="${destpath}/${destFile}"
 
     if [ ! -e "${destpath}/.aliases" ]; then
         cp -rf ${srcpath}/assets/packages/dotfiles/.aliases ${destpath}/.aliases
     fi
 
-    if [[ -f "${dstfilepath}" ]]; then
-        if test `cat ${dstfilepath} | grep -c '# import aliases'` = 0; then
-            echo "" | tee -a ${dstfilepath} > /dev/null
-            echo '# import aliases' | tee -a ${dstfilepath} > /dev/null
+    if [[ -f "${destfilepath}" ]]; then
+        if test `cat ${destfilepath} | grep -c '# import aliases'` = 0; then
+            echo "" | tee -a ${destfilepath} > /dev/null
+            echo '# import aliases' | tee -a ${destfilepath} > /dev/null
             # echo 'if [[ -f ~/.aliases ]]; then {source ~/.aliases}; fi'
-            echo '[[ -f ~/.aliases ]] && source ~/.aliases' | tee -a ${dstfilepath} > /dev/null
-            echo "" | tee -a ${dstfilepath} > /dev/null
+            echo '[[ -f ~/.aliases ]] && source ~/.aliases' | tee -a ${destfilepath} > /dev/null
+            echo "" | tee -a ${destfilepath} > /dev/null
         fi
     fi
 }
@@ -314,19 +314,19 @@ function configure_term() {
         destpath="$3"
     fi
 
-    local dstfilepath="${destpath}/${destFile}"
-    if [[ ! -f "${dstfilepath}" ]]; then
+    local destfilepath="${destpath}/${destFile}"
+    if [[ ! -f "${destfilepath}" ]]; then
         return
     fi
 
-    if [ `cat ${dstfilepath} | grep -c "export TERM"` = 1 ]; then
-        echo "${dstfilepath}: `cat ${dstfilepath} | grep \"export TERM\"`"
+    if [ `cat ${destfilepath} | grep -c "export TERM"` = 1 ]; then
+        echo "${destfilepath}: `cat ${destfilepath} | grep \"export TERM\"`"
     else
         # getting proper colors
-        echo "" | tee -a ${dstfilepath} > /dev/null
-        echo '# getting proper colors' | tee -a ${dstfilepath} > /dev/null
-        echo 'export TERM="xterm-256color"' | tee -a ${dstfilepath} > /dev/null
-        echo "" | tee -a ${dstfilepath} > /dev/null
+        echo "" | tee -a ${destfilepath} > /dev/null
+        echo '# getting proper colors' | tee -a ${destfilepath} > /dev/null
+        echo 'export TERM="xterm-256color"' | tee -a ${destfilepath} > /dev/null
+        echo "" | tee -a ${destfilepath} > /dev/null
     fi
 
 }
