@@ -216,7 +216,7 @@ function configure_tmux() {
 #<}}}
 
 #{{{> configure aliases
-function configureAliases() {
+function configure_aliases() {
     local destFile=".zshrc"
     local srcPath=${PWD}
     local destPath=$HOME
@@ -250,7 +250,7 @@ function configureAliases() {
 #<}}}
 
 #{{{> config EOF
-function configureEof() {
+function configure_eof() {
     local srcPath=${PWD}
     local destPath=$HOME
     if [ "$#" = "1" ]; then
@@ -298,13 +298,51 @@ function configureEof() {
 }
 #<}}}
 
+#{{{> config export
+function configure_term() {
+    local destFile=".zshrc"
+    local srcPath=${PWD}
+    local destPath=$HOME
+    if [ "$#" = "1" ]; then
+        destFile="$1"
+    elif [ "$#" = "2" ]; then
+        destFile="$1"
+        destPath="$2"
+    elif [ "$#" = "3" ]; then
+        destFile="$1"
+        srcPath="$2"
+        destPath="$3"
+    fi
+
+    local dstpath="${destPath}/${destFile}"
+    if [[ ! -f "${dstpath}" ]]; then
+        return
+    fi
+
+    if [ `cat ${dstpath} | grep -c "export TERM"` = 1 ]; then
+        echo "${dstpath}: `cat ${dstpath} | grep \"export TERM\"`"
+    else
+        # getting proper colors
+        echo "" | tee -a ${dstpath} > /dev/null
+        echo '# getting proper colors' | tee -a ${dstpath} > /dev/null
+        echo 'export TERM="xterm-256color"' | tee -a ${dstpath} > /dev/null
+        echo "" | tee -a ${dstpath} > /dev/null
+    fi
+
+}
+#<}}}
+
+
 #{{{> config shell
 function configure_shell() {
-    configureAliases ".zshrc"
-    configureAliases ".bashrc"
-    configureAliases ".bash_profile"
+    configure_aliases ".zshrc"
+    configure_aliases ".bashrc"
+    configure_aliases ".bash_profile"
 
-    configureEof
+    configure_eof
+    configure_term ".zshrc"
+    configure_term ".bashrc"
+    configure_term ".bash_profile"
 }
 #<}}}
 

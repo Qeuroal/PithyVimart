@@ -8,6 +8,10 @@ NVIM_CORE_PATH = "../pithyvim"
 	gm gitmerge
 
 i install:
+	@rm -rf ~/.aliases
+	@rm -rf ~/.tmux.conf
+	@eval "ln -sf `realpath ./assets/dotfiles/.aliases` ~/.aliases"
+	@eval "ln -sf `realpath ./assets/dotfiles/.tmux.conf` ~/.tmux.conf"
 	@rm -rf ~/.config/nvim
 	@rm -rf ./nvim/lazy-lock.json
 	@rm -rf ./nvim/lua/pithyvim

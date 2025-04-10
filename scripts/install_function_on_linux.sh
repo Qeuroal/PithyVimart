@@ -178,10 +178,10 @@ function config_vimart_dependency() {
 
     configure_fzf_on_linux ${srcPath} ${destPath}
     configure_tmux ${srcPath} ${destPath}
-    configureAliases ".zshrc" ${srcPath} ${destPath}
-    configureAliases ".bashrc" ${srcPath} ${destPath}
-    configureAliases ".bash_profile" ${srcPath} ${destPath}
-    configureEof ${srcPath} ${destPath}
+    configure_aliases ".zshrc" ${srcPath} ${destPath}
+    configure_aliases ".bashrc" ${srcPath} ${destPath}
+    configure_aliases ".bash_profile" ${srcPath} ${destPath}
+    configure_eof ${srcPath} ${destPath}
     configureCtags ${srcPath} ${destPath}
 }
 #<}}}
