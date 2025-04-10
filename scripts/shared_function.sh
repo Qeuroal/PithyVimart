@@ -12,18 +12,18 @@ function copy_files() {
     # echo -e "\033[32m===> Copying files...\033[0m"
     color_print "info" "Copying files..."
 
-    local srcPath=${PWD}
-    local destPath=$HOME
+    local srcpath=${PWD}
+    local destpath=$HOME
     if [ "$#" = "1" ]; then
-        srcPath=${PWD}
-        destPath="$1"
+        srcpath=${PWD}
+        destpath="$1"
     elif [ "$#" = "2" ]; then
-        srcPath="$1"
-        destPath="$2"
+        srcpath="$1"
+        destpath="$2"
     fi
 
-    color_print "info" "srcPath: $srcPath"
-    color_print "info" "dstPath: $destPath"
+    color_print "info" "srcpath: $srcpath"
+    color_print "info" "dstfilepath: $destpath"
 
 }
 #<}}}
@@ -110,107 +110,107 @@ function get_now_timestamp() {
 
 #{{{> configure fzf
 function configure_fzf_on_linux() {
-    local srcPath=${PWD}
-    local destPath=$HOME
+    local srcpath=${PWD}
+    local destpath=$HOME
     if [ "$#" = "1" ]; then
-        srcPath=${PWD}
-        destPath="$1"
+        srcpath=${PWD}
+        destpath="$1"
     elif [ "$#" = "2" ]; then
-        srcPath="$1"
-        destPath="$2"
+        srcpath="$1"
+        destpath="$2"
     fi
 
     # configure in zshrc
-    if [[ -f ${destPath}/.zshrc ]]
+    if [[ -f ${destpath}/.zshrc ]]
     then
-        if test `cat ${destPath}/.zshrc | grep -c "# fzf:FZF_DEFAULT_COMMAND"` = 0
+        if test `cat ${destpath}/.zshrc | grep -c "# fzf:FZF_DEFAULT_COMMAND"` = 0
         then
-            echo "" | tee -a ${destPath}/.zshrc > /dev/null
-            echo "# fzf:FZF_DEFAULT_COMMAND" | tee -a ${destPath}/.zshrc > /dev/null
-            echo "if type rg &> /dev/null; then" | tee -a ${destPath}/.zshrc > /dev/null
-            echo "  export FZF_DEFAULT_COMMAND='rg --files'" | tee -a ${destPath}/.zshrc > /dev/null
-            echo "  export FZF_DEFAULT_OPTS='-m'" | tee -a ${destPath}/.zshrc > /dev/null
-            echo "fi" | tee -a ${destPath}/.zshrc > /dev/null
-            echo "" | tee -a ${destPath}/.zshrc > /dev/null
+            echo "" | tee -a ${destpath}/.zshrc > /dev/null
+            echo "# fzf:FZF_DEFAULT_COMMAND" | tee -a ${destpath}/.zshrc > /dev/null
+            echo "if type rg &> /dev/null; then" | tee -a ${destpath}/.zshrc > /dev/null
+            echo "  export FZF_DEFAULT_COMMAND='rg --files'" | tee -a ${destpath}/.zshrc > /dev/null
+            echo "  export FZF_DEFAULT_OPTS='-m'" | tee -a ${destpath}/.zshrc > /dev/null
+            echo "fi" | tee -a ${destpath}/.zshrc > /dev/null
+            echo "" | tee -a ${destpath}/.zshrc > /dev/null
         fi
     fi
 
     # configure in bashrc
-    if test `cat ${destPath}/.bashrc | grep -c "# fzf:FZF_DEFAULT_COMMAND"` = 0
+    if test `cat ${destpath}/.bashrc | grep -c "# fzf:FZF_DEFAULT_COMMAND"` = 0
     then
-        echo "" | tee -a ${destPath}/.bashrc > /dev/null
-        echo "# fzf:FZF_DEFAULT_COMMAND" | tee -a ${destPath}/.bashrc > /dev/null
-        echo "if type rg &> /dev/null; then" | tee -a ${destPath}/.bashrc > /dev/null
-        echo "  export FZF_DEFAULT_COMMAND='rg --files'" | tee -a ${destPath}/.bashrc > /dev/null
-        echo "  export FZF_DEFAULT_OPTS='-m'" | tee -a ${destPath}/.bashrc > /dev/null
-        echo "fi" | tee -a ${destPath}/.bashrc > /dev/null
-        echo "" | tee -a ${destPath}/.bashrc > /dev/null
+        echo "" | tee -a ${destpath}/.bashrc > /dev/null
+        echo "# fzf:FZF_DEFAULT_COMMAND" | tee -a ${destpath}/.bashrc > /dev/null
+        echo "if type rg &> /dev/null; then" | tee -a ${destpath}/.bashrc > /dev/null
+        echo "  export FZF_DEFAULT_COMMAND='rg --files'" | tee -a ${destpath}/.bashrc > /dev/null
+        echo "  export FZF_DEFAULT_OPTS='-m'" | tee -a ${destpath}/.bashrc > /dev/null
+        echo "fi" | tee -a ${destpath}/.bashrc > /dev/null
+        echo "" | tee -a ${destpath}/.bashrc > /dev/null
     fi
 }
 #<}}}
 
 #{{{> config tmux
 function configure_tmux() {
-    local srcPath=${PWD}
-    local destPath=$HOME
+    local srcpath=${PWD}
+    local destpath=$HOME
     if [ "$#" = "1" ]; then
-        srcPath=${PWD}
-        destPath="$1"
+        srcpath=${PWD}
+        destpath="$1"
     elif [ "$#" = "2" ]; then
-        srcPath="$1"
-        destPath="$2"
+        srcpath="$1"
+        destpath="$2"
     fi
 
     # copy .tmux.conf
-    if [ ! -f "${destPath}/.tmux.conf" ]
+    if [ ! -f "${destpath}/.tmux.conf" ]
     then
-        local targetFilePath="${srcPath}/assets/packages/dotfiles/.tmux.conf"
+        local targetFilePath="${srcpath}/assets/packages/dotfiles/.tmux.conf"
         if [ -f ${targetFilePath} ]
         then
-            cp -rf ${targetFilePath} ${destPath}/.tmux.conf
+            cp -rf ${targetFilePath} ${destpath}/.tmux.conf
         fi
     fi
 
     # 取消tmux的escape延迟
-    if [ ! -f "${destPath}/.tmux.conf" ] \
-        || [ `cat ${destPath}/.tmux.conf | grep -c "set -sg escape-time 1"` = 0 ]
+    if [ ! -f "${destpath}/.tmux.conf" ] \
+        || [ `cat ${destpath}/.tmux.conf | grep -c "set -sg escape-time 1"` = 0 ]
     then
-        echo '# 取消tmux的escape延迟' | tee -a ${destPath}/.tmux.conf > /dev/null
-        echo 'set -sg escape-time 1' | tee -a ${destPath}/.tmux.conf > /dev/null
+        echo '# 取消tmux的escape延迟' | tee -a ${destpath}/.tmux.conf > /dev/null
+        echo 'set -sg escape-time 1' | tee -a ${destpath}/.tmux.conf > /dev/null
     fi
 
     # 配置vim-tmux-navigator冲突
-    if [ ! -f "${destPath}/.tmux.conf" ] \
-        || [ `cat ${destPath}/.tmux.conf | grep -c "# 配置vim-tmux-navigator冲突"` = 0 ]
+    if [ ! -f "${destpath}/.tmux.conf" ] \
+        || [ `cat ${destpath}/.tmux.conf | grep -c "# 配置vim-tmux-navigator冲突"` = 0 ]
     then
-        echo '' | tee -a ${destPath}/.tmux.conf > /dev/null
-        echo '# 配置vim-tmux-navigator冲突' | tee -a ${destPath}/.tmux.conf > /dev/null
-        echo 'is_vim="ps -o state= -o comm= -t '"'"'#{pane_tty}'"'"' \' | tee -a ${destPath}/.tmux.conf > /dev/null
-        echo '    | grep -iqE '"'"'^[^TXZ ]+ +(\\S+\\/)?g?(view|n?vim?x?)(diff)?$'"'"'"' | tee -a ${destPath}/.tmux.conf > /dev/null
-        echo '' | tee -a ${destPath}/.tmux.conf > /dev/null
-        echo 'is_fzf="ps -o state= -o comm= -t '"'"'#{pane_tty}'"'"' \' | tee -a ${destPath}/.tmux.conf > /dev/null
-        echo '    | grep -iqE '"'"'^[^TXZ ]+ +(\\S+\\/)?fzf$'"'"'"' | tee -a ${destPath}/.tmux.conf > /dev/null
-        echo 'bind -n C-h run "($is_vim && tmux send-keys C-h) || \' | tee -a ${destPath}/.tmux.conf > /dev/null
-        echo '                 tmux select-pane -L"' | tee -a ${destPath}/.tmux.conf > /dev/null
-        echo '' | tee -a ${destPath}/.tmux.conf > /dev/null
-        echo 'bind -n C-j run "($is_vim && tmux send-keys C-j)  || \' | tee -a ${destPath}/.tmux.conf > /dev/null
-        echo '                 ($is_fzf && tmux send-keys C-j) || \' | tee -a ${destPath}/.tmux.conf > /dev/null
-        echo '                 tmux select-pane -D"' | tee -a ${destPath}/.tmux.conf > /dev/null
-        echo '' | tee -a ${destPath}/.tmux.conf > /dev/null
-        echo 'bind -n C-k run "($is_vim && tmux send-keys C-k) || \' | tee -a ${destPath}/.tmux.conf > /dev/null
-        echo '                 ($is_fzf && tmux send-keys C-k)  || \' | tee -a ${destPath}/.tmux.conf > /dev/null
-        echo '                 tmux select-pane -U"' | tee -a ${destPath}/.tmux.conf > /dev/null
-        echo '' | tee -a ${destPath}/.tmux.conf > /dev/null
-        echo 'bind -n C-l run "($is_vim && tmux send-keys C-l) || \' | tee -a ${destPath}/.tmux.conf > /dev/null
-        echo '                 tmux select-pane -R"' | tee -a ${destPath}/.tmux.conf > /dev/null
-        echo '' | tee -a ${destPath}/.tmux.conf > /dev/null
-        echo '# bind-key -n C-\ if-shell "$is_vim" "send-keys C-\\" "select-pane -l"' | tee -a ${destPath}/.tmux.conf > /dev/null
-        echo 'if-shell -b '"'"'[ "$(echo "$tmux_version < 3.0" | bc)" = 1 ]'"'"' \' | tee -a ${destPath}/.tmux.conf > /dev/null
-        echo '    "bind-key -n '"'"'C-\\'"'"' if-shell \"$is_vim\" '"'"'send-keys C-\\'"'"'  '"'"'select-pane -l'"'"'"' | tee -a ${destPath}/.tmux.conf > /dev/null
-        echo 'if-shell -b '"'"'[ "$(echo "$tmux_version >= 3.0" | bc)" = 1 ]'"'"' \' | tee -a ${destPath}/.tmux.conf > /dev/null
-        echo '    "bind-key -n '"'"'C-\\'"'"' if-shell \"$is_vim\" '"'"'send-keys C-\\\\'"'"'  '"'"'select-pane -l'"'"'"' | tee -a ${destPath}/.tmux.conf > /dev/null
-        echo '' | tee -a ${destPath}/.tmux.conf > /dev/null
-        echo '' | tee -a ${destPath}/.tmux.conf > /dev/null
+        echo '' | tee -a ${destpath}/.tmux.conf > /dev/null
+        echo '# 配置vim-tmux-navigator冲突' | tee -a ${destpath}/.tmux.conf > /dev/null
+        echo 'is_vim="ps -o state= -o comm= -t '"'"'#{pane_tty}'"'"' \' | tee -a ${destpath}/.tmux.conf > /dev/null
+        echo '    | grep -iqE '"'"'^[^TXZ ]+ +(\\S+\\/)?g?(view|n?vim?x?)(diff)?$'"'"'"' | tee -a ${destpath}/.tmux.conf > /dev/null
+        echo '' | tee -a ${destpath}/.tmux.conf > /dev/null
+        echo 'is_fzf="ps -o state= -o comm= -t '"'"'#{pane_tty}'"'"' \' | tee -a ${destpath}/.tmux.conf > /dev/null
+        echo '    | grep -iqE '"'"'^[^TXZ ]+ +(\\S+\\/)?fzf$'"'"'"' | tee -a ${destpath}/.tmux.conf > /dev/null
+        echo 'bind -n C-h run "($is_vim && tmux send-keys C-h) || \' | tee -a ${destpath}/.tmux.conf > /dev/null
+        echo '                 tmux select-pane -L"' | tee -a ${destpath}/.tmux.conf > /dev/null
+        echo '' | tee -a ${destpath}/.tmux.conf > /dev/null
+        echo 'bind -n C-j run "($is_vim && tmux send-keys C-j)  || \' | tee -a ${destpath}/.tmux.conf > /dev/null
+        echo '                 ($is_fzf && tmux send-keys C-j) || \' | tee -a ${destpath}/.tmux.conf > /dev/null
+        echo '                 tmux select-pane -D"' | tee -a ${destpath}/.tmux.conf > /dev/null
+        echo '' | tee -a ${destpath}/.tmux.conf > /dev/null
+        echo 'bind -n C-k run "($is_vim && tmux send-keys C-k) || \' | tee -a ${destpath}/.tmux.conf > /dev/null
+        echo '                 ($is_fzf && tmux send-keys C-k)  || \' | tee -a ${destpath}/.tmux.conf > /dev/null
+        echo '                 tmux select-pane -U"' | tee -a ${destpath}/.tmux.conf > /dev/null
+        echo '' | tee -a ${destpath}/.tmux.conf > /dev/null
+        echo 'bind -n C-l run "($is_vim && tmux send-keys C-l) || \' | tee -a ${destpath}/.tmux.conf > /dev/null
+        echo '                 tmux select-pane -R"' | tee -a ${destpath}/.tmux.conf > /dev/null
+        echo '' | tee -a ${destpath}/.tmux.conf > /dev/null
+        echo '# bind-key -n C-\ if-shell "$is_vim" "send-keys C-\\" "select-pane -l"' | tee -a ${destpath}/.tmux.conf > /dev/null
+        echo 'if-shell -b '"'"'[ "$(echo "$tmux_version < 3.0" | bc)" = 1 ]'"'"' \' | tee -a ${destpath}/.tmux.conf > /dev/null
+        echo '    "bind-key -n '"'"'C-\\'"'"' if-shell \"$is_vim\" '"'"'send-keys C-\\'"'"'  '"'"'select-pane -l'"'"'"' | tee -a ${destpath}/.tmux.conf > /dev/null
+        echo 'if-shell -b '"'"'[ "$(echo "$tmux_version >= 3.0" | bc)" = 1 ]'"'"' \' | tee -a ${destpath}/.tmux.conf > /dev/null
+        echo '    "bind-key -n '"'"'C-\\'"'"' if-shell \"$is_vim\" '"'"'send-keys C-\\\\'"'"'  '"'"'select-pane -l'"'"'"' | tee -a ${destpath}/.tmux.conf > /dev/null
+        echo '' | tee -a ${destpath}/.tmux.conf > /dev/null
+        echo '' | tee -a ${destpath}/.tmux.conf > /dev/null
     fi
 }
 #<}}}
@@ -218,32 +218,32 @@ function configure_tmux() {
 #{{{> configure aliases
 function configure_aliases() {
     local destFile=".zshrc"
-    local srcPath=${PWD}
-    local destPath=$HOME
+    local srcpath=${PWD}
+    local destpath=$HOME
     if [ "$#" = "1" ]; then
         destFile="$1"
     elif [ "$#" = "2" ]; then
         destFile="$1"
-        destPath="$2"
+        destpath="$2"
     elif [ "$#" = "3" ]; then
         destFile="$1"
-        srcPath="$2"
-        destPath="$3"
+        srcpath="$2"
+        destpath="$3"
     fi
 
-    local dstpath="${destPath}/${destFile}"
+    local dstfilepath="${destpath}/${destFile}"
 
-    if [ ! -e "${destPath}/.aliases" ]; then
-        cp -rf ${srcPath}/assets/packages/dotfiles/.aliases ${destPath}/.aliases
+    if [ ! -e "${destpath}/.aliases" ]; then
+        cp -rf ${srcpath}/assets/packages/dotfiles/.aliases ${destpath}/.aliases
     fi
 
-    if [[ -f "${dstpath}" ]]; then
-        if test `cat ${dstpath} | grep -c '# import aliases'` = 0; then
-            echo "" | tee -a ${dstpath} > /dev/null
-            echo '# import aliases' | tee -a ${dstpath} > /dev/null
+    if [[ -f "${dstfilepath}" ]]; then
+        if test `cat ${dstfilepath} | grep -c '# import aliases'` = 0; then
+            echo "" | tee -a ${dstfilepath} > /dev/null
+            echo '# import aliases' | tee -a ${dstfilepath} > /dev/null
             # echo 'if [[ -f ~/.aliases ]]; then {source ~/.aliases}; fi'
-            echo '[[ -f ~/.aliases ]] && source ~/.aliases' | tee -a ${dstpath} > /dev/null
-            echo "" | tee -a ${dstpath} > /dev/null
+            echo '[[ -f ~/.aliases ]] && source ~/.aliases' | tee -a ${dstfilepath} > /dev/null
+            echo "" | tee -a ${dstfilepath} > /dev/null
         fi
     fi
 }
@@ -251,47 +251,47 @@ function configure_aliases() {
 
 #{{{> config EOF
 function configure_eof() {
-    local srcPath=${PWD}
-    local destPath=$HOME
+    local srcpath=${PWD}
+    local destpath=$HOME
     if [ "$#" = "1" ]; then
-        srcPath=${PWD}
-        destPath="$1"
+        srcpath=${PWD}
+        destpath="$1"
     elif [ "$#" = "2" ]; then
-        srcPath="$1"
-        destPath="$2"
+        srcpath="$1"
+        destpath="$2"
     fi
 
-    if [[ -f ${destPath}/.zshrc ]]
+    if [[ -f ${destpath}/.zshrc ]]
     then
         # 设置ctrl+d不退出
-        if test `cat ${destPath}/.zshrc | grep -c "set -o IGNOREEOF"` = 0
+        if test `cat ${destpath}/.zshrc | grep -c "set -o IGNOREEOF"` = 0
         then
-            echo "" | tee -a ${destPath}/.zshrc > /dev/null
-            echo "# prevent tmux exiting with Ctrl-d" | tee -a ${destPath}/.zshrc > /dev/null
-            echo "set -o IGNOREEOF" | tee -a ${destPath}/.zshrc > /dev/null
-            echo "" | tee -a ${destPath}/.zshrc > /dev/null
+            echo "" | tee -a ${destpath}/.zshrc > /dev/null
+            echo "# prevent tmux exiting with Ctrl-d" | tee -a ${destpath}/.zshrc > /dev/null
+            echo "set -o IGNOREEOF" | tee -a ${destpath}/.zshrc > /dev/null
+            echo "" | tee -a ${destpath}/.zshrc > /dev/null
         fi
     fi
 
-    if [[ -f ${destPath}/.bashrc ]]
+    if [[ -f ${destpath}/.bashrc ]]
     then
         # 设置ctrl+d不退出
-        if test `cat ${destPath}/.bashrc | grep -c "set -o ignoreeof"` = 0
+        if test `cat ${destpath}/.bashrc | grep -c "set -o ignoreeof"` = 0
         then
-            echo "" | tee -a ${destPath}/.bashrc > /dev/null
-            echo "# prevent tmux exiting with Ctrl-d" | tee -a ${destPath}/.bashrc > /dev/null
-            echo "set -o ignoreeof" | tee -a ${destPath}/.bashrc > /dev/null
-            echo "ignoreeof=3" | tee -a ${destPath}/.bashrc > /dev/null
-            echo "" | tee -a ${destPath}/.bashrc > /dev/null
+            echo "" | tee -a ${destpath}/.bashrc > /dev/null
+            echo "# prevent tmux exiting with Ctrl-d" | tee -a ${destpath}/.bashrc > /dev/null
+            echo "set -o ignoreeof" | tee -a ${destpath}/.bashrc > /dev/null
+            echo "ignoreeof=3" | tee -a ${destpath}/.bashrc > /dev/null
+            echo "" | tee -a ${destpath}/.bashrc > /dev/null
         fi
-    elif [[ -f ${destPath}/.bash_profile ]]
+    elif [[ -f ${destpath}/.bash_profile ]]
     then
-        if test `cat ${destPath}/.bash_profile | grep -c "set -o IGNOREEOF"` = 0
+        if test `cat ${destpath}/.bash_profile | grep -c "set -o IGNOREEOF"` = 0
         then
-            echo "" | tee -a ${destPath}/.bash_profile > /dev/null
-            echo "# prevent tmux exiting with Ctrl-d" | tee -a ${destPath}/.bash_profile > /dev/null
-            echo "set -o IGNOREEOF" | tee -a ${destPath}/.bash_profile > /dev/null
-            echo "" | tee -a ${destPath}/.bash_profile > /dev/null
+            echo "" | tee -a ${destpath}/.bash_profile > /dev/null
+            echo "# prevent tmux exiting with Ctrl-d" | tee -a ${destpath}/.bash_profile > /dev/null
+            echo "set -o IGNOREEOF" | tee -a ${destpath}/.bash_profile > /dev/null
+            echo "" | tee -a ${destpath}/.bash_profile > /dev/null
         fi
 
     fi
@@ -301,32 +301,32 @@ function configure_eof() {
 #{{{> config export
 function configure_term() {
     local destFile=".zshrc"
-    local srcPath=${PWD}
-    local destPath=$HOME
+    local srcpath=${PWD}
+    local destpath=$HOME
     if [ "$#" = "1" ]; then
         destFile="$1"
     elif [ "$#" = "2" ]; then
         destFile="$1"
-        destPath="$2"
+        destpath="$2"
     elif [ "$#" = "3" ]; then
         destFile="$1"
-        srcPath="$2"
-        destPath="$3"
+        srcpath="$2"
+        destpath="$3"
     fi
 
-    local dstpath="${destPath}/${destFile}"
-    if [[ ! -f "${dstpath}" ]]; then
+    local dstfilepath="${destpath}/${destFile}"
+    if [[ ! -f "${dstfilepath}" ]]; then
         return
     fi
 
-    if [ `cat ${dstpath} | grep -c "export TERM"` = 1 ]; then
-        echo "${dstpath}: `cat ${dstpath} | grep \"export TERM\"`"
+    if [ `cat ${dstfilepath} | grep -c "export TERM"` = 1 ]; then
+        echo "${dstfilepath}: `cat ${dstfilepath} | grep \"export TERM\"`"
     else
         # getting proper colors
-        echo "" | tee -a ${dstpath} > /dev/null
-        echo '# getting proper colors' | tee -a ${dstpath} > /dev/null
-        echo 'export TERM="xterm-256color"' | tee -a ${dstpath} > /dev/null
-        echo "" | tee -a ${dstpath} > /dev/null
+        echo "" | tee -a ${dstfilepath} > /dev/null
+        echo '# getting proper colors' | tee -a ${dstfilepath} > /dev/null
+        echo 'export TERM="xterm-256color"' | tee -a ${dstfilepath} > /dev/null
+        echo "" | tee -a ${dstfilepath} > /dev/null
     fi
 
 }

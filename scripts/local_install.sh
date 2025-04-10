@@ -7,11 +7,11 @@ source ${PWD}/scripts/install_function_on_linux.sh
 function exportEnv() {
     color_print "warning" "Please to ensure env to install vim locally? Where if not exist, please enter directly!!!"
 
-    srcPath=${PWD}
-    if [ ! -e ${srcPath}/vimart_envs ]; then
-        cp -f ${srcPath}/configuration/.vimart_envs ${srcPath}/vimart_envs
+    srcpath=${PWD}
+    if [ ! -e ${srcpath}/vimart_envs ]; then
+        cp -f ${srcpath}/configuration/.vimart_envs ${srcpath}/vimart_envs
     fi
-    source ${srcPath}/vimart_envs
+    source ${srcpath}/vimart_envs
 
     if [ "${VIMART_SRC_PATH}" != "" ]; then
         VIMART_SRC_PATH=`realpath ${VIMART_SRC_PATH}`
