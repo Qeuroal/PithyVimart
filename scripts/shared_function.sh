@@ -216,7 +216,7 @@ function configure_tmux() {
 #<}}}
 
 #{{{> configure aliases
-function configureAliases() {
+function configure_aliases() {
     local destFile=".zshrc"
     local srcPath=${PWD}
     local destPath=$HOME
@@ -250,7 +250,7 @@ function configureAliases() {
 #<}}}
 
 #{{{> config EOF
-function configureEof() {
+function configure_eof() {
     local srcPath=${PWD}
     local destPath=$HOME
     if [ "$#" = "1" ]; then
@@ -299,7 +299,7 @@ function configureEof() {
 #<}}}
 
 #{{{> config export
-function configureTerm() {
+function configure_term() {
     local destFile=".zshrc"
     local srcPath=${PWD}
     local destPath=$HOME
@@ -335,14 +335,14 @@ function configureTerm() {
 
 #{{{> config shell
 function configure_shell() {
-    configureAliases ".zshrc"
-    configureAliases ".bashrc"
-    configureAliases ".bash_profile"
+    configure_aliases ".zshrc"
+    configure_aliases ".bashrc"
+    configure_aliases ".bash_profile"
 
-    configureEof
-    configureTerm ".zshrc"
-    configureTerm ".bashrc"
-    configureTerm ".bash_profile"
+    configure_eof
+    configure_term ".zshrc"
+    configure_term ".bashrc"
+    configure_term ".bash_profile"
 }
 #<}}}
 
