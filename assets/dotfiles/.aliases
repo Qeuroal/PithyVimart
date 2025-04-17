@@ -88,4 +88,7 @@ function y() {
     rm -f -- "$tmp"
 }
 
+# aider
+alias aidercm='aider --model deepseek --set-env all_proxy=\"\"'
+
 
