@@ -89,6 +89,6 @@ function y() {
 }
 
 # aider
-alias aidc='aider --model deepseek --set-env all_proxy=\"\" --commit'
+alias aidc='aider --model deepseek --set-env all_proxy="" --commit'
 
 
