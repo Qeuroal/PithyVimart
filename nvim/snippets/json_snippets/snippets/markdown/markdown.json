@@ -17,5 +17,23 @@
       "${0}"
     ],
     "description": "YAML Front Matter Title"
+  },
+  "inmath": {
+    "prefix": "inmath",
+    "body": [
+      "$ ${1} $${0}"
+    ],
+    "description": "inline math"
+  },
+  "mathblock": {
+    "prefix": "mathblock",
+    "body": [
+      "$$",
+      "$1",
+      "$$",
+      "",
+      "${0}"
+    ],
+    "description": "math block"
   }
 }
