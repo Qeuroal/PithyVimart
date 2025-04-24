@@ -136,6 +136,10 @@ Install the [PithyVimart](https://github.com/qeuroal/Pithyvimart) with [PowerShe
 
 # QAs
 
+- neovim default setting
+
+[见 https://neovim.io/doc/user/vim_diff.html#nvim-defaults](https://neovim.io/doc/user/vim_diff.html#nvim-defaults)
+
 - 如何查看配置路径
 
    ```vim
