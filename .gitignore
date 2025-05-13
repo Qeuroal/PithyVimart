@@ -13,3 +13,4 @@ tags
 PithyVim
 nvim/pithyvim.json
 nvim/lazy-lock.json
+.aider*
