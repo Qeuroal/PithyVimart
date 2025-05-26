@@ -18,6 +18,22 @@
     ],
     "description": "YAML Front Matter Title"
   },
+  "Paper format arrangement": {
+    "prefix": "pfa",
+    "body": [
+      "> ${1:Authors}",
+      "> ${2:Journal/conference name}",
+      "",
+      "- 类别: ${3}",
+      "- 中心论点: ${4}",
+      "- 动机: ${5}",
+      "- 主要贡献: ${6}",
+      "- 主要问题: ${7}",
+      "",
+      "${0}"
+    ],
+    "description": "Paper Format Arrangement"
+  },
   "inmath": {
     "prefix": "inmath",
     "body": [
