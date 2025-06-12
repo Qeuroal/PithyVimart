@@ -11,7 +11,7 @@
   },
   "MD012": {
     // Consecutive blank lines
-    "maximum": 2
+    "maximum": 3
   },
   "MD013": {
     "line_length": -1,
