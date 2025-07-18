@@ -117,22 +117,22 @@ Install the [PithyVimart](https://github.com/qeuroal/Pithyvimart) with [PowerShe
 > [!NOTE]
 > 方便起见, 可以先不安装这些插件的依赖项, 如果有报错再根据错误信息安装相应的依赖项即可 (`<leader>n` 可以用来查看通知历史, 包括错误信息).
 
-- global
+### global
 
-   - npm
+#### npm
 
-      - archlinux: `sudo pacman -S --noconfirm npm`
-      - ubuntu: `sudo apt-get -y install npm`
-      - fedora: `sudo dnf install -y npm`
-      - macos: `brew install node`
+- archlinux: `sudo pacman -S --noconfirm npm`
+- ubuntu: `sudo apt-get -y install npm`
+- fedora: `sudo dnf install -y npm`
+- macos: `brew install node`
 
-- markdown
+### markdown
 
-   - markdownlint-cli2
+#### markdownlint-cli2
 
-      - archlinux: `sudo pacman -S --noconfirm markdownlint-cli2`
-      - macos: `brew install markdownlint-cli2`
-      - ubuntu: `sudo apt install markdownlint`
+- archlinux: `sudo pacman -S --noconfirm markdownlint-cli2`
+- macos: `brew install markdownlint-cli2`
+- ubuntu: `sudo apt install markdownlint`
 
 # QAs
 
@@ -152,6 +152,13 @@ Install the [PithyVimart](https://github.com/qeuroal/Pithyvimart) with [PowerShe
    :exe 'edit '.stdpath('config').'/init.vim'
    :write ++p
    ```
+
+## Common
+
+- Error running markdownlint-cli2: ENOENT: no such file or directory
+
+   安装 markdownlint 依赖项, 具体[见这里](#markdownlint-cli2)
+
 
 ## Linux
 

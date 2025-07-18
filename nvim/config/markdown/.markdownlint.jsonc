@@ -1,6 +1,7 @@
 // reference:
 //    https://github.com/DavidAnson/markdownlint/blob/main/schema/.markdownlint.jsonc
 {
+  "MD004": false,
   "MD007": {
     // Spaces for indent
     "indent": 3,
@@ -18,6 +19,8 @@
   },
   "MD024": false,
   "MD025": false,
+  "MD033": false,
+  "MD034": false,
   "MD036": false,
   "MD051": false
 }
