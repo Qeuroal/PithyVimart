@@ -18,31 +18,31 @@
     ],
     "description": "YAML Front Matter Title"
   },
-  "Paper format arrangement": {
-    "prefix": "pfa",
+  "Paper Organizing Framework": {
+    "prefix": ["pof"],
     "body": [
       "> ${1:Authors}",
-      "> ${2:Journal/conference name}",
+      "> ${2:Journal/Conference Name}",
       "",
-      "- 类别: ${3}",
-      "- 中心论点: ${4}",
-      "- 动机: ${5}",
-      "- 主要贡献: ${6}",
-      "- 主要问题: ${7}",
+      "* 类别: ${3}",
+      "* 中心论点: ${4}",
+      "* 动机: ${5}",
+      "* 主要贡献:${6}",
+      "* 方法边界:${7}",
       "",
       "${0}"
     ],
-    "description": "Paper Format Arrangement"
+    "description": ["Paper Organizing Framework"]
   },
   "inmath": {
-    "prefix": "inmath",
+    "prefix": ["inmath", "im"],
     "body": [
-      "$ ${1} $${0}"
+      "$ ${1} $ ${0}"
     ],
     "description": "inline math"
   },
   "mathblock": {
-    "prefix": "mathblock",
+    "prefix": ["mathblock", "mb"],
     "body": [
       "$$",
       "$1",
@@ -51,5 +51,12 @@
       "${0}"
     ],
     "description": "math block"
+  },
+  "highlight": {
+    "prefix": ["highlight", "hl"],
+    "body": [
+      "==${1}== ${0}"
+    ],
+    "description": "Insert highlight text"
   }
 }
