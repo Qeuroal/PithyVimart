@@ -164,7 +164,7 @@ function configure_tmux() {
     # copy .tmux.conf
     if [ ! -f "${destpath}/.tmux.conf" ]
     then
-        local targetFilePath="${srcpath}/assets/packages/dotfiles/.tmux.conf"
+        local targetFilePath="${srcpath}/assets/dotfiles/.tmux.conf"
         if [ -f ${targetFilePath} ]
         then
             cp -rf ${targetFilePath} ${destpath}/.tmux.conf
@@ -234,7 +234,7 @@ function configure_aliases() {
     local destfilepath="${destpath}/${destFile}"
 
     if [ ! -e "${destpath}/.aliases" ]; then
-        cp -rf ${srcpath}/assets/packages/dotfiles/.aliases ${destpath}/.aliases
+        cp -rf ${srcpath}/assets/dotfiles/.aliases ${destpath}/.aliases
     fi
 
     if [[ -f "${destfilepath}" ]]; then
