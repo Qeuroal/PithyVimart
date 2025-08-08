@@ -1,6 +1,6 @@
 {
   "YAML Title": {
-    "prefix": "yamltitle",
+    "prefix": ["yamltitle", "yt"],
     "body": [
       "---",
       "title: ${1}",
@@ -16,7 +16,7 @@
       "",
       "${0}"
     ],
-    "description": "YAML Front Matter Title"
+    "description": "Insert YAML front matter title"
   },
   "Paper Organizing Framework": {
     "prefix": ["pof"],
@@ -32,14 +32,21 @@
       "",
       "${0}"
     ],
-    "description": ["Paper Organizing Framework"]
+    "description": ["Insert paper organizing framework"]
   },
   "inmath": {
     "prefix": ["inmath", "im"],
     "body": [
       "$ ${1} $ ${0}"
     ],
-    "description": "inline math"
+    "description": "Insert inline math"
+  },
+  "cd": {
+    "prefix": ["cd"],
+    "body": [
+      "`${1}` ${0}"
+    ],
+    "description": "Insert code"
   },
   "mathblock": {
     "prefix": ["mathblock", "mb"],
