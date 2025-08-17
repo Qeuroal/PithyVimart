@@ -12,7 +12,7 @@ function install_fonts_on_linux() {
     mkdir -p ~/.local/share/fonts
 
     # 解压fonts
-    tar -zxvf ./assets/font/fonts.tar.gz -C ./
+    tar -zxvf ./assets/remote/font/fonts.tar.gz -C ./
 
     # install Droid Sans Mono Nerd Font Complete
         # rm -rf ~/.local/share/fonts/Droid\ Sans\ Mono\ Nerd\ Font\ Complete.otf
