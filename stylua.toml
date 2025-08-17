@@ -1,0 +1,16 @@
+indent_type = "Spaces"
+indent_width = 2
+# 设置代码每行的最大字符宽度（即代码长度限制），超过限制的行会被拆分换行
+column_width = 120
+# 指定行尾字符的风格
+line_endings = "Unix"
+# 控制字符串的引号使用风格
+quote_style = "AutoPreferDouble"
+# 函数调用时省略括号
+call_parentheses = "None"
+# 决定是否将简单语句折叠到同一行
+collapse_simple_statement = "Always"
+# 专门针对 require 或 import 语句的排序规则
+[sort_requires]
+enabled = true
+

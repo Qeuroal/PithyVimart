@@ -1,0 +1,69 @@
+{
+  "YAML Title": {
+    "prefix": ["yamltitle", "yt"],
+    "body": [
+      "---",
+      "title: ${1}",
+      "description: ${2:omit...}",
+      "date: ${3:$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE $CURRENT_HOUR:$CURRENT_MINUTE:$CURRENT_SECOND}",
+      "categories:",
+      "- ${4}",
+      "tags:",
+      "- ${5}",
+      "toc: ${6:true}",
+      "mathjax: ${7:true}",
+      "---",
+      "",
+      "${0}"
+    ],
+    "description": "Insert YAML front matter title"
+  },
+  "Paper Organizing Framework": {
+    "prefix": ["pof"],
+    "body": [
+      "> ${1:Authors}",
+      "> ${2:Journal/Conference Name}",
+      "",
+      "* 类别: ${3}",
+      "* 中心论点: ${4}",
+      "* 动机: ${5}",
+      "* 主要贡献:${6}",
+      "* 方法评价:${7}",
+      "",
+      "${0}"
+    ],
+    "description": ["Insert paper organizing framework"]
+  },
+  "inmath": {
+    "prefix": ["inmath", "im"],
+    "body": [
+      "$ ${1} $ ${0}"
+    ],
+    "description": "Insert inline math"
+  },
+  "cd": {
+    "prefix": ["cd"],
+    "body": [
+      "`${1}` ${0}"
+    ],
+    "description": "Insert code"
+  },
+  "mathblock": {
+    "prefix": ["mathblock", "mb"],
+    "body": [
+      "$$",
+      "$1",
+      "$$",
+      "",
+      "${0}"
+    ],
+    "description": "math block"
+  },
+  "highlight": {
+    "prefix": ["highlight", "hl"],
+    "body": [
+      "==${1}== ${0}"
+    ],
+    "description": "Insert highlight text"
+  }
+}

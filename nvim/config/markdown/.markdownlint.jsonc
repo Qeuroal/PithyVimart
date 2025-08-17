@@ -1,0 +1,27 @@
+// reference:
+//    https://github.com/DavidAnson/markdownlint/blob/main/schema/.markdownlint.jsonc
+{
+  "MD004": false,
+  "MD007": {
+    // Spaces for indent
+    "indent": 2,
+    // Whether to indent the first level of the list
+    "start_indented": false,
+    // Spaces for first level indent (when start_indented is set)
+    "start_indent": 2
+  },
+  "MD012": {
+    // Consecutive blank lines
+    "maximum": 2
+  },
+  "MD013": {
+    "line_length": -1,
+  },
+  "MD024": false,
+  "MD025": false,
+  "MD033": false,
+  "MD034": false,
+  "MD036": false,
+  "MD051": false
+}
+

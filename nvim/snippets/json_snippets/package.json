@@ -1,0 +1,34 @@
+{
+  "name": "custom-snippets",
+  "engines": {
+    "vscode": "^0.1.0"
+  },
+  "contributes": {
+    "snippets": [
+      {
+        "language": [
+          "plaintext",
+          "markdown",
+          "tex",
+          "html",
+          "global",
+          "all"
+        ],
+        "path": "./snippets/global.json"
+      },
+      {
+        "language": ["cpp"],
+        "path": "./snippets/cpp/cpp.json"
+      },
+      {
+        "language": "tex",
+        "path": "./snippets/tex/tex.json"
+      },
+      {
+        "language": "markdown",
+        "path": "./snippets/markdown/markdown.json"
+      }
+    ]
+  }
+}
+
