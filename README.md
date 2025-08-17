@@ -6,7 +6,7 @@
 
 # 下载
 
-## 预构建安装包
+## 安装 neovim
 
 下载页面为 [Releases](https://github.com/neovim/neovim/releases).
 
@@ -16,6 +16,34 @@
    * [Linux](https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz)
    * [Windows](https://github.com/neovim/neovim/releases/latest/download/nvim-win64.msi)
 * Latest [development prerelease](https://github.com/neovim/neovim/releases/nightly)
+
+## 下载 pithyvimart
+
+1. 克隆仓库: `git clone https://github.com/Qeuroal/PithyVimart.git`
+
+   * 完整克隆 `git clone https://github.com/Qeuroal/PithyVimart.git --recursive`
+
+      > 如果只需要安装, 而不需要安装字体, 则无须 **完整克隆**
+
+   * 克隆 dev 分支 (下面两个命令等价)
+
+      * `git clone https://github.com/Qeuroal/PithyVimart.git --recursive --branch dev`
+      * `git clone https://github.com/Qeuroal/PithyVimart.git --recursive -b dev`
+
+
+1. 按需运行命令
+
+   * 安装 PithyVimart: `make`
+   * 安装依赖: `make build`
+
+      默认更新 submodule, 即先运行下面的命令
+
+      ```bash
+      git submodule init
+      git submodule update
+      ```
+
+   * 彻底删除 PithyVimart: `make cleanall` 或 `make ca`
 
 # 安装
 
