@@ -5,7 +5,9 @@ NVIM_CORE_PATH = "../pithyvim"
 	l local \
 	c clean \
 	ca cleanall \
-	gm gitmerge
+	ud update_dotfile \
+	gm gitmerge \
+	gs gitsubmodule
 
 i install:
 	@rm -rf ~/.aliases
@@ -40,10 +42,15 @@ gm gitmerge:
 	@git switch master && git merge --no-ff -m "merge dev" dev && git push && git switch dev
 
 build:
+	git submodule init
+	git submodule update
 	@bash scripts/install.sh
 
-update:
+ud update_dotfile:
 	@cp -r ./assets/dotfiles/.aliases ~
 	@cp -r ./assets/dotfiles/.tmux.conf ~
 
+gs gitsubmodule:
+	# `git submodule update` restores the submodule version in the remote repository
+	git submodule update --remote
 
