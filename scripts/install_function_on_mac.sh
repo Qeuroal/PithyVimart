@@ -19,7 +19,7 @@ function install_fonts_on_mac() {
     color_print "info" "Installing fonts..."
 
     # 解压fonts
-    tar -zxvf ./assets/font/fonts.tar.gz -C ./
+    tar -zxvf ./assets/remote/font/fonts.tar.gz -C ./
 
     # instal Droid Sans
     rm -rf ~/Library/Fonts/droid_sans_mono
