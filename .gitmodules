@@ -1,0 +1,3 @@
+[submodule "assets/remote"]
+	path = assets/remote
+	url = https://github.com/Qeuroal/PithyVimartAssets.git
