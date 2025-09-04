@@ -109,7 +109,7 @@ Install the [PithyVimart](https://github.com/qeuroal/Pithyvimart) with [PowerShe
   ```powershell
   # required
   Move-Item $env:LOCALAPPDATA\nvim $env:LOCALAPPDATA\nvim.bak
-
+  
   # optional but recommended, which makes a backup
   Move-Item $env:LOCALAPPDATA\nvim-data $env:LOCALAPPDATA\nvim-data.bak
   ```
