@@ -99,6 +99,7 @@
   * git
   * mingw ([官网](https://www.mingw-w64.org/downloads/), [github](https://github.com/niXman/mingw-builds-binaries))
   * npm (node.js) ([官网](https://nodejs.cn/download/))
+  * rg (ripgrep) ([官网](https://github.com/BurntSushi/ripgrep/releases/))
 
 ### 安装步骤
 
