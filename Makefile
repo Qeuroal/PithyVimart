@@ -50,7 +50,11 @@ ud update_dotfile:
 	@cp -r ./assets/dotfiles/.aliases ~
 	@cp -r ./assets/dotfiles/.tmux.conf ~
 
-gs gitsubmodule:
+gsu gitsubmoduleupdate:
+	git submodule init
+	git submodule update
+
+gsr gitsubmoduleremote:
 	# `git submodule update` restores the submodule version in the remote repository
 	git submodule update --remote
 
