@@ -291,6 +291,13 @@ Install the [PithyVimart](https://github.com/qeuroal/Pithyvimart) with [PowerShe
 
     (currently only supported in `neovim-git`) are available from the AUR as [`ruby-neovim`](https://aur.archlinux.org/packages/ruby-neovim).
 
+* `/nvim/lazy/mason.nvim/lua/mason-core/installer/init.lua:249: Installation failed for Package(name=ruff ↪) error=spawn: python3 failed with exit code 1 and signal 0`
+
+  ruff often relies on Python virtual environments for installation. If you are on an Ubuntu or Debian-based system, the python3-venv package might be missing. Install it using:
+
+  ```bash
+  sudo apt install python3-venv
+  ```
 
 ## MacOS
 
