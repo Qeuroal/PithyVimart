@@ -47,8 +47,10 @@ build:
 	@bash scripts/install.sh
 
 ud update_dotfile:
-	@cp -r ./assets/dotfiles/.aliases ~
-	@cp -r ./assets/dotfiles/.tmux.conf ~
+	@rm -rf ~/.aliases
+	@rm -rf ~/.tmux.conf
+	@eval "ln -sf `realpath ./assets/dotfiles/.aliases` ~/.aliases"
+	@eval "ln -sf `realpath ./assets/dotfiles/.tmux.conf` ~/.tmux.conf"
 
 gsu gitsubmoduleupdate:
 	git submodule init
