@@ -66,6 +66,7 @@ if command -v nvim > /dev/null; then
     alias vi="vim"
     alias vimdiff="vim -d"
 fi
+alias vim.="vim ."
 
 # curl
 alias curla='curl -A "Google Chrome"'
