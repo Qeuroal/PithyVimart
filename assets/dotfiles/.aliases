@@ -72,6 +72,13 @@ alias vim.="vim ."
 alias curla='curl -A "Google Chrome"'
 alias curlao='curl -A "Google Chrome" -JLO'
 
+# git
+alias gitm='git commit -m'
+alias gita='git commit --amend'
+alias gitd='git diff'
+alias gits='git status -s'
+alias gitsv='git status'
+
 # tmux
 alias tls='tmux ls'
 alias ta='tmux attach'
