@@ -30,7 +30,6 @@
       "* 问题:${6}",
       "* 主要贡献:${7}",
       "* 方法评价:${8}",
-      "",
       "${0}"
     ],
     "description": ["Insert paper organizing framework"]
