@@ -78,6 +78,8 @@ alias gita='git commit --amend'
 alias gitd='git diff'
 alias gits='git status -s'
 alias gitsv='git status'
+alias gitc='git clone'
+alias gitcr='git clone --recursive'
 
 # tmux
 alias tls='tmux ls'
@@ -85,6 +87,10 @@ alias ta='tmux attach'
 alias tt='tmux attach -t'
 alias td='tmux detach'
 alias tn='tmux new -s'
+
+# tar
+alias tarx='tar -zxvf'
+alias tarc='tar -zcvf'
 
 # yazi
 function y() {
