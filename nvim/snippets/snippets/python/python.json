@@ -1,0 +1,9 @@
+{
+  "importas": {
+    "prefix": ["importas", "imas"],
+    "body": [
+      "import ${1} as ${0}"
+    ],
+    "description": "Import a package or module with alias"
+  }
+}
