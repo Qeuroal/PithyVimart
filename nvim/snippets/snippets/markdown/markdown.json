@@ -37,7 +37,7 @@
   "inmath": {
     "prefix": ["inmath", "im"],
     "body": [
-      "$ ${1} $ ${0}"
+      "\\$ ${1} \\$ ${0}"
     ],
     "description": "Insert inline math"
   },
@@ -51,10 +51,9 @@
   "mathblock": {
     "prefix": ["mathblock", "mb"],
     "body": [
-      "$$",
+      "\\$\\$",
       "$1",
-      "$$",
-      "",
+      "\\$\\$",
       "${0}"
     ],
     "description": "math block"
