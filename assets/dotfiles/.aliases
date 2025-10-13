@@ -80,6 +80,7 @@ alias gits='git status -s'
 alias gitsv='git status'
 alias gitc='git clone'
 alias gitcr='git clone --recursive'
+alias gitcb='git clone --branch'
 
 # tmux
 alias tls='tmux ls'
