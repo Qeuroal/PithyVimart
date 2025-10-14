@@ -81,6 +81,8 @@ alias gitsv='git status'
 alias gitc='git clone'
 alias gitcr='git clone --recursive'
 alias gitcb='git clone --branch'
+alias git_local_help="echo 'git config --local user.name \$GIT_USERNAME \ngit config --local user.email \$GIT_USERMAIL \ngit config --local credential.helper store \ngit config --local --unset credential.helper \ngit config --local credential.username \$GIT_USERNAME\\n\\ngit remote rm origin \ngit remote add origin \$GIT_REMOTE_URL \ngit push --set-upstream origin master'"
+alias git_local_user="[ -n \"$GIT_USERNAME\" -a -n \"$GIT_USERMAIL\" ] && git config --local user.name $GIT_USERNAME && git config --local user.email $GIT_USERMAIL && git config --local credential.helper store && git config --local --unset credential.helper && git config --local credential.username $GIT_USERNAME"
 
 # tmux
 alias tls='tmux ls'
