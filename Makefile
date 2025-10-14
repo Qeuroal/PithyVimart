@@ -6,8 +6,11 @@ NVIM_CORE_PATH = "../pithyvim"
 	c clean \
 	ca cleanall \
 	ud update_dotfile \
+	cfgg configgit \
 	gm gitmerge \
-	gs gitsubmodule
+	gs gitsubmodule \
+	gsu gitsubmoduleupdate \
+	gsr gitsubmoduleremote
 
 i install:
 	@rm -rf ~/.aliases
@@ -46,6 +49,13 @@ ifdef GITMERGE_INFO
 else
 	@git switch master && git merge --no-ff -m "merge dev" dev && git push && git switch dev
 endif
+
+cfgg configgit:
+	git config --global diff.tool nvimdiff
+	git config --global difftool.prompt false
+	git config --global alias.vd difftool
+	git config --global difftool.trustExitCode true
+	git config --global mergetool.trustExitCode true
 
 build:
 	git submodule init
