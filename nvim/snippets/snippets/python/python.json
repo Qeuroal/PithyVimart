@@ -1,9 +1,25 @@
 {
-  "importas": {
+  "Import Module As Alias": {
     "prefix": ["importas"],
     "body": [
       "import ${1} as ${2}"
     ],
     "description": "Import a package or module with alias"
+  },
+  "File Encoding": {
+    "prefix": ["fileenc"],
+    "body": [
+      "# -*- coding: utf-8 -*-",
+      "${0}"
+    ],
+    "description": "File encoding default utf-8"
+  },
+  "Shebang": {
+    "prefix": ["shebang"],
+    "body": [
+      "#!/usr/bin/env python3",
+      "${0}"
+    ],
+    "description": "Shebang"
   }
 }
