@@ -6,7 +6,17 @@
   },
   "Bold Italic Math": {
     "prefix": "bi",
-    "body": "\\boldsymbol{${1:${TM_SELECTED_TEXT:text}}}${0}",
+    "body": "\\\\boldsymbol{${1:text}}${0}",
     "description": "math bold and italic font"
+  },
+  "New Command for User Highlight": {
+    "prefix": "newchl",
+    "body": "\\\\newcommand{\\\\${1:qrl}}[1]{\\\\textcolor${2:[RGB]{255,69,0}}{\\\\small\\\\textbf{[${3:QRL}]} #1 \\$\\\\triangleleft\\$}}${0}",
+    "description": "New Command for User Highlight"
+  },
+  "User Highlight": {
+    "prefix": "uhl",
+    "body": "\\\\${1:qrl}{${2:text}}${0}",
+    "description": "User Highlight"
   }
 }
