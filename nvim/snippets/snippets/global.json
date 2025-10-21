@@ -1,1 +1,10 @@
-{}
+{
+  "Shebang": {
+    "prefix": ["shebang"],
+    "body": [
+      "#!/usr/bin/env ${1:bash}",
+      "${0}"
+    ],
+    "description": "Shebang"
+  }
+}
