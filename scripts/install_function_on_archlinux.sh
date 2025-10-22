@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 function install_software_on_archlinux() {
     if [ "$(has_sudo)" == "0" ]; then
