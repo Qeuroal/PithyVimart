@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # {{{> source scripts
 source ${PWD}/scripts/color_print.sh

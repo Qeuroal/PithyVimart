@@ -1,12 +1,13 @@
 NVIM_CORE_PATH = "../pithyvim"
 
 .PHONY: i install \
-	build \
 	l local \
+	build \
+	cd config_dotfiles \
 	c clean \
 	ca cleanall \
 	ud update_dotfile \
-	cfgg configgit \
+	gcf gitconfig \
 	gm gitmerge \
 	gs gitsubmodule \
 	gsu gitsubmoduleupdate \
@@ -29,6 +30,13 @@ l local:
 	@eval "ln -sf `realpath ${NVIM_CORE_PATH}/lua/pithyvim` ./nvim/lua/pithyvim"
 	@ln -sf `realpath ./nvim` ~/.config/nvim
 
+build:
+	@bash scripts/install.sh
+
+cd config_dotfiles:
+	@echo "\033[33m>>>WARNING: The .ssh/config configuration should be placed at the beginning of the file.\033[0m"
+	@bash scripts/config_dotfiles.sh
+
 c clean:
 	@rm -rf ~/.config/nvim
 	@rm -rf ~/.cache/nvim
@@ -50,15 +58,12 @@ else
 	@git switch master && git merge --no-ff -m "merge dev" dev && git push && git switch dev
 endif
 
-cfgg configgit:
+gcf gitconfig:
 	git config --global diff.tool nvimdiff
 	git config --global difftool.prompt false
 	git config --global alias.vd difftool
 	git config --global difftool.trustExitCode true
 	git config --global mergetool.trustExitCode true
-
-build:
-	@bash scripts/install.sh
 
 gsu gitsubmoduleupdate:
 	git submodule init

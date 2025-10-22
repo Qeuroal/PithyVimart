@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 PITHY_CONFIG_PATH="$HOME/.config/pithy_configs"
 

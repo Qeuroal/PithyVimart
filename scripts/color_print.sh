@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 function to_upper() {
     echo "$@" | tr '[:lower:]' '[:upper:]'

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 source ${PWD}/scripts/color_print.sh
 source ${PWD}/scripts/install_function_on_ubuntu.sh

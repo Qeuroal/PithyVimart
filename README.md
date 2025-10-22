@@ -168,9 +168,10 @@ Install the [PithyVimart](https://github.com/qeuroal/Pithyvimart) with [PowerShe
 
 ## 定制 SHELL config
 
-默认导入路径为: `$HOME/.config/pithy_custom_config` 文件, ==**如果存在, 则默认导入**==.
+默认导入路径为: `$HOME/.config/pithy_custom_config` 文件, **如果存在, 则默认导入**.
 
-> 该文件为 ==**唯一**== 的导入外部配置的文件.
+> [!TIP]
+> 该文件为 **唯一** 的导入外部配置的文件.
 
 # 资料相关
 
