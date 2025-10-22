@@ -17,3 +17,7 @@ indent_size = 3
 
 [assets/dotfiles/*]
 indent_size = 4
+
+[assets/dotfiles/.custom_gitconfig]
+indent_style = tab
+

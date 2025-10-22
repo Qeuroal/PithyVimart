@@ -1,0 +1,18 @@
+[merge]
+	tool = nvimdiff
+	conflictstyle = diff3
+[mergetool]
+	prompt = false
+	trustExitCode = true
+[alias]
+	vd = difftool
+	co = checkout
+	st = status -sb
+	br = branch
+[diff]
+	tool = nvimdiff
+[difftool]
+	prompt = false
+	trustExitCode = true
+[core]
+	editor = nvim
