@@ -72,3 +72,4 @@ gsr gitsubmoduleremote:
 cd config_dotfiles:
 	@echo "\033[33m>>>WARNING: The .ssh/config configuration should be placed at the beginning of the file.\033[0m"
 	@bash scripts/config_dotfiles.sh
+
