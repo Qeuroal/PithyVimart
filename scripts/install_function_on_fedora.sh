@@ -21,9 +21,8 @@ function install_software_on_fedora() {
 # <}}}
 
 #{{{> configure plugins
-function configure_plugins_on_fedora() {
-    configure_fzf_on_linux
-    configure_tmux
+function configure_on_fedora() {
+    link_dotfiles
     configure_shell
 }
 #<}}}
@@ -34,7 +33,7 @@ function install_vimart_on_fedora() {
     install_software_on_fedora
     copy_files
     install_fonts_on_linux
-    configure_plugins_on_fedora
+    configure_on_fedora
     print_logo
 }
 # <}}}

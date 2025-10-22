@@ -10,8 +10,8 @@ local DOTFILE_PATH="$HOME/.config/pithy_configs"
 
 # fzf:FZF_DEFAULT_COMMAND
 if type rg &> /dev/null; then
-  export FZF_DEFAULT_COMMAND='rg --files'
-  export FZF_DEFAULT_OPTS='-m'
+    export FZF_DEFAULT_COMMAND='rg --files'
+    export FZF_DEFAULT_OPTS='-m'
 fi
 
 # prevent tmux exiting with Ctrl-d

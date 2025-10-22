@@ -42,9 +42,8 @@ function install_dependency_on_ubuntu() {
 # <}}}
 
 #{{{> configure plugins
-function configure_plugins_on_ubuntu() {
-    configure_fzf_on_linux
-    configure_tmux
+function configure_on_ubuntu() {
+    link_dotfiles
     configure_shell
 }
 #<}}}
@@ -53,9 +52,8 @@ function configure_plugins_on_ubuntu() {
 function install_vimart_on_ubuntu() {
     backup_vim_data
     install_dependency_on_ubuntu
-    copy_files
     install_fonts_on_linux
-    configure_plugins_on_ubuntu
+    configure_on_ubuntu
     print_logo
 }
 # <}}}

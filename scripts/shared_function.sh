@@ -110,47 +110,6 @@ function get_now_timestamp() {
 }
 #<}}}
 
-#{{{> configure fzf
-function configure_fzf_on_linux() {
-    local srcpath=${PWD}
-    local destpath=$HOME
-    if [ "$#" = "1" ]; then
-        srcpath=${PWD}
-        destpath="$1"
-    elif [ "$#" = "2" ]; then
-        srcpath="$1"
-        destpath="$2"
-    fi
-
-    # configure in zshrc
-    if [[ -f ${destpath}/.zshrc ]]
-    then
-        if test `cat ${destpath}/.zshrc | grep -c "# fzf:FZF_DEFAULT_COMMAND"` = 0
-        then
-            echo "" | tee -a ${destpath}/.zshrc > /dev/null
-            echo "# fzf:FZF_DEFAULT_COMMAND" | tee -a ${destpath}/.zshrc > /dev/null
-            echo "if type rg &> /dev/null; then" | tee -a ${destpath}/.zshrc > /dev/null
-            echo "  export FZF_DEFAULT_COMMAND='rg --files'" | tee -a ${destpath}/.zshrc > /dev/null
-            echo "  export FZF_DEFAULT_OPTS='-m'" | tee -a ${destpath}/.zshrc > /dev/null
-            echo "fi" | tee -a ${destpath}/.zshrc > /dev/null
-            echo "" | tee -a ${destpath}/.zshrc > /dev/null
-        fi
-    fi
-
-    # configure in bashrc
-    if test `cat ${destpath}/.bashrc | grep -c "# fzf:FZF_DEFAULT_COMMAND"` = 0
-    then
-        echo "" | tee -a ${destpath}/.bashrc > /dev/null
-        echo "# fzf:FZF_DEFAULT_COMMAND" | tee -a ${destpath}/.bashrc > /dev/null
-        echo "if type rg &> /dev/null; then" | tee -a ${destpath}/.bashrc > /dev/null
-        echo "  export FZF_DEFAULT_COMMAND='rg --files'" | tee -a ${destpath}/.bashrc > /dev/null
-        echo "  export FZF_DEFAULT_OPTS='-m'" | tee -a ${destpath}/.bashrc > /dev/null
-        echo "fi" | tee -a ${destpath}/.bashrc > /dev/null
-        echo "" | tee -a ${destpath}/.bashrc > /dev/null
-    fi
-}
-#<}}}
-
 #{{{> configure shell_config
 function configure_shell_config() {
     local destFile=".zshrc"
