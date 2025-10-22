@@ -7,6 +7,7 @@ NVIM_CORE_PATH = "../pithyvim"
 	c clean \
 	ca cleanall \
 	ud update_dotfile \
+	cc clearcache \
 	gcf gitconfig \
 	gm gitmerge \
 	gs gitsubmodule \
@@ -72,4 +73,7 @@ gsu gitsubmoduleupdate:
 gsr gitsubmoduleremote:
 	# `git submodule update` restores the submodule version in the remote repository
 	git submodule update --remote
+
+cc clearcache:
+	@rm -v ~/.local/state/nvim/shada/main.shada
 
