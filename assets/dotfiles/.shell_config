@@ -1,12 +1,12 @@
 # vim:ft=bash:tw=80:ts=4:et:shiftwidth=4:
 
-local DOTFILE_PATH="$HOME/.config/pithy_configs"
+PITHY_DOTFILE_PATH="$HOME/.config/pithy_configs"
 
 # import aliases
-[ -e "$DOTFILE_PATH/.aliases" ] && source $DOTFILE_PATH/.aliases
+[ -e "$PITHY_DOTFILE_PATH/.aliases" ] && source $PITHY_DOTFILE_PATH/.aliases
 
 # import env
-[ -e "$DOTFILE_PATH/.env_config" ] && source $DOTFILE_PATH/.env_config
+[ -e "$PITHY_DOTFILE_PATH/.env_config" ] && source $PITHY_DOTFILE_PATH/.env_config
 
 # fzf:FZF_DEFAULT_COMMAND
 if type rg &> /dev/null; then
