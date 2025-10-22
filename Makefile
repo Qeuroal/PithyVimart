@@ -58,8 +58,6 @@ cfgg configgit:
 	git config --global mergetool.trustExitCode true
 
 build:
-	git submodule init
-	git submodule update
 	@bash scripts/install.sh
 
 gsu gitsubmoduleupdate:

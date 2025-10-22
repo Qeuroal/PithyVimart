@@ -156,7 +156,7 @@ function link_dotfiles() {
         mv $PITHY_CONFIG_PATH $PITHY_CONFIG_PATH.bak
     fi
 
-    if [ -d "$HOME/.config" ]; then
+    if [ ! -d "$HOME/.config" ]; then
         mkdir -p "$HOME/.config"
     fi
 
