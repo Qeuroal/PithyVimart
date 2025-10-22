@@ -1,12 +1,13 @@
 # vim:ft=bash:tw=80:ts=4:et:shiftwidth=4:
 
-PITHY_DOTFILE_PATH="$HOME/.config/pithy_configs"
+PITHY_DOTFILES_PATH="$HOME/.config/pithy_configs"
+PITHY_CUSTOM_CONFIG_PATH="$HOME/.config/pithy_custom_config"
 
 # import aliases
-[ -e "$PITHY_DOTFILE_PATH/.aliases" ] && source $PITHY_DOTFILE_PATH/.aliases
+[ -e "$PITHY_DOTFILES_PATH/.aliases" ] && source $PITHY_DOTFILES_PATH/.aliases
 
 # import env
-[ -e "$PITHY_DOTFILE_PATH/.env_config" ] && source $PITHY_DOTFILE_PATH/.env_config
+[ -e "$PITHY_DOTFILES_PATH/.env_config" ] && source $PITHY_DOTFILES_PATH/.env_config
 
 # fzf:FZF_DEFAULT_COMMAND
 if type rg &> /dev/null; then
@@ -22,4 +23,6 @@ elif [[ "$(uname)" = 'Darwin' ]]; then
     set -o IGNOREEOF
 fi
 
+# import custom user config
+[ -f "$PITHY_CUSTOM_CONFIG_PATH" ] && source $PITHY_CUSTOM_CONFIG_PATH
 
