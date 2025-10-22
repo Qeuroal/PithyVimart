@@ -16,6 +16,10 @@ function install_dependency_on_mac() {
 
 # {{{> install fonts
 function install_fonts_on_mac() {
+    if [ ! -e "./assets/remote/font/fonts.tar.gz" ]; then
+        color_print "warning" "The fonts.tar.gz file does not exist. Cancel font installation..."
+        return
+    fi
     color_print "info" "Installing fonts..."
 
     # 解压fonts
