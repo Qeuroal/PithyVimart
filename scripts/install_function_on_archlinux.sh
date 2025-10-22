@@ -18,9 +18,8 @@ function install_software_on_archlinux() {
 }
 
 #{{{> configure plugins
-function configure_plugins_on_archlinux() {
-    configure_fzf_on_linux
-    configure_tmux
+function configure_on_archlinux() {
+    link_dotfiles
     configure_shell
 }
 #<}}}
@@ -30,7 +29,7 @@ function install_vimart_on_archlinux() {
     backup_vim_data
     install_software_on_archlinux
     install_fonts_on_linux
-    configure_plugins_on_archlinux
+    configure_on_archlinux
     print_logo
 }
 # <}}}

@@ -40,41 +40,9 @@ function install_fonts_on_mac() {
 }
 # <}}}
 
-#{{{> configure fzf
-function configure_fzf_on_mac() {
-    # configure in zshrc
-    if [[ -f ${HOME}/.zshrc ]]
-    then
-        if test `cat ${HOME}/.zshrc | grep -c "# fzf:FZF_DEFAULT_COMMAND"` = 0
-        then
-            echo "" | tee -a ${HOME}/.zshrc > /dev/null
-            echo "# fzf:FZF_DEFAULT_COMMAND" | tee -a ${HOME}/.zshrc > /dev/null
-            echo "if type rg &> /dev/null; then" | tee -a ${HOME}/.zshrc > /dev/null
-            echo "  export FZF_DEFAULT_COMMAND='rg --files'" | tee -a ${HOME}/.zshrc > /dev/null
-            echo "  export FZF_DEFAULT_OPTS='-m'" | tee -a ${HOME}/.zshrc > /dev/null
-            echo "fi" | tee -a ${HOME}/.zshrc > /dev/null
-            echo "" | tee -a ${HOME}/.zshrc > /dev/null
-        fi
-    fi
-
-    # configure in bashrc
-    if test `cat ${HOME}/.bash_profile | grep -c "# fzf:FZF_DEFAULT_COMMAND"` = 0
-    then
-        echo "" | tee -a ${HOME}/.bash_profile > /dev/null
-        echo "# fzf:FZF_DEFAULT_COMMAND" | tee -a ${HOME}/.bash_profile > /dev/null
-        echo "if type rg &> /dev/null; then" | tee -a ${HOME}/.bash_profile > /dev/null
-        echo "  export FZF_DEFAULT_COMMAND='rg --files'" | tee -a ${HOME}/.bash_profile > /dev/null
-        echo "  export FZF_DEFAULT_OPTS='-m'" | tee -a ${HOME}/.bash_profile > /dev/null
-        echo "fi" | tee -a ${HOME}/.bash_profile > /dev/null
-        echo "" | tee -a ${HOME}/.bash_profile > /dev/null
-    fi
-}
-#<}}}
-
 #{{{> configure plugins
-function configure_plugins_on_mac() {
-    configure_fzf_on_mac
-    configure_tmux
+function configure_on_mac() {
+    link_dotfiles
     configure_shell
 }
 #<}}}
@@ -83,9 +51,8 @@ function configure_plugins_on_mac() {
 function install_vimart_on_mac() {
     backup_vim_data
     install_dependency_on_mac
-    copy_files
     install_fonts_on_mac
-    configure_plugins_on_mac
+    configure_on_mac
     print_logo
 }
 # <}}}
