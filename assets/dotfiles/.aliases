@@ -9,15 +9,15 @@
 
 if [[ "$(uname)" = 'Linux' ]]; then
     alias la="ls -ah"
-    # alias setproxy="source /opt/proxy.sh"
-    alias setproxy="export HTTP_PROXY=http://127.0.0.1:7890 HTTPS_PROXY=http://127.0.0.1:7890 FTP_PROXY=http://127.0.0.1:7890 ALL_PROXY=socks://127.0.0.1:7890 NO_PROXY=localhost,127.0.0.0/8,::1 http_proxy=http://127.0.0.1:7890 https_proxy=http://127.0.0.1:7890 ftp_proxy=http://127.0.0.1:7890 all_proxy=socks://127.0.0.1:7890 no_proxy=localhost,127.0.0.0/8,::1"
+    # alias setproxy='source /opt/proxy.sh'
+    alias setproxy='export HTTP_PROXY=http://127.0.0.1:${PROXY_PORT:-7890} HTTPS_PROXY=http://127.0.0.1:${PROXY_PORT:-7890} FTP_PROXY=http://127.0.0.1:${PROXY_PORT:-7890} ALL_PROXY=socks://127.0.0.1:${PROXY_PORT:-7890} NO_PROXY=localhost,127.0.0.0/8,::1 http_proxy=http://127.0.0.1:${PROXY_PORT:-7890} https_proxy=http://127.0.0.1:${PROXY_PORT:-7890} ftp_proxy=http://127.0.0.1:${PROXY_PORT:-7890} all_proxy=socks://127.0.0.1:${PROXY_PORT:-7890} no_proxy=localhost,127.0.0.0/8,::1'
     alias unsetproxy="unset HTTP_PROXY HTTPS_PROXY FTP_PROXY ALL_PROXY NO_PROXY http_proxy https_proxy ftp_proxy all_proxy no_proxy"
     alias sk="slock"
 elif [[ "$(uname)" = 'Darwin' ]]; then
     alias openmd="open -a Typora"
     alias la="ls -ah"
-    # alias setproxy="export https_proxy=http://127.0.0.1:7890 http_proxy=http://127.0.0.1:7890 all_proxy=socks5://127.0.0.1:7890"
-    alias setproxy="export HTTP_PROXY=http://127.0.0.1:7890 HTTPS_PROXY=http://127.0.0.1:7890 FTP_PROXY=http://127.0.0.1:7890 ALL_PROXY=socks://127.0.0.1:7890 NO_PROXY=localhost,127.0.0.0/8,::1 http_proxy=http://127.0.0.1:7890 https_proxy=http://127.0.0.1:7890 ftp_proxy=http://127.0.0.1:7890 all_proxy=socks://127.0.0.1:7890 no_proxy=localhost,127.0.0.0/8,::1"
+    # alias setproxy='export https_proxy=http://127.0.0.1:${PROXY_PORT:-7890} http_proxy=http://127.0.0.1:${PROXY_PORT:-7890} all_proxy=socks5://127.0.0.1:${PROXY_PORT:-7890}'
+    alias setproxy='export HTTP_PROXY=http://127.0.0.1:${PROXY_PORT:-7890} HTTPS_PROXY=http://127.0.0.1:${PROXY_PORT:-7890} FTP_PROXY=http://127.0.0.1:${PROXY_PORT:-7890} ALL_PROXY=socks://127.0.0.1:${PROXY_PORT:-7890} NO_PROXY=localhost,127.0.0.0/8,::1 http_proxy=http://127.0.0.1:${PROXY_PORT:-7890} https_proxy=http://127.0.0.1:${PROXY_PORT:-7890} ftp_proxy=http://127.0.0.1:${PROXY_PORT:-7890} all_proxy=socks://127.0.0.1:${PROXY_PORT:-7890} no_proxy=localhost,127.0.0.0/8,::1'
     alias unsetproxy="unset HTTP_PROXY HTTPS_PROXY FTP_PROXY ALL_PROXY NO_PROXY http_proxy https_proxy ftp_proxy all_proxy no_proxy"
 else
     echo "not support $(uname)"
@@ -107,4 +107,15 @@ function y() {
 # aider
 alias aidc='aider --model deepseek --set-env all_proxy="" --commit'
 
+# navigation
+alias ..='cd ..'
+alias ...='cd ../..'
+alias .3='cd ../../..'
+alias .4='cd ../../../..'
+alias .5='cd ../../../../..'
 
+# ssh
+alias sshl='ssh -L ${LPORT:-8888}:localhost:${LPORT:-8888}'
+alias sshr='ssh -R ${RPORT:-7890}:localhost:${RPORT:-7890}'
+# LOCAL/REMOTE_PORT_LOCAL/REMOTE
+alias sshld='ssh -L ${LPORTL:-9091}:localhost:${LPORTR:-9090}'

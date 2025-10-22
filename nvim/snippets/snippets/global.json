@@ -6,5 +6,19 @@
       "${0}"
     ],
     "description": "Shebang"
+  },
+  "modeline": {
+    "prefix": ["modeline"],
+    "body": [
+      "vim:ft=${1:bash}:tw=${2:80}:ts=${3:4}:${4:et}:shiftwidth=${5:4}:${0}"
+    ],
+    "description": [
+      "Vim modeline, Requiring Manual Annotation\n",
+      "- tw: textwidth\n",
+      "- ts: tabstop\n",
+      "- et/noet: expandtab/noexpandtab\n",
+      "NOTE: `:e` reload file"
+    ]
   }
 }
+
