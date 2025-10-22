@@ -107,4 +107,10 @@ function y() {
 # aider
 alias aidc='aider --model deepseek --set-env all_proxy="" --commit'
 
+# navigation
+alias ..='cd ..'
+alias ...='cd ../..'
+alias .3='cd ../../..'
+alias .4='cd ../../../..'
+alias .5='cd ../../../../..'
 

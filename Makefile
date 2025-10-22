@@ -65,8 +65,10 @@ build:
 ud update_dotfile:
 	@rm -rf ~/.aliases
 	@rm -rf ~/.tmux.conf
+	@rm -rf ~/.custom_gitconfig
 	@eval "ln -sf `realpath ./assets/dotfiles/.aliases` ~/.aliases"
 	@eval "ln -sf `realpath ./assets/dotfiles/.tmux.conf` ~/.tmux.conf"
+	@eval "ln -sf `realpath ./assets/dotfiles/.custom_gitconfig` ~/.custom_gitconfig"
 
 gsu gitsubmoduleupdate:
 	git submodule init
