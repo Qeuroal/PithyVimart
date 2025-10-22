@@ -15,6 +15,11 @@ if type rg &> /dev/null; then
 fi
 
 # prevent tmux exiting with Ctrl-d
-set -o IGNOREEOF
+if [[ "$(uname)" = 'Linux' ]]; then
+    set -o ignoreeof
+    ignoreeof=3
+elif [[ "$(uname)" = 'Darwin' ]]; then
+    set -o IGNOREEOF
+fi
 
 
