@@ -10,7 +10,8 @@ NVIM_CORE_PATH = "../pithyvim"
 	gm gitmerge \
 	gs gitsubmodule \
 	gsu gitsubmoduleupdate \
-	gsr gitsubmoduleremote
+	gsr gitsubmoduleremote \
+	cd config_dotfiles
 
 i install:
 	@rm -rf ~/.aliases
@@ -68,3 +69,6 @@ gsr gitsubmoduleremote:
 	# `git submodule update` restores the submodule version in the remote repository
 	git submodule update --remote
 
+cd config_dotfiles:
+	@echo "\033[33m>>>WARNING: The .ssh/config configuration should be placed at the beginning of the file.\033[0m"
+	@bash scripts/config_dotfiles.sh
