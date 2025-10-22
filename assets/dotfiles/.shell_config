@@ -1,0 +1,20 @@
+# vim:ft=bash:tw=80:ts=4:et:shiftwidth=4:
+
+local DOTFILE_PATH="$HOME/.config/pithy_configs"
+
+# import aliases
+[ -e "$DOTFILE_PATH/.aliases" ] && source $DOTFILE_PATH/.aliases
+
+# import env
+[ -e "$DOTFILE_PATH/.env_config" ] && source $DOTFILE_PATH/.env_config
+
+# fzf:FZF_DEFAULT_COMMAND
+if type rg &> /dev/null; then
+  export FZF_DEFAULT_COMMAND='rg --files'
+  export FZF_DEFAULT_OPTS='-m'
+fi
+
+# prevent tmux exiting with Ctrl-d
+set -o IGNOREEOF
+
+

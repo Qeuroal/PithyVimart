@@ -182,9 +182,9 @@ function config_vimart_dependency() {
 
     configure_fzf_on_linux ${srcpath} ${destpath}
     configure_tmux ${srcpath} ${destpath}
-    configure_aliases ".zshrc" ${srcpath} ${destpath}
-    configure_aliases ".bashrc" ${srcpath} ${destpath}
-    configure_aliases ".bash_profile" ${srcpath} ${destpath}
+    configure_shell_config ".zshrc" ${srcpath} ${destpath}
+    configure_shell_config ".bashrc" ${srcpath} ${destpath}
+    configure_shell_config ".bash_profile" ${srcpath} ${destpath}
     configure_eof ${srcpath} ${destpath}
     configureCtags ${srcpath} ${destpath}
 }
@@ -241,8 +241,8 @@ function chown_user_permission() {
         chown -R ${username}:${username} ${userhome}/.tmux.conf
     fi
 
-    if [ -e "${userhome}/.aliases" ]; then
-        chown -R ${username}:${username} ${userhome}/.aliases
+    if [ -e "${userhome}/.shell_config" ]; then
+        chown -R ${username}:${username} ${userhome}/.shell_config
     fi
 }
 #<}}}
