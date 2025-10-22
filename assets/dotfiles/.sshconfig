@@ -1,7 +1,7 @@
 # vim:ft=sshconfig:
 
-################################################################################
-# TIP: Add "Include ~/.ssh/.custom_sshconfig" to the first line of ~/.ssh/config
+##########################################################################################
+# TIP: Add "Include ~/.config/pithy_configs/.sshconfig" to the first line of ~/.ssh/config
 #
 # Params:
 # - IdentityFile: 密钥文件的路径
@@ -10,7 +10,7 @@
 # - PreferredAuthentications: 强制使用Public Key验证 
 #
 # detailed: man ssh_config
-################################################################################
+##########################################################################################
 
 Host *
     SetEnv TERM=xterm-256color
