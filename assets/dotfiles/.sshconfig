@@ -1,7 +1,7 @@
 # vim:ft=sshconfig:
 
 ##########################################################################################
-# TIP: Add "Include ~/.config/pithy_configs/.sshconfig" to the first line of ~/.ssh/config
+# TIP: Add "Include ~/.config/pithy_configs/.sshconfig" to the FIRST line of ~/.ssh/config
 #
 # Params:
 # - IdentityFile: 密钥文件的路径

@@ -1,3 +1,12 @@
+; vim:ft=gitconfig:tw=80:ts=4:noet:shiftwidth=4:
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; 在 $HOME/.gitignore 中添加下面两行
+; [include]
+; 	path = ~/.config/pithy_configs/.gitconfig
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
 [merge]
 	tool = nvimdiff
 	conflictstyle = diff3
