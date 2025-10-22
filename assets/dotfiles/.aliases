@@ -136,3 +136,4 @@ alias sshl='ssh -L ${LPORT:-8888}:localhost:${LPORT:-8888}'
 alias sshr='ssh -R ${RPORT:-7890}:localhost:${RPORT:-7890}'
 # LOCAL/REMOTE_PORT_LOCAL/REMOTE
 alias sshld='ssh -L ${LPORTL:-9091}:localhost:${LPORTR:-9090}'
+alias sshrd='ssh -R ${RPORTL:-7890}:localhost:${RPORTR:-7890}'
