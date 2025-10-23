@@ -11,6 +11,8 @@ function install_dependency_on_mac() {
     brew install node
     # snack.nvim 依赖: fd-find
     brew install fd
+    # gnu softwares
+    brew install gnu-sed gnu-tar
 }
 # <}}}
 
