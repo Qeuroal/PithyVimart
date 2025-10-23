@@ -3,7 +3,7 @@
 PITHY_DOTFILES_PATH="$HOME/.config/pithy_configs"
 PITHY_CUSTOM_CONFIG_PATH="$HOME/.config/pithy_custom_config"
 
-source "$PITHY_DOTFILES_PATH/.utils"
+source "$PITHY_DOTFILES_PATH/utils/seds"
 
 # import aliases
 [ -e "$PITHY_DOTFILES_PATH/.aliases" ] && source $PITHY_DOTFILES_PATH/.aliases
