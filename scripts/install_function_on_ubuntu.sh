@@ -14,7 +14,7 @@ function get_ubuntu_version() {
 
 # {{{> 安装ubuntu必备软件
 function install_dependency_on_ubuntu() {
-    if [ "$(has_sudo)" == "0" ]; then
+    if [[ "$(has_sudo)" == "0" ]]; then
         color_print "warning" "You are not the root user."
         return
     fi

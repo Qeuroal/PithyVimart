@@ -4,7 +4,7 @@ source ${PWD}/scripts/color_print.sh
 
 # {{{> 安装fedora必备软件
 function install_software_on_fedora() {
-    if [ "$(has_sudo)" == "0" ]; then
+    if [[ "$(has_sudo)" == "0" ]]; then
         color_print "warning" "You are not the root user."
         return
     fi

@@ -59,39 +59,39 @@ function install_vimart_on_linux() {
     distro=`get_linux_distro`
     echo "Linux distro: "${distro}
 
-    if [ ${distro} == "Ubuntu" ]; then
+    if [[ ${distro} == "Ubuntu" ]]; then
         install_vimart_on_ubuntu
-    elif [ ${distro} == "Deepin" ]; then
+    elif [[ ${distro} == "Deepin" ]]; then
         echo "not support ${distro}"
-    elif [ ${distro} == "LinuxMint" ]; then
+    elif [[ ${distro} == "LinuxMint" ]]; then
         echo "not support ${distro}"
-    elif [ ${distro} == "elementaryOS" ]; then
+    elif [[ ${distro} == "elementaryOS" ]]; then
         echo "not support ${distro}"
-    elif [ ${distro} == "Debian" ]; then
+    elif [[ ${distro} == "Debian" ]]; then
         echo "not support ${distro}"
-    elif [ ${distro} == "Raspbian" ]; then
+    elif [[ ${distro} == "Raspbian" ]]; then
         echo "not support ${distro}"
-    elif [ ${distro} == "UOS" ]; then
+    elif [[ ${distro} == "UOS" ]]; then
         echo "not support ${distro}"
-    elif [ ${distro} == "Kali" ]; then
+    elif [[ ${distro} == "Kali" ]]; then
         echo "not support ${distro}"
-    elif [ ${distro} == "Parrot" ]; then
+    elif [[ ${distro} == "Parrot" ]]; then
         echo "not support ${distro}"
-    elif [ ${distro} == "CentOS" ]; then
+    elif [[ ${distro} == "CentOS" ]]; then
         echo "not support ${distro}"
-    elif [ ${distro} == "fedora" ]; then
+    elif [[ ${distro} == "fedora" ]]; then
         install_vimart_on_fedora
-    elif [ ${distro} == "openSUSE" ]; then
+    elif [[ ${distro} == "openSUSE" ]]; then
         echo "not support ${distro}"
-    elif [ ${distro} == "ArchLinux" ]; then
+    elif [[ ${distro} == "ArchLinux" ]]; then
         # echo "not support ${distro}"
         install_vimart_on_archlinux
-    elif [ ${distro} == "ManjaroLinux" ]; then
+    elif [[ ${distro} == "ManjaroLinux" ]]; then
         # echo "not support ${distro}"
         install_vimart_on_archlinux
-    elif [ ${distro} == "Gentoo" ]; then
+    elif [[ ${distro} == "Gentoo" ]]; then
         echo "not support ${distro}"
-    elif [ ${distro} == "Alpine" ]; then
+    elif [[ ${distro} == "Alpine" ]]; then
         echo "not support ${distro}"
     else
         echo "Not support linux distro: "${distro}

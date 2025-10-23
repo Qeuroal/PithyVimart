@@ -15,12 +15,12 @@ function main() {
     echo "Platform type: "${type}
 
 
-    if [ ${type} == "Darwin" ]; then
+    if [[ ${type} == "Darwin" ]]; then
         install_vimart_on_mac
-    elif [ ${type} == "FreeBSD" ]; then
+    elif [[ ${type} == "FreeBSD" ]]; then
         # installVimartOnFreebsd
         echo "Not support now!!!"
-    elif [ ${type} == "Linux" ]; then
+    elif [[ ${type} == "Linux" ]]; then
         tp=$(uname -a)
         if [[ $tp =~ "Android" ]]; then
             echo "Android isn't suppoted now!!!"
