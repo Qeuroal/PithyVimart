@@ -58,14 +58,20 @@ function import_configure ()
     if [ `cat ${destfilepath} | grep -c "$import_signal"` = 0 ]; then
         echo "$import_signal" | tee -a ${destfilepath} > /dev/null
         $hook_func ${destfilepath}
+        return 0
     fi
+
+    return 2
 }
 
 function main ()
 {
     import_configure "$HOME/.gitconfig" "; import gitconfig" "import_gitconfig"
     import_configure "$HOME/.ssh/config" "# import sshconfig" "import_sshconfig"
+    [ "$?" = "0" ] && color_print "warning" "WARNING: The .ssh/config configuration should be placed at the beginning of the file."
     import_configure "$HOME/.tmux.conf" "# import tmux.conf" "import_tmux_conf"
+
+    return 0
 }
 
 main

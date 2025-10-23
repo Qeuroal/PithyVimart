@@ -15,10 +15,6 @@ NVIM_CORE_PATH = "../pithyvim"
 	gsr gitsubmoduleremote
 
 i install:
-	@rm -rf ~/.aliases
-	@rm -rf ~/.tmux.conf
-	@eval "ln -sf `realpath ./assets/dotfiles/.aliases` ~/.aliases"
-	@eval "ln -sf `realpath ./assets/dotfiles/.tmux.conf` ~/.tmux.conf"
 	@rm -rf ~/.config/nvim
 	@rm -rf ./nvim/lazy-lock.json
 	@rm -rf ./nvim/lua/pithyvim
@@ -35,7 +31,6 @@ build:
 	@bash scripts/install.sh
 
 cd config_dotfiles:
-	@echo "\033[33m>>>WARNING: The .ssh/config configuration should be placed at the beginning of the file.\033[0m"
 	@bash scripts/config_dotfiles.sh
 
 c clean:
