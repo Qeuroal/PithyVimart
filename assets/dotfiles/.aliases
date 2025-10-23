@@ -17,41 +17,6 @@ fi
 
 alias gtags="ctags --fields=+iaS --extra=+q --c-kinds=+p -R ."
 
-# type ranger &> /dev/null
-if command -v ranger > /dev/null; then
-    alias ra='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
-fi
-
-# type joshuto &> /dev/null
-if command -v joshuto > /dev/null; then
-    function joshuto_remain() {
-        ID="$$"
-        mkdir -p /tmp/$USER
-        OUTPUT_FILE="/tmp/$USER/joshuto-cwd-$ID"
-        env joshuto --output-file "$OUTPUT_FILE" $@
-        exit_code=$?
-
-        case "$exit_code" in
-            # regular exit
-            0)
-                ;;
-            # output contains current directory
-            101)
-                JOSHUTO_CWD=$(cat "$OUTPUT_FILE")
-                cd "$JOSHUTO_CWD"
-                ;;
-            # output selected files
-            102)
-                ;;
-            *)
-                echo "Exit code: $exit_code"
-                ;;
-        esac
-        rm -rf $OUTPUT_FILE
-    }
-    alias jr='joshuto_remain'
-fi
-
 # nvim replace vim
 if command -v nvim > /dev/null; then
     alias vim="nvim -V1"
@@ -112,3 +77,39 @@ alias sshr='ssh -R ${RPORT:-7890}:localhost:${RPORT:-7890}'
 # LOCAL/REMOTE_PORT_LOCAL/REMOTE
 alias sshld='ssh -L ${LPORTL:-9091}:localhost:${LPORTR:-9090}'
 alias sshrd='ssh -R ${RPORTL:-7890}:localhost:${RPORTR:-7890}'
+
+# type ranger &> /dev/null
+if command -v ranger > /dev/null; then
+    alias ra='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
+fi
+
+# type joshuto &> /dev/null
+if command -v joshuto > /dev/null; then
+    function joshuto_remain() {
+        ID="$$"
+        mkdir -p /tmp/$USER
+        OUTPUT_FILE="/tmp/$USER/joshuto-cwd-$ID"
+        env joshuto --output-file "$OUTPUT_FILE" $@
+        exit_code=$?
+
+        case "$exit_code" in
+            # regular exit
+            0)
+                ;;
+            # output contains current directory
+            101)
+                JOSHUTO_CWD=$(cat "$OUTPUT_FILE")
+                cd "$JOSHUTO_CWD"
+                ;;
+            # output selected files
+            102)
+                ;;
+            *)
+                echo "Exit code: $exit_code"
+                ;;
+        esac
+        rm -rf $OUTPUT_FILE
+    }
+    alias jr='joshuto_remain'
+fi
+
