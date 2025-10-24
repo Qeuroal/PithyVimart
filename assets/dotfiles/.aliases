@@ -66,6 +66,7 @@ alias aidc='aider --model deepseek --set-env all_proxy="" --commit'
 
 # navigation
 alias ..='cd ..'
+alias cd.='cd $(realpath .)'
 alias ...='cd ../..'
 alias .3='cd ../../..'
 alias .4='cd ../../../..'
