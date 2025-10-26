@@ -79,7 +79,7 @@ function import_configure ()
 
     if [ `cat ${destfilepath} | grep -c "$import_signal"` = 0 ]; then
         # selfimport_* 函数自行导入 import signal
-        [[ ! "$hook_func" =~ "selfimport_" ]] && echo "$import_signal" | tee -a ${destfilepath} > /dev/null
+        [[ ! "$hook_func" =~ "selfimport_" ]] && echo '' | tee -a ${destfilepath} > /dev/null; echo "$import_signal" | tee -a ${destfilepath} > /dev/null
         $hook_func ${destfilepath}
         return 0
     fi
