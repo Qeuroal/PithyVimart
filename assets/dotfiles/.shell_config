@@ -28,5 +28,6 @@ elif [[ "$(uname)" = 'Darwin' ]]; then
 fi
 
 # import custom user config
+# WARNING: The user environment variables must be imported last
 [ -f "$PITHY_CUSTOM_CONFIG_PATH" ] && source $PITHY_CUSTOM_CONFIG_PATH
 

@@ -98,7 +98,7 @@ color_print "opt" "Would you like to remove your custom config? [Y/N]"
 choice=n
 read -n1 -p "" choice
 echo ""
-if [[ "${choice}" == 'y' -o "${choice}" == 'Y' ]]; then
+if [[ "${choice}" == 'y' || "${choice}" == 'Y' ]]; then
     # echo -e "\033[31mRemove your custom config\033[0m"
     color_print "info" "Remove your custom config"
     rm -rf ${HOME}"/.vimrc.custom.config" ${HOME}"/.vimrc.custom.plugins"
