@@ -36,9 +36,9 @@ function selfimport_sshconfig ()
 
     if [[ "$(is_gnu_sed)" -eq 1 ]]; then
         if [[ ! -e "$destfilepath.default.bak" ]]; then
-            sed -i.default.bak -e '1i\# import sshconfig' -e '1i\Include ~/.config/pithy_configs/.sshconfig' $destfilepath
+            sed -i.default.bak -e '1i\# import sshconfig' -e '1i\Include ~/.config/pithy_configs/.sshconfig' -e '1{x;p;x;}' $destfilepath
         else
-            sed -i.sed.bak -e '1i\# import sshconfig' -e '1i\Include ~/.config/pithy_configs/.sshconfig' $destfilepath
+            sed -i.sed.bak -e '1i\# import sshconfig' -e '1i\Include ~/.config/pithy_configs/.sshconfig' -e '1{x;p;x;}' $destfilepath
         fi
         color_print "info" "Success to import configure to $destfilepath"
     else
