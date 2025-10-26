@@ -18,5 +18,10 @@
     "prefix": "uhl",
     "body": "\\\\${1:qrl}{${2:text}}${0}",
     "description": "User Highlight"
+  },
+  "QRL Highlight": {
+    "prefix": "qrhl",
+    "body": "\\\\qrl{${1:text}}${0}",
+    "description": "QRL Highlight"
   }
 }
