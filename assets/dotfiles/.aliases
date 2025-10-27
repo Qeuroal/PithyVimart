@@ -120,7 +120,7 @@ command -v curl > /dev/null && alias ipst='curl ipinfo.io'
 # link
 # WARNING: export LN_TARGET_DIR="~/.local/bin" 中 ~ 不会展开
 # WARNING: 正确用法: export LN_TARGET_DIR=~/.local/bin 或 export LN_TARGET_DIR="$HOME/.local/bin"
-alias link_curdir=' [[ -f /usr/bin/ls ]] && \
+alias link_curdir=' [[ -f /bin/ls ]] && \
     ([[ -d ${LN_TARGET_DIR:-$HOME/.local/bin/} ]] && ln -sf $(realpath $(/bin/ls)) ${LN_TARGET_DIR:-$HOME/.local/bin/} && echo "link $(realpath $(/bin/ls)) TO ${LN_TARGET_DIR:-$HOME/.local/bin/}" || echo "${LN_TARGET_DIR:-$HOME/.local/bin/} does not exist") \
     || echo "/bin/ls does not exist"'
 
