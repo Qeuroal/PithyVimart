@@ -105,3 +105,22 @@ alias df='df -h'               # human-readable sizes
 alias free='free -m'           # show sizes in MB
 # alias grep='grep --color=auto' # colorize output (good for log files)
 
+# gpu
+if command -v gpustat > /dev/null; then
+    alias gpust='gpustat --color -cui'
+elif command -v nvitop > /dev/null; then
+    alias gpust='nvitop'
+elif command -v nvidia-smi > /dev/null; then
+    command -v watch > /dev/null && alias gpust="watch -n 1 nvidia-smi" || alias gpust="nvidia-smi -l 1"
+fi
+
+# ip
+command -v curl > /dev/null && alias ipst='curl ipinfo.io'
+
+# link
+# WARNING: export LN_TARGET_DIR="~/.local/bin" 中 ~ 不会展开
+# WARNING: 正确用法: export LN_TARGET_DIR=~/.local/bin 或 export LN_TARGET_DIR="$HOME/.local/bin"
+alias link_curdir=' [[ -f /usr/bin/ls ]] && \
+    ([[ -d ${LN_TARGET_DIR:-$HOME/.local/bin/} ]] && ln -sf $(realpath $(/bin/ls)) ${LN_TARGET_DIR:-$HOME/.local/bin/} && echo "link $(realpath $(/bin/ls)) TO ${LN_TARGET_DIR:-$HOME/.local/bin/}" || echo "${LN_TARGET_DIR:-$HOME/.local/bin/} does not exist") \
+    || echo "/bin/ls does not exist"'
+
