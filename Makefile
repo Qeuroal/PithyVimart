@@ -5,8 +5,8 @@ NVIM_CORE_PATH = "../pithyvim"
 	build \
 	cd config_dotfiles \
 	c clean \
+	clean_outdated_link \
 	ca cleanall \
-	ud update_dotfile \
 	cc cleancache \
 	gcf gitconfig \
 	gm gitmerge \
@@ -40,6 +40,12 @@ c clean:
 	@rm -rf ~/.local/state/nvim
 	@rm -rf ./nvim/lazy-lock.json
 	@rm -rf ./nvim/lua/pithyvim
+
+clean_outdated_link:
+	@-unlink ~/.aliases
+	@-unlink ~/.tmux.conf
+	@-unlink ~/.custom_gitconfig
+	@-unlink ~/.ssh/.custom_sshconfig
 
 ca cleanall: clean
 	@git restore . && git clean -fd
