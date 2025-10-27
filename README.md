@@ -88,7 +88,7 @@
 
 > [!TIP]
 > proxy
-> linux/macos: `export HTTP_PROXY=http://127.0.0.1:7890 HTTPS_PROXY=http://127.0.0.1:7890 FTP_PROXY=http://127.0.0.1:7890 ALL_PROXY=socks://127.0.0.1:7890 NO_PROXY=localhost,127.0.0.0/8,::1 http_proxy=http://127.0.0.1:7890 https_proxy=http://127.0.0.1:7890 ftp_proxy=http://127.0.0.1:7890 all_proxy=socks://127.0.0.1:7890 no_proxy=localhost,127.0.0.0/8,::1`
+> linux/macos: `export HTTP_PROXY=http://${PROXY_IP:-127.0.0.1}:${PROXY_PORT:-7890} HTTPS_PROXY=http://${PROXY_IP:-127.0.0.1}:${PROXY_PORT:-7890} FTP_PROXY=http://${PROXY_IP:-127.0.0.1}:${PROXY_PORT:-7890} ALL_PROXY=socks://${PROXY_IP:-127.0.0.1}:${PROXY_PORT:-7890} NO_PROXY=localhost,127.0.0.0/8,::1 http_proxy=http://${PROXY_IP:-127.0.0.1}:${PROXY_PORT:-7890} https_proxy=http://${PROXY_IP:-127.0.0.1}:${PROXY_PORT:-7890} ftp_proxy=http://${PROXY_IP:-127.0.0.1}:${PROXY_PORT:-7890} all_proxy=socks://${PROXY_IP:-127.0.0.1}:${PROXY_PORT:-7890} no_proxy=localhost,127.0.0.0/8,::1`
 
 ## Windows
 
