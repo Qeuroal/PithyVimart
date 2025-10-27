@@ -1,19 +1,14 @@
 #! vim:ft=bash:
 
 # proxy
-if [[ "$(uname)" = 'Linux' ]]; then
-    alias la="ls -ah"
-    alias setproxy='export HTTP_PROXY=http://${PROXY_IP:-127.0.0.1}:${PROXY_PORT:-7890} HTTPS_PROXY=http://${PROXY_IP:-127.0.0.1}:${PROXY_PORT:-7890} FTP_PROXY=http://${PROXY_IP:-127.0.0.1}:${PROXY_PORT:-7890} ALL_PROXY=socks://${PROXY_IP:-127.0.0.1}:${PROXY_PORT:-7890} NO_PROXY=localhost,127.0.0.0/8,::1 http_proxy=http://${PROXY_IP:-127.0.0.1}:${PROXY_PORT:-7890} https_proxy=http://${PROXY_IP:-127.0.0.1}:${PROXY_PORT:-7890} ftp_proxy=http://${PROXY_IP:-127.0.0.1}:${PROXY_PORT:-7890} all_proxy=socks://${PROXY_IP:-127.0.0.1}:${PROXY_PORT:-7890} no_proxy=localhost,127.0.0.0/8,::1'
-    alias unsetproxy="unset HTTP_PROXY HTTPS_PROXY FTP_PROXY ALL_PROXY NO_PROXY http_proxy https_proxy ftp_proxy all_proxy no_proxy"
-    alias sk="slock"
-elif [[ "$(uname)" = 'Darwin' ]]; then
-    alias openmd="open -a Typora"
-    alias la="ls -ah"
-    alias setproxy='export HTTP_PROXY=http://${PROXY_IP:-127.0.0.1}:${PROXY_PORT:-7890} HTTPS_PROXY=http://${PROXY_IP:-127.0.0.1}:${PROXY_PORT:-7890} FTP_PROXY=http://${PROXY_IP:-127.0.0.1}:${PROXY_PORT:-7890} ALL_PROXY=socks://${PROXY_IP:-127.0.0.1}:${PROXY_PORT:-7890} NO_PROXY=localhost,127.0.0.0/8,::1 http_proxy=http://${PROXY_IP:-127.0.0.1}:${PROXY_PORT:-7890} https_proxy=http://${PROXY_IP:-127.0.0.1}:${PROXY_PORT:-7890} ftp_proxy=http://${PROXY_IP:-127.0.0.1}:${PROXY_PORT:-7890} all_proxy=socks://${PROXY_IP:-127.0.0.1}:${PROXY_PORT:-7890} no_proxy=localhost,127.0.0.0/8,::1'
-    alias unsetproxy="unset HTTP_PROXY HTTPS_PROXY FTP_PROXY ALL_PROXY NO_PROXY http_proxy https_proxy ftp_proxy all_proxy no_proxy"
-else
-    echo "not support $(uname)"
-fi
+alias setproxy='export HTTP_PROXY=http://${PROXY_IP:-127.0.0.1}:${PROXY_PORT:-7890} HTTPS_PROXY=http://${PROXY_IP:-127.0.0.1}:${PROXY_PORT:-7890} FTP_PROXY=http://${PROXY_IP:-127.0.0.1}:${PROXY_PORT:-7890} ALL_PROXY=socks://${PROXY_IP:-127.0.0.1}:${PROXY_PORT:-7890} NO_PROXY=localhost,127.0.0.0/8,::1 http_proxy=http://${PROXY_IP:-127.0.0.1}:${PROXY_PORT:-7890} https_proxy=http://${PROXY_IP:-127.0.0.1}:${PROXY_PORT:-7890} ftp_proxy=http://${PROXY_IP:-127.0.0.1}:${PROXY_PORT:-7890} all_proxy=socks://${PROXY_IP:-127.0.0.1}:${PROXY_PORT:-7890} no_proxy=localhost,127.0.0.0/8,::1'
+alias unsetproxy="unset HTTP_PROXY HTTPS_PROXY FTP_PROXY ALL_PROXY NO_PROXY http_proxy https_proxy ftp_proxy all_proxy no_proxy"
+
+# slock
+alias sk="slock"
+
+# typora
+[[ "$(uname)" == 'Darwin' ]] && alias openmd="open -a Typora"
 
 alias gtags="ctags --fields=+iaS --extra=+q --c-kinds=+p -R ."
 
@@ -115,7 +110,7 @@ elif command -v nvidia-smi > /dev/null; then
 fi
 
 # ip
-command -v curl > /dev/null && alias ipst='curl ipinfo.io'
+alias ipst='curl ipinfo.io'
 
 # link
 # WARNING: export LN_TARGET_DIR="~/.local/bin" 中 ~ 不会展开
