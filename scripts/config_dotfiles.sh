@@ -69,7 +69,7 @@ function preimport_sshconfig ()
 
 function import_tmux_conf ()
 {
-    if [ $# -ne 1 ]; then
+    if [ $# -ne 2 ]; then
         color_print "error" "parameter error: expect 1 parameters."
         return
     fi
