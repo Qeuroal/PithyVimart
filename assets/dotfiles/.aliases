@@ -84,6 +84,7 @@ if command -v eza > /dev/null; then
     alias ls='eza --color=always --group-directories-first' # ls
     alias la='eza -a --color=always --group-directories-first'  # all files and dirs
     alias ll='eza -l --color=always --group-directories-first'  # long format
+    alias l='eza -al --color=always --group-directories-first'  # long format for all files and dir
     alias lla='eza -al --color=always --group-directories-first'  # long format for all files and dir
     alias lt='eza -aT --color=always --group-directories-first' # tree listing
     alias l.='eza -al --color=always --group-directories-first ../' # ls on the PARENT directory

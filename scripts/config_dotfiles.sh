@@ -64,7 +64,7 @@ function preimport_sshconfig ()
     local destfilepath="$1"
     local import_signal="$2"
 
-    sed_improt_prelude "$destfilepath" "$import_signal" 'Include ~/.config/pithy_configs/.sshconfig'
+    sed_improt_prelude "$destfilepath" "$import_signal" 'Include ~/.config/pithy_configs/.sshconfig\n'
 }
 
 function import_tmux_conf ()
