@@ -1,4 +1,6 @@
 NVIM_CORE_PATH = "../pithyvim"
+# 指定 SHELL 为 /usr/bash
+SHELL := /bin/bash
 
 .PHONY: i install \
 	l local \
@@ -42,10 +44,10 @@ c clean:
 	@rm -rf ./nvim/lua/pithyvim
 
 clean_outdated_link:
-	@-unlink ~/.aliases
-	@-unlink ~/.tmux.conf
-	@-unlink ~/.custom_gitconfig
-	@-unlink ~/.ssh/.custom_sshconfig
+	@bash -c '([[ -L ~/.aliases ]] && echo "unlinking ~/.aliases..." && unlink ~/.aliases) || echo "no ~/.aliases symlink to remove."'
+	@bash -c '([[ -L ~/.tmux.conf ]] && echo "unlinking ~/.tmux.conf" && unlink ~/.tmux.conf) || echo "no ~/.tmux.conf symlink to remove."'
+	@bash -c '([[ -L ~/.custom_gitconfig ]] && echo "unlinking ~/.custom_gitconfig" && unlink ~/.custom_gitconfig) || echo "no ~/.custom_gitconfig symlink to remove."'
+	@bash -c '([[ -L ~/.ssh/.custom_sshconfig ]] && echo "unlinking ~/.ssh/.custom_sshconfig" && unlinking ~/.ssh/.custom_sshconfig) || echo "no ~/.ssh/.custom_sshconfig symlink to remove."'
 
 ca cleanall: clean
 	@git restore . && git clean -fd
