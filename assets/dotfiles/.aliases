@@ -115,7 +115,7 @@ elif command -v nvidia-smi > /dev/null; then
 fi
 
 # ip
-command -v curl > /dev/null && alias ipst='curl ipinfo.io'
+alias ipst='curl ipinfo.io'
 
 # link
 # WARNING: export LN_TARGET_DIR="~/.local/bin" 中 ~ 不会展开
