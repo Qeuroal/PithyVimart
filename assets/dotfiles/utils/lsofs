@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# vim:ft=bash:tw=80:ts=4:et:shiftwidth=4:
 
 function portst() {
   if ! command -v lsof &> /dev/null; then
