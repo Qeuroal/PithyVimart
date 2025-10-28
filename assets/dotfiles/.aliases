@@ -1,5 +1,8 @@
 #! vim:ft=bash:
 
+# command -v
+alias cmv='command -v'
+
 # proxy
 alias setproxy='export HTTP_PROXY=http://${PROXY_IP:-127.0.0.1}:${PROXY_PORT:-7890} HTTPS_PROXY=http://${PROXY_IP:-127.0.0.1}:${PROXY_PORT:-7890} FTP_PROXY=http://${PROXY_IP:-127.0.0.1}:${PROXY_PORT:-7890} ALL_PROXY=socks://${PROXY_IP:-127.0.0.1}:${PROXY_PORT:-7890} NO_PROXY=localhost,127.0.0.0/8,::1 http_proxy=http://${PROXY_IP:-127.0.0.1}:${PROXY_PORT:-7890} https_proxy=http://${PROXY_IP:-127.0.0.1}:${PROXY_PORT:-7890} ftp_proxy=http://${PROXY_IP:-127.0.0.1}:${PROXY_PORT:-7890} all_proxy=socks://${PROXY_IP:-127.0.0.1}:${PROXY_PORT:-7890} no_proxy=localhost,127.0.0.0/8,::1'
 alias unsetproxy="unset HTTP_PROXY HTTPS_PROXY FTP_PROXY ALL_PROXY NO_PROXY http_proxy https_proxy ftp_proxy all_proxy no_proxy"
@@ -115,7 +118,10 @@ alias ipst='curl ipinfo.io'
 # link
 # WARNING: export LN_TARGET_DIR="~/.local/bin" 中 ~ 不会展开
 # WARNING: 正确用法: export LN_TARGET_DIR=~/.local/bin 或 export LN_TARGET_DIR="$HOME/.local/bin"
-alias link_curdir=' [[ -f /bin/ls ]] && \
-    ([[ -d ${LN_TARGET_DIR:-$HOME/.local/bin/} ]] && ln -sf $(realpath $(/bin/ls)) ${LN_TARGET_DIR:-$HOME/.local/bin/} && echo "link $(realpath $(/bin/ls)) TO ${LN_TARGET_DIR:-$HOME/.local/bin/}" || echo "${LN_TARGET_DIR:-$HOME/.local/bin/} does not exist") \
+alias abslink_curdir=' [[ -f /bin/ls ]] && \
+    ([[ -d ${LN_TARGET_DIR:-$HOME/.local/bin/} ]] && ln -si $(realpath $(/bin/ls)) ${LN_TARGET_DIR:-$HOME/.local/bin/} && echo "link $(realpath $(/bin/ls)) TO ${LN_TARGET_DIR:-$HOME/.local/bin/}" || echo "${LN_TARGET_DIR:-$HOME/.local/bin/} does not exist") \
+    || echo "/bin/ls does not exist"'
+[[ $(uname) == "Linux" ]] && alias rellink_curdir=' [[ -f /bin/ls ]] && \
+    ([[ -d ${LN_TARGET_DIR:-$HOME/.local/bin/} ]] && ln -sri $(/bin/ls) ${LN_TARGET_DIR:-$HOME/.local/bin/} && echo "link $(/bin/ls) TO ${LN_TARGET_DIR:-$HOME/.local/bin/}" || echo "${LN_TARGET_DIR:-$HOME/.local/bin/} does not exist") \
     || echo "/bin/ls does not exist"'
 
