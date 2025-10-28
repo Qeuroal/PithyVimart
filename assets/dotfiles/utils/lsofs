@@ -5,7 +5,7 @@ function portst() {
   if ! command -v lsof &> /dev/null; then
     echo "Error: lsof command is not installed"
     return 1
-  elif [ -z "$1" ]; then
+  elif [[ -z "$1" ]]; then
     echo "Usage: lsofport < port number >"
     return 1
   elif ! [[ "$1" =~ ^[0-9]+$ ]]; then
