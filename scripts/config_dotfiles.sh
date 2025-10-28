@@ -93,7 +93,7 @@ function import_configure ()
     if [[ ! -e "${destfilepath}" ]]; then
         mkdir -p $(dirname ${destfilepath})
         echo '' >> ${destfilepath}
-    if [[ -d "${destfilepath}" ]]; then
+    elif [[ -d "${destfilepath}" ]]; then
         color_print "error" "The ${destfilepath} is directory."
         return
     fi
