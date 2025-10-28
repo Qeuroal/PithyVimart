@@ -25,8 +25,8 @@ function sed_sshconfig() {
     local sed_target_file="$HOME/.ssh/config"
     if [ $# -eq 2 ]; then
         # sed_target_ip, sed_match_pattern
-        sed_target_ip=$1
-        sed_match_pattern=$2
+        sed_match_pattern=$1
+        sed_target_ip=$2
     else
         echo "ERROR: Expect to match 2 params (IP and Host)."
         return 3

@@ -49,10 +49,6 @@ function preimport_gitconfig ()
     local import_signal="$2"
 
     sed_improt_prelude "$destfilepath" "$import_signal" '[include]\n	path = ~/.config/pithy_configs/.gitconfig'
-
-    # echo '[include]\n	path = ~/.config/pithy_configs/.gitconfig' | tee -a ${destfilepath} > /dev/null
-    # echo '' | tee -a ${destfilepath} > /dev/null
-    # color_print "info" "Success to import configure to $destfilepath"
 }
 
 function preimport_sshconfig ()
@@ -95,7 +91,7 @@ function import_configure ()
         return
     fi
 
-    [ ! -f ${destfilepath} ] && touch ${destfilepath}
+    [ ! -f ${destfilepath} ] && mkdir -p $(dirname ${destfilepath}) && touch ${destfilepath}
 
     if [ `cat ${destfilepath} | grep -c "$import_signal"` = 0 ]; then
         # preimport_* 函数自行导入 import signal
