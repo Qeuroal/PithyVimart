@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# vim:ft=bash:tw=80:ts=4:et:shiftwidth=4:
+
+function portst() {
+  if ! command -v lsof &> /dev/null; then
+    echo "Error: lsof command is not installed"
+    return 1
+  elif [[ -z "$1" ]]; then
+    echo "Usage: lsofport < port number >"
+    return 1
+  elif ! [[ "$1" =~ ^[0-9]+$ ]]; then
+    echo "Error: port number must be numeric"
+    return 1
+  fi
+
+  lsof -i:$1
+}
