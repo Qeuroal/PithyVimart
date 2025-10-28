@@ -22,7 +22,6 @@ function sed_improt_prelude ()
     local import_signal="$2"
     local import_content="$3"
 
-    [ ! -e "$destfilepath" ] && echo '' >> $destfilepath
     if [[ "$(is_gnu_sed)" -eq 1 ]]; then
         if [[ ! -e "$destfilepath.default.bak" ]]; then
             # 添加空行使用 -e '1{x;p;x;}'
@@ -91,7 +90,13 @@ function import_configure ()
         return
     fi
 
-    [ ! -f ${destfilepath} ] && mkdir -p $(dirname ${destfilepath}) && touch ${destfilepath}
+    if [[ ! -e "${destfilepath}" ]]; then
+        mkdir -p $(dirname ${destfilepath})
+        echo '' >> ${destfilepath}
+    if [[ -d "${destfilepath}" ]]; then
+        color_print "error" "The ${destfilepath} is directory."
+        return
+    fi
 
     if [ `cat ${destfilepath} | grep -c "$import_signal"` = 0 ]; then
         # preimport_* 函数自行导入 import signal
