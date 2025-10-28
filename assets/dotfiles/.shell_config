@@ -13,6 +13,9 @@ PITHY_CUSTOM_CONFIG_PATH="$HOME/.config/pithy_custom_config"
 # import utils/sed
 [ -e "$PITHY_DOTFILES_PATH/utils/seds" ] && source "$PITHY_DOTFILES_PATH/utils/seds"
 
+# import utils/lsofs
+[ -e "$PITHY_DOTFILES_PATH/utils/lsofs" ] && source "$PITHY_DOTFILES_PATH/utils/lsofs"
+
 # fzf:FZF_DEFAULT_COMMAND
 if type rg &> /dev/null; then
     export FZF_DEFAULT_COMMAND='rg --files'

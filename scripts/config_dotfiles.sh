@@ -3,7 +3,7 @@
 source ${PWD}/scripts/color_print.sh
 
 function is_gnu_sed() {
-    if ! command -v sed > /dev/null; then
+    if ! command -v sed &> /dev/null; then
         echo 0
     elif [[ "$(uname)" == 'Darwin' && "$(command -v sed | grep -c 'gnu-sed')" -eq 0 ]]; then
         echo 0
