@@ -28,6 +28,8 @@ alias curla='curl -A "Google Chrome"'
 alias curlao='curl -A "Google Chrome" -JLO'
 
 # git
+alias gitlc='git log -n 1 | grep "commit " | awk '"'"'{print $2}'"'"
+alias gitln='git log -n'
 alias gitm='git commit -m'
 alias gita='git commit --amend'
 alias gitd='git diff'
