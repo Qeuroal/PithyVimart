@@ -17,10 +17,12 @@ alias gtags="ctags --fields=+iaS --extra=+q --c-kinds=+p -R ."
 
 # nvim replace vim
 if command -v nvim &> /dev/null; then
-    alias vim="nvim -V1"
-    alias vi="vim"
-    alias vimdiff="vim -d"
+    alias vi='nvim -V1'
+    alias vidiff='nvim -V1 -d'
+    alias vim='nvim -V1'
+    alias vimdiff='nvim -V1 -d'
 fi
+alias vi.="vi ."
 alias vim.="vim ."
 
 # curl
