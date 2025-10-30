@@ -15,7 +15,7 @@ alias sk="slock"
 
 alias gtags="ctags --fields=+iaS --extra=+q --c-kinds=+p -R ."
 
-# nvim replace vim
+# nvim
 if command -v nvim &> /dev/null; then
     alias vi='nvim -V1'
     alias vidiff='nvim -V1 -d'
@@ -24,6 +24,7 @@ if command -v nvim &> /dev/null; then
 fi
 alias vi.="vi ."
 alias vim.="vim ."
+alias rmshada='rm -i -v $HOME/.local/state/nvim/shada/main.shada'
 
 # curl
 alias curla='curl -A "Google Chrome"'
