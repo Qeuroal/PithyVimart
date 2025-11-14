@@ -370,6 +370,10 @@ Install the [PithyVimart](https://github.com/qeuroal/Pithyvimart) with [PowerShe
    sudo apt-get install zip unzip
    ```
 
+## trick
+
+- 直接编辑服务器文件: `nvim scp:://user@hostname//path/to/file`
+
 ## 参考
 
 - [neovim安装官方教程](https://github.com/neovim/neovim/blob/master/INSTALL.md)
