@@ -130,3 +130,7 @@ alias abslink_curdir=' [[ -f /bin/ls ]] && \
     ([[ -d ${LN_TARGET_DIR:-$HOME/.local/bin/} ]] && ln -sri $(/bin/ls) ${LN_TARGET_DIR:-$HOME/.local/bin/} && echo "link $(/bin/ls) TO ${LN_TARGET_DIR:-$HOME/.local/bin/}" || echo "${LN_TARGET_DIR:-$HOME/.local/bin/} does not exist") \
     || echo "/bin/ls does not exist"'
 
+# conda
+alias cnda='conda activate'
+alias cndd='conda deactivate'
+
