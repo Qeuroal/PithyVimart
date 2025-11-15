@@ -49,6 +49,9 @@ alias ta='tmux attach'
 alias tt='tmux attach -t'
 alias td='tmux detach'
 alias tn='tmux new -s'
+alias tns='tmux new -s src'
+alias tnn='tmux new -s note'
+alias tnt='tmux new -s tmp'
 
 # tar
 alias tarx='tar -zxvf'
