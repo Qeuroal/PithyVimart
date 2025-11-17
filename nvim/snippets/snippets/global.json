@@ -2,10 +2,9 @@
   "Shebang": {
     "prefix": ["gshebang"],
     "body": [
-      "#!/usr/bin/env ${1:bash}",
-      "${0}"
+      "#!/usr/bin/env ${1:bash}${0}"
     ],
-    "description": "Shebang for any"
+    "description": "Shebang for any file"
   },
   "modeline": {
     "prefix": ["modeline"],

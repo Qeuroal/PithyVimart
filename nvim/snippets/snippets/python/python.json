@@ -9,16 +9,14 @@
   "File Encoding": {
     "prefix": ["fileenc"],
     "body": [
-      "# -*- coding: utf-8 -*-",
-      "${0}"
+      "# -*- coding: utf-8 -*-${0}"
     ],
     "description": "File encoding default utf-8"
   },
   "Shebang": {
     "prefix": ["shebang"],
     "body": [
-      "#!/usr/bin/env python3",
-      "${0}"
+      "#!/usr/bin/env python3${0}"
     ],
     "description": "Shebang"
   }
