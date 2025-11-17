@@ -1,11 +1,11 @@
 {
   "Shebang": {
-    "prefix": ["shebang"],
+    "prefix": ["gshebang"],
     "body": [
       "#!/usr/bin/env ${1:bash}",
       "${0}"
     ],
-    "description": "Shebang"
+    "description": "Shebang for any"
   },
   "modeline": {
     "prefix": ["modeline"],
