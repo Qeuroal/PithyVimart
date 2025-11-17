@@ -49,6 +49,9 @@ alias ta='tmux attach'
 alias tt='tmux attach -t'
 alias td='tmux detach'
 alias tn='tmux new -s'
+alias tns='tmux new -s src'
+alias tnn='tmux new -s note'
+alias tnt='tmux new -s tmp'
 
 # tar
 alias tarx='tar -zxvf'
@@ -129,4 +132,8 @@ alias abslink_curdir=' [[ -f /bin/ls ]] && \
 [[ $(uname) == "Linux" ]] && alias rellink_curdir=' [[ -f /bin/ls ]] && \
     ([[ -d ${LN_TARGET_DIR:-$HOME/.local/bin/} ]] && ln -sri $(/bin/ls) ${LN_TARGET_DIR:-$HOME/.local/bin/} && echo "link $(/bin/ls) TO ${LN_TARGET_DIR:-$HOME/.local/bin/}" || echo "${LN_TARGET_DIR:-$HOME/.local/bin/} does not exist") \
     || echo "/bin/ls does not exist"'
+
+# conda
+alias condaa='conda activate'
+alias condad='conda deactivate'
 
