@@ -134,6 +134,6 @@ alias abslink_curdir=' [[ -f /bin/ls ]] && \
     || echo "/bin/ls does not exist"'
 
 # conda
-alias cnda='conda activate'
-alias cndd='conda deactivate'
+alias condaa='conda activate'
+alias condad='conda deactivate'
 
