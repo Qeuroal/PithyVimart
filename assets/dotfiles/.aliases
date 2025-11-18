@@ -7,6 +7,9 @@ alias cmv='command -v'
 alias setproxy='export HTTP_PROXY=http://${PROXY_IP:-127.0.0.1}:${PROXY_PORT:-7890} HTTPS_PROXY=http://${PROXY_IP:-127.0.0.1}:${PROXY_PORT:-7890} FTP_PROXY=http://${PROXY_IP:-127.0.0.1}:${PROXY_PORT:-7890} ALL_PROXY=socks://${PROXY_IP:-127.0.0.1}:${PROXY_PORT:-7890} NO_PROXY=localhost,127.0.0.0/8,::1 http_proxy=http://${PROXY_IP:-127.0.0.1}:${PROXY_PORT:-7890} https_proxy=http://${PROXY_IP:-127.0.0.1}:${PROXY_PORT:-7890} ftp_proxy=http://${PROXY_IP:-127.0.0.1}:${PROXY_PORT:-7890} all_proxy=socks://${PROXY_IP:-127.0.0.1}:${PROXY_PORT:-7890} no_proxy=localhost,127.0.0.0/8,::1'
 alias unsetproxy="unset HTTP_PROXY HTTPS_PROXY FTP_PROXY ALL_PROXY NO_PROXY http_proxy https_proxy ftp_proxy all_proxy no_proxy"
 
+# print
+alias lessr='less -R'
+
 # slock
 alias sk="slock"
 
@@ -39,6 +42,8 @@ alias gitd='git diff'
 alias gits='git status -sb'
 alias gitsv='git status'
 alias gitc='git clone'
+alias gitpl='git pull'
+alias gitps='git push'
 alias gitcr='git clone --recursive'
 alias git_local_help="echo 'git config --local user.name \$GIT_USERNAME \ngit config --local user.email \$GIT_USERMAIL \ngit config --local credential.helper store \ngit config --local --unset credential.helper \ngit config --local credential.username \$GIT_USERNAME\\n\\ngit remote rm origin \ngit remote add origin \$GIT_REMOTE_URL \ngit push --set-upstream origin master'"
 alias git_local_user="[ -n \"\$GIT_USERNAME\" -a -n \"\$GIT_USERMAIL\" ] && echo 'modify git info' && git config --local user.name \$GIT_USERNAME && git config --local user.email \$GIT_USERMAIL && git config --local credential.helper store && git config --local --unset credential.helper && git config --local credential.username \$GIT_USERNAME"
