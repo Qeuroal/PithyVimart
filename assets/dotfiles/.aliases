@@ -34,6 +34,12 @@ alias curla='curl -A "Google Chrome"'
 alias curlao='curl -A "Google Chrome" -JLO'
 
 # git
+# 添加文件
+alias ga='git add'                     # 添加指定文件
+alias gA='git add -A'                  # 添加所有变更（新增+修改+删除）
+alias gaU='git add -u'                 # 添加已跟踪文件的变更（修改+删除）
+alias gap='git add -p'                 # 交互式添加（分块选择）
+
 # 状态查看
 alias gs='git status -sb'              # 简短状态
 alias gst='git status'                 # 完整状态
@@ -60,8 +66,14 @@ alias gclr='git clone --recursive'     # 递归克隆（含子模块）
 alias gpl='git pull'                   # 拉取远程更新
 alias gps='git push'                   # 推送到远程
 alias gpsu='git push -u origin'        # 首次推送并设置上游
+alias gpsf='git push --force-with-lease'  # 安全的强制推送
 alias gf='git fetch'                   # 获取远程更新
 alias gfa='git fetch --all'            # 获取所有远程更新
+alias gr='git remote'                  # 远程仓库管理
+alias grv='git remote -v'              # 查看远程仓库详情
+alias gra='git remote add'             # 添加远程仓库
+alias grr='git remote remove'          # 删除远程仓库
+alias gru='git remote set-url'         # 修改远程仓库 URL
 # 暂存操作
 alias gsh='git stash'                  # 暂存当前变更
 alias gshp='git stash pop'             # 恢复最近暂存
