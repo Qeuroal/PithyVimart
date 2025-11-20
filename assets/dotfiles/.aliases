@@ -34,19 +34,21 @@ alias curla='curl -A "Google Chrome"'
 alias curlao='curl -A "Google Chrome" -JLO'
 
 # git
-alias gitlc='git log -n 1 | grep "commit " | awk '"'"'{print $2}'"'"
+alias gitcf='git config --list --show-origin'
 alias gitln='git log -n'
-alias gitm='git commit -m'
-alias gita='git commit --amend'
-alias gitd='git diff'
-alias gits='git status -sb'
-alias gitsv='git status'
-alias gitc='git clone'
+alias gitll='git log -n 1
+alias gitllc='git log -n 1 | grep "commit " | awk '"'"'{print $2}'"'"
+alias gitcm='git commit -m'
+alias gitca='git commit --amend'
+alias gitdf='git diff'
+alias gitst='git status -sb'
+alias gitstv='git status'
+alias gitcl='git clone'
 alias gitpl='git pull'
 alias gitps='git push'
-alias gitcr='git clone --recursive'
-alias git_local_help="echo 'git config --local user.name \$GIT_USERNAME \ngit config --local user.email \$GIT_USERMAIL \ngit config --local credential.helper store \ngit config --local --unset credential.helper \ngit config --local credential.username \$GIT_USERNAME\\n\\ngit remote rm origin \ngit remote add origin \$GIT_REMOTE_URL \ngit push --set-upstream origin master'"
-alias git_local_user="[ -n \"\$GIT_USERNAME\" -a -n \"\$GIT_USERMAIL\" ] && echo 'modify git info' && git config --local user.name \$GIT_USERNAME && git config --local user.email \$GIT_USERMAIL && git config --local credential.helper store && git config --local --unset credential.helper && git config --local credential.username \$GIT_USERNAME"
+alias gitclr='git clone --recursive'
+alias git_conflocal_help="echo 'git config --local user.name \$GIT_USERNAME \ngit config --local user.email \$GIT_USERMAIL \ngit config --local credential.helper store \ngit config --local --unset credential.helper \ngit config --local credential.username \$GIT_USERNAME\\n\\ngit remote rm origin \ngit remote add origin \$GIT_REMOTE_URL \ngit push --set-upstream origin master'"
+alias git_conflocal_user="[ -n \"\$GIT_USERNAME\" -a -n \"\$GIT_USERMAIL\" ] && echo 'modify git info' && git config --local user.name \$GIT_USERNAME && git config --local user.email \$GIT_USERMAIL && git config --local credential.helper store && git config --local --unset credential.helper && git config --local credential.username \$GIT_USERNAME"
 
 # tmux
 alias tls='tmux ls'
