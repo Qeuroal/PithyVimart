@@ -36,7 +36,7 @@ alias curlao='curl -A "Google Chrome" -JLO'
 # git
 alias gitcf='git config --list --show-origin'
 alias gitln='git log -n'
-alias gitll='git log -n 1
+alias gitll='git log -n 1'
 alias gitllc='git log -n 1 | grep "commit " | awk '"'"'{print $2}'"'"
 alias gitcm='git commit -m'
 alias gitca='git commit --amend'
