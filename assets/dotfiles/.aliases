@@ -178,3 +178,24 @@ alias abslink_curdir=' [[ -f /bin/ls ]] && \
 alias condaa='conda activate'
 alias condad='conda deactivate'
 
+# systemctl - 系统服务管理
+if command -v systemctl &> /dev/null; then
+    alias sc='sudo systemctl'              # systemctl 基础命令
+    alias scs='sudo systemctl status'      # 查看服务状态
+    alias scS='sudo systemctl start'       # 启动服务
+    alias scT='sudo systemctl stop'        # 停止服务
+    alias scr='sudo systemctl restart'     # 重启服务
+    alias sce='sudo systemctl enable'      # 开机自启
+    alias scE='sudo systemctl disable'     # 禁用自启
+    alias scd='sudo systemctl daemon-reload'  # 重载配置
+    alias scl='sudo systemctl list-units --type=service'  # 列出所有服务
+    alias sclf='sudo systemctl list-unit-files --type=service'  # 列出所有服务文件
+    alias scf='sudo systemctl --failed'    # 查看失败的服务
+    # 用户级别服务（不需要 sudo）
+    alias scu='systemctl --user'           # 用户级 systemctl
+    alias scus='systemctl --user status'   # 用户服务状态
+    alias scuS='systemctl --user start'    # 启动用户服务
+    alias scut='systemctl --user stop'     # 停止用户服务
+    alias scur='systemctl --user restart'  # 重启用户服务
+fi
+
