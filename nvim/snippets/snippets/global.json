@@ -1,6 +1,6 @@
 {
   "Shebang": {
-    "prefix": ["gshebang"],
+    "prefix": ["gshb"],
     "body": [
       "#!/usr/bin/env ${1:bash}${0}"
     ],
