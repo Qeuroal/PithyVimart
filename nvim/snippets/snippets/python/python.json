@@ -14,7 +14,7 @@
     "description": "File encoding default utf-8"
   },
   "Shebang": {
-    "prefix": ["shebang"],
+    "prefix": ["shb"],
     "body": [
       "#!/usr/bin/env python3${0}"
     ],
