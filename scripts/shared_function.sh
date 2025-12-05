@@ -4,14 +4,14 @@ PITHY_CONFIG_PATH="$HOME/.config/pithy_configs"
 
 #{{{> backup personal vim configure
 function backup_vim_data() {
-    # echo -e "\033[32m===> Backuping vim data...\033[0m"
+    # echo -e "\033[32m==> Backuping vim data...\033[0m"
     color_print "info" "Backuping vim data..."
 }
 #<}}}
 
 #{{{> copy and link files
 function copy_files() {
-    # echo -e "\033[32m===> Copying files...\033[0m"
+    # echo -e "\033[32m==> Copying files...\033[0m"
     color_print "info" "Copying files..."
 
     local srcpath=${PWD}

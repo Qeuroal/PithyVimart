@@ -19,7 +19,7 @@ function install_dependency_on_ubuntu() {
         return
     fi
 
-    # echo -e "\033[32m===> Installing softwares...\033[0m"
+    # echo -e "\033[32m==> Installing softwares...\033[0m"
     color_print "info" "Installing softwares..."
     sudo apt-get update
 

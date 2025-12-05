@@ -93,7 +93,7 @@ if [ ${isExist} -eq 1 ]; then
 fi
 
 # delete custom config data
-# echo -n -e "\033[32m===> Would you like to remove your custom config? [Y/N]\033[0m"
+# echo -n -e "\033[32m==> Would you like to remove your custom config? [Y/N]\033[0m"
 color_print "opt" "Would you like to remove your custom config? [Y/N]"
 choice=n
 read -n1 -p "" choice
@@ -104,7 +104,7 @@ if [[ "${choice}" == 'y' || "${choice}" == 'Y' ]]; then
     rm -rf ${HOME}"/.vimrc.custom.config" ${HOME}"/.vimrc.custom.plugins"
 fi
 
-# echo -e "\033[32m===> Done!!! \033[0m"
+# echo -e "\033[32m==> Done!!! \033[0m"
 color_print "finish" "Done!!! "
 
 

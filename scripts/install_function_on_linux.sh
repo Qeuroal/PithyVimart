@@ -11,7 +11,7 @@ function install_fonts_on_linux() {
         color_print "warning" "The fonts.tar.gz file does not exist. Cancel font installation..."
         return
     fi
-    # echo -e "\033[32m===> Installing fonts...\033[0m"
+    # echo -e "\033[32m==> Installing fonts...\033[0m"
     color_print "info" "Installing fonts..."
     mkdir -p ~/.local/share/fonts
 
