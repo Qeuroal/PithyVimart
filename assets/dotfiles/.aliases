@@ -44,6 +44,7 @@ alias gap='git add -p'                 # 交互式添加（分块选择）
 alias gs='git status -sb'              # 简短状态
 alias gst='git status'                 # 完整状态
 alias gd='git diff'                    # 工作区差异
+alias gvd='git vd'                     # 工作区差异 via vim
 alias gdc='git diff --cached'          # 暂存区差异
 alias gds='git diff --stat'            # 差异统计
 # 提交

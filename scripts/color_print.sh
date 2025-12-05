@@ -62,7 +62,7 @@ function color_print() {
             ;;
     esac
 
-    info="${color}===> $@${set_clear}"
+    info="${color}==> $@${set_clear}"
     if test "${mode}" == "opt"; then
         echo -e -n "${info}"
     else
@@ -111,11 +111,11 @@ function block_color_print() {
     echo "${color}"
 
     if test "${mode}" == "opt"; then
-        echo "===> $1"
+        echo "==> $1"
         shift 1
     else
-        # echo "===> $(echo "${mode}" | tr '[:lower:]' '[:upper:]') {{{"
-        echo "===> $(to_upper "${mode}") {{{"
+        # echo "==> $(echo "${mode}" | tr '[:lower:]' '[:upper:]') {{{"
+        echo "==> $(to_upper "${mode}") {{{"
     fi
 
     while test $# -ne 0
