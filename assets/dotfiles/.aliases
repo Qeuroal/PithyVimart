@@ -129,6 +129,8 @@ alias sshld='ssh -L ${LPORTL:-9091}:localhost:${LPORTR:-9090}'
 alias sshrd='ssh -R ${RPORTL:-7890}:localhost:${RPORTR:-7890}'
 
 # Changing "ls" to "eza"
+alias la='ls -a'  # all files and dirs
+alias lla='ls -al'  # long format for all files and dirs
 if command -v eza &> /dev/null; then
     alias ls='eza --color=always --group-directories-first' # ls
     alias la='eza -a --color=always --group-directories-first'  # all files and dirs
