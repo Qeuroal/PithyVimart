@@ -181,6 +181,7 @@ alias abslink_curdir=' [[ -f /bin/ls ]] && \
 # conda
 alias cda='conda activate'
 alias cdd='conda deactivate'
+alias cdl='conda env list'
 
 # systemctl - 系统服务管理
 if command -v systemctl &> /dev/null; then
