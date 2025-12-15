@@ -1,5 +1,6 @@
 // reference:
 //    https://github.com/DavidAnson/markdownlint/blob/main/schema/.markdownlint.jsonc
+//    https://github.com/DavidAnson/markdownlint/blob/main/doc/
 {
   "MD004": false,
   "MD007": {
@@ -20,6 +21,7 @@
   "MD013": false,
   "MD024": false,
   "MD025": false,
+  "MD026": false,
   "MD028": false,
   "MD033": false,
   "MD034": false,
