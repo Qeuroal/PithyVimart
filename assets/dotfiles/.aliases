@@ -144,10 +144,10 @@ if command -v eza &> /dev/null; then
 fi
 
 # pacman and yay
-alias pacsyu='sudo pacman -Syu'                  # update only standard pkgs
-alias pacsyyu='sudo pacman -Syyu'                # Refresh pkglist & update standard pkgs
-alias parsua='paru -Sua --noconfirm'             # update only AUR pkgs (paru)
-alias parsyu='paru -Syu --noconfirm'             # update standard pkgs and AUR pkgs (paru)
+alias pmsyu='sudo pacman -Syu'                  # update only standard pkgs
+alias pmsyyu='sudo pacman -Syyu'                # Refresh pkglist & update standard pkgs
+alias prsua='paru -Sua --noconfirm'             # update only AUR pkgs (paru)
+alias prsyu='paru -Syu --noconfirm'             # update standard pkgs and AUR pkgs (paru)
 alias unlock='sudo rm /var/lib/pacman/db.lck'    # remove pacman lock
 alias orphan='sudo pacman -Rns $(pacman -Qtdq)' # remove orphaned packages (DANGEROUS!)
 
@@ -179,8 +179,8 @@ alias abslink_curdir=' [[ -f /bin/ls ]] && \
     || echo "/bin/ls does not exist"'
 
 # conda
-alias condaa='conda activate'
-alias condad='conda deactivate'
+alias cda='conda activate'
+alias cdd='conda deactivate'
 
 # systemctl - 系统服务管理
 if command -v systemctl &> /dev/null; then
