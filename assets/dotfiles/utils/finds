@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+function find_sshconfig() {
+    # Params:
+    # - match_pattern
+
+    local sed_match_pattern="um"
+    local target_file="$HOME/.ssh/config"
+    if [ $# -eq 1 ]; then
+        sed_match_pattern=$1
+    else
+        echo "ERROR: Expect to match 2 params (IP and Host)."
+        return 3
+    fi
+
+    local sed_match_value=$(cat $target_file | grep -v "# "| grep -E -A 3 -w "$sed_match_pattern\$")
+    clprint "info" "Match Value:\n$sed_match_value"
+    # if [ -z "$sed_match_value" -o $(echo $sed_match_value | wc -l) -ne 1 ]; then
+    #     echo "ERROR: Expect to match 1 element WITHOUT empty."
+    #     return 4
+    # fi
+    # local sed_match_lines=$(sed -n "/$sed_match_value\$/p" $target_file)
+    # local sed_substitute_signal="y"
+    # echo "==> Match Lines:"
+    # echo $sed_match_lines
+    # echo '>>> Please confirm [y/n]:'
+    # read sed_substitute_signal
+    # if [ "$sed_substitute_signal" = "y" ]; then
+    #     sed -i.bak "/$sed_match_value/s/$sed_match_value/$sed_target_ip/g" $target_file
+    #     echo "==> Success to replace IP with $sed_target_ip"
+    #     return 0
+    # fi
+    #
+    # return 1
+}
+

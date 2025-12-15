@@ -3,6 +3,10 @@
 PITHY_DOTFILES_PATH="$HOME/.config/pithy_configs"
 PITHY_CUSTOM_CONFIG_PATH="$HOME/.config/pithy_custom_config"
 
+
+# import utils/prints
+[ -e "$PITHY_DOTFILES_PATH/utils/prints" ] && source "$PITHY_DOTFILES_PATH/utils/prints"
+
 # import env
 # WARNING: The environment variables must be imported first.
 [ -e "$PITHY_DOTFILES_PATH/.env_config" ] && source $PITHY_DOTFILES_PATH/.env_config
@@ -15,6 +19,9 @@ PITHY_CUSTOM_CONFIG_PATH="$HOME/.config/pithy_custom_config"
 
 # import utils/lsofs
 [ -e "$PITHY_DOTFILES_PATH/utils/lsofs" ] && source "$PITHY_DOTFILES_PATH/utils/lsofs"
+
+# import utils/finds
+[ -e "$PITHY_DOTFILES_PATH/utils/finds" ] && source "$PITHY_DOTFILES_PATH/utils/finds"
 
 # fzf:FZF_DEFAULT_COMMAND
 if type rg &> /dev/null; then

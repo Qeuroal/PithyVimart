@@ -13,7 +13,7 @@ function is_gnu_sed() {
 
 function sed_sshconfig() {
     # Params:
-    # sed_target_ip, sed_match_pattern
+    # sed_match_pattern, sed_target_ip
 
     if [ $(is_gnu_sed) -eq 0 ]; then
         echo "ERROR: There is no gnu-sed program."
@@ -24,7 +24,7 @@ function sed_sshconfig() {
     local sed_target_ip=""
     local sed_target_file="$HOME/.ssh/config"
     if [ $# -eq 2 ]; then
-        # sed_target_ip, sed_match_pattern
+        # sed_match_pattern, sed_target_ip
         sed_match_pattern=$1
         sed_target_ip=$2
     else

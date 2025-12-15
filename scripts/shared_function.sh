@@ -134,7 +134,7 @@ function configure_shell_config() {
     fi
 
     if [[ -f "${destfilepath}" ]]; then
-        if test `cat ${destfilepath} | grep -c '# import shell_config'` = 0; then
+        if [[ `cat ${destfilepath} | grep -c '# import shell_config'` = 0 ]]; then
             echo "" | tee -a ${destfilepath} > /dev/null
             echo '# import shell_config' | tee -a ${destfilepath} > /dev/null
             # echo 'if [[ -f ~/.shell_config ]]; then {source ~/.shell_config}; fi'
