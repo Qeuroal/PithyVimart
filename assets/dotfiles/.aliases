@@ -30,6 +30,9 @@ alias vi.="vi ."
 alias vim.="vim ."
 alias rmshada='rm -i -v $HOME/.local/state/nvim/shada/main.shada'
 
+# 修改自定义配置文件
+alias vipc="vi $PITHY_CUSTOM_CONFIG_PATH"
+
 # curl
 alias curla='curl -A "Google Chrome"'
 alias curlao='curl -A "Google Chrome" -JLO'

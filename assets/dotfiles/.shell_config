@@ -43,3 +43,5 @@ if [[ -f "$PITHY_CUSTOM_CONFIG_PATH" ]]; then
     source "$PITHY_CUSTOM_CONFIG_PATH"
 fi
 
+# 显式返回 0, 确保整个脚本加载完的状态是绿色的
+return 0
