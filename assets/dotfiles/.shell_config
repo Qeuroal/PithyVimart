@@ -40,8 +40,10 @@ fi
 # import custom user config
 # WARNING: The user environment variables must be imported last
 if [[ -f "$PITHY_CUSTOM_CONFIG_PATH" ]]; then
-    source "$PITHY_CUSTOM_CONFIG_PATH"
+    # `|| True`: 显示忽略用户自定义配置状态
+    source "$PITHY_CUSTOM_CONFIG_PATH" || True
 fi
 
 # 显式返回 0, 确保整个脚本加载完的状态是绿色的
-return 0
+# 为保证及时纠错, 暂时关闭此模式
+# return 0
