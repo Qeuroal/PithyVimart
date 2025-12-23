@@ -30,6 +30,9 @@ alias vi.="vi ."
 alias vim.="vim ."
 alias rmshada='rm -i -v $HOME/.local/state/nvim/shada/main.shada'
 
+# 修改自定义配置文件
+alias vipc="vi $PITHY_CUSTOM_CONFIG_PATH"
+
 # curl
 alias curla='curl -A "Google Chrome"'
 alias curlao='curl -A "Google Chrome" -JLO'
@@ -40,7 +43,6 @@ alias ga='git add'                     # 添加指定文件
 alias gA='git add -A'                  # 添加所有变更（新增+修改+删除）
 alias gaU='git add -u'                 # 添加已跟踪文件的变更（修改+删除）
 alias gap='git add -p'                 # 交互式添加（分块选择）
-
 # 状态查看
 alias gs='git status -sb'              # 简短状态
 alias gst='git status'                 # 完整状态
@@ -92,9 +94,15 @@ alias ta='tmux attach'
 alias tt='tmux attach -t'
 alias td='tmux detach'
 alias tn='tmux new -s'
+# common
 alias tns='tmux new -s src'
+alias tnp='tmux new -s pp'
 alias tnn='tmux new -s note'
 alias tnt='tmux new -s tmp'
+alias tts='tmux attach -t src'
+alias ttp='tmux attach -t pp'
+alias ttn='tmux attach -t note'
+alias ttt='tmux attach -t tmp'
 
 # tar
 alias tarx='tar -zxvf'
@@ -144,10 +152,10 @@ if command -v eza &> /dev/null; then
 fi
 
 # pacman and yay
-alias pacsyu='sudo pacman -Syu'                  # update only standard pkgs
-alias pacsyyu='sudo pacman -Syyu'                # Refresh pkglist & update standard pkgs
-alias parsua='paru -Sua --noconfirm'             # update only AUR pkgs (paru)
-alias parsyu='paru -Syu --noconfirm'             # update standard pkgs and AUR pkgs (paru)
+alias pmsyu='sudo pacman -Syu'                  # update only standard pkgs
+alias pmsyyu='sudo pacman -Syyu'                # Refresh pkglist & update standard pkgs
+alias prsua='paru -Sua --noconfirm'             # update only AUR pkgs (paru)
+alias prsyu='paru -Syu --noconfirm'             # update standard pkgs and AUR pkgs (paru)
 alias unlock='sudo rm /var/lib/pacman/db.lck'    # remove pacman lock
 alias orphan='sudo pacman -Rns $(pacman -Qtdq)' # remove orphaned packages (DANGEROUS!)
 
@@ -179,8 +187,9 @@ alias abslink_curdir=' [[ -f /bin/ls ]] && \
     || echo "/bin/ls does not exist"'
 
 # conda
-alias condaa='conda activate'
-alias condad='conda deactivate'
+alias cda='conda activate'
+alias cdd='conda deactivate'
+alias cdl='conda env list'
 
 # systemctl - 系统服务管理
 if command -v systemctl &> /dev/null; then

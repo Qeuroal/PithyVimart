@@ -3,6 +3,10 @@
 PITHY_DOTFILES_PATH="$HOME/.config/pithy_configs"
 PITHY_CUSTOM_CONFIG_PATH="$HOME/.config/pithy_custom_config"
 
+
+# import utils/prints
+[ -e "$PITHY_DOTFILES_PATH/utils/prints" ] && source "$PITHY_DOTFILES_PATH/utils/prints"
+
 # import env
 # WARNING: The environment variables must be imported first.
 [ -e "$PITHY_DOTFILES_PATH/.env_config" ] && source $PITHY_DOTFILES_PATH/.env_config
@@ -15,6 +19,9 @@ PITHY_CUSTOM_CONFIG_PATH="$HOME/.config/pithy_custom_config"
 
 # import utils/lsofs
 [ -e "$PITHY_DOTFILES_PATH/utils/lsofs" ] && source "$PITHY_DOTFILES_PATH/utils/lsofs"
+
+# import utils/finds
+[ -e "$PITHY_DOTFILES_PATH/utils/finds" ] && source "$PITHY_DOTFILES_PATH/utils/finds"
 
 # fzf:FZF_DEFAULT_COMMAND
 if type rg &> /dev/null; then
@@ -33,6 +40,10 @@ fi
 # import custom user config
 # WARNING: The user environment variables must be imported last
 if [[ -f "$PITHY_CUSTOM_CONFIG_PATH" ]]; then
-    source "$PITHY_CUSTOM_CONFIG_PATH"
+    # `|| True`: 显示忽略用户自定义配置状态
+    source "$PITHY_CUSTOM_CONFIG_PATH" || True
 fi
 
+# 显式返回 0, 确保整个脚本加载完的状态是绿色的
+# 为保证及时纠错, 暂时关闭此模式
+# return 0

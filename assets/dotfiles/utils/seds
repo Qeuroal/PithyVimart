@@ -13,7 +13,7 @@ function is_gnu_sed() {
 
 function sed_sshconfig() {
     # Params:
-    # sed_target_ip, sed_match_pattern
+    # sed_match_pattern, sed_target_ip
 
     if [ $(is_gnu_sed) -eq 0 ]; then
         echo "ERROR: There is no gnu-sed program."
@@ -24,7 +24,7 @@ function sed_sshconfig() {
     local sed_target_ip=""
     local sed_target_file="$HOME/.ssh/config"
     if [ $# -eq 2 ]; then
-        # sed_target_ip, sed_match_pattern
+        # sed_match_pattern, sed_target_ip
         sed_match_pattern=$1
         sed_target_ip=$2
     else
@@ -32,7 +32,7 @@ function sed_sshconfig() {
         return 3
     fi
     echo "==> Target IP: $sed_target_ip, Match Pattern (Host): $sed_match_pattern, File Path: $sed_target_file"
-    local sed_match_value=$(cat $sed_target_file | grep -v "# "| grep -E -C 1 -w "$sed_match_pattern\$" | grep "HostName" | awk '{print $2}')
+    local sed_match_value=$(cat $sed_target_file | grep -v "# "| grep -E -A 1 -w "$sed_match_pattern\$" | grep "HostName" | awk '{print $2}')
     echo "==> Match Value: \"$sed_match_value\""
     if [ -z "$sed_match_value" -o $(echo $sed_match_value | wc -l) -ne 1 ]; then
         echo "ERROR: Expect to match 1 element WITHOUT empty."

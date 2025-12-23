@@ -9,7 +9,7 @@ function to_lower() {
 }
 
 function color_print() {
-    mode="$1"
+    mode="$(to_lower $1)"
     # 左移一位
     shift 1
 
@@ -63,7 +63,7 @@ function color_print() {
     esac
 
     info="${color}==> $@${set_clear}"
-    if test "${mode}" == "opt"; then
+    if [[ "${mode}" == "opt" ]]; then
         echo -e -n "${info}"
     else
         echo -e "${info}"
@@ -71,8 +71,7 @@ function color_print() {
 }
 
 function block_color_print() {
-    mode="$1"
-    mode=$(to_lower "${mode}")
+    mode="$(to_lower $1)"
     # 左移一位
     shift 1
 
@@ -110,7 +109,7 @@ function block_color_print() {
 
     echo "${color}"
 
-    if test "${mode}" == "opt"; then
+    if [[ "${mode}" == "opt" ]]; then
         echo "==> $1"
         shift 1
     else
@@ -118,13 +117,13 @@ function block_color_print() {
         echo "==> $(to_upper "${mode}") {{{"
     fi
 
-    while test $# -ne 0
+    while [[ $# -ne 0 ]]
     do
         echo "  $1"
         shift 1
     done
 
-    if test "${mode}" == "opt"; then
+    if [[ "${mode}" == "opt" ]]; then
         printf "${normalColor}"
     else
         echo "<=== }}}${normalColor}"
@@ -136,15 +135,15 @@ function opt_print() {
     opt="$1"
     val="$2"
     
-    if test -z ${opt} ; then
+    if [[ -z ${opt}  ]]; then
         return
-    elif test ${#opt} -le 24; then
+    elif [[ ${#opt} -le 24 ]]; then
         printf "  %-24s%-s\n" "${opt}" "${val}"
     else
         printf "  %-24s\n    %24s%s\n" "${opt}" " " "${val}"
     fi
     
-    if test $# -ge 2; then
+    if [[ $# -ge 2 ]]; then
         shift 2
     fi
 
