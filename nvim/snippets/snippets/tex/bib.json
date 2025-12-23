@@ -1,15 +1,8 @@
 {
-  "Shebang": {
-    "prefix": ["gshb"],
-    "body": [
-      "#!/usr/bin/env ${1:bash}${0}"
-    ],
-    "description": "Shebang for any file"
-  },
   "modeline": {
-    "prefix": ["gmdl"],
+    "prefix": ["mdl"],
     "body": [
-      "vim:ft=${1:bash}:tw=${2:120}:ts=${3:4}:${4:et}:shiftwidth=${5:4}:${0}"
+      "% vim:ft=${1:bib}:tw=${2:120}:ts=${3:2}:${4:et}:shiftwidth=${5:2}:${0}"
     ],
     "description": [
       "Vim modeline, Requiring Manual Annotation\n",
@@ -20,4 +13,3 @@
     ]
   }
 }
-

@@ -20,6 +20,10 @@
         "path": "./snippets/tex/tex.json"
       },
       {
+        "language": "bib",
+        "path": "./snippets/tex/bib.json"
+      },
+      {
         "language": "markdown",
         "path": "./snippets/markdown/markdown.json"
       },
