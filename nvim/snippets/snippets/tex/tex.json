@@ -20,8 +20,18 @@
     "description": "User Highlight"
   },
   "QRL Highlight": {
-    "prefix": "qrhl",
+    "prefix": "qrl",
     "body": "\\\\qrl{${1:text}}${0}",
     "description": "QRL Highlight"
+  },
+  "citep": {
+    "prefix": "cp",
+    "body": "\\\\citep{${1}}${0}",
+    "description": "Add a citep"
+  },
+  "citet": {
+    "prefix": "ct",
+    "body": "\\\\citet{${1}}${0}",
+    "description": "Add a citet"
   }
 }

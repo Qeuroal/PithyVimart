@@ -20,6 +20,10 @@
         "path": "./snippets/tex/tex.json"
       },
       {
+        "language": "bib",
+        "path": "./snippets/tex/bib.json"
+      },
+      {
         "language": "markdown",
         "path": "./snippets/markdown/markdown.json"
       },
@@ -30,6 +34,10 @@
       {
         "language": ["shellscript", "shell", "sh", "zsh"],
         "path": "./snippets/shell/shell.json"
+      },
+      {
+        "language": "json",
+        "path": "./snippets/json/json.json"
       }
     ]
   }
