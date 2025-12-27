@@ -1,0 +1,15 @@
+{
+  "vscode-snipet template": {
+    "prefix": "snip",
+    "body": [
+      "\"${1:Snippet Name}\": {",
+      "\t\"prefix\": \"${2:trigger}\",",
+      "\t\"body\": [",
+      "\t\t\"${3:\\$0}\"",
+      "\t],",
+      "\t\"description\": \"${4:Description}\"",
+      "},$0"
+    ],
+    "description": "Vscode-Snippet Template"
+  }
+}

@@ -34,6 +34,10 @@
       {
         "language": ["shellscript", "shell", "sh", "zsh"],
         "path": "./snippets/shell/shell.json"
+      },
+      {
+        "language": "json",
+        "path": "./snippets/json/json.json"
       }
     ]
   }
