@@ -144,7 +144,7 @@ Install the [PithyVimart](https://github.com/qeuroal/Pithyvimart) with [PowerShe
 > [!TIP]
 > proxy
 > POWERSHELL: `$Env:http_proxy="http://127.0.0.1:7890";$Env:https_proxy="http://127.0.0.1:7890";$Env:socket_proxy="http://127.0.0.1:7890";$Env:all_proxy="http://127.0.0.1:7890"`
-> CMD: `set http_proxy=http://127.0.0.1:7890; set https_proxy=http://127.0.0.1:7890; set all_proxy=http://127.0.0.1:7890; set socket_proxy=http://127.0.0.1:7890`
+> CMD: `set http_proxy=http://127.0.0.1:7890 & set https_proxy=http://127.0.0.1:7890 & set all_proxy=http://127.0.0.1:7890 & set socket_proxy=http://127.0.0.1:7890`
 
 
 # 插件
