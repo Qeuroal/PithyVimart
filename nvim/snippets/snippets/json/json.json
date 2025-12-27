@@ -10,6 +10,6 @@
       "\t\"description\": \"${4:Description}\"",
       "},$0"
     ],
-    "description": "Vscode-Snippet Template"
+    "description": "Vscode Snippet Template"
   }
 }
