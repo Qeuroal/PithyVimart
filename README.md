@@ -143,6 +143,7 @@ Install the [PithyVimart](https://github.com/qeuroal/Pithyvimart) with [PowerShe
 
 > [!TIP]
 > proxy
+>
 > - POWERSHELL: `$Env:http_proxy="http://127.0.0.1:7890";$Env:https_proxy="http://127.0.0.1:7890";$Env:socket_proxy="http://127.0.0.1:7890";$Env:all_proxy="http://127.0.0.1:7890"`
 > - CMD: `set "http_proxy=http://127.0.0.1:7890" & set "https_proxy=http://127.0.0.1:7890" & set "all_proxy=http://127.0.0.1:7890" & set "socket_proxy=http://127.0.0.1:7890"`
 
@@ -373,6 +374,32 @@ Install the [PithyVimart](https://github.com/qeuroal/Pithyvimart) with [PowerShe
 ## trick
 
 - 直接编辑服务器文件: `nvim scp:://user@hostname//path/to/file`
+
+## 验证 proxy
+
+通过 curl 查看它到底「听不听话」
+
+使用 curl 的详细模式 (-v): `curl -v http://www.google.com`
+
+观察输出中的前几行：
+
+- 成功标志: 如果你看到类似下面的字样，说明环境变量生效了
+
+   ```bash
+   * Uses proxy env variable http_proxy == 'http://127.0.0.1:7890' * Trying 127.0.0.1:7890... * Connected to 127.0.0.1 (127.0.0.1) port 7890
+   ```
+
+- 失败标志: 如果你看到它直接去连接 Google 的 IP，说明代理没被识别，或者被忽略了
+
+   ```bash
+   * Trying 142.250.x.x...
+   ```
+
+> 补充知识
+>
+> - `http_proxy / https_proxy`: 绝大多数命令行工具（`curl`, `git`, `npm`）都认这两个.
+> - `all_proxy`: 通常被 `curl` 和 `wget` 作为备选方案使用.
+> - `socket_proxy`: 这个变量不是标准的 Windows 或 Linux 环境变量. 虽然您设置成功了, 但绝大多数软件 (如 Chrome, Git, Curl) 不会自动读取它. 除非使用的特定软件明确说明需要读取名为 `socket_proxy` 的变量，否则它可能只是个摆设。
 
 ## 参考
 
