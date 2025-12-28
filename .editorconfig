@@ -12,12 +12,12 @@ indent_size = 4
 [Makefile]
 indent_style = tab
 
-[*.md]
-indent_size = 3
-
 [assets/dotfiles/*]
 indent_size = 4
 
 [assets/dotfiles/.custom_gitconfig]
 indent_style = tab
+
+[*.md]
+indent_size = 3
 
