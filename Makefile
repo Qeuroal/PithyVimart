@@ -4,6 +4,7 @@ SHELL := /bin/bash
 
 .PHONY: i install \
 	l local \
+	ul unlocal \
 	build \
 	cd config_dotfiles \
 	c clean \
@@ -28,6 +29,10 @@ l local:
 	@rm -rf ./nvim/lua/pithyvim
 	@ln -sf `realpath ${NVIM_CORE_PATH}/lua/pithyvim` ./nvim/lua/pithyvim
 	@ln -sf `realpath ./nvim` ~/.config/nvim
+
+ul unlocal:
+	@rm -rf ./nvim/lua/pithyvim
+	@git restore ./nvim/lua/config/lazy.lua
 
 build:
 	@bash scripts/install.sh
