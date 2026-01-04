@@ -214,10 +214,10 @@ if command -v systemctl &> /dev/null; then
 fi
 
 # Recursively delete `.DS_Store` files
-alias cleanup="find . -type f -name '*.DS_Store' -ls -delete"
+alias clean_dsstore="find . -type f -name '*.DS_Store' -ls -delete"
 
 # Reload the shell (i.e. invoke as a login shell)
-alias reload="exec ${SHELL} -l"
+alias reloadshell="exec ${SHELL} -l"
 
 # Print each PATH entry on a separate line
 alias path='echo -e ${PATH//:/\\n}'
