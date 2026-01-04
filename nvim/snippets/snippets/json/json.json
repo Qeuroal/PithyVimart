@@ -8,7 +8,7 @@
       "\t\t\"${3:\\$0}\"",
       "\t],",
       "\t\"description\": \"${4:Description}\"",
-      "},$0"
+      "}$0"
     ],
     "description": "Vscode Snippet Template"
   }

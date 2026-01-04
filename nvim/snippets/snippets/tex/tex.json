@@ -33,5 +33,12 @@
     "prefix": "ct",
     "body": "\\\\citet{${1}}${0}",
     "description": "Add a citet"
+  },
+  "input": {
+    "prefix": "ip",
+    "body": [
+      "\\input{${1}}${0}"
+    ],
+    "description": "Input a tex"
   }
 }

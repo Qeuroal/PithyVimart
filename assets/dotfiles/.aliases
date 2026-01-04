@@ -213,3 +213,20 @@ if command -v systemctl &> /dev/null; then
     alias scur='systemctl --user restart'  # 重启用户服务
 fi
 
+# Recursively delete `.DS_Store` files
+alias clean_dsstore="find . -type f -name '*.DS_Store' -ls -delete"
+
+# Reload the shell (i.e. invoke as a login shell)
+alias reloadshell="exec ${SHELL} -l"
+
+# Print each PATH entry on a separate line
+alias path='echo -e ${PATH//:/\\n}'
+
+# # Empty the Trash on all mounted volumes and the main HDD.
+# # Also, clear Apple’s System Logs to improve shell startup speed.
+# # Finally, clear download history from quarantine. https://mths.be/bum
+# alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo rm -rfv /private/var/log/asl/*.asl; sqlite3 ~/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV* 'delete from LSQuarantineEvent'"
+
+# Flush Directory Service cache
+alias flush="dscacheutil -flushcache && killall -HUP mDNSResponder"
+
