@@ -25,17 +25,17 @@
     "description": "QRL Highlight"
   },
   "citep": {
-    "prefix": "cp",
+    "prefix": ["cp", "citep"],
     "body": "\\\\citep{${1}}${0}",
     "description": "Add a citep"
   },
   "citet": {
-    "prefix": "ct",
+    "prefix": ["ct", "citet"],
     "body": "\\\\citet{${1}}${0}",
     "description": "Add a citet"
   },
   "input": {
-    "prefix": "ip",
+    "prefix": ["ip", "input"],
     "body": [
       "\\input{${1}}${0}"
     ],
