@@ -38,38 +38,38 @@ alias curla='curl -A "Google Chrome"'
 alias curlao='curl -A "Google Chrome" -JLO'
 
 # git
-# 添加文件
+## 添加文件
 alias ga='git add'                     # 添加指定文件
 alias gA='git add -A'                  # 添加所有变更（新增+修改+删除）
 alias gaU='git add -u'                 # 添加已跟踪文件的变更（修改+删除）
 alias gap='git add -p'                 # 交互式添加（分块选择）
-# 状态查看
+## 状态查看
 alias gs='git status -sb'              # 简短状态
 alias gst='git status'                 # 完整状态
 alias gd='git diff'                    # 工作区差异
 alias gvd='git vd'                     # 工作区差异 via vim
 alias gdc='git diff --cached'          # 暂存区差异
 alias gds='git diff --stat'            # 差异统计
-# 提交
-alias gc='git commit -m'               # 提交（需要消息）
-alias gca='git commit --amend'         # 修改最后提交
-alias gcn='git commit --amend --no-edit'  # 快速修改提交（不编辑消息）
-# 日志查看
-alias gl='git log -n'                  # 查看 n 条日志
-alias gll='git log -n 1'               # 查看最后 1 条
-alias gllc='git log -n 1 | grep "commit " | awk '"'"'{print $2}'"'" # 获取最后提交 hash
-alias glp='git log --oneline -n 10'    # 简洁格式最近 10 条
-alias glg='git log --graph --oneline --all -n 20'  # 图形化日志
-# 分支操作
+## 提交
+alias gcm='git commit -m'               # 提交（需要消息）
+alias gca='git commit --amend'          # 修改最后提交
+alias gcan='git commit --amend --no-edit'  # 快速修改提交（不编辑消息）
+## 日志查看
+alias glog='git log -n'                  # 查看 n 条日志
+alias glogl='git log -n 1'               # 查看最后 1 条
+alias gloglc='git log -n 1 | grep "commit " | awk '"'"'{print $2}'"'" # 获取最后提交 hash
+alias glogp='git log --oneline -n 10'    # 简洁格式最近 10 条
+alias glogg='git log --graph --oneline --all -n 20'  # 图形化日志
+## 分支操作
 alias gb='git branch'                  # 列出本地分支
 alias gba='git branch -a'              # 列出所有分支（含远程）
 alias gco='git checkout'               # 切换分支/文件
-# 远程操作
+## 远程操作
 alias gcl='git clone'                  # 克隆仓库
 alias gclr='git clone --recursive'     # 递归克隆（含子模块）
-alias gpl='git pull'                   # 拉取远程更新
-alias gps='git push'                   # 推送到远程
-alias gpsu='git push -u origin'        # 首次推送并设置上游
+alias gl='git pull'                   # 拉取远程更新
+alias gp='git push'                   # 推送到远程
+alias gpu='git push -u origin'        # 首次推送并设置上游
 alias gpsf='git push --force-with-lease'  # 安全的强制推送
 alias gf='git fetch'                   # 获取远程更新
 alias gfa='git fetch --all'            # 获取所有远程更新
@@ -78,15 +78,33 @@ alias grv='git remote -v'              # 查看远程仓库详情
 alias gra='git remote add'             # 添加远程仓库
 alias grr='git remote remove'          # 删除远程仓库
 alias gru='git remote set-url'         # 修改远程仓库 URL
-# 暂存操作
+## 暂存操作
 alias gsh='git stash'                  # 暂存当前变更
 alias gshp='git stash pop'             # 恢复最近暂存
 alias gshl='git stash list'            # 查看暂存列表
-# 配置
+alias gclean='git clean -fd'           # 清空未添加的文件和文件夹
+## 配置
 alias gcf='git config --list --show-origin'  # 查看配置
-# 设置局部级用户信息
+## 设置局部级用户信息
 alias git_conflocal_help="echo 'git config --local user.name \$GIT_USERNAME \ngit config --local user.email \$GIT_USERMAIL \ngit config --local credential.helper store \ngit config --local --unset credential.helper \ngit config --local credential.username \$GIT_USERNAME\\n\\ngit remote rm origin \ngit remote add origin \$GIT_REMOTE_URL \ngit push --set-upstream origin master'"
 alias git_conflocal_user="[ -n \"\$GIT_USERNAME\" -a -n \"\$GIT_USERMAIL\" ] && echo 'modify git info' && git config --local user.name \$GIT_USERNAME && git config --local user.email \$GIT_USERMAIL && git config --local credential.helper store && git config --local --unset credential.helper && git config --local credential.username \$GIT_USERNAME"
+
+# mkdir
+alias mkdir='mkdir -p'          # 自动创建父目录
+alias md='mkdir -p'
+## 创建目录并进入
+mkcd() {
+    mkdir -p "$@" && cd "$_"
+}
+
+# 进程管理
+alias psg='ps aux | grep -v grep | grep -i'
+alias killport='function _killport() { lsof -ti :$1 | xargs kill -9; }; _killport'
+
+# 系统信息
+alias localip='ifconfig | grep -Eo "inet (addr:)?([0-9]*\.){3}[0-9]*" | grep -Eo "([0-9]*\.){3}[0-9]*" | grep -v "127.0.0.1"'
+# ip
+alias ipst='curl ipinfo.io'
 
 # tmux
 alias tls='tmux ls'
@@ -94,7 +112,7 @@ alias ta='tmux attach'
 alias tt='tmux attach -t'
 alias td='tmux detach'
 alias tn='tmux new -s'
-# common
+## common
 alias tns='tmux new -s src'
 alias tnp='tmux new -s pp'
 alias tnn='tmux new -s note'
@@ -132,7 +150,7 @@ alias .5='cd ../../../../..'
 # ssh
 alias sshls='ssh -L ${LPORT:-8888}:localhost:${LPORT:-8888}'
 alias sshrs='ssh -R ${RPORT:-7890}:localhost:${RPORT:-7890}'
-# LOCAL/REMOTE_PORT_LOCAL/REMOTE
+## LOCAL/REMOTE_PORT_LOCAL/REMOTE
 alias sshld='ssh -L ${LPORTL:-9091}:localhost:${LPORTR:-9090}'
 alias sshrd='ssh -R ${RPORTL:-7890}:localhost:${RPORTR:-7890}'
 
@@ -173,10 +191,6 @@ elif command -v nvidia-smi &> /dev/null; then
     command -v watch &> /dev/null && alias gpust="watch -n 1 nvidia-smi" || alias gpust="nvidia-smi -l 1"
 fi
 
-# ip
-alias ipst='curl ipinfo.io'
-alias realip='ip a | grep "inet " | grep -Fv 127.0.0.1 | awk '\''{print $2}'\'' | awk -F '\''/'\'' '\''{print $1}'\'''
-
 # link
 # WARNING: export LN_TARGET_DIR="~/.local/bin" 中 ~ 不会展开
 # WARNING: 正确用法: export LN_TARGET_DIR=~/.local/bin 或 export LN_TARGET_DIR="$HOME/.local/bin"
@@ -213,20 +227,52 @@ if command -v systemctl &> /dev/null; then
     alias scur='systemctl --user restart'  # 重启用户服务
 fi
 
-# Recursively delete `.DS_Store` files
-alias clean_dsstore="find . -type f -name '*.DS_Store' -ls -delete"
-
 # Reload the shell (i.e. invoke as a login shell)
 alias reloadshell="exec ${SHELL} -l"
 
 # Print each PATH entry on a separate line
 alias path='echo -e ${PATH//:/\\n}'
 
-# # Empty the Trash on all mounted volumes and the main HDD.
-# # Also, clear Apple’s System Logs to improve shell startup speed.
-# # Finally, clear download history from quarantine. https://mths.be/bum
-# alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo rm -rfv /private/var/log/asl/*.asl; sqlite3 ~/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV* 'delete from LSQuarantineEvent'"
-
 # Flush Directory Service cache
 alias flushdns="dscacheutil -flushcache && killall -HUP mDNSResponder"
+
+# macOS 专用
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    # Homebrew
+    alias brewup='brew update && brew upgrade && brew cleanup'
+    alias brewinfo='brew info'
+    alias brewsearch='brew search'
+
+    # macOS 工具
+    alias cleanup='find . -type f -name "*.DS_Store" -ls -delete'
+    alias emptytrash='sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo rm -rfv /private/var/log/asl/*.asl'
+    # # Empty the Trash on all mounted volumes and the main HDD. Also, clear Apple’s System Logs to improve shell startup speed. Finally, clear download history from quarantine. https://mths.be/bum
+    # alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo rm -rfv /private/var/log/asl/*.asl; sqlite3 ~/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV* 'delete from LSQuarantineEvent'"
+fi
+
+# Linux 专用
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+    # 系统管理
+    alias reboot='sudo reboot'
+    alias poweroff='sudo poweroff'
+    alias suspend='sudo pm-suspend'
+fi
+
+# 文件管理
+## 快速备份文件
+backup() {
+    cp -r "$1" "$1.bak-$(date +%Y%m%d-%H%M%S)"
+}
+## 查看文件大小并排序
+ducks() {
+    du -cks * | sort -rn | head -11
+}
+## 计算文件数量
+count() {
+    find "${1:-.}" -type f | wc -l
+}
+## 查找大文件
+bigfiles() {
+    find . -type f -size +${1:-100}M -exec ls -lh {} \; | awk '{ print $9 ": " $5 }'
+}
 
