@@ -1,4 +1,9 @@
 tmp_*
 .aider*
 .DS_Store
+.claude
 *Session.vim
+WARNING_*
+ERROR_*
+*.log
+
