@@ -110,7 +110,7 @@ function import_configure ()
 
 function main ()
 {
-    import_configure "$HOME/.gitconfig" "; import gitconfig" "preimport_gitconfig"
+    import_configure "$HOME/.gitconfig" "# import gitconfig" "preimport_gitconfig"
     import_configure "$HOME/.ssh/config" "# import sshconfig" "preimport_sshconfig"
     import_configure "$HOME/.tmux.conf" "# import tmux.conf" "import_tmux_conf"
 
