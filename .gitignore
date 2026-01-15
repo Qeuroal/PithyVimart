@@ -6,8 +6,12 @@ debug
 foo.*
 *.log
 data
+.DS_Store
+tmp*
+*Session.vim
 tags
 PithyVim
 pithyvim
 nvim/pithyvim.json
 nvim/lazy-lock.json
+.aider*
