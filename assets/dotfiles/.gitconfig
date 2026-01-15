@@ -25,3 +25,7 @@
 	trustExitCode = true
 [core]
 	editor = nvim
+	; 可以在 ~/.gitconfig 中通过设置 `excludesfile = ""` 删除默认忽略配置;
+	; 或者 `excludesfile = "/path/to/your/file"` 来覆盖默认忽略配置
+	excludesfile = ~/.config/pithy_configs/.ggitignore
+

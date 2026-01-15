@@ -1,0 +1,4 @@
+tmp_*
+.aider*
+.DS_Store
+*Session.vim
