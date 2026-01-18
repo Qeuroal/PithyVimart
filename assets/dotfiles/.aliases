@@ -277,3 +277,9 @@ bigfiles() {
     find . -type f -size +${1:-100}M -exec ls -lh {} \; | awk '{ print $9 ": " $5 }'
 }
 
+# task-spooler
+if command -v tsp &> /dev/null; then
+    alias tspt='tsp -t'
+    alias tspl='tsp -l'
+fi
+
