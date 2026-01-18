@@ -257,6 +257,9 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     alias reboot='sudo reboot'
     alias poweroff='sudo poweroff'
     alias suspend='sudo pm-suspend'
+
+    # task-spooler
+    alias ts='tsp'
 fi
 
 # 文件管理
@@ -278,8 +281,9 @@ bigfiles() {
 }
 
 # task-spooler
-if command -v tsp &> /dev/null; then
-    alias tspt='tsp -t'
-    alias tspl='tsp -l'
-fi
-
+alias tst='ts -t'
+# alias tsl='ts -l'
+alias tsc='ts -c'
+tsl() {
+    ts -c "${1}" | less
+}
