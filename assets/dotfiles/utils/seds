@@ -1,55 +1,54 @@
 #!/usr/bin/env bash
-# vim:ft=bash:tw=80:ts=4:et:shiftwidth=4:
 
 function is_gnu_sed() {
-    if ! command -v sed &> /dev/null; then
-        echo 0
-    elif [[ "$(uname)" == 'Darwin' && "$(command -v sed | grep -c 'gnu-sed')" -eq 0 ]]; then
-        echo 0
-    else
-        echo 1
-    fi
+  if ! command -v sed &> /dev/null; then
+    echo 0
+  elif [[ "$(uname)" == 'Darwin' && "$(command -v sed | grep -c 'gnu-sed')" -eq 0 ]]; then
+    echo 0
+  else
+    echo 1
+  fi
 }
 
-function sed_sshconfig() {
-    # Params:
+function sshcfgip() {
+  # Params:
+  # sed_match_pattern, sed_target_ip
+
+  if [ $(is_gnu_sed) -eq 0 ]; then
+    echo "ERROR: There is no gnu-sed program."
+    return 2
+  fi
+
+  local sed_match_pattern="um"
+  local sed_target_ip=""
+  local sed_target_file="$HOME/.ssh/config"
+  if [ $# -eq 2 ]; then
     # sed_match_pattern, sed_target_ip
+    sed_match_pattern=$1
+    sed_target_ip=$2
+  else
+    echo "ERROR: Expect to match 2 params (IP and Host)."
+    return 3
+  fi
+  echo "==> Target IP: $sed_target_ip, Match Pattern (Host): $sed_match_pattern, File Path: $sed_target_file"
+  local sed_match_value=$(cat $sed_target_file | grep -v "# "| grep -E -A 1 -w "$sed_match_pattern\$" | grep "HostName" | awk '{print $2}')
+  echo "==> Match Value: \"$sed_match_value\""
+  if [ -z "$sed_match_value" -o $(echo $sed_match_value | wc -l) -ne 1 ]; then
+    echo "ERROR: Expect to match 1 element WITHOUT empty."
+    return 4
+  fi
+  local sed_match_lines=$(sed -n "/$sed_match_value\$/p" $sed_target_file)
+  local sed_substitute_signal="y"
+  echo "==> Match Lines:"
+  echo $sed_match_lines
+  echo '>>> Please confirm [y/n]:'
+  read sed_substitute_signal
+  if [ "$sed_substitute_signal" = "y" ]; then
+    sed -i.bak "/$sed_match_value/s/$sed_match_value/$sed_target_ip/g" $sed_target_file
+    echo "==> Success to replace IP with $sed_target_ip"
+    return 0
+  fi
 
-    if [ $(is_gnu_sed) -eq 0 ]; then
-        echo "ERROR: There is no gnu-sed program."
-        return 2
-    fi
-
-    local sed_match_pattern="um"
-    local sed_target_ip=""
-    local sed_target_file="$HOME/.ssh/config"
-    if [ $# -eq 2 ]; then
-        # sed_match_pattern, sed_target_ip
-        sed_match_pattern=$1
-        sed_target_ip=$2
-    else
-        echo "ERROR: Expect to match 2 params (IP and Host)."
-        return 3
-    fi
-    echo "==> Target IP: $sed_target_ip, Match Pattern (Host): $sed_match_pattern, File Path: $sed_target_file"
-    local sed_match_value=$(cat $sed_target_file | grep -v "# "| grep -E -A 1 -w "$sed_match_pattern\$" | grep "HostName" | awk '{print $2}')
-    echo "==> Match Value: \"$sed_match_value\""
-    if [ -z "$sed_match_value" -o $(echo $sed_match_value | wc -l) -ne 1 ]; then
-        echo "ERROR: Expect to match 1 element WITHOUT empty."
-        return 4
-    fi
-    local sed_match_lines=$(sed -n "/$sed_match_value\$/p" $sed_target_file)
-    local sed_substitute_signal="y"
-    echo "==> Match Lines:"
-    echo $sed_match_lines
-    echo '>>> Please confirm [y/n]:'
-    read sed_substitute_signal
-    if [ "$sed_substitute_signal" = "y" ]; then
-        sed -i.bak "/$sed_match_value/s/$sed_match_value/$sed_target_ip/g" $sed_target_file
-        echo "==> Success to replace IP with $sed_target_ip"
-        return 0
-    fi
-
-    return 1
+  return 1
 }
 
