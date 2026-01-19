@@ -11,7 +11,7 @@ function is_gnu_sed() {
     fi
 }
 
-function sed_sshconfig() {
+function sshcfgip() {
     # Params:
     # sed_match_pattern, sed_target_ip
 
