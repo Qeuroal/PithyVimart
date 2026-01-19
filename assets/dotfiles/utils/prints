@@ -117,8 +117,7 @@ function bclprint() {
     echo "==> $(to_upper "${mode}") {{{"
   fi
 
-  while [[ $# -ne 0 ]]
-  do
+  while [[ $# -ne 0 ]]; do
     echo "  $1"
     shift 1
   done
@@ -147,8 +146,7 @@ function oclprint() {
     shift 2
   fi
 
-  while [ $# -ne 0 ]
-  do
+  while [[ $# -ne 0 ]]; do
     printf "    %24s%s\n" " " "$1"
     shift
   done

@@ -1,4 +1,4 @@
-#! vim:ft=bash:
+#! vim:ft=bash:ts=2:et:shiftwidth=2:
 
 # command -v
 alias cmv='command -v'
@@ -8,7 +8,15 @@ alias proxyon='export HTTP_PROXY=http://${PROXY_IP:-127.0.0.1}:${PROXY_PORT:-789
 alias pon='proxyon'
 alias proxyoff="unset HTTP_PROXY HTTPS_PROXY FTP_PROXY ALL_PROXY NO_PROXY http_proxy https_proxy ftp_proxy all_proxy no_proxy"
 alias poff='proxyoff'
-alias proxyst='ps -ef | grep "[c]lash"'
+proxyst() {
+  echo "[Proxy Environment]"
+  for v in HTTP_PROXY HTTPS_PROXY FTP_PROXY ALL_PROXY NO_PROXY \
+           http_proxy https_proxy ftp_proxy all_proxy no_proxy; do
+      eval val=\$$v
+      printf "%-11s = %s\n" "$v" "${val:-<unset>}"
+  done
+}
+alias pst='proxyst'
 
 # print
 alias lessr='less -R'
@@ -23,10 +31,10 @@ alias gtags="ctags --fields=+iaS --extra=+q --c-kinds=+p -R ."
 
 # nvim
 if command -v nvim &> /dev/null; then
-    alias vi='nvim -V1'
-    alias vidiff='nvim -V1 -d'
-    alias vim='nvim -V1'
-    alias vimdiff='nvim -V1 -d'
+  alias vi='nvim -V1'
+  alias vidiff='nvim -V1 -d'
+  alias vim='nvim -V1'
+  alias vimdiff='nvim -V1 -d'
 fi
 alias vi.="vi ."
 alias vim.="vim ."
@@ -130,12 +138,12 @@ alias tarc='tar -zcvf'
 
 # yazi
 function y() {
-    local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
-    yazi "$@" --cwd-file="$tmp"
-    if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-        builtin cd -- "$cwd"
-    fi
-    rm -f -- "$tmp"
+  local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+  yazi "$@" --cwd-file="$tmp"
+  if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+    builtin cd -- "$cwd"
+  fi
+  rm -f -- "$tmp"
 }
 
 # aider
@@ -160,15 +168,15 @@ alias sshrd='ssh -R ${RPORTL:-7890}:localhost:${RPORTR:-7890}'
 alias la='ls -a'  # all files and dirs
 alias lla='ls -al'  # long format for all files and dirs
 if command -v eza &> /dev/null; then
-    alias ls='eza --color=always --group-directories-first' # ls
-    alias la='eza -a --color=always --group-directories-first'  # all files and dirs
-    alias ll='eza -l --color=always --group-directories-first'  # long format
-    alias l='eza -al --color=always --group-directories-first'  # long format for all files and dir
-    alias lla='eza -al --color=always --group-directories-first'  # long format for all files and dir
-    alias lt='eza -aT --color=always --group-directories-first' # tree listing
-    alias l.='eza -al --color=always --group-directories-first ../' # ls on the PARENT directory
-    alias l..='eza -al --color=always --group-directories-first ../../' # ls on directory 2 levels up
-    alias l...='eza -al --color=always --group-directories-first ../../../' # ls on directory 3 levels up
+  alias ls='eza --color=always --group-directories-first' # ls
+  alias la='eza -a --color=always --group-directories-first'  # all files and dirs
+  alias ll='eza -l --color=always --group-directories-first'  # long format
+  alias l='eza -al --color=always --group-directories-first'  # long format for all files and dir
+  alias lla='eza -al --color=always --group-directories-first'  # long format for all files and dir
+  alias lt='eza -aT --color=always --group-directories-first' # tree listing
+  alias l.='eza -al --color=always --group-directories-first ../' # ls on the PARENT directory
+  alias l..='eza -al --color=always --group-directories-first ../../' # ls on directory 2 levels up
+  alias l...='eza -al --color=always --group-directories-first ../../../' # ls on directory 3 levels up
 fi
 
 # pacman and yay
@@ -186,11 +194,11 @@ alias free='free -m'           # show sizes in MB
 
 # gpu
 if command -v gpustat &> /dev/null; then
-    alias gpust='gpustat --color -cui'
+  alias gpust='gpustat --color -cui'
 elif command -v nvitop &> /dev/null; then
-    alias gpust='nvitop'
+  alias gpust='nvitop'
 elif command -v nvidia-smi &> /dev/null; then
-    command -v watch &> /dev/null && alias gpust="watch -n 1 nvidia-smi" || alias gpust="nvidia-smi -l 1"
+  command -v watch &> /dev/null && alias gpust="watch -n 1 nvidia-smi" || alias gpust="nvidia-smi -l 1"
 fi
 
 # link
@@ -210,23 +218,23 @@ alias cdl='conda env list'
 
 # systemctl - 系统服务管理
 if command -v systemctl &> /dev/null; then
-    alias sc='sudo systemctl'              # systemctl 基础命令
-    alias scs='sudo systemctl status'      # 查看服务状态
-    alias scS='sudo systemctl start'       # 启动服务
-    alias scT='sudo systemctl stop'        # 停止服务
-    alias scr='sudo systemctl restart'     # 重启服务
-    alias sce='sudo systemctl enable'      # 开机自启
-    alias scE='sudo systemctl disable'     # 禁用自启
-    alias scd='sudo systemctl daemon-reload'  # 重载配置
-    alias scl='sudo systemctl list-units --type=service'  # 列出所有服务
-    alias sclf='sudo systemctl list-unit-files --type=service'  # 列出所有服务文件
-    alias scf='sudo systemctl --failed'    # 查看失败的服务
-    # 用户级别服务（不需要 sudo）
-    alias scu='systemctl --user'           # 用户级 systemctl
-    alias scus='systemctl --user status'   # 用户服务状态
-    alias scuS='systemctl --user start'    # 启动用户服务
-    alias scut='systemctl --user stop'     # 停止用户服务
-    alias scur='systemctl --user restart'  # 重启用户服务
+  alias sc='sudo systemctl'              # systemctl 基础命令
+  alias scs='sudo systemctl status'      # 查看服务状态
+  alias scS='sudo systemctl start'       # 启动服务
+  alias scT='sudo systemctl stop'        # 停止服务
+  alias scr='sudo systemctl restart'     # 重启服务
+  alias sce='sudo systemctl enable'      # 开机自启
+  alias scE='sudo systemctl disable'     # 禁用自启
+  alias scd='sudo systemctl daemon-reload'  # 重载配置
+  alias scl='sudo systemctl list-units --type=service'  # 列出所有服务
+  alias sclf='sudo systemctl list-unit-files --type=service'  # 列出所有服务文件
+  alias scf='sudo systemctl --failed'    # 查看失败的服务
+  # 用户级别服务（不需要 sudo）
+  alias scu='systemctl --user'           # 用户级 systemctl
+  alias scus='systemctl --user status'   # 用户服务状态
+  alias scuS='systemctl --user start'    # 启动用户服务
+  alias scut='systemctl --user stop'     # 停止用户服务
+  alias scur='systemctl --user restart'  # 重启用户服务
 fi
 
 # Reload the shell (i.e. invoke as a login shell)
@@ -240,45 +248,45 @@ alias flushdns="dscacheutil -flushcache && killall -HUP mDNSResponder"
 
 # macOS 专用
 if [[ "$OSTYPE" == "darwin"* ]]; then
-    # Homebrew
-    alias brewup='brew update && brew upgrade && brew cleanup'
-    alias brewinfo='brew info'
-    alias brewsearch='brew search'
+  # Homebrew
+  alias brewup='brew update && brew upgrade && brew cleanup'
+  alias brewinfo='brew info'
+  alias brewsearch='brew search'
 
-    # macOS 工具
-    alias cleanup='find . -type f -name "*.DS_Store" -ls -delete'
-    alias emptytrash='sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo rm -rfv /private/var/log/asl/*.asl'
-    # # Empty the Trash on all mounted volumes and the main HDD. Also, clear Apple’s System Logs to improve shell startup speed. Finally, clear download history from quarantine. https://mths.be/bum
-    # alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo rm -rfv /private/var/log/asl/*.asl; sqlite3 ~/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV* 'delete from LSQuarantineEvent'"
+  # macOS 工具
+  alias cleanup='find . -type f -name "*.DS_Store" -ls -delete'
+  alias emptytrash='sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo rm -rfv /private/var/log/asl/*.asl'
+  # # Empty the Trash on all mounted volumes and the main HDD. Also, clear Apple’s System Logs to improve shell startup speed. Finally, clear download history from quarantine. https://mths.be/bum
+  # alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo rm -rfv /private/var/log/asl/*.asl; sqlite3 ~/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV* 'delete from LSQuarantineEvent'"
 fi
 
 # Linux 专用
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-    # 系统管理
-    alias reboot='sudo reboot'
-    alias poweroff='sudo poweroff'
-    alias suspend='sudo pm-suspend'
+  # 系统管理
+  alias reboot='sudo reboot'
+  alias poweroff='sudo poweroff'
+  alias suspend='sudo pm-suspend'
 
-    # task-spooler
-    alias ts='tsp'
+  # task-spooler
+  alias ts='tsp'
 fi
 
 # 文件管理
 ## 快速备份文件
 backup() {
-    cp -r "$1" "$1.bak-$(date +%Y%m%d-%H%M%S)"
+  cp -r "$1" "$1.bak-$(date +%Y%m%d-%H%M%S)"
 }
 ## 查看文件大小并排序
 ducks() {
-    du -cks * | sort -rn | head -11
+  du -cks * | sort -rn | head -11
 }
 ## 计算文件数量
 count() {
-    find "${1:-.}" -type f | wc -l
+  find "${1:-.}" -type f | wc -l
 }
 ## 查找大文件
 bigfiles() {
-    find . -type f -size +${1:-100}M -exec ls -lh {} \; | awk '{ print $9 ": " $5 }'
+  find . -type f -size +${1:-100}M -exec ls -lh {} \; | awk '{ print $9 ": " $5 }'
 }
 
 # task-spooler
@@ -286,5 +294,5 @@ alias tst='ts -t'
 # alias tsl='ts -l'
 alias tsc='ts -c'
 tsl() {
-    ts -c "${1}" | less
+  ts -c "${1}" | less
 }
