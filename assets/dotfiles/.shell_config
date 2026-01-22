@@ -23,6 +23,9 @@ PITHY_CUSTOM_CONFIG_PATH="$HOME/.config/pithy_custom_config"
 # import utils/finds
 [ -e "$PITHY_DOTFILES_PATH/utils/finds" ] && source "$PITHY_DOTFILES_PATH/utils/finds"
 
+# import utils/cfgs
+[ -e "$PITHY_DOTFILES_PATH/utils/cfgs" ] && source "$PITHY_DOTFILES_PATH/utils/cfgs"
+
 # fzf:FZF_DEFAULT_COMMAND
 if type rg &> /dev/null; then
     export FZF_DEFAULT_COMMAND='rg --files'
