@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+clashcfg() {
+  local target_file="$1"
+  local dest_path="$HOME/.config/clash/config.yaml"
+
+  # Check if argument is empty
+  if [[ -z "$target_file" ]]; then
+    echo "Usage: clashcfg <target_file>"
+    return 1
+  fi
+
+  # Check if file exists
+  if [[ ! -f "$target_file" ]]; then
+    echo "Error: File '$target_file' does not exist."
+    return 1
+  fi
+
+  # Copy file
+  cp -i "$target_file" "$dest_path"
+}
