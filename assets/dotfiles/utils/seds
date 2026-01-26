@@ -41,8 +41,16 @@ function sshcfgip() {
   local sed_substitute_signal="y"
   echo "==> Match Lines:"
   echo $sed_match_lines
-  echo '>>> Please confirm [y/n]:'
-  read sed_substitute_signal
+  while true; do
+    printf ">>> Please confirm [y/n]: "
+    read sed_substitute_signal
+    case "$sed_substitute_signal" in
+      y|Y) break ;;
+      n|N) echo "Operation cancelled"; return 1 ;;
+      *)   echo "Please enter y or n." ;;
+    esac
+  done
+
   if [ "$sed_substitute_signal" = "y" ]; then
     sed -i.bak "/$sed_match_value/s/$sed_match_value/$sed_target_ip/g" $sed_target_file
     echo "==> Success to replace IP with $sed_target_ip"
