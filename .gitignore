@@ -15,3 +15,4 @@ pithyvim
 nvim/pithyvim.json
 nvim/lazy-lock.json
 .aider*
+nvim/lua/config/env.lua
