@@ -19,6 +19,7 @@ require("lazy").setup({
     -- add PithyVim and import its plugins
     { "Qeuroal/PithyVim", import = "pithyvim.plugins", branch = "dev" },
     -- import/override with your plugins
+    { import = "default" },
     { import = "plugins" },
   },
   defaults = {

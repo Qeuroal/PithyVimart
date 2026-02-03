@@ -61,33 +61,34 @@ alias gvd='git vd'                     # 工作区差异 via vim
 alias gdc='git diff --cached'          # 暂存区差异
 alias gds='git diff --stat'            # 差异统计
 ## 提交
-alias gcm='git commit -m'               # 提交（需要消息）
-alias gca='git commit --amend'          # 修改最后提交
-alias gcan='git commit --amend --no-edit'  # 快速修改提交（不编辑消息）
+alias gcm='git commit -m'                 # 提交（需要消息）
+alias gca='git commit --amend'            # 修改最后提交
+alias gcan='git commit --amend --no-edit' # 快速修改提交（不编辑消息）
 ## 日志查看
-alias glog='git log -n'                  # 查看 n 条日志
-alias glogl='git log -n 1'               # 查看最后 1 条
+alias glog='git log -n'                                               # 查看 n 条日志
+alias glogl='git log -n 1'                                            # 查看最后 1 条
 alias gloglc='git log -n 1 | grep "commit " | awk '"'"'{print $2}'"'" # 获取最后提交 hash
-alias glogp='git log --oneline -n 10'    # 简洁格式最近 10 条
-alias glogg='git log --graph --oneline --all -n 20'  # 图形化日志
+alias glogp='git log --oneline -n 10'                                 # 简洁格式最近 10 条
+alias glogg='git log --graph --oneline --all -n 20'                   # 图形化日志
 ## 分支操作
-alias gb='git branch'                  # 列出本地分支
-alias gba='git branch -a'              # 列出所有分支（含远程）
-alias gco='git checkout'               # 切换分支/文件
+alias gb='git branch'     # 列出本地分支
+alias gba='git branch -a' # 列出所有分支（含远程）
+alias gco='git checkout'  # 切换分支/文件
 ## 远程操作
-alias gcl='git clone'                  # 克隆仓库
-alias gclr='git clone --recursive'     # 递归克隆（含子模块）
-alias gl='git pull'                   # 拉取远程更新
-alias gp='git push'                   # 推送到远程
-alias gpu='git push -u origin'        # 首次推送并设置上游
+alias gcl='git clone'                     # 克隆仓库
+alias gclr='git clone --recursive'        # 递归克隆（含子模块）
+alias gcld='git clone -b dev'             # 克隆仓库
+alias gl='git pull'                       # 拉取远程更新
+alias gp='git push'                       # 推送到远程
+alias gpu='git push -u origin'            # 首次推送并设置上游
 alias gpsf='git push --force-with-lease'  # 安全的强制推送
-alias gf='git fetch'                   # 获取远程更新
-alias gfa='git fetch --all'            # 获取所有远程更新
-alias gr='git remote'                  # 远程仓库管理
-alias grv='git remote -v'              # 查看远程仓库详情
-alias gra='git remote add'             # 添加远程仓库
-alias grr='git remote remove'          # 删除远程仓库
-alias gru='git remote set-url'         # 修改远程仓库 URL
+alias gf='git fetch'                      # 获取远程更新
+alias gfa='git fetch --all'               # 获取所有远程更新
+alias gr='git remote'                     # 远程仓库管理
+alias grv='git remote -v'                 # 查看远程仓库详情
+alias gra='git remote add'                # 添加远程仓库
+alias grr='git remote remove'             # 删除远程仓库
+alias gru='git remote set-url'            # 修改远程仓库 URL
 ## 暂存操作
 alias gsh='git stash'                  # 暂存当前变更
 alias gshp='git stash pop'             # 恢复最近暂存
@@ -168,14 +169,14 @@ alias sshrd='ssh -R ${RPORTL:-7890}:localhost:${RPORTR:-7890}'
 alias la='ls -a'  # all files and dirs
 alias lla='ls -al'  # long format for all files and dirs
 if command -v eza &> /dev/null; then
-  alias ls='eza --color=always --group-directories-first' # ls
-  alias la='eza -a --color=always --group-directories-first'  # all files and dirs
-  alias ll='eza -l --color=always --group-directories-first'  # long format
-  alias l='eza -al --color=always --group-directories-first'  # long format for all files and dir
-  alias lla='eza -al --color=always --group-directories-first'  # long format for all files and dir
-  alias lt='eza -aT --color=always --group-directories-first' # tree listing
-  alias l.='eza -al --color=always --group-directories-first ../' # ls on the PARENT directory
-  alias l..='eza -al --color=always --group-directories-first ../../' # ls on directory 2 levels up
+  alias ls='eza --color=always --group-directories-first'                 # ls
+  alias la='eza -a --color=always --group-directories-first'              # all files and dirs
+  alias ll='eza -l --color=always --group-directories-first'              # long format
+  alias l='eza -al --color=always --group-directories-first'              # long format for all files and dir
+  alias lla='eza -al --color=always --group-directories-first'            # long format for all files and dir
+  alias lt='eza -aT --color=always --group-directories-first'             # tree listing
+  alias l.='eza -al --color=always --group-directories-first ../'         # ls on the PARENT directory
+  alias l..='eza -al --color=always --group-directories-first ../../'     # ls on directory 2 levels up
   alias l...='eza -al --color=always --group-directories-first ../../../' # ls on directory 3 levels up
 fi
 
