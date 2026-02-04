@@ -41,7 +41,6 @@ sd set_dotfiles:
 st set_templates:
 	@rm -rf ~/.editorconfig
 	@ln -sf `realpath ./assets/templates/.editorconfig` ~/.editorconfig
-	echo "st"
 
 c clean:
 	@rm -rf ~/.config/nvim
