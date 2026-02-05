@@ -6,6 +6,7 @@ SHELL := /bin/bash
 	l local \
 	ul unlocal \
 	build \
+	sa set_all \
 	sd set_dotfiles \
 	st set_templates \
 	c clean \
@@ -34,6 +35,8 @@ ul unlocal:
 
 build: set_dotfiles set_templates
 	@bash scripts/install.sh
+
+sa set_all: set_dotfiles set_templates
 
 sd set_dotfiles:
 	@bash scripts/set_dotfiles.sh
