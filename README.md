@@ -254,7 +254,6 @@ return {
     "folke/snacks.nvim",
     opts = {
       picker = {
-        --{{{> Qeuroal
         sources = {
           files = {
             follow = true, -- follow symlinks
@@ -268,7 +267,6 @@ return {
             follow = true, -- follow symlinks
           },
         },
-        --<}}}
       },
     },
   },
