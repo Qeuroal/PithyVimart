@@ -28,3 +28,7 @@ trim_trailing_whitespace = false
 
 [*.tex]
 indent_size = 2
+
+[*.lua]
+indent_size = 2
+
