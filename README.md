@@ -275,16 +275,17 @@ return {
 
 #### QAs
 
-- 重新信任 `.lazy.lua`:
+**重新信任 `.lazy.lua`** 
 
-   1. 打开文件 `~/.local/state/nvim/trust`
-   1. 删除目标项目 `.lazy.lua` 的那行
-   1. 重新打开项目, 允许即可
+1. 打开文件 `~/.local/state/nvim/trust`
+1. 删除目标项目 `.lazy.lua` 的那行
+1. 重新打开项目, 允许即可
 
-   > trust 文件格式
-   >
-   > - 拒绝为: `! <项目目录>/.lazy.lua`
-   > - 允许为: `<xxx> <项目目录>/.lazy.lua`
+> [!TIP]
+> trust 文件格式
+>
+> - 拒绝为: `! <项目目录>/.lazy.lua`
+> - 允许为: `<xxx> <项目目录>/.lazy.lua`
 
 ## 定制 SHELL config
 
