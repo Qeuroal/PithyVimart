@@ -152,7 +152,7 @@ Install the [PithyVimart](https://github.com/qeuroal/Pithyvimart) with [PowerShe
 
 ## 依赖项
 
-> [!NOTE]
+> [!TIP]
 > 方便起见, 可以先不安装这些插件的依赖项, 如果有报错再根据错误信息安装相应的依赖项即可 (`<leader>n` 可以用来查看通知历史, 包括错误信息).
 
 ### global
@@ -173,6 +173,119 @@ Install the [PithyVimart](https://github.com/qeuroal/Pithyvimart) with [PowerShe
 - ubuntu: `sudo apt install markdownlint`
 
 # 定制配置
+
+## 项目自定义配置
+
+### 使用 .lazy.lua 文件
+
+有一个不太为人所知的功能叫做本地配置, 它允许 `.lazy.lua` 在项目根目录下的一个文件中编写项目特定的配置, 当你在 NeoVim 中打开项目时, 这些设置就会被加载.
+
+**项目特定配置**
+
+在项目根目录中创建一个文件, 以下是一个示例 `.lazy.lua`:
+
+```lua
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+vim.g.autoformat = false
+
+return {}
+```
+
+`~/.config/nvim/lua/plugins/` 就像你在目录中编写插件配置时, 即使表格为空, 也 ***必须*** 在文件末尾添加一个 `return` 语句一样 `{}`.
+
+然后, 如果您关闭 NeoVim 并在项目目录中重新打开它, 您会看到一个提示, 询问您是否信任该 `.lazy.lua` 文件:
+
+```lua
+~/my-project/.lazy.lua is not trusted.
+   [i]gnore, (v)iew, (d)eny, (a)llow:
+```
+
+这是因为它是一个 Lua 脚本, 可以执行任意代码, 您可以按下a允许键, 然后设置 `.lazy.lua` 将被加载.
+在上面的示例代码中, 我们将 `tabstop` 和设置 `shiftwidth` 为 4, 并禁用自动格式化, 您可以根据需要向此文件添加更多设置.
+
+**项目特定的插件配置**
+
+还可以为插件设置不同的配置, 这些配置将合并到 `~/.config/nvim` 目录中的全局配置中, 以下是一个示例：
+
+```lua
+return {
+  {
+    "stevearc/conform.nvim",
+    opts = {
+      formatters_by_ft = {
+        java = { "google-java-format" },
+        vue = { " EsLintFixAll" },
+      },
+    },
+  },
+}
+```
+
+在配置中, 我们复制插件定义 `stevearc/conform.nvim` 并对 Java 和 Vue 文件类型设置不同的 `formatters_by_ft`, 将设置 `google-java-format` 为 Java 文件格式化程序, 将设置 `EsLintFixAll` 为 Vue 文件  `linter` , 这些设置将递归复制到全局插件配置中, 因此您不必担心会丢失某些全局配置.
+
+**文件类型特定配置**
+
+甚至可以在 `.lazy.lua` 文件中为项目特定的配置添加文件类型特定的配置, 以下是一个示例：
+
+```lua
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "json",
+  group = vim.api.nvim_create_augroup("json", { clear = true }),
+  callback = function(opts)
+    vim.opt.tabstop = 2
+    vim.opt.shiftwidth = 2
+    vim.g.autoformat = true
+  end,
+})
+
+return {}
+```
+
+在这个例子中, 我们创建了一个 `autocmd` 文件 Json 类型, 并将 `tabstop` 和设置 `shiftwidth` 为 2, 并启用 Json 文件的自动格式化.当您处理使用紧凑缩进样式（在本例中为 2 个空格）的 Json 文件项目时, 这将非常有用.
+
+> 参考[这里](https://kezhenxu94.me/blog/lazyvim-project-specific-settings)
+
+**设置项目级 snacks**
+
+```lua
+return {
+  {
+    "folke/snacks.nvim",
+    opts = {
+      picker = {
+        sources = {
+          files = {
+            follow = true, -- follow symlinks
+            hidden = true, -- show hidden files
+          },
+          grep = {
+            follow = true, -- follow symlinks
+            hidden = true,
+          },
+          grep_word = {
+            follow = true, -- follow symlinks
+          },
+        },
+      },
+    },
+  },
+}
+```
+
+#### QAs
+
+**重新信任 `.lazy.lua`** 
+
+1. 打开文件 `~/.local/state/nvim/trust`
+1. 删除目标项目 `.lazy.lua` 的那行
+1. 重新打开项目, 允许即可
+
+> [!TIP]
+> trust 文件格式
+>
+> - 拒绝为: `! <项目目录>/.lazy.lua`
+> - 允许为: `<xxx> <项目目录>/.lazy.lua`
 
 ## 定制 SHELL config
 
