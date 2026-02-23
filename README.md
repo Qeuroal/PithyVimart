@@ -266,6 +266,14 @@ return {
           grep_word = {
             follow = true, -- follow symlinks
           },
+          explorer = {
+            hidden = true,
+            -- ignored = true, -- show ignored files
+            layout = {
+              preset = "sidebar",
+              preview = { main = true, enabled = false },
+            },
+          },
         },
       },
     },
