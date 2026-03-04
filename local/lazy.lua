@@ -19,6 +19,7 @@ require("lazy").setup({
     -- add PithyVim and import its plugins
     { dir = "~/.config/nvim/lua/pithyvim", import = "pithyvim.plugins" },
     -- import/override with your plugins
+    { import = "default" },
     { import = "plugins" },
   },
   defaults = {
