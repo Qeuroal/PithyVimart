@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
 
-source ${PWD}/scripts/color_print.sh
+source ${PWD}/scripts/prints.sh
 
 # {{{> 安装fedora必备软件
 function install_software_on_fedora() {
     if [[ "$(has_sudo)" == "0" ]]; then
-        color_print "warning" "You are not the root user."
+        clprint "warning" "You are not the root user."
         return
     fi
 
-    color_print "info" "Installing softwares..."
+    clprint "info" "Installing softwares..."
 
     # sudo dnf install -y vim-enhanced ctags automake gcc gcc-c++ kernel-devel cmake python-devel python3-devel fontconfig ack git
     sudo dnf install -y vim-enhanced ctags gcc make gcc gcc-c++ cmake python3-devel fontconfig ripgrep fzf

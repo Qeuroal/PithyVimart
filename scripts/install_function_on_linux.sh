@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source ${PWD}/scripts/color_print.sh
+source ${PWD}/scripts/prints.sh
 source ${PWD}/scripts/install_function_on_ubuntu.sh
 source ${PWD}/scripts/install_function_on_archlinux.sh
 source ${PWD}/scripts/install_function_on_fedora.sh
@@ -8,11 +8,11 @@ source ${PWD}/scripts/install_function_on_fedora.sh
 # {{{>安装linux平台字体
 function install_fonts_on_linux() {
     if [ ! -e "./assets/remote/font/fonts.tar.gz" ]; then
-        color_print "warning" "The fonts.tar.gz file does not exist. Cancel font installation..."
+        clprint "warning" "The fonts.tar.gz file does not exist. Cancel font installation..."
         return
     fi
     # echo -e "\033[32m==> Installing fonts...\033[0m"
-    color_print "info" "Installing fonts..."
+    clprint "info" "Installing fonts..."
     mkdir -p ~/.local/share/fonts
 
     # 解压fonts

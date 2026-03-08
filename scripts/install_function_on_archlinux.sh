@@ -2,7 +2,7 @@
 
 function install_software_on_archlinux() {
     if [[ "$(has_sudo)" == "0" ]]; then
-        color_print "warning" "You are not the root user."
+        clprint "warning" "You are not the root user."
         return
     fi
 

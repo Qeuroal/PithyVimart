@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source ${PWD}/scripts/color_print.sh
+source ${PWD}/scripts/prints.sh
 
 # 判断文件是否存在
 function is_exist_file()
@@ -29,7 +29,7 @@ vimPath=${HOME}"/.vim"
 isExist=$(is_exist_folder ${vimPath})
 if [ ${isExist} -eq 1 ]; then
     # echo -e "\033[31mRemove ${vimPath}\033[0m"
-    color_print "info" "Remove ${vimPath}"
+    clprint "info" "Remove ${vimPath}"
 
     type=$(uname)
     if [[ ${type} == "Darwin" ]]; then
@@ -51,7 +51,7 @@ viminfoPath=${HOME}"/.viminfo"
 isExist=$(is_exist_file ${viminfoPath})
 if [ ${isExist} -eq 1 ]; then
     # echo -e "\033[31mRemove ${viminfoPath}\033[0m"
-    color_print "info" "Remove ${viminfoPath}"
+    clprint "info" "Remove ${viminfoPath}"
     rm -rf ${viminfoPath}
 fi
 
@@ -60,7 +60,7 @@ vimrcPath=${HOME}"/.vimrc"
 isExist=$(is_exist_file ${vimrcPath})
 if [ ${isExist} -eq 1 ]; then
     # echo -e "\033[31mRemove ${vimrcPath}\033[0m"
-    color_print "info" "Remove ${vimrcPath}"
+    clprint "info" "Remove ${vimrcPath}"
     rm -rf ${vimrcPath}
 fi
 
@@ -69,7 +69,7 @@ vimartPath=${HOME}"/.vimart"
 isExist=$(is_exist_folder ${vimartPath})
 if [ ${isExist} -eq 1 ]; then
     # echo -e "\033[31mRemove ${vimartPath}\033[0m"
-    color_print "info" "Remove ${vimartPath}"
+    clprint "info" "Remove ${vimartPath}"
     rm -rf ${vimartPath}
 fi
 
@@ -78,7 +78,7 @@ vimrc_cpt_config_path=${HOME}"/.vimrc.cpt.config"
 isExist=$(is_exist_file ${vimrc_cpt_config_path})
 if [ ${isExist} -eq 1 ]; then
     # echo -e "\033[31mRemove ${vimrc_cpt_config_path}\033[0m"
-    color_print "info" "Remove ${vimrc_cpt_config_path}"
+    clprint "info" "Remove ${vimrc_cpt_config_path}"
     rm -rf ${vimrc_cpt_config_path}
 fi
 
@@ -88,23 +88,23 @@ isExist=$(is_exist_file ${ycmExtConfPath})
 if [ ${isExist} -eq 1 ]; then
     # echo "${ycmExtConfPath}"
     # echo -e "\033[31mRemove ${ycmExtConfPath}\033[0m"
-    color_print "info" "Remove ${ycmExtConfPath}"
+    clprint "info" "Remove ${ycmExtConfPath}"
     rm -rf ${ycmExtConfPath}
 fi
 
 # delete custom config data
 # echo -n -e "\033[32m==> Would you like to remove your custom config? [Y/N]\033[0m"
-color_print "opt" "Would you like to remove your custom config? [Y/N]"
+clprint "opt" "Would you like to remove your custom config? [Y/N]"
 choice=n
 read -n1 -p "" choice
 echo ""
 if [[ "${choice}" == 'y' || "${choice}" == 'Y' ]]; then
     # echo -e "\033[31mRemove your custom config\033[0m"
-    color_print "info" "Remove your custom config"
+    clprint "info" "Remove your custom config"
     rm -rf ${HOME}"/.vimrc.custom.config" ${HOME}"/.vimrc.custom.plugins"
 fi
 
 # echo -e "\033[32m==> Done!!! \033[0m"
-color_print "finish" "Done!!! "
+clprint "finish" "Done!!! "
 
 
