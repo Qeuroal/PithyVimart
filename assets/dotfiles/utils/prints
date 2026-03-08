@@ -59,13 +59,13 @@ fi
 _cl_color() {
   case "$1" in
     finish)
-      printf "%s" "${FG_GREEN}"
+      printf "%s" "${FG_GREEN}${C_BOLD}"
       ;;
     begin)
       printf "%s" "${FG_GREEN}${C_BOLD}"
       ;;
     opt)
-      printf "%s" "${FG_YELLOW}"
+      printf "%s" "${FG_YELLOW}${C_BOLD}"
       ;;
     error)
       printf "%s" "${FG_RED}${C_BOLD}"
