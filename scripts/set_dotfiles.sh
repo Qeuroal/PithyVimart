@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source ${PWD}/scripts/color_print.sh
+source ${PWD}/scripts/prints.sh
 
 function is_gnu_sed() {
     if ! command -v sed &> /dev/null; then
@@ -15,7 +15,7 @@ function is_gnu_sed() {
 function sed_improt_prelude ()
 {
     if [ $# -ne 3 ]; then
-        color_print "error" "parameter error: expect 1 parameters."
+        clprint "error" "parameter error: expect 1 parameters."
         return
     fi
     local destfilepath="$1"
@@ -29,11 +29,11 @@ function sed_improt_prelude ()
         else
             sed -i.sed.bak -e "1i\\$import_signal" -e "1i$import_content" $destfilepath
         fi
-        color_print "info" "Success to import configure to $destfilepath"
+        clprint "info" "Success to import configure to $destfilepath"
     else
         echo "$import_content" | tee -a ${destfilepath} > /dev/null
-        color_print "warning" "WARNING: The $destfilepath configuration should be placed at the beginning of the file."
-        color_print "info" "HALF success to import configure to $destfilepath"
+        clprint "warning" "WARNING: The $destfilepath configuration should be placed at the beginning of the file."
+        clprint "info" "HALF success to import configure to $destfilepath"
     fi
 
 }
@@ -41,7 +41,7 @@ function sed_improt_prelude ()
 function preimport_gitconfig ()
 {
     if [ $# -ne 2 ]; then
-        color_print "error" "parameter error: expect 1 parameters."
+        clprint "error" "parameter error: expect 1 parameters."
         return
     fi
     local destfilepath="$1"
@@ -53,7 +53,7 @@ function preimport_gitconfig ()
 function preimport_sshconfig ()
 {
     if [ $# -ne 2 ]; then
-        color_print "error" "parameter error: expect 1 parameters."
+        clprint "error" "parameter error: expect 1 parameters."
         return
     fi
     local destfilepath="$1"
@@ -65,14 +65,14 @@ function preimport_sshconfig ()
 function import_tmux_conf ()
 {
     if [ $# -ne 2 ]; then
-        color_print "error" "parameter error: expect 1 parameters."
+        clprint "error" "parameter error: expect 1 parameters."
         return
     fi
     local destfilepath="$1"
     local import_signal="$2"
 
     echo 'source-file ~/.config/pithy_configs/.tmux.conf' | tee -a ${destfilepath} > /dev/null
-    color_print "info" "Success to import configure to $destfilepath"
+    clprint "info" "Success to import configure to $destfilepath"
 }
 
 function import_configure ()
@@ -86,7 +86,7 @@ function import_configure ()
         import_signal="$2"
         hook_func="$3"
     else
-        color_print "error" "parameter error: expect 3 parameters."
+        clprint "error" "parameter error: expect 3 parameters."
         return
     fi
 
@@ -94,7 +94,7 @@ function import_configure ()
         mkdir -p $(dirname ${destfilepath})
         echo '' >> ${destfilepath}
     elif [[ -d "${destfilepath}" ]]; then
-        color_print "error" "The ${destfilepath} is directory."
+        clprint "error" "The ${destfilepath} is directory."
         return
     fi
 

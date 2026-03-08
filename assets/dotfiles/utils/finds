@@ -13,7 +13,7 @@ function lssshcfg() {
     return 3
   fi
 
-  local sed_match_value=$(cat $target_file | grep -v "# "| grep -E -A 3 -w "$sed_match_pattern\$")
-  clprint "info" "Match Value:\n$sed_match_value"
+  local sed_match_value=$(cat $target_file | grep -v "# "| grep -E -A 3 -w "$sed_match_pattern\$" | sed 's/^--$/============================================================/')
+  clprint "info" "Match Value:\n\n$sed_match_value"
 }
 

@@ -1,150 +1,140 @@
 #!/usr/bin/env bash
 
-function to_upper() {
+to_upper() {
   echo "$@" | tr '[:lower:]' '[:upper:]'
 }
 
-function to_lower() {
+to_lower() {
   echo "$@" | tr '[:upper:]' '[:lower:]'
 }
 
-function clprint() {
-  mode="$(to_lower $1)"
-  # 左移一位
-  shift 1
+if [[ -t 1 && -z "${NO_COLOR}" ]]; then
+  # reset / style
+  C_RESET="$(tput sgr0)"
+  C_BOLD="$(tput bold)"
+  C_UNDERLINE="$(tput smul)"
+  # foreground
+  FG_BLACK="$(tput setaf 0)"
+  FG_RED="$(tput setaf 1)"
+  FG_GREEN="$(tput setaf 2)"
+  FG_YELLOW="$(tput setaf 3)"
+  FG_BLUE="$(tput setaf 4)"
+  FG_PURPLE="$(tput setaf 5)"
+  FG_CYAN="$(tput setaf 6)"
+  FG_WHITE="$(tput setaf 7)"
+  # background
+  BG_BLACK="$(tput setab 0)"
+  BG_RED="$(tput setab 1)"
+  BG_GREEN="$(tput setab 2)"
+  BG_YELLOW="$(tput setab 3)"
+  BG_BLUE="$(tput setab 4)"
+  BG_PURPLE="$(tput setab 5)"
+  BG_CYAN="$(tput setab 6)"
+  BG_WHITE="$(tput setab 7)"
+else
+  # no color
+  C_RESET=""
+  C_BOLD=""
+  C_UNDERLINE=""
+  # foreground
+  FG_BLACK=""
+  FG_RED=""
+  FG_GREEN=""
+  FG_YELLOW=""
+  FG_BLUE=""
+  FG_PURPLE=""
+  FG_CYAN=""
+  FG_WHITE=""
+  # background
+  BG_BLACK=""
+  BG_RED=""
+  BG_GREEN=""
+  BG_YELLOW=""
+  BG_BLUE=""
+  BG_PURPLE=""
+  BG_CYAN=""
+  BG_WHITE=""
+fi
 
-  # colors
-  bg_black="\033[40m"
-  bg_red="\033[41m"
-  bg_green="\033[42m"
-  bg_yellow="\033[43m"
-  bg_blue="\033[44m"
-  bg_purple="\033[45m"
-  bg_cyan="\033[46m"
-  bg_white="\033[47m"
-
-  fg_black="\033[30m"
-  fg_red="\033[31m"
-  fg_green="\033[32m"
-  fg_yellow="\033[33m"
-  fg_blue="\033[34m"
-  fg_purple="\033[35m"
-  fg_cyan="\033[36m"
-  fg_white="\033[37m"
-
-  color=""
-  set_clear="\033[0m"
-  set_bold="\033[1m"
-  set_underline="\033[4m"
-  set_flash="\033[5m"
-
-  case "${mode}" in
-    "finish")
-      color="${bg_black}${fg_green}"
+_cl_color() {
+  case "$1" in
+    finish)
+      printf "%s" "${FG_GREEN}${C_BOLD}"
       ;;
-    "begin")
-      color="${fg_black}${fg_green}"
+    begin)
+      printf "%s" "${FG_GREEN}${C_BOLD}"
       ;;
-    "opt")
-      color="${fg_black}${fg_yellow}"
+    opt)
+      printf "%s" "${FG_YELLOW}${C_BOLD}"
       ;;
-    "error")
-      color="${bg_black}${fg_red}${set_bold}"
+    error)
+      printf "%s" "${FG_RED}${C_BOLD}"
       ;;
-    "warning")
-      color="${bg_yellow}${fg_black}"
+    warning)
+      printf "%s" "${BG_YELLOW}${FG_BLACK}${C_BOLD}"
       ;;
-    "info")
-      color="${bg_black}${fg_purple}"
+    info)
+      # printf "%s" "${FG_CYAN}${C_BOLD}"
+      printf "%s" "${FG_BLUE}${C_BOLD}"
       ;;
     *)
-      set_clear=""
+      printf ""
       ;;
   esac
+}
 
-  info="${color}==> $@${set_clear}"
-  if [[ "${mode}" == "opt" ]]; then
-    echo -e -n "${info}"
+clprint() {
+  mode="$(to_lower "$1")"
+  shift
+  color="$(_cl_color "$mode")"
+  msg="${color}==> $*${C_RESET}"
+  if [[ "$mode" == "opt" ]]; then
+    printf "%b" "$msg"
   else
-    echo -e "${info}"
+    printf "%b\n" "$msg"
   fi
 }
 
-function bclprint() {
-  mode="$(to_lower $1)"
-  # 左移一位
-  shift 1
+bclprint() {
+  mode="$(to_lower "$1")"
+  shift
+  color="$(_cl_color "$mode")"
 
-  color="$(tput sgr0)"
-  normalColor="$(tput sgr0)"
+  printf "%b\n" "$color"
 
-  case "${mode}" in
-    "finish")
-      # color="${bg_black}${fg_green}"
-      color="$(tput setaf 2)"
-      ;;
-    "begin")
-      # color="${fg_black}${fg_green}"
-      color="$(tput setaf 2)"
-      ;;
-    "opt")
-      # color="${fg_black}${fg_yellow}"
-      color="$(tput setaf 3)"
-      ;;
-    "error")
-      # color="${bg_black}${fg_red}${set_bold}"
-      color="$(tput setaf 1 bold)"
-      ;;
-    "warning")
-      # color="${bg_yellow}${fg_black}"
-      color="$(tput setab 3 setaf 0)"
-      ;;
-    "info")
-      # color="${bg_black}${fg_purple}"
-      color="$(tput setaf 5)"
-      ;;
-    *)
-      ;;
-  esac
-
-  echo "${color}"
-
-  if [[ "${mode}" == "opt" ]]; then
+  if [[ "$mode" == "opt" ]]; then
     echo "==> $1"
-    shift 1
+    shift
   else
-    # echo "==> $(echo "${mode}" | tr '[:lower:]' '[:upper:]') {{{"
-    echo "==> $(to_upper "${mode}") {{{"
+    echo "==> $(to_upper "$mode") {{{"
   fi
 
   while [[ $# -ne 0 ]]; do
     echo "  $1"
-    shift 1
+    shift
   done
 
-  if [[ "${mode}" == "opt" ]]; then
-    printf "${normalColor}"
+  if [[ "$mode" == "opt" ]]; then
+    printf "%b" "$C_RESET"
   else
-    echo "<=== }}}${normalColor}"
-    echo ''
+    echo "<=== }}}${C_RESET}"
+    echo
   fi
 }
 
-function oclprint() {
+opt_print() {
   opt="$1"
   val="$2"
 
-  if [[ -z ${opt} ]]; then
-    return
-  elif [[ ${#opt} -le 24 ]]; then
-    printf "  %-24s%-s\n" "${opt}" "${val}"
+  [[ -z "$opt" ]] && return
+
+  if [[ ${#opt} -le 24 ]]; then
+    printf "  %-24s%s\n" "$opt" "$val"
   else
-    printf "  %-24s\n    %24s%s\n" "${opt}" " " "${val}"
+    printf "  %-24s\n    %24s%s\n" "$opt" " " "$val"
   fi
 
-  if [[ $# -ge 2 ]]; then
-    shift 2
-  fi
+  shift 2
 
   while [[ $# -ne 0 ]]; do
     printf "    %24s%s\n" " " "$1"

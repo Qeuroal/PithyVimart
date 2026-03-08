@@ -5,14 +5,14 @@ PITHY_CONFIG_PATH="$HOME/.config/pithy_configs"
 #{{{> backup personal vim configure
 function backup_vim_data() {
     # echo -e "\033[32m==> Backuping vim data...\033[0m"
-    color_print "info" "Backuping vim data..."
+    clprint "info" "Backuping vim data..."
 }
 #<}}}
 
 #{{{> copy and link files
 function copy_files() {
     # echo -e "\033[32m==> Copying files...\033[0m"
-    color_print "info" "Copying files..."
+    clprint "info" "Copying files..."
 
     local srcpath=${PWD}
     local destpath=$HOME
@@ -24,8 +24,8 @@ function copy_files() {
         destpath="$2"
     fi
 
-    color_print "info" "srcpath: $srcpath"
-    color_print "info" "destfilepath: $destpath"
+    clprint "info" "srcpath: $srcpath"
+    clprint "info" "destfilepath: $destpath"
 
 }
 #<}}}
@@ -129,7 +129,7 @@ function configure_shell_config() {
     local destfilepath="${destpath}/${destFile}"
 
     if [ ! -e "${PITHY_CONFIG_PATH}/.shell_config" ]; then
-        color_print "warning" "File .shell_config does not exist."
+        clprint "warning" "File .shell_config does not exist."
         return
     fi
 
@@ -160,7 +160,7 @@ function link_dotfiles() {
         mkdir -p "$HOME/.config"
     fi
 
-    color_print "info" "ln -sf `realpath $PWD/assets/dotfiles` $PITHY_CONFIG_PATH"
+    clprint "info" "ln -sf `realpath $PWD/assets/dotfiles` $PITHY_CONFIG_PATH"
     ln -sf `realpath $PWD/assets/dotfiles` $PITHY_CONFIG_PATH
 }
 #<}}}

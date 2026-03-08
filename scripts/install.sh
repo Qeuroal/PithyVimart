@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # {{{> source scripts
-source ${PWD}/scripts/color_print.sh
+source ${PWD}/scripts/prints.sh
 source ${PWD}/scripts/shared_function.sh
 source ${PWD}/scripts/install_function_on_mac.sh
 source ${PWD}/scripts/install_function_on_linux.sh
