@@ -74,7 +74,8 @@ _cl_color() {
       printf "%s" "${BG_YELLOW}${FG_BLACK}${C_BOLD}"
       ;;
     info)
-      printf "%s" "${FG_CYAN}"
+      # printf "%s" "${FG_CYAN}${C_BOLD}"
+      printf "%s" "${FG_BLUE}${C_BOLD}"
       ;;
     *)
       printf ""
