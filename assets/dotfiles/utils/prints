@@ -9,8 +9,11 @@ to_lower() {
 }
 
 if [[ -t 1 && -z "${NO_COLOR}" ]]; then
+  # reset / style
   C_RESET="$(tput sgr0)"
   C_BOLD="$(tput bold)"
+  C_UNDERLINE="$(tput smul)"
+  # foreground
   FG_BLACK="$(tput setaf 0)"
   FG_RED="$(tput setaf 1)"
   FG_GREEN="$(tput setaf 2)"
@@ -18,10 +21,22 @@ if [[ -t 1 && -z "${NO_COLOR}" ]]; then
   FG_BLUE="$(tput setaf 4)"
   FG_PURPLE="$(tput setaf 5)"
   FG_CYAN="$(tput setaf 6)"
+  FG_WHITE="$(tput setaf 7)"
+  # background
+  BG_BLACK="$(tput setab 0)"
+  BG_RED="$(tput setab 1)"
+  BG_GREEN="$(tput setab 2)"
   BG_YELLOW="$(tput setab 3)"
+  BG_BLUE="$(tput setab 4)"
+  BG_PURPLE="$(tput setab 5)"
+  BG_CYAN="$(tput setab 6)"
+  BG_WHITE="$(tput setab 7)"
 else
+  # no color
   C_RESET=""
   C_BOLD=""
+  C_UNDERLINE=""
+  # foreground
   FG_BLACK=""
   FG_RED=""
   FG_GREEN=""
@@ -29,7 +44,16 @@ else
   FG_BLUE=""
   FG_PURPLE=""
   FG_CYAN=""
+  FG_WHITE=""
+  # background
+  BG_BLACK=""
+  BG_RED=""
+  BG_GREEN=""
   BG_YELLOW=""
+  BG_BLUE=""
+  BG_PURPLE=""
+  BG_CYAN=""
+  BG_WHITE=""
 fi
 
 _cl_color() {
