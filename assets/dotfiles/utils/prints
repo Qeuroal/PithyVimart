@@ -8,7 +8,7 @@ to_lower() {
   echo "$@" | tr '[:upper:]' '[:lower:]'
 }
 
-if [[ -t 1 && -z "${NO_COLOR}" ]]; then
+if [[ -n "$TERM" && "$TERM" != "dumb" ]]; then
   # reset / style
   C_RESET="$(tput sgr0)"
   C_BOLD="$(tput bold)"
