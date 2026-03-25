@@ -297,3 +297,21 @@ alias tsc='ts -c'
 tsl() {
   ts -c "${1}" | less
 }
+
+# docker
+alias dk='docker'
+alias dkps='docker ps'            # 查看运行中的容器
+alias dkpsa='docker ps -a'        # 查看所有容器
+alias dki='docker images'         # 查看本地镜像
+alias dkst='docker stats'         # 查看容器资源占用情况
+alias dkl='docker logs -f'        # 实时滚动查看容器日志
+alias dkon='docker start'         # 启动已停止的容器
+alias dkoff='docker stop'         # 停止运行中的容器
+# docker-compose
+alias dc='docker-compose'
+alias dcu='docker-compose up'     # 创建并启动容器 (前台占用终端)
+alias dcud='docker-compose up -d' # 创建并启动容器 (后台静默运行)
+alias dcd='docker-compose down'   # 停止并销毁容器及网络 (重置环境)
+alias dcon='docker-compose start' # 仅唤醒已存在的容器 (不重新创建)
+alias dcoff='docker-compose stop' # 仅停止容器运行 (不销毁任何数据)
+
