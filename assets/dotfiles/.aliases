@@ -307,6 +307,10 @@ alias dkst='docker stats'         # 查看容器资源占用情况
 alias dkl='docker logs -f'        # 实时滚动查看容器日志
 alias dkon='docker start'         # 启动已停止的容器
 alias dkoff='docker stop'         # 停止运行中的容器
+alias dkx='docker exec'           # 在运行中的容器执行命令
+dkxi() {                          # 交互式进入容器终端 (默认使用 /bin/bash)
+  docker exec -it "$1" ${2:-/bin/bash}
+}
 # docker-compose
 alias dc='docker-compose'
 alias dcu='docker-compose up'     # 创建并启动容器 (前台占用终端)
