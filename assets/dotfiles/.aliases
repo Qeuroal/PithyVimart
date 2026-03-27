@@ -44,8 +44,11 @@ alias rmshada='rm -i -v $HOME/.local/state/nvim/shada/main.shada'
 alias vipc="vi $PITHY_CUSTOM_CONFIG_PATH"
 
 # curl
-alias curla='curl -A "Google Chrome"'
-alias curlao='curl -A "Google Chrome" -JLO'
+alias curla='curl -A "Google Chrome" -JL'
+alias curlo='curl -A "Google Chrome" -JLO'
+# curl git file
+curlg() { curla "$(echo "$1" | sed 's/github\.com/raw.githubusercontent.com/' | sed 's|/blob/|/|')"; }
+curlgo() { curlo "$(echo "$1" | sed 's/github\.com/raw.githubusercontent.com/' | sed 's|/blob/|/|')"; }
 
 # git
 ## 添加文件
@@ -274,29 +277,20 @@ fi
 
 # 文件管理
 ## 快速备份文件
-backup() {
-  cp -r "$1" "$1.bak-$(date +%Y%m%d-%H%M%S)"
-}
+backup() { cp -a "${1%/}" "${1%/}.bak-$(date +%Y%m%d-%H%M%S)"; } # 归档模式备份
 ## 查看文件大小并排序
-ducks() {
-  du -cks * | sort -rn | head -11
-}
+# ducks() { du -cks * | sort -rn | head -11; }
+ducks() { du -shc * .[!.]* 2>/dev/null | sort -hr | head -11; }
 ## 计算文件数量
-count() {
-  find "${1:-.}" -type f | wc -l
-}
+count() { find "${1:-.}" -type f | wc -l; }
 ## 查找大文件
-bigfiles() {
-  find . -type f -size +${1:-100}M -exec ls -lh {} \; | awk '{ print $9 ": " $5 }'
-}
+bigfiles() { find . -type f -size +${1:-100}M -exec ls -lh {} \; | awk '{ print $9 ": " $5 }'; }
 
 # task-spooler
 alias tst='ts -t'
 # alias tsl='ts -l'
 alias tsc='ts -c'
-tsl() {
-  ts -c "${1}" | less
-}
+tsl() { ts -c "${1}" | less; }
 
 # docker
 alias dk='docker'
@@ -308,9 +302,7 @@ alias dkl='docker logs -f'        # 实时滚动查看容器日志
 alias dkon='docker start'         # 启动已停止的容器
 alias dkoff='docker stop'         # 停止运行中的容器
 alias dkx='docker exec'           # 在运行中的容器执行命令
-dkxi() {                          # 交互式进入容器终端 (默认使用 /bin/bash)
-  docker exec -it "$1" ${2:-/bin/bash}
-}
+dkxi() { docker exec -it "$1" ${2:-/bin/bash}; } # 交互式进入容器终端 (默认使用 /bin/bash)
 # docker-compose
 alias dc='docker-compose'
 alias dcu='docker-compose up'     # 创建并启动容器 (前台占用终端)
