@@ -47,8 +47,8 @@ alias vipc="vi $PITHY_CUSTOM_CONFIG_PATH"
 alias curla='curl -A "Google Chrome" -JL'
 alias curlo='curl -A "Google Chrome" -JLO'
 # curl git file
-curlg() { curla $(echo "$1" | sed 's/github\.com/raw.githubusercontent.com/' | sed 's|/blob/|/|'); }
-curlgo() { curlo $(echo "$1" | sed 's/github\.com/raw.githubusercontent.com/' | sed 's|/blob/|/|'); }
+curlg() { curla "$(echo "$1" | sed 's/github\.com/raw.githubusercontent.com/' | sed 's|/blob/|/|')"; }
+curlgo() { curlo "$(echo "$1" | sed 's/github\.com/raw.githubusercontent.com/' | sed 's|/blob/|/|')"; }
 
 # git
 ## 添加文件
@@ -277,9 +277,10 @@ fi
 
 # 文件管理
 ## 快速备份文件
-backup() { cp -r "$1" "$1.bak-$(date +%Y%m%d-%H%M%S)"; }
+backup() { cp -a "${1%/}" "${1%/}.bak-$(date +%Y%m%d-%H%M%S)"; } # 归档模式备份
 ## 查看文件大小并排序
-ducks() { du -cks * | sort -rn | head -11; }
+# ducks() { du -cks * | sort -rn | head -11; }
+ducks() { du -shc * .[!.]* 2>/dev/null | sort -hr | head -11; }
 ## 计算文件数量
 count() { find "${1:-.}" -type f | wc -l; }
 ## 查找大文件
