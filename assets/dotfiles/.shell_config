@@ -37,7 +37,7 @@ if [[ "$(uname)" = 'Linux' ]]; then
     set -o ignoreeof
     ignoreeof=3
 elif [[ "$(uname)" = 'Darwin' ]]; then
-    set -o IGNOREEOF
+    set -o ignoreeof
 fi
 
 # import custom user config
