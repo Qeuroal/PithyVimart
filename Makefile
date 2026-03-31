@@ -9,8 +9,9 @@ SHELL := /bin/bash
 	sa set_all \
 	sd set_dotfiles \
 	st set_templates \
-	c clean \
-	ca cleanall \
+	fr fresh \
+	clean \
+	cleanall \
 	cc cleancache \
 	clean_outdated_link \
 	gcf gitconfig \
@@ -45,7 +46,11 @@ st set_templates:
 	@rm -rf ~/.editorconfig
 	@ln -sf `realpath ./assets/templates/.editorconfig` ~/.editorconfig
 
-c clean:
+fr fresh:
+	@rm -rf ~/.local/share/nvim/
+	@rm -rf ./nvim/lazy-lock.json
+
+clean:
 	@rm -rf ~/.config/nvim
 	@rm -rf ~/.cache/nvim
 	@rm -rf ~/.local/share/nvim
@@ -53,7 +58,7 @@ c clean:
 	@rm -rf ./nvim/lazy-lock.json
 	@rm -rf ./nvim/lua/pithyvim
 
-ca cleanall: clean
+cleanall: clean
 	@git restore . && git clean -fd
 	@rm -rf ./nvim/pithyvim.json
 
