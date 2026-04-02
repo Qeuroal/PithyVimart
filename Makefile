@@ -11,8 +11,8 @@ SHELL := /bin/bash
 	st set_templates \
 	fr fresh \
 	clean \
-	cleanall \
-	cc cleancache \
+	call cleanall \
+	ccache cleancache \
 	clean_outdated_link \
 	gcf gitconfig \
 	gm gitmerge \
@@ -58,11 +58,11 @@ clean:
 	@rm -rf ./nvim/lazy-lock.json
 	@rm -rf ./nvim/lua/pithyvim
 
-cleanall: clean
+call cleanall: clean
 	@git restore . && git clean -fd
 	@rm -rf ./nvim/pithyvim.json
 
-cc cleancache:
+ccache cleancache:
 	@rm -v ~/.local/state/nvim/shada/main.shada
 
 clean_outdated_link:
