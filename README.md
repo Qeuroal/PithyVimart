@@ -441,16 +441,23 @@ return {
    sudo apt install python3-venv
    ```
 
+- nvim 版本太低
+
+   - archlinux: `yay -S neovim-git`
+   - ubuntu
+      ```bash
+      sudo add-apt-repository ppa:neovim-ppa/stable
+      sudo apt update
+      sudo apt install neovim
+      ```
+
 ## MacOS
 
 - Mac 系统没有 Alt 键，Option 键也不管用，如何设置 Command 快捷键
 
    在我们的配置中，Mac 系统的 Option 键对应的是 Windows 系统的 Alt 键，如果你的 Option 键没有反应，通常需要设置一下你的终端，将 Option 键设置为 Meta 键。
-
    - Item2: 设置方式为 Preference -> Profiles -> Default --> Keys --> Left Option key --> 选中 Esc+
-
    - alacritty: 设置 `[window]` 的 `option_as_alt` 为 `OnlyLeft`, 如下所示:
-
       ```toml
       [window]
       option_as_alt = "OnlyLeft"
