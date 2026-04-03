@@ -355,6 +355,8 @@ return {
    安装 markdownlint 依赖项, 具体[见这里](#markdownlint-cli2)
 
 
+- 插件存在异常情况: 使用 `checkhealth <插件名>` 查看是否存在 error.
+
 ## Linux
 
 - 添加 AppImage ("universal" Linux package)
