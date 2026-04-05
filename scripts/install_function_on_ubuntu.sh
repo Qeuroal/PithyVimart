@@ -43,8 +43,7 @@ function install_dependency_on_ubuntu() {
 
 #{{{> configure plugins
 function configure_on_ubuntu() {
-    link_dotfiles
-    configure_shell
+    clprint "info" "Configuring ..."
 }
 #<}}}
 

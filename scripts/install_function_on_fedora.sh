@@ -22,8 +22,7 @@ function install_software_on_fedora() {
 
 #{{{> configure plugins
 function configure_on_fedora() {
-    link_dotfiles
-    configure_shell
+    clprint "info" "Configuring ..."
 }
 #<}}}
 

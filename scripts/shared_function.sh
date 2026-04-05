@@ -110,69 +110,6 @@ function get_now_timestamp() {
 }
 #<}}}
 
-#{{{> configure shell_config
-function configure_shell_config() {
-    local destFile=".zshrc"
-    local srcpath=${PWD}
-    local destpath=$HOME
-    if [ "$#" = "1" ]; then
-        destFile="$1"
-    elif [ "$#" = "2" ]; then
-        destFile="$1"
-        destpath="$2"
-    elif [ "$#" = "3" ]; then
-        destFile="$1"
-        srcpath="$2"
-        destpath="$3"
-    fi
-
-    local destfilepath="${destpath}/${destFile}"
-
-    if [ ! -e "${PITHY_CONFIG_PATH}/.shell_config" ]; then
-        clprint "warning" "File .shell_config does not exist."
-        return
-    fi
-
-    if [[ -f "${destfilepath}" ]]; then
-        if [[ `cat ${destfilepath} | grep -c '# import shell_config'` = 0 ]]; then
-            echo "" | tee -a ${destfilepath} > /dev/null
-            echo '# import shell_config' | tee -a ${destfilepath} > /dev/null
-            # echo 'if [[ -f ~/.shell_config ]]; then {source ~/.shell_config}; fi'
-            echo "[[ -e ${PITHY_CONFIG_PATH}/.shell_config ]] && source ${PITHY_CONFIG_PATH}/.shell_config" | tee -a ${destfilepath} > /dev/null
-        fi
-    fi
-}
-#<}}}
-
-#{{{> link dotfiles
-function link_dotfiles() {
-    if [ -d "$PITHY_CONFIG_PATH" ]; then
-        if [ -L "$PITHY_CONFIG_PATH" ]; then
-            unlink $PITHY_CONFIG_PATH
-        else
-            mv $PITHY_CONFIG_PATH $PITHY_CONFIG_PATH.bak
-        fi
-    elif [ -e "$PITHY_CONFIG_PATH" ]; then
-        mv $PITHY_CONFIG_PATH $PITHY_CONFIG_PATH.bak
-    fi
-
-    if [ ! -d "$HOME/.config" ]; then
-        mkdir -p "$HOME/.config"
-    fi
-
-    clprint "info" "ln -sf `realpath $PWD/assets/dotfiles` $PITHY_CONFIG_PATH"
-    ln -sf `realpath $PWD/assets/dotfiles` $PITHY_CONFIG_PATH
-}
-#<}}}
-
-#{{{> config shell
-function configure_shell() {
-    configure_shell_config ".zshrc"
-    configure_shell_config ".bashrc"
-    configure_shell_config ".bash_profile"
-}
-#<}}}
-
 #{{{> has sudo
 function has_sudo() {
     sudo -v &>/dev/null

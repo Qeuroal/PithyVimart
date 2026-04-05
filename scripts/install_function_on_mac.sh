@@ -44,8 +44,7 @@ function install_fonts_on_mac() {
 
 #{{{> configure plugins
 function configure_on_mac() {
-    link_dotfiles
-    configure_shell
+    clprint "info" "Configuring ..."
 }
 #<}}}
 

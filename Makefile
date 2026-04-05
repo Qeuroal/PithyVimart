@@ -34,7 +34,7 @@ ul unlocal:
 	@rm -rf ./nvim/lua/pithyvim
 	@git restore ./nvim/lua/config/lazy.lua
 
-build: set_dotfiles set_templates
+build: set_all
 	@bash scripts/install.sh
 
 sa set_all: set_dotfiles set_templates

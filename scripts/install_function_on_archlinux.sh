@@ -19,8 +19,7 @@ function install_software_on_archlinux() {
 
 #{{{> configure plugins
 function configure_on_archlinux() {
-    link_dotfiles
-    configure_shell
+    clprint "info" "Configuring ..."
 }
 #<}}}
 
