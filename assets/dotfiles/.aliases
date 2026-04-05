@@ -317,3 +317,7 @@ alias dcd='docker-compose down'   # 停止并销毁容器及网络 (重置环境
 alias dcon='docker-compose start' # 仅唤醒已存在的容器 (不重新创建)
 alias dcoff='docker-compose stop' # 仅停止容器运行 (不销毁任何数据)
 
+# python
+pip3b() { pip3 "$@" --break-system-packages; }
+pipb() { pip "$@" --break-system-packages; }
+
