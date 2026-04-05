@@ -32,7 +32,7 @@ function install_dependency_on_ubuntu() {
 
     sudo apt-get install -y build-essential fontconfig libfile-next-perl ack-grep git ripgrep fzf
     # sudo apt-get install -y python3-dev python python-dev
-    sudo apt-get install -y python3 python3-dev
+    sudo apt-get install -y python3 python3-dev python3-env
     sudo apt-get install -y universal-ctags || sudo apt-get install -y exuberant-ctags
     # node.js
     sudo apt-get install -y npm
