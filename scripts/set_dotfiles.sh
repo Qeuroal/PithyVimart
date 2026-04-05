@@ -139,6 +139,8 @@ function configure_shell_config() {
             echo '# import shell_config' | tee -a ${destfilepath} > /dev/null
             # echo 'if [[ -f ~/.shell_config ]]; then {source ~/.shell_config}; fi'
             echo "[[ -e ${PITHY_CONFIG_PATH}/.shell_config ]] && source ${PITHY_CONFIG_PATH}/.shell_config" | tee -a ${destfilepath} > /dev/null
+
+            clprint "info" "Success to import configure to $destfilepath"
         fi
     fi
 }
