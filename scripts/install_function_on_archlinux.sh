@@ -17,18 +17,11 @@ function install_software_on_archlinux() {
     # sudo ln -s /usr/lib/libtinfo.so.6 /usr/lib/libtinfo.so.5
 }
 
-#{{{> configure plugins
-function configure_on_archlinux() {
-    clprint "info" "Configuring ..."
-}
-#<}}}
-
 # {{{> 在archlinux安装vimart
 function install_vimart_on_archlinux() {
     backup_vim_data
     install_software_on_archlinux
     install_fonts_on_linux
-    configure_on_archlinux
     print_logo
 }
 # <}}}

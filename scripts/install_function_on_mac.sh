@@ -42,18 +42,11 @@ function install_fonts_on_mac() {
 }
 # <}}}
 
-#{{{> configure plugins
-function configure_on_mac() {
-    clprint "info" "Configuring ..."
-}
-#<}}}
-
 # {{{> install vimart
 function install_vimart_on_mac() {
     backup_vim_data
     install_dependency_on_mac
     install_fonts_on_mac
-    configure_on_mac
     print_logo
 }
 # <}}}

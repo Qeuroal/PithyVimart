@@ -41,18 +41,11 @@ function install_dependency_on_ubuntu() {
 }
 # <}}}
 
-#{{{> configure plugins
-function configure_on_ubuntu() {
-    clprint "info" "Configuring ..."
-}
-#<}}}
-
 # {{{> 在ubuntu上安装vimart
 function install_vimart_on_ubuntu() {
     backup_vim_data
     install_dependency_on_ubuntu
     install_fonts_on_linux
-    configure_on_ubuntu
     print_logo
 }
 # <}}}
