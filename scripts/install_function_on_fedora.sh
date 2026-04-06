@@ -20,20 +20,12 @@ function install_software_on_fedora() {
 }
 # <}}}
 
-#{{{> configure plugins
-function configure_on_fedora() {
-    link_dotfiles
-    configure_shell
-}
-#<}}}
-
 # {{{> 在fedora上安装vimart
 function install_vimart_on_fedora() {
     backup_vim_data
     install_software_on_fedora
     copy_files
     install_fonts_on_linux
-    configure_on_fedora
     print_logo
 }
 # <}}}
