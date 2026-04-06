@@ -212,14 +212,17 @@ elif command -v nvidia-smi &> /dev/null; then
 fi
 
 # link
-# WARNING: export LN_TARGET_DIR="~/.local/bin" 中 ~ 不会展开
-# WARNING: 正确用法: export LN_TARGET_DIR=~/.local/bin 或 export LN_TARGET_DIR="$HOME/.local/bin"
-alias abslink_curdir=' [[ -f /bin/ls ]] && \
-    ([[ -d ${LN_TARGET_DIR:-$HOME/.local/bin/} ]] && ln -si $(realpath $(/bin/ls)) ${LN_TARGET_DIR:-$HOME/.local/bin/} && echo "link $(realpath $(/bin/ls)) TO ${LN_TARGET_DIR:-$HOME/.local/bin/}" || echo "${LN_TARGET_DIR:-$HOME/.local/bin/} does not exist") \
-    || echo "/bin/ls does not exist"'
-[[ $(uname) == "Linux" ]] && alias rellink_curdir=' [[ -f /bin/ls ]] && \
-    ([[ -d ${LN_TARGET_DIR:-$HOME/.local/bin/} ]] && ln -sri $(/bin/ls) ${LN_TARGET_DIR:-$HOME/.local/bin/} && echo "link $(/bin/ls) TO ${LN_TARGET_DIR:-$HOME/.local/bin/}" || echo "${LN_TARGET_DIR:-$HOME/.local/bin/} does not exist") \
-    || echo "/bin/ls does not exist"'
+## link file To $HOME/.config
+ln2cfg() {
+  local filename="${PWD##*/}"
+  local dirname="$HOME/.config"
+  [[ -n "$1" ]] && filename="$1"
+  if [[ ! -d "$dirname" ]]; then
+    mkdir -p "$dirname"
+  fi
+
+  ln -sni $(realpath ./) "$dirname/$filename"
+}
 
 # conda
 alias cda='conda activate'
