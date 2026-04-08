@@ -69,12 +69,15 @@ alias gds='git diff --stat'            # 差异统计
 alias gcm='git commit -m'                 # 提交（需要消息）
 alias gca='git commit --amend'            # 修改最后提交
 alias gcan='git commit --amend --no-edit' # 快速修改提交（不编辑消息）
+## 提交冲突
+alias grbc='git rebase --continue'   # 解决冲突后，继续 rebase
+alias grba='git rebase --abort'      # 放弃本次 rebase，让代码完全回到拉取前的状态 (后悔药)
+# alias grbs='git rebase --skip'       # 跳过当前引发冲突的这个提交 (慎用)
 ## 日志查看
-alias glog='git log -n'                                               # 查看 n 条日志
-alias glogl='git log -n 1'                                            # 查看最后 1 条
-alias gloglc='git log -n 1 | grep "commit " | awk '"'"'{print $2}'"'" # 获取最后提交 hash
-alias glogp='git log --oneline -n 10'                                 # 简洁格式最近 10 条
-alias glogg='git log --graph --oneline --all -n 20'                   # 图形化日志
+glog() { git log -n "${1:-1}"; }                            # 查看 n 条日志
+alias gloglc='git rev-parse HEAD'                           # 获取最后提交 hash
+glogp() { git log --oneline -n "${1:-20}"; }                # 简洁格式最近 20 条
+glogg() { git log --graph --oneline --all -n "${1:-20}"; }  # 图形化日志
 ## 分支操作
 alias gb='git branch'     # 列出本地分支
 alias gba='git branch -a' # 列出所有分支（含远程）
