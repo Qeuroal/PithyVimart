@@ -208,6 +208,8 @@ elif command -v nvitop &> /dev/null; then
   alias gpust='nvitop'
 elif command -v nvidia-smi &> /dev/null; then
   command -v watch &> /dev/null && alias gpust="watch -n 1 nvidia-smi" || alias gpust="nvidia-smi -l 1"
+elif command -v npu-smi &> /dev/null; then
+  alias  gpust='npu-smi info'
 fi
 
 # link file To $HOME/.config
