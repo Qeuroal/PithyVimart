@@ -7,7 +7,7 @@
     "description": "Shebang for any file"
   },
   "modeline": {
-    "prefix": ["gmdl"],
+    "prefix": ["gml"],
     "body": [
       "vim:ft=${1:bash}:tw=${2:120}:ts=${3:4}:${4:et}:shiftwidth=${5:4}:${0}"
     ],
