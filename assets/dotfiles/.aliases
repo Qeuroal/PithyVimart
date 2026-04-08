@@ -74,10 +74,10 @@ alias grbc='git rebase --continue'   # 解决冲突后，继续 rebase
 alias grba='git rebase --abort'      # 放弃本次 rebase，让代码完全回到拉取前的状态 (后悔药)
 # alias grbs='git rebase --skip'       # 跳过当前引发冲突的这个提交 (慎用)
 ## 日志查看
-glog() { git log -n "${1:-1}"; }                            # 查看 n 条日志
+glog() { git log -n "${1:-1}"; }                            # 查看 n 条日志, NOTE: -n -1 表示全部
 alias gloglc='git rev-parse HEAD'                           # 获取最后提交 hash
-glogp() { git log --oneline -n "${1:-20}"; }                # 简洁格式最近 20 条
-glogg() { git log --graph --oneline --all -n "${1:-20}"; }  # 图形化日志
+glogp() { git log --oneline -n "${1:-20}"; }                # 简洁格式最近 20 条, NOTE: -n -1 表示全部
+glogg() { git log --graph --oneline --all -n "${1:-20}"; }  # 图形化日志, NOTE: -n -1 表示全部
 ## 分支操作
 alias gb='git branch'     # 列出本地分支
 alias gba='git branch -a' # 列出所有分支（含远程）
@@ -156,7 +156,7 @@ function y() {
 }
 
 # aider
-alias aidc='aider --model "${AIDER_MODEL:-deepseek}" --set-env all_proxy="" --commit'
+aidc() { aider --model "${1:-deepseek}" --set-env all_proxy="" --commit; }
 
 # navigation
 alias cd.='cd $(realpath .)'
@@ -168,11 +168,8 @@ alias .4='cd ../../../..'
 alias .5='cd ../../../../..'
 
 # ssh
-alias sshls='ssh -L ${LPORT:-8888}:localhost:${LPORT:-8888}'
-alias sshrs='ssh -R ${RPORT:-7890}:localhost:${RPORT:-7890}'
-## LOCAL/REMOTE_PORT_LOCAL/REMOTE
-alias sshld='ssh -L ${LPORTL:-9091}:localhost:${LPORTR:-9090}'
-alias sshrd='ssh -R ${RPORTL:-8790}:localhost:${RPORTR:-7890}'
+sshl() { [[ -z "$1" ]] && { echo "⚠️ 缺少服务器地址!"; return 1; }; ssh -L "${2:-8888}:localhost:${3:-8888}" "$1"; }
+sshr() { [[ -z "$1" ]] && { echo "⚠️ 缺少服务器地址!"; return 1; }; ssh -R "${2:-7890}:localhost:${3:-7890}" "$1"; }
 
 # Changing "ls" to "eza"
 alias la='ls -a'  # all files and dirs
