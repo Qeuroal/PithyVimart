@@ -109,12 +109,9 @@ alias git_conflocal_help="echo 'git config --local user.name \$GIT_USERNAME \ngi
 alias git_conflocal_user="[ -n \"\$GIT_USERNAME\" -a -n \"\$GIT_USERMAIL\" ] && echo 'modify git info' && git config --local user.name \$GIT_USERNAME && git config --local user.email \$GIT_USERMAIL && git config --local credential.helper store && git config --local --unset credential.helper && git config --local credential.username \$GIT_USERNAME"
 
 # mkdir
-alias mkdir='mkdir -p'          # 自动创建父目录
+alias mkdir='mkdir -p'                # 自动创建父目录
 alias md='mkdir -p'
-## 创建目录并进入
-mkcd() {
-    mkdir -p "$@" && cd "$_"
-}
+mkcd() { mkdir -p "$@" && cd "$_"; }  # 创建目录并进入
 
 # 进程管理
 alias psg='ps aux | grep -v grep | grep -i'
@@ -168,8 +165,8 @@ alias .4='cd ../../../..'
 alias .5='cd ../../../../..'
 
 # ssh
-sshl() { [[ -z "$1" ]] && { echo "⚠️ 缺少服务器地址!"; return 1; }; ssh -L "${2:-8888}:localhost:${3:-8888}" "$1"; }
-sshr() { [[ -z "$1" ]] && { echo "⚠️ 缺少服务器地址!"; return 1; }; ssh -R "${2:-7890}:localhost:${3:-7890}" "$1"; }
+sshl() { [[ -z "$1" ]] && { echo "⚠️ 缺少服务器地址!"; return 1; }; ssh -L "${2:-8888}:localhost:${3:-${2:-8888}}" "$1"; }
+sshr() { [[ -z "$1" ]] && { echo "⚠️ 缺少服务器地址!"; return 1; }; ssh -R "${2:-7890}:localhost:${3:-${2:-7890}}" "$1"; }
 
 # Changing "ls" to "eza"
 alias la='ls -a'  # all files and dirs
