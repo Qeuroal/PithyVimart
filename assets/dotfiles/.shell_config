@@ -5,26 +5,26 @@ PITHY_CUSTOM_CONFIG_PATH="$HOME/.config/pithy_custom_config"
 
 
 # import utils/prints
-[ -e "$PITHY_DOTFILES_PATH/utils/prints" ] && source "$PITHY_DOTFILES_PATH/utils/prints"
+[[ -e "$PITHY_DOTFILES_PATH/utils/prints" ]] && source "$PITHY_DOTFILES_PATH/utils/prints"
 
 # import env
 # WARNING: The environment variables must be imported first.
-[ -e "$PITHY_DOTFILES_PATH/.env_config" ] && source $PITHY_DOTFILES_PATH/.env_config
+[[ -e "$PITHY_DOTFILES_PATH/.env_config" ]] && source $PITHY_DOTFILES_PATH/.env_config
 
 # import aliases
-[ -e "$PITHY_DOTFILES_PATH/.aliases" ] && source $PITHY_DOTFILES_PATH/.aliases
+[[ -e "$PITHY_DOTFILES_PATH/.aliases" ]] && source $PITHY_DOTFILES_PATH/.aliases
 
 # import utils/sed
-[ -e "$PITHY_DOTFILES_PATH/utils/seds" ] && source "$PITHY_DOTFILES_PATH/utils/seds"
+[[ -e "$PITHY_DOTFILES_PATH/utils/seds" ]] && source "$PITHY_DOTFILES_PATH/utils/seds"
 
 # import utils/lsofs
-[ -e "$PITHY_DOTFILES_PATH/utils/lsofs" ] && source "$PITHY_DOTFILES_PATH/utils/lsofs"
+[[ -e "$PITHY_DOTFILES_PATH/utils/lsofs" ]] && source "$PITHY_DOTFILES_PATH/utils/lsofs"
 
 # import utils/finds
-[ -e "$PITHY_DOTFILES_PATH/utils/finds" ] && source "$PITHY_DOTFILES_PATH/utils/finds"
+[[ -e "$PITHY_DOTFILES_PATH/utils/finds" ]] && source "$PITHY_DOTFILES_PATH/utils/finds"
 
 # import utils/cfgs
-[ -e "$PITHY_DOTFILES_PATH/utils/cfgs" ] && source "$PITHY_DOTFILES_PATH/utils/cfgs"
+[[ -e "$PITHY_DOTFILES_PATH/utils/cfgs" ]] && source "$PITHY_DOTFILES_PATH/utils/cfgs"
 
 # fzf:FZF_DEFAULT_COMMAND
 if type rg &> /dev/null; then
