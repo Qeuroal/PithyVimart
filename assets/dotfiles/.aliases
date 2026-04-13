@@ -69,12 +69,15 @@ alias gds='git diff --stat'            # 差异统计
 alias gcm='git commit -m'                 # 提交（需要消息）
 alias gca='git commit --amend'            # 修改最后提交
 alias gcan='git commit --amend --no-edit' # 快速修改提交（不编辑消息）
+## 提交冲突
+alias grbc='git rebase --continue'   # 解决冲突后，继续 rebase
+alias grba='git rebase --abort'      # 放弃本次 rebase，让代码完全回到拉取前的状态 (后悔药)
+# alias grbs='git rebase --skip'       # 跳过当前引发冲突的这个提交 (慎用)
 ## 日志查看
-alias glog='git log -n'                                               # 查看 n 条日志
-alias glogl='git log -n 1'                                            # 查看最后 1 条
-alias gloglc='git log -n 1 | grep "commit " | awk '"'"'{print $2}'"'" # 获取最后提交 hash
-alias glogp='git log --oneline -n 10'                                 # 简洁格式最近 10 条
-alias glogg='git log --graph --oneline --all -n 20'                   # 图形化日志
+glog() { git log -n "${1:-1}"; }                            # 查看 n 条日志, NOTE: -n -1 表示全部
+alias gloglc='git rev-parse HEAD'                           # 获取最后提交 hash
+glogp() { git log --oneline -n "${1:-20}"; }                # 简洁格式最近 20 条, NOTE: -n -1 表示全部
+glogg() { git log --graph --oneline --all -n "${1:-20}"; }  # 图形化日志, NOTE: -n -1 表示全部
 ## 分支操作
 alias gb='git branch'     # 列出本地分支
 alias gba='git branch -a' # 列出所有分支（含远程）
@@ -106,12 +109,9 @@ alias git_conflocal_help="echo 'git config --local user.name \$GIT_USERNAME \ngi
 alias git_conflocal_user="[ -n \"\$GIT_USERNAME\" -a -n \"\$GIT_USERMAIL\" ] && echo 'modify git info' && git config --local user.name \$GIT_USERNAME && git config --local user.email \$GIT_USERMAIL && git config --local credential.helper store && git config --local --unset credential.helper && git config --local credential.username \$GIT_USERNAME"
 
 # mkdir
-alias mkdir='mkdir -p'          # 自动创建父目录
+alias mkdir='mkdir -p'                # 自动创建父目录
 alias md='mkdir -p'
-## 创建目录并进入
-mkcd() {
-    mkdir -p "$@" && cd "$_"
-}
+mkcd() { mkdir -p "$@" && cd "$_"; }  # 创建目录并进入
 
 # 进程管理
 alias psg='ps aux | grep -v grep | grep -i'
@@ -153,7 +153,7 @@ function y() {
 }
 
 # aider
-alias aidc='aider --model "${AIDER_MODEL:-deepseek}" --set-env all_proxy="" --commit'
+aidc() { aider --model "${1:-deepseek}" --set-env all_proxy="" --commit; }
 
 # navigation
 alias cd.='cd $(realpath .)'
@@ -165,11 +165,8 @@ alias .4='cd ../../../..'
 alias .5='cd ../../../../..'
 
 # ssh
-alias sshls='ssh -L ${LPORT:-8888}:localhost:${LPORT:-8888}'
-alias sshrs='ssh -R ${RPORT:-7890}:localhost:${RPORT:-7890}'
-## LOCAL/REMOTE_PORT_LOCAL/REMOTE
-alias sshld='ssh -L ${LPORTL:-9091}:localhost:${LPORTR:-9090}'
-alias sshrd='ssh -R ${RPORTL:-8790}:localhost:${RPORTR:-7890}'
+sshl() { [[ -z "$1" ]] && { echo "⚠️ 缺少服务器地址!"; return 1; }; ssh -L "${2:-8888}:localhost:${3:-${2:-8888}}" "$1"; }
+sshr() { [[ -z "$1" ]] && { echo "⚠️ 缺少服务器地址!"; return 1; }; ssh -R "${2:-7890}:localhost:${3:-${2:-7890}}" "$1"; }
 
 # Changing "ls" to "eza"
 alias la='ls -a'  # all files and dirs
