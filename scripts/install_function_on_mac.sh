@@ -4,50 +4,50 @@ source ${PWD}/scripts/prints.sh
 
 # {{{> install softwares
 function install_dependency_on_mac() {
-    clprint "info" "Installing softwares..."
-    # xcode-select --install
-    brew install gcc cmake ctags-exuberant ack ripgrep fzf
-    # node.js
-    brew install node
-    # snack.nvim 依赖: fd-find
-    brew install fd
-    # gnu softwares
-    brew install gnu-sed gnu-tar
+  clprint "info" "Installing softwares..."
+  # xcode-select --install
+  brew install gcc cmake ctags-exuberant ack ripgrep fzf
+  # node.js
+  brew install node
+  # snack.nvim 依赖: fd-find
+  brew install fd
+  # gnu softwares
+  brew install gnu-sed gnu-tar
 }
 # <}}}
 
 # {{{> install fonts
 function install_fonts_on_mac() {
-    if [ ! -e "./assets/remote/font/fonts.tar.gz" ]; then
-        clprint "warning" "The fonts.tar.gz file does not exist. Cancel font installation..."
-        return
-    fi
-    clprint "info" "Installing fonts..."
+  if [ ! -e "./assets/remote/font/fonts.tar.gz" ]; then
+    clprint "warning" "The fonts.tar.gz file does not exist. Cancel font installation..."
+    return
+  fi
+  clprint "info" "Installing fonts..."
 
-    # 解压fonts
-    tar -zxvf ./assets/remote/font/fonts.tar.gz -C ./
+  # 解压fonts
+  tar -zxvf ./assets/remote/font/fonts.tar.gz -C ./
 
-    # instal Droid Sans
-    rm -rf ~/Library/Fonts/droid_sans_mono
-    cp -rf ./fonts/droid_sans_mono ~/Library/Fonts
-    # install JetBrainsMono
-    rm -rf ~/Library/Fonts/jetbrainsmono
-    cp -rf ./fonts/jetbrainsmono ~/Library/Fonts
-    # install MesloLGS
-    rm -rf ~/Library/Fonts/meslolgs
-    cp -rf ./fonts/meslolgs ~/Library/Fonts
+  # instal Droid Sans
+  rm -rf ~/Library/Fonts/droid_sans_mono
+  cp -rf ./fonts/droid_sans_mono ~/Library/Fonts
+  # install JetBrainsMono
+  rm -rf ~/Library/Fonts/jetbrainsmono
+  cp -rf ./fonts/jetbrainsmono ~/Library/Fonts
+  # install MesloLGS
+  rm -rf ~/Library/Fonts/meslolgs
+  cp -rf ./fonts/meslolgs ~/Library/Fonts
 
-    # 删除fonts
-    rm -rf ./fonts
+  # 删除fonts
+  rm -rf ./fonts
 }
 # <}}}
 
 # {{{> install vimart
 function install_vimart_on_mac() {
-    backup_vim_data
-    install_dependency_on_mac
-    install_fonts_on_mac
-    print_logo
+  backup_vim_data
+  install_dependency_on_mac
+  install_fonts_on_mac
+  print_logo
 }
 # <}}}
 

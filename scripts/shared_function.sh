@@ -4,121 +4,121 @@ PITHY_CONFIG_PATH="$HOME/.config/pithy_configs"
 
 #{{{> backup personal vim configure
 function backup_vim_data() {
-    # echo -e "\033[32m==> Backuping vim data...\033[0m"
-    clprint "info" "Backuping vim data..."
+  # echo -e "\033[32m==> Backuping vim data...\033[0m"
+  clprint "info" "Backuping vim data..."
 }
 #<}}}
 
 #{{{> copy and link files
 function copy_files() {
-    # echo -e "\033[32m==> Copying files...\033[0m"
-    clprint "info" "Copying files..."
+  # echo -e "\033[32m==> Copying files...\033[0m"
+  clprint "info" "Copying files..."
 
-    local srcpath=${PWD}
-    local destpath=$HOME
-    if [ "$#" = "1" ]; then
-        srcpath=${PWD}
-        destpath="$1"
-    elif [ "$#" = "2" ]; then
-        srcpath="$1"
-        destpath="$2"
-    fi
+  local srcpath=${PWD}
+  local destpath=$HOME
+  if [ "$#" = "1" ]; then
+    srcpath=${PWD}
+    destpath="$1"
+  elif [ "$#" = "2" ]; then
+    srcpath="$1"
+    destpath="$2"
+  fi
 
-    clprint "info" "srcpath: $srcpath"
-    clprint "info" "destfilepath: $destpath"
+  clprint "info" "srcpath: $srcpath"
+  clprint "info" "destfilepath: $destpath"
 
 }
 #<}}}
 
 #{{{> 判断文件是否存在
 function is_exist_file()
-{
+  {
     local filename=$1
     if [ -f $filename ]; then
-        echo 1
+      echo 1
     else
-        echo 0
+      echo 0
     fi
-}
+  }
 #<}}}
 
 #{{{> print PithyVimart logo
 function print_logo() {
-    local color="$(tput setaf 6)"
-    local normal="$(tput sgr0)"
-    printf "${color}"
-    echo ''
-    echo '________ _____ _____ ______           ___    _______                             _____ '
-    echo '___  __ \___(_)__  /____  /_ _____  ____ |  / /___(_)_______ ___ ______ ___________  /_'
-    echo '__  /_/ /__  / _  __/__  __ \__  / / /__ | / / __  / __  __ `__ \_  __ `/__  ___/_  __/'
-    echo '_  ____/ _  /  / /_  _  / / /_  /_/ / __ |/ /  _  /  _  / / / / // /_/ / _  /    / /_  '
-    echo '/_/      /_/   \__/  /_/ /_/ _\__, /  _____/   /_/   /_/ /_/ /_/ \__,_/  /_/     \__/  by Qeuroal.'
-    echo '                             /____/                                                    '
-    echo ''
-    echo 'Finish vimart installment!'
-    echo 'Just enjoy it!'
-    echo ''
-    printf "${normal}"
+  local color="$(tput setaf 6)"
+  local normal="$(tput sgr0)"
+  printf "${color}"
+  echo ''
+  echo '________ _____ _____ ______           ___    _______                             _____ '
+  echo '___  __ \___(_)__  /____  /_ _____  ____ |  / /___(_)_______ ___ ______ ___________  /_'
+  echo '__  /_/ /__  / _  __/__  __ \__  / / /__ | / / __  / __  __ `__ \_  __ `/__  ___/_  __/'
+  echo '_  ____/ _  /  / /_  _  / / /_  /_/ / __ |/ /  _  /  _  / / / / // /_/ / _  /    / /_  '
+  echo '/_/      /_/   \__/  /_/ /_/ _\__, /  _____/   /_/   /_/ /_/ /_/ \__,_/  /_/     \__/  by Qeuroal.'
+  echo '                             /____/                                                    '
+  echo ''
+  echo 'Finish vimart installment!'
+  echo 'Just enjoy it!'
+  echo ''
+  printf "${normal}"
 }
 #<}}}
 
 #{{{> 获取linux发行版名称
 function get_linux_distro()
-{
+  {
     if grep -Eq "Ubuntu" /etc/*-release; then
-        echo "Ubuntu"
+      echo "Ubuntu"
     elif grep -Eq "Deepin" /etc/*-release; then
-        echo "Deepin"
+      echo "Deepin"
     elif grep -Eq "Raspbian" /etc/*-release; then
-        echo "Raspbian"
+      echo "Raspbian"
     elif grep -Eq "uos" /etc/*-release; then
-        echo "UOS"
+      echo "UOS"
     elif grep -Eq "LinuxMint" /etc/*-release; then
-        echo "LinuxMint"
+      echo "LinuxMint"
     elif grep -Eq "elementary" /etc/*-release; then
-        echo "elementaryOS"
+      echo "elementaryOS"
     elif grep -Eq "Debian" /etc/*-release; then
-        echo "Debian"
+      echo "Debian"
     elif grep -Eq "Kali" /etc/*-release; then
-        echo "Kali"
+      echo "Kali"
     elif grep -Eq "Parrot" /etc/*-release; then
-        echo "Parrot"
+      echo "Parrot"
     elif grep -Eq "CentOS" /etc/*-release; then
-        echo "CentOS"
+      echo "CentOS"
     elif grep -Eq "fedora" /etc/*-release; then
-        echo "fedora"
+      echo "fedora"
     elif grep -Eq "openSUSE" /etc/*-release; then
-        echo "openSUSE"
+      echo "openSUSE"
     elif grep -Eq "Arch Linux" /etc/*-release; then
-        echo "ArchLinux"
+      echo "ArchLinux"
     elif grep -Eq "ManjaroLinux" /etc/*-release; then
-        echo "ManjaroLinux"
+      echo "ManjaroLinux"
     elif grep -Eq "Gentoo" /etc/*-release; then
-        echo "Gentoo"
+      echo "Gentoo"
     elif grep -Eq "alpine" /etc/*-release; then
-        echo "Alpine"
+      echo "Alpine"
     else
-        echo "Unknown"
+      echo "Unknown"
     fi
-}
+  }
 #<}}}
 
 #{{{> 获取当前时间戳
 function get_now_timestamp() {
-    local cur_sec_and_ns=`date '+%s-%N'`
-    echo ${cur_sec_and_ns%-*}
+  local cur_sec_and_ns=`date '+%s-%N'`
+  echo ${cur_sec_and_ns%-*}
 }
 #<}}}
 
 #{{{> has sudo
 function has_sudo() {
-    sudo -v &>/dev/null
-    # sudo or root
-    if [ $? -ne 0 ] && [ "$(id -u)" != "0" ]; then
-        echo 0
-    else
-        echo 1
-    fi
+  sudo -v &>/dev/null
+  # sudo or root
+  if [ $? -ne 0 ] && [ "$(id -u)" != "0" ]; then
+    echo 0
+  else
+    echo 1
+  fi
 }
 #<}}}
 
