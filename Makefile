@@ -28,7 +28,6 @@ i install:
 
 l local: install
 	@ln -sf `realpath ${NVIM_CORE_PATH}/lua/pithyvim` ./nvim/lua/pithyvim
-	# @cp ./local/lazy.lua ./nvim/lua/config/lazy.lua
 
 ul unlocal:
 	@[ -L "./nvim/lua/pithyvim" ] && unlink "./nvim/lua/pithyvim" || true
