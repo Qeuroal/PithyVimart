@@ -14,7 +14,6 @@ function main() {
   type=$(uname)
   echo "Platform type: "${type}
 
-
   if [[ ${type} == "Darwin" ]]; then
     install_vimart_on_mac
   elif [[ ${type} == "FreeBSD" ]]; then
