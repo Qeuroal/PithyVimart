@@ -28,4 +28,12 @@
 	# 可以在 ~/.gitconfig 中通过设置 `excludesfile = ""` 删除默认忽略配置;
 	# 或者 `excludesfile = "/path/to/your/file"` 来覆盖默认忽略配置
 	excludesfile = ~/.config/pithy_configs/.ggitignore
+	# 若存在 delta, 则代替默认的 git diff
+	pager = ~/.config/pithy_configs/bin/git-pager
+[interactive]
+	diffFilter = delta --color-only
+[delta]
+	navigate = true  # use n and N to move between diff sections
+	dark = true      # or light = true, or omit for auto-detection
+	line-numbers = true
 
