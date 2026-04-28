@@ -122,3 +122,13 @@ function has_sudo() {
 }
 #<}}}
 
+#{{{> asroot
+function asroot() {
+  if [ "$(id -u)" -eq 0 ]; then
+    "$@"
+  else
+    sudo "$@"
+  fi
+}
+#<}}}
+
