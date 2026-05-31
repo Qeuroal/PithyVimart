@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 function install_software_on_archlinux() {
+  ask_confirmation "Install dependencies?" || { clprint "warning" "Skipped software installation..."; return 0; }
   if [[ "$(has_sudo)" == "0" ]]; then
     clprint "warning" "You are not the root user."
     return

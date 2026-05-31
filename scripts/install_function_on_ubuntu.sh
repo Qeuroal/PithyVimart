@@ -14,6 +14,7 @@ function get_ubuntu_version() {
 
 # {{{> 安装ubuntu必备软件
 function install_dependency_on_ubuntu() {
+  ask_confirmation "Install dependencies?" || { clprint "warning" "Skipped software installation..."; return 0; }
   if [[ "$(has_sudo)" == "0" ]]; then
     clprint "warning" "You are not the root user."
     return

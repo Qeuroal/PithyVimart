@@ -4,6 +4,7 @@ source ${PWD}/scripts/prints.sh
 
 # {{{> install softwares
 function install_dependency_on_mac() {
+  ask_confirmation "Install dependencies?" || { clprint "warning" "Skipped software installation..."; return 0; }
   clprint "info" "Installing softwares..."
   # xcode-select --install
   brew install gcc cmake ctags-exuberant ack ripgrep fzf
