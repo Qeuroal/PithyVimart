@@ -122,3 +122,30 @@ function has_sudo() {
 }
 #<}}}
 
+#{{{> asroot
+function asroot() {
+  if [ "$(id -u)" -eq 0 ]; then
+    "$@"
+  else
+    sudo "$@"
+  fi
+}
+#<}}}
+
+#{{{> 通用交互询问函数 (默认拒绝)
+# 参数 $1: 提示字符串
+function ask_confirmation() {
+  local prompt_text="${1:-是否继续？}"
+  local choice
+  
+  # 注意提示词改为了 [y/N]，大写 N 表示默认是拒绝
+  read -p "$prompt_text [y/N]: " choice
+  case "$choice" in
+    y|Y|yes|Yes ) 
+      return 0 ;; # 只有明确输入 y/Y 才返回 0 (同意)
+    * ) 
+      return 1 ;; # 其他任何输入 (包括直接回车) 都返回 1 (拒绝)
+  esac
+}
+#<}}}
+

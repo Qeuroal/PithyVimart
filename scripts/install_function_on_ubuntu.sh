@@ -14,6 +14,7 @@ function get_ubuntu_version() {
 
 # {{{> 安装ubuntu必备软件
 function install_dependency_on_ubuntu() {
+  ask_confirmation "Install dependencies?" || { clprint "warning" "Skipped software installation..."; return 0; }
   if [[ "$(has_sudo)" == "0" ]]; then
     clprint "warning" "You are not the root user."
     return
@@ -21,23 +22,23 @@ function install_dependency_on_ubuntu() {
 
   # echo -e "\033[32m==> Installing softwares...\033[0m"
   clprint "info" "Installing softwares..."
-  sudo apt-get update
+  asroot apt-get update
 
   version=$(get_ubuntu_version)
   if [ $version -eq 14 ];then
-    sudo apt-get install -y cmake3
+    asroot apt-get install -y cmake3
   else
-    sudo apt-get install -y cmake
+    asroot apt-get install -y cmake
   fi
 
-  sudo apt-get install -y build-essential fontconfig libfile-next-perl ack-grep git ripgrep fzf
-  # sudo apt-get install -y python3-dev python python-dev
-  sudo apt-get install -y python3 python3-dev python3-env
-  sudo apt-get install -y universal-ctags || sudo apt-get install -y exuberant-ctags
+  asroot apt-get install -y build-essential fontconfig libfile-next-perl ack-grep git ripgrep fzf
+  # asroot apt-get install -y python3-dev python python-dev
+  asroot apt-get install -y python3 python3-dev python3-env
+  asroot apt-get install -y universal-ctags || asroot apt-get install -y exuberant-ctags
   # node.js
-  sudo apt-get install -y npm
+  asroot apt-get install -y npm
   # snack.nvim 依赖: fd-find
-  sudo apt-get install -y fd-find
+  asroot apt-get install -y fd-find
 }
 # <}}}
 

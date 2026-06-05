@@ -6,4 +6,5 @@ tmp_*
 WARNING_*
 ERROR_*
 *.log
+.codex
 

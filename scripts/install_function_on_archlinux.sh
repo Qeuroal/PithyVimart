@@ -1,20 +1,17 @@
 #!/usr/bin/env bash
 
 function install_software_on_archlinux() {
+  ask_confirmation "Install dependencies?" || { clprint "warning" "Skipped software installation..."; return 0; }
   if [[ "$(has_sudo)" == "0" ]]; then
     clprint "warning" "You are not the root user."
     return
   fi
 
-  sudo pacman -S --noconfirm ctags automake gcc cmake python3 python2 ack git fontconfig ripgrep fzf
+  asroot pacman -S --noconfirm ctags automake gcc cmake python3 python2 ack git fontconfig ripgrep fzf
   # node.js
-  sudo pacman -S --noconfirm npm
+  asroot pacman -S --noconfirm npm
   # snack.nvim 依赖: fd-find
-  sudo pacman -S fd
-
-  # # 解决vim ycm 问题: ImportError: libtinfo.so.5: cannot open shared object file: No such file or directory
-  # # 详见: https://github.com/chxuan/vimplus/issues/74
-  # sudo ln -s /usr/lib/libtinfo.so.6 /usr/lib/libtinfo.so.5
+  asroot pacman -S fd
 }
 
 # {{{> 在archlinux安装vimart
