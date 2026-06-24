@@ -1,9 +1,14 @@
 #! vim:ft=bash:ts=2:et:shiftwidth=2:
 
+###########
+# command
+###########
 # command -v
 alias cmv='command -v'
 
+##########
 # proxy
+##########
 proxyon() {
   local PROXY_PORT="$1"
   local PROXY_IP="$2"
@@ -22,18 +27,26 @@ proxyst() {
 }
 alias pst='proxyst'
 
+#########
 # print
+#########
 alias lessr='less -R'
 
+#########
 # slock
+#########
 alias sk="slock"
 
+##########
 # typora
+##########
 [[ "$(uname)" == 'Darwin' ]] && alias openmd="open -a Typora"
 
 alias gtags="ctags --fields=+iaS --extra=+q --c-kinds=+p -R ."
 
+########
 # nvim
+########
 if command -v nvim &> /dev/null; then
   alias vi='nvim -V1'
   alias vidiff='nvim -V1 -d'
@@ -41,48 +54,51 @@ if command -v nvim &> /dev/null; then
 fi
 alias vi.="vi ."
 alias vim.="vim ."
-
 # 修改自定义配置文件
 alias vipc="vi $PITHY_CUSTOM_CONFIG_PATH"
 
+########
 # curl
+########
 alias curla='curl -A "Google Chrome" -JL'
 alias curlo='curl -A "Google Chrome" -JLO'
 # curl git file
 curlg() { curla "$(echo "$1" | sed 's/github\.com/raw.githubusercontent.com/' | sed 's|/blob/|/|')"; }
 curlgo() { curlo "$(echo "$1" | sed 's/github\.com/raw.githubusercontent.com/' | sed 's|/blob/|/|')"; }
 
+#######
 # git
-## 添加文件
+#######
+# 添加文件
 alias ga='git add'                     # 添加指定文件
 alias gA='git add -A'                  # 添加所有变更（新增+修改+删除）
 alias gaU='git add -u'                 # 添加已跟踪文件的变更（修改+删除）
 alias gap='git add -p'                 # 交互式添加（分块选择）
-## 状态查看
+# 状态查看
 alias gs='git status -sb'              # 简短状态
 alias gst='git status'                 # 完整状态
 alias gd='git diff'                    # 工作区差异
 alias gvd='git vd'                     # 工作区差异 via vim
 alias gdc='git diff --cached'          # 暂存区差异
 alias gds='git diff --stat'            # 差异统计
-## 提交
+# 提交
 alias gcm='git commit -m'                 # 提交（需要消息）
 alias gca='git commit --amend'            # 修改最后提交
 alias gcan='git commit --amend --no-edit' # 快速修改提交（不编辑消息）
-## 提交冲突
+# 提交冲突
 alias grbc='git rebase --continue'   # 解决冲突后，继续 rebase
 alias grba='git rebase --abort'      # 放弃本次 rebase，让代码完全回到拉取前的状态 (后悔药)
 # alias grbs='git rebase --skip'       # 跳过当前引发冲突的这个提交 (慎用)
-## 日志查看
+# 日志查看
 glog() { git log -n "${1:-1}"; }                            # 查看 n 条日志, NOTE: -n -1 表示全部
 alias gloglc='git rev-parse HEAD'                           # 获取最后提交 hash
 glogp() { git log --oneline -n "${1:-20}"; }                # 简洁格式最近 20 条, NOTE: -n -1 表示全部
 glogg() { git log --graph --oneline --all -n "${1:-20}"; }  # 图形化日志, NOTE: -n -1 表示全部
-## 分支操作
+# 分支操作
 alias gb='git branch'     # 列出本地分支
 alias gba='git branch -a' # 列出所有分支（含远程）
 alias gco='git checkout'  # 切换分支/文件
-## 远程操作
+# 远程操作
 alias gcl='git clone'                     # 克隆仓库
 alias gclr='git clone --recursive'        # 递归克隆（含子模块）
 alias gcld='git clone -b dev'             # 克隆仓库
@@ -97,17 +113,16 @@ alias grv='git remote -v'                 # 查看远程仓库详情
 alias gra='git remote add'                # 添加远程仓库
 alias grr='git remote remove'             # 删除远程仓库
 alias gru='git remote set-url'            # 修改远程仓库 URL
-## 暂存操作
+# 暂存操作
 alias gsh='git stash'                  # 暂存当前变更
 alias gshp='git stash pop'             # 恢复最近暂存
 alias gshl='git stash list'            # 查看暂存列表
 alias gclean='git clean -fd'           # 清空未添加的文件和文件夹
-## 配置
+# 配置
 alias gcf='git config --list --show-origin'  # 查看配置
-## 设置局部级用户信息
+# 设置局部级用户信息
 alias git_conflocal_help="echo 'git config --local user.name \$GIT_USERNAME \ngit config --local user.email \$GIT_USERMAIL \ngit config --local credential.helper store \ngit config --local --unset credential.helper \ngit config --local credential.username \$GIT_USERNAME\\n\\ngit remote rm origin \ngit remote add origin \$GIT_REMOTE_URL \ngit push --set-upstream origin master'"
 alias git_conflocal_user="[ -n \"\$GIT_USERNAME\" -a -n \"\$GIT_USERMAIL\" ] && echo 'modify git info' && git config --local user.name \$GIT_USERNAME && git config --local user.email \$GIT_USERMAIL && git config --local credential.helper store && git config --local --unset credential.helper && git config --local credential.username \$GIT_USERNAME"
-
 # lazygit
 if command -v lazygit &> /dev/null; then
   alias lg='lazygit'
@@ -122,10 +137,17 @@ mkcd() { mkdir -p "$@" && cd "$_"; }  # 创建目录并进入
 alias psg='ps aux | grep -v grep | grep -i'
 alias killport='function _killport() { lsof -ti :$1 | xargs kill -9; }; _killport'
 
-# 系统信息
+############
+# 网络信息
+############
 alias localip='ifconfig | grep -Eo "inet (addr:)?([0-9]*\.){3}[0-9]*" | grep -Eo "([0-9]*\.){3}[0-9]*" | grep -v "127.0.0.1"'
 # ip
 alias ipst='curl ipinfo.io'
+
+########
+# 端口
+########
+ncz() { nc -zv -w "${3:-3}" "$1" "${2:-22}"; } # nc -zv -w 3 host port [timeout]
 
 # tmux
 alias tls='tmux ls'
@@ -173,6 +195,9 @@ alias .5='cd ../../../../..'
 sshl() { [[ -z "$1" ]] && { echo "⚠️ 缺少服务器地址!"; return 1; }; ssh -L "${2:-8888}:localhost:${3:-${2:-8888}}" "$1"; }
 sshr() { [[ -z "$1" ]] && { echo "⚠️ 缺少服务器地址!"; return 1; }; ssh -R "${2:-7890}:localhost:${3:-${2:-7890}}" "$1"; }
 
+############
+# ls & eza
+############
 # Changing "ls" to "eza"
 alias la='ls -a'  # all files and dirs
 alias lla='ls -al'  # long format for all files and dirs
@@ -214,6 +239,9 @@ elif command -v npu-smi &> /dev/null; then
   alias  gpust='npu-smi info'
 fi
 
+########
+# link
+########
 # link file To $HOME/.config
 ln2cfg() {
   local filename="${PWD##*/}"
@@ -226,12 +254,16 @@ ln2cfg() {
   ln -sni $(realpath ./) "$dirname/$filename"
 }
 
+#########
 # conda
+#########
 alias cda='conda activate'
 alias cdd='conda deactivate'
 alias cdl='conda env list'
 
+############################
 # systemctl - 系统服务管理
+############################
 if command -v systemctl &> /dev/null; then
   alias sc='sudo systemctl'                 # systemctl 基础命令
   alias scs='sudo systemctl status'         # 查看服务状态
@@ -286,23 +318,30 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   alias ts='tsp'
 fi
 
+############
 # 文件管理
-## 快速备份文件
+############
+# 快速备份文件
 backup() { cp -a "${1%/}" "${1%/}.bak-$(date +%Y%m%d-%H%M%S)"; } # 归档模式备份
-## 查看文件大小并排序
+# 查看文件大小并排序
 # ducks() { du -cks * | sort -rn | head -11; }
 ducks() { du -shc * .[!.]* 2>/dev/null | sort -hr | head -11; }
-## 计算文件数量
+# 计算文件数量
 count() { find "${1:-.}" -type f | wc -l; }
-## 查找大文件
+# 查找大文件
 bigfiles() { find . -type f -size +${1:-100}M -exec ls -lh {} \; | awk '{ print $9 ": " $5 }'; }
 
+################
 # task-spooler
+################
 alias tst='ts -t'
 # alias tsl='ts -l'
 alias tsc='ts -c'
 tsl() { ts -c "${1}" | less; }
 
+##########
+# docker
+##########
 # docker
 alias dk='docker'
 alias dkps='docker ps'            # 查看运行中的容器
@@ -322,7 +361,9 @@ alias dcd='docker-compose down'   # 停止并销毁容器及网络 (重置环境
 alias dcon='docker-compose start' # 仅唤醒已存在的容器 (不重新创建)
 alias dcoff='docker-compose stop' # 仅停止容器运行 (不销毁任何数据)
 
+##########
 # python
+##########
 pip3b() { pip3 "$@" --break-system-packages; }
 pipb() { pip "$@" --break-system-packages; }
 
