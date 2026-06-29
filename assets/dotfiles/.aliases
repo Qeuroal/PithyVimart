@@ -366,4 +366,14 @@ alias dcoff='docker-compose stop' # 仅停止容器运行 (不销毁任何数据
 ##########
 pip3b() { pip3 "$@" --break-system-packages; }
 pipb() { pip "$@" --break-system-packages; }
+cudapy() {
+  if [ $# -lt 2 ]; then
+    echo "用法: cudapy <GPU_ID> <python_script_or_args>"
+    return 1
+  fi
+
+  local gpu="$1"
+  shift
+  CUDA_VISIBLE_DEVICES="$gpu" python "$@"
+}
 
