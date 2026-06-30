@@ -377,3 +377,8 @@ cudapy() {
   CUDA_VISIBLE_DEVICES="$gpu" python "$@"
 }
 
+######
+# bak
+######
+bak() { cp -a -- "${1%/}" "${1%/}.${2:-bak}"; }
+
