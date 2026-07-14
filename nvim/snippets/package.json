@@ -38,6 +38,10 @@
       {
         "language": "json",
         "path": "./snippets/json/json.json"
+      },
+      {
+        "language": "editorconfig",
+        "path": "./snippets/editorconfig.json"
       }
     ]
   }
