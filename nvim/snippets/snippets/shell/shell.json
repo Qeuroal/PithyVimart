@@ -5,5 +5,15 @@
       "#!/usr/bin/env bash${0}"
     ],
     "description": "Shebang"
+  },
+  "Wrapped Curl": {
+    "prefix": "wrap_curl",
+    "body": [
+      "curl() { command curl -fsS \"\\$@\"; }",
+      "ocurl() { command curl \"\\$@\"; }",
+      "",
+      "${0}"
+    ],
+    "description": "Wrapped curl & original curl"
   }
 }
