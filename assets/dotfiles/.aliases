@@ -63,7 +63,7 @@ alias vipc="vi $PITHY_CUSTOM_CONFIG_PATH"
 # alias ocurl='command curl'
 # alias curl='command curl -fsS'
 alias curla='command curl -A "Google Chrome" -JL'
-alias curlo='command curl -A "Google Chrome" -JLO'
+alias curlo='command curl -A "Google Chrome" -JLO' # --clobber 专门用于强制覆盖, -J 不会覆盖同名文件
 # curl git file
 curlg() { curla "$(echo "$1" | sed 's/github\.com/raw.githubusercontent.com/' | sed 's|/blob/|/|')"; }
 curlgo() { curlo "$(echo "$1" | sed 's/github\.com/raw.githubusercontent.com/' | sed 's|/blob/|/|')"; }
