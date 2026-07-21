@@ -60,8 +60,10 @@ alias vipc="vi $PITHY_CUSTOM_CONFIG_PATH"
 ########
 # curl
 ########
-alias curla='curl -A "Google Chrome" -JL'
-alias curlo='curl -A "Google Chrome" -JLO'
+# alias ocurl='command curl'
+# alias curl='command curl -fsS'
+alias curla='command curl -A "Google Chrome" -JL'
+alias curlo='command curl -A "Google Chrome" -JLO'
 # curl git file
 curlg() { curla "$(echo "$1" | sed 's/github\.com/raw.githubusercontent.com/' | sed 's|/blob/|/|')"; }
 curlgo() { curlo "$(echo "$1" | sed 's/github\.com/raw.githubusercontent.com/' | sed 's|/blob/|/|')"; }
