@@ -182,7 +182,7 @@ function y() {
 }
 
 # aider
-aidc() { aider --model "${1:-deepseek}" --set-env all_proxy="" --commit; }
+aidc() { aider --model "${1:-deepseek/deepseek-v4-pro}" --set-env all_proxy="" --commit; }
 
 # navigation
 alias cd.='cd $(realpath .)'
