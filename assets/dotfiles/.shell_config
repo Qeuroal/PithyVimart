@@ -24,30 +24,71 @@ PITHY_CUSTOM_CONFIG_PATH="$HOME/.config/pithy_custom_config"
 #<}}}
 
 #{{{> fzf
-# rg
-if command -v rg &> /dev/null; then
-  export FZF_DEFAULT_COMMAND='rg --files'
-fi
+if command -v fzf &> /dev/null; then
+  # rg
+  if command -v rg &> /dev/null; then
+    export FZF_DEFAULT_COMMAND='rg --files'
+  fi
 
-# multi & theme
-export FZF_DEFAULT_OPTS=$'--multi
---color=fg:#cad3f5,bg:#24273a,hl:#ed8796,fg+:#cad3f5,bg+:#363a4f
---color=hl+:#ed8796,info:#c6a0f6,prompt:#c6a0f6,pointer:#f4dbd6
---color=marker:#f7e6e2,spinner:#f4dbd6,header:#ed8796,border:#5b6078
---color=gutter:#363a4f
---layout=reverse'
-# preview: 根据 bat 是否存在选择预览命令
-if command -v bat &>/dev/null; then
-  local_fzf_preview='bat --style=numbers --color=always --line-range=:500 {}'
-else
-  local_fzf_preview='cat {}'
+  # multi & theme
+  export FZF_DEFAULT_OPTS=$'--multi
+  --color=fg:#cad3f5,bg:#24273a,hl:#ed8796,fg+:#cad3f5,bg+:#363a4f
+  --color=hl+:#ed8796,info:#c6a0f6,prompt:#c6a0f6,pointer:#f4dbd6
+  --color=marker:#f7e6e2,spinner:#f4dbd6,header:#ed8796,border:#5b6078
+  --color=gutter:#363a4f
+  --border
+  --layout=reverse'
+  # preview: 根据 bat 是否存在选择预览命令
+  if command -v bat &>/dev/null; then
+    local_fzf_preview='bat --style=numbers --color=always --line-range=:1024 {}'
+  else
+    local_fzf_preview='head -n 1024 {}'
+  fi
+  # preview configure
+  export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS
+  --preview='$local_fzf_preview'
+  --preview-window='down,50%,border-top,wrap,hidden'
+  --bind='ctrl-/:toggle-preview,ctrl-e:preview-down,ctrl-y:preview-up'"
+  unset local_fzf_preview
+
+  # 快速编辑文件
+  fe() {
+    local files
+    IFS=$'\n' files=($(fzf --query="$1" --multi --select-1 --exit-0))
+    [[ -n "$files" ]] && ${EDITOR:-vi} "${files[@]}"
+  }
+  # 搜索并杀死进程
+  fkill() {
+    local pid
+    pid=$(ps -ef | sed 1d | fzf -m --no-preview | awk '{print $2}')
+    if [[ "x$pid" != "x" ]]; then
+      echo $pid | xargs kill -${1:-9}
+    fi
+  }
+  # 从 ~/.ssh/config 选择主机连接
+  fssh() {
+    local host
+    host=$(grep "^Host " ~/.ssh/config | awk '{print $2}' | fzf --no-multi --no-preview)
+    if [[ -n "$host" ]]; then
+      ssh "$host"
+    fi
+  }
+  # tmux attach session by fzf
+  tt() {
+    local session
+
+    session=$(
+      tmux list-sessions -F '#{session_name}' 2>/dev/null |
+        fzf --no-multi --no-preview
+    ) || return
+
+    if [[ -n "$TMUX" ]]; then
+      tmux switch-client -t "$session"
+    else
+      tmux attach-session -t "$session"
+    fi
+  }
 fi
-# preview configure
-export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS
---preview='$local_fzf_preview'
---preview-window='down,50%,border-top,hidden'
---bind='ctrl-/:toggle-preview,ctrl-d:preview-page-down,ctrl-u:preview-page-up'"
-unset local_fzf_preview
 #<}}}
 
 #{{{> bat

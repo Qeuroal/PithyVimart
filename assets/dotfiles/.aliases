@@ -156,7 +156,7 @@ ncz() { nc -zv -w "${3:-3}" "$1" "${2:-22}"; } # nc -zv -w 3 host port [timeout]
 # tmux
 alias tls='tmux ls'
 alias ta='tmux attach'
-alias tt='tmux attach -t'
+command -v fzf &> /dev/null || alias tt='tmux attach -t' # fzf 会创建 fzf 选择会话
 alias td='tmux detach'
 alias tn='tmux new -s'
 ## common
