@@ -1,4 +1,4 @@
-# vim:ft=bash:tw=80:ts=4:et:shiftwidth=4:
+# vim:ft=bash:tw=120:et:
 
 PITHY_DOTFILES_PATH="$HOME/.config/pithy_configs"
 PITHY_CUSTOM_CONFIG_PATH="$HOME/.config/pithy_custom_config"
@@ -27,26 +27,37 @@ PITHY_CUSTOM_CONFIG_PATH="$HOME/.config/pithy_custom_config"
 [[ -e "$PITHY_DOTFILES_PATH/utils/cfgs" ]] && source "$PITHY_DOTFILES_PATH/utils/cfgs"
 
 # fzf:FZF_DEFAULT_COMMAND
-if type rg &> /dev/null; then
-    export FZF_DEFAULT_COMMAND='rg --files'
-    export FZF_DEFAULT_OPTS='-m'
+if command -v rg &> /dev/null; then
+  export FZF_DEFAULT_COMMAND='rg --files'
+  export FZF_DEFAULT_OPTS=$'--multi --color=fg:#cad3f5,bg:#24273a,hl:#ed8796,fg+:#cad3f5,bg+:#363a4f
+    --color=hl+:#ed8796,info:#c6a0f6,prompt:#c6a0f6,pointer:#f4dbd6
+    --color=marker:#f7e6e2,spinner:#f4dbd6,header:#ed8796,border:#5b6078
+    --color=gutter:#363a4f'
+  if command -v bat &> /dev/null; then
+    export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS \
+      --layout=reverse \
+      --preview='bat --style=numbers --color=always --line-range=:500 {}' \
+      --preview-window='down,50%,border-top,hidden' \
+      --bind='ctrl-/:toggle-preview'"
+  fi
 fi
 
 # prevent tmux exiting with Ctrl-d
 if [[ "$(uname)" = 'Linux' ]]; then
-    set -o ignoreeof
-    ignoreeof=3
+  set -o ignoreeof
+  ignoreeof=3
 elif [[ "$(uname)" = 'Darwin' ]]; then
-    set -o ignoreeof
+  set -o ignoreeof
 fi
 
 # import custom user config
 # WARNING: The user environment variables must be imported last
 if [[ -f "$PITHY_CUSTOM_CONFIG_PATH" ]]; then
-    # `|| True`: 显示忽略用户自定义配置状态
-    source "$PITHY_CUSTOM_CONFIG_PATH" || True
+  # `|| True`: 显示忽略用户自定义配置状态
+  source "$PITHY_CUSTOM_CONFIG_PATH" || True
 fi
 
 # 显式返回 0, 确保整个脚本加载完的状态是绿色的
 # 为保证及时纠错, 暂时关闭此模式
 # return 0
+
