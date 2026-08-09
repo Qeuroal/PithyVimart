@@ -38,7 +38,7 @@ if command -v rg &> /dev/null; then
       --layout=reverse \
       --preview='bat --style=numbers --color=always --line-range=:500 {}' \
       --preview-window='down,50%,border-top,hidden' \
-      --bind='ctrl-/:toggle-preview'"
+      --bind='ctrl-/:toggle-preview,ctrl-d:preview-page-down,ctrl-u:preview-page-up'"
   fi
 fi
 
