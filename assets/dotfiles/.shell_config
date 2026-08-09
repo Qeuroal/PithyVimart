@@ -42,6 +42,13 @@ if command -v rg &> /dev/null; then
   fi
 fi
 
+# bat
+if command -v bat &> /dev/null; then
+  if bat --list-themes | grep -qx 'Catppuccin Macchiato'; then
+    export BAT_THEME='Catppuccin Macchiato'
+  fi
+fi
+
 # prevent tmux exiting with Ctrl-d
 if [[ "$(uname)" = 'Linux' ]]; then
   set -o ignoreeof
