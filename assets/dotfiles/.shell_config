@@ -10,9 +10,9 @@ PITHY_CUSTOM_CONFIG_PATH="$HOME/.config/pithy_custom_config"
 
 #{{{> import env
 # WARNING: The environment variables must be imported first.
-[[ -e "$PITHY_DOTFILES_PATH/.env_config" ]] && source $PITHY_DOTFILES_PATH/.env_config
+[[ -e "$PITHY_DOTFILES_PATH/.env_config" ]] && source "$PITHY_DOTFILES_PATH/.env_config"
 # import aliases
-[[ -e "$PITHY_DOTFILES_PATH/.aliases" ]] && source $PITHY_DOTFILES_PATH/.aliases
+[[ -e "$PITHY_DOTFILES_PATH/.aliases" ]] && source "$PITHY_DOTFILES_PATH/.aliases"
 # import utils/sed
 [[ -e "$PITHY_DOTFILES_PATH/utils/seds" ]] && source "$PITHY_DOTFILES_PATH/utils/seds"
 # import utils/lsofs
@@ -112,8 +112,8 @@ fi
 #{{{> import custom user config
 # WARNING: The user environment variables must be imported last
 if [[ -f "$PITHY_CUSTOM_CONFIG_PATH" ]]; then
-  # `|| True`: 显示忽略用户自定义配置状态
-  source "$PITHY_CUSTOM_CONFIG_PATH" || True
+  # `|| true`: 显示忽略用户自定义配置状态
+  source "$PITHY_CUSTOM_CONFIG_PATH" || true
 fi
 #<}}}
 
