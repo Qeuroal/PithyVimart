@@ -1,4 +1,5 @@
 "$schema" = 'https://starship.rs/config-schema.json'
+
 format = """
 [](red)\
 $os\
@@ -15,20 +16,29 @@ $line_break\
 $character"""
 
 right_format = """
+([](sapphire)\
 $conda\
-$nodejs\
-$python\
-$java\
-$rust\
-$golang
+[](sapphire) )\
+([](green)\
 $c\
+$rust\
 $golang\
+$nodejs\
 $bun\
 $php\
+$java\
 $kotlin\
-$haskell"""
+$haskell\
+$python\
+[](green) )\
+[](lavender)\
+$time\
+[ ](fg:lavender)"""
 
 palette = 'catppuccin_macchiato'
+
+# A continuation prompt that displays two filled-in arrows
+continuation_prompt = '▶▶ '
 
 [os]
 disabled = false
@@ -65,8 +75,8 @@ format = '[ $user]($style)'
 [directory]
 style = "bg:peach fg:crust"
 format = "[ $path ]($style)"
-truncation_length = 3
-truncation_symbol = "…/"
+truncation_length = 0
+truncate_to_repo = false
 
 [directory.substitutions]
 "Documents" = "󰈙 "
@@ -145,6 +155,9 @@ style = "bg:sapphire"
 format = '[[ $symbol( $context) ](fg:crust bg:sapphire)]($style)'
 
 [conda]
+# symbol = " "
+# style = "sapphire"
+# format = '[$symbol$environment]($style)'
 symbol = "  "
 style = "fg:crust bg:sapphire"
 format = '[$symbol$environment ]($style)'
