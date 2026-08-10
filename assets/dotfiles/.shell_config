@@ -51,6 +51,15 @@ if command -v fzf &> /dev/null; then
   --bind='ctrl-/:toggle-preview,ctrl-e:preview-down,ctrl-y:preview-up'"
   unset local_fzf_preview
 
+  # Ctrl-R
+  export FZF_CTRL_R_OPTS="$FZF_CTRL_R_OPTS \
+  --height=80% \
+  --no-preview"
+
+  # Ctrl-T
+  export FZF_CTRL_T_OPTS="$FZF_CTRL_T_OPTS \
+  --height=80%"
+
   # 快速编辑文件
   fe() {
     local files
