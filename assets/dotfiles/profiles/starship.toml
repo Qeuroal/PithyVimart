@@ -11,14 +11,14 @@ ${custom.dir_tail}\
 $git_branch\
 $git_status\
 [ ](fg:yellow))\
-$cmd_duration\
 $line_break\
 $character"""
 
 right_format = """
+$cmd_duration\
 [](sapphire)\
 $conda\
-([](fg:sapphire bg:green)\
+[](fg:sapphire bg:green)\
 $c\
 $rust\
 $golang\
@@ -29,10 +29,9 @@ $java\
 $kotlin\
 $haskell\
 $python\
-[](fg:green bg:lavender))\
-${custom.no_lang_transition}\
+[](fg:green bg:lavender)\
 $time\
-[ ](fg:lavender)"""
+[](fg:lavender)"""
 
 palette = 'catppuccin_macchiato'
 
@@ -88,34 +87,6 @@ truncate_to_repo = false
 when = ''' ! git rev-parse --is-inside-work-tree >/dev/null 2>&1 '''
 command = "true"
 format = "[ ](fg:peach)"
-
-[custom.no_lang_transition]
-when = '''
-test -z "$VIRTUAL_ENV" || exit 1
-for path in \
-  ./*.c ./*.h ./*.rs ./*.go \
-  ./*.js ./*.mjs ./*.cjs ./*.ts ./*.mts ./*.cts \
-  ./*.php ./*.java ./*.class ./*.jar ./*.gradle ./*.clj ./*.cljc \
-  ./*.kt ./*.kts ./*.hs ./*.cabal ./*.hs-boot ./*.py ./*.ipynb \
-  ./Cargo.toml \
-  ./go.mod ./go.sum ./go.work ./glide.yaml ./Gopkg.yml ./Gopkg.lock ./.go-version \
-  ./package.json ./.node-version ./.nvmrc \
-  ./bun.lock ./bun.lockb ./bunfig.toml \
-  ./composer.json ./.php-version \
-  ./pom.xml ./build.gradle.kts ./build.sbt ./.java-version \
-  ./deps.edn ./project.clj ./build.boot ./.sdkmanrc \
-  ./stack.yaml ./cabal.project \
-  ./requirements.txt ./.python-version ./pyproject.toml \
-  ./Pipfile ./tox.ini ./setup.py ./__init__.py \
-  ./Godeps ./node_modules
-do
-  test -e "$path" && exit 1
-done
-exit 0
-'''
-command = "true"
-shell = ["sh"]
-format = "[](fg:sapphire bg:lavender)"
 
 [git_branch]
 symbol = ""
@@ -181,10 +152,12 @@ symbol = ""
 style = "bg:sapphire"
 format = '[[ $symbol( $context) ](fg:crust bg:sapphire)]($style)'
 
+[status]
+disabled = false
+symbol = "✘ "
+format = '[](red)[ $symbol$status ](fg:crust bg:red)[](red)'
+
 [conda]
-# symbol = " "
-# style = "sapphire"
-# format = '[$symbol$environment]($style)'
 symbol = "  "
 style = "fg:crust bg:sapphire"
 format = '[$symbol$environment ]($style)'
@@ -210,7 +183,7 @@ vimcmd_visual_symbol = '[❮](bold fg:yellow)'
 
 [cmd_duration]
 show_milliseconds = true
-format = " in $duration "
+format = " $duration "
 style = "bg:lavender"
 disabled = false
 show_notifications = true
