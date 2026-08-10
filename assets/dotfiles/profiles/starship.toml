@@ -16,10 +16,9 @@ $line_break\
 $character"""
 
 right_format = """
-([](sapphire)\
+[](sapphire)\
 $conda\
-[](sapphire) )\
-([](green)\
+([](fg:sapphire bg:green)\
 $c\
 $rust\
 $golang\
@@ -30,8 +29,8 @@ $java\
 $kotlin\
 $haskell\
 $python\
-[](green) )\
-[](lavender)\
+[](fg:green bg:lavender))\
+${custom.no_lang_transition}\
 $time\
 [ ](fg:lavender)"""
 
@@ -89,6 +88,34 @@ truncate_to_repo = false
 when = ''' ! git rev-parse --is-inside-work-tree >/dev/null 2>&1 '''
 command = "true"
 format = "[ ](fg:peach)"
+
+[custom.no_lang_transition]
+when = '''
+test -z "$VIRTUAL_ENV" || exit 1
+for path in \
+  ./*.c ./*.h ./*.rs ./*.go \
+  ./*.js ./*.mjs ./*.cjs ./*.ts ./*.mts ./*.cts \
+  ./*.php ./*.java ./*.class ./*.jar ./*.gradle ./*.clj ./*.cljc \
+  ./*.kt ./*.kts ./*.hs ./*.cabal ./*.hs-boot ./*.py ./*.ipynb \
+  ./Cargo.toml \
+  ./go.mod ./go.sum ./go.work ./glide.yaml ./Gopkg.yml ./Gopkg.lock ./.go-version \
+  ./package.json ./.node-version ./.nvmrc \
+  ./bun.lock ./bun.lockb ./bunfig.toml \
+  ./composer.json ./.php-version \
+  ./pom.xml ./build.gradle.kts ./build.sbt ./.java-version \
+  ./deps.edn ./project.clj ./build.boot ./.sdkmanrc \
+  ./stack.yaml ./cabal.project \
+  ./requirements.txt ./.python-version ./pyproject.toml \
+  ./Pipfile ./tox.ini ./setup.py ./__init__.py \
+  ./Godeps ./node_modules
+do
+  test -e "$path" && exit 1
+done
+exit 0
+'''
+command = "true"
+shell = ["sh"]
+format = "[](fg:sapphire bg:lavender)"
 
 [git_branch]
 symbol = ""
