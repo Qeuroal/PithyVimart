@@ -171,7 +171,7 @@ function link_dotfiles() {
 function configure_shell() {
   configure_shell_config ".zshrc"
   configure_shell_config ".bashrc"
-  configure_shell_config ".bash_profile"
+  # configure_shell_config ".bash_profile"
 }
 #<}}}
 
