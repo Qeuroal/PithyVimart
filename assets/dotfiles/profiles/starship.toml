@@ -1,33 +1,32 @@
 "$schema" = 'https://starship.rs/config-schema.json'
-
 format = """
 [](red)\
 $os\
 $username\
 [](bg:peach fg:red)\
 $directory\
-[](bg:yellow fg:peach)\
+${custom.dir_tail}\
+([](bg:yellow fg:peach)\
 $git_branch\
 $git_status\
-[](fg:yellow bg:green)\
-$c\
-$rust\
-$golang\
-$nodejs\
-$bun\
-$php\
-$java\
-$kotlin\
-$haskell\
-$python\
-[](fg:green bg:sapphire)\
-$conda\
-[](fg:sapphire bg:lavender)\
-$time\
-[ ](fg:lavender)\
+[ ](fg:yellow))\
 $cmd_duration\
 $line_break\
 $character"""
+
+right_format = """
+$conda\
+$nodejs\
+$python\
+$java\
+$rust\
+$golang
+$c\
+$golang\
+$bun\
+$php\
+$kotlin\
+$haskell"""
 
 palette = 'catppuccin_macchiato'
 
@@ -75,6 +74,11 @@ truncation_symbol = "…/"
 "Music" = "󰝚 "
 "Pictures" = " "
 "Developer" = "󰲋 "
+
+[custom.dir_tail]
+when = ''' ! git rev-parse --is-inside-work-tree >/dev/null 2>&1 '''
+command = "true"
+format = "[ ](fg:peach)"
 
 [git_branch]
 symbol = ""
