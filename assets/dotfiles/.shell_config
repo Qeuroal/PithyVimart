@@ -25,6 +25,12 @@ PITHY_CUSTOM_CONFIG_PATH="$HOME/.config/pithy_custom_config"
 
 #{{{> fzf
 if command -v fzf &> /dev/null; then
+  if [[ -n "$ZSH_VERSION" ]]; then
+    source <(fzf --zsh)
+  elif [[ -n "$BASH_VERSION" ]]; then
+    eval "$(fzf --bash)"
+  fi
+
   # FZF_DEFAULT_COMMAND
   if command -v fd &> /dev/null; then
     export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
@@ -109,6 +115,31 @@ if command -v bat &> /dev/null; then
   if bat --list-themes | grep -qx 'Catppuccin Macchiato'; then
     export BAT_THEME='Catppuccin Macchiato'
   fi
+fi
+#<}}}
+
+#{{{> zoxide
+if command -v zoxide &> /dev/null; then
+  eval "$(zoxide init zsh)"
+fi
+#<}}}
+
+#{{{> startship
+if command -v starship &> /dev/null; then
+  if [[ -n "$ZSH_VERSION" ]]; then
+    eval "$(starship init zsh)"
+  elif [[ -n "$BASH_VERSION" ]]; then
+    eval "$(starship init bash)"
+  fi
+fi
+#<}}}
+
+#{{{> uv
+if command -v uv &> /dev/null; then
+  eval "$(uv generate-shell-completion zsh)"
+fi
+if command -v uvx &> /dev/null; then
+  eval "$(uvx --generate-shell-completion zsh)"
 fi
 #<}}}
 
