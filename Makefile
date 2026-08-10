@@ -47,7 +47,7 @@ st set_templates:
 	@ln -sf `realpath ./assets/templates/.editorconfig` ~/.editorconfig
 
 sp set_profiles:
-	@bash scripts/set_profiles
+	@bash scripts/link_profiles.sh
 
 fr fresh:
 	@rm -rf ~/.local/share/nvim/

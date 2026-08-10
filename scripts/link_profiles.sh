@@ -1,3 +1,6 @@
+#!/usr/bin/env bash
+
+source ${PWD}/scripts/prints.sh
 
 function link_starship_profiles() {
   local config_path="$HOME/.config/starship.toml"
@@ -16,6 +19,8 @@ function link_starship_profiles() {
   ln -sf `realpath $PWD/assets/dotfiles/profiles/starship.toml` $config_path
 }
 
-function link_profiles() {
+function main() {
   link_starship_profiles
 }
+
+main
