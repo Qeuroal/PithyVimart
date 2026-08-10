@@ -25,10 +25,15 @@ PITHY_CUSTOM_CONFIG_PATH="$HOME/.config/pithy_custom_config"
 
 #{{{> fzf
 if command -v fzf &> /dev/null; then
-  # rg
-  if command -v rg &> /dev/null; then
+  # FZF_DEFAULT_COMMAND
+  if command -v fd &> /dev/null; then
+    export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
+  elif command -v rg &> /dev/null; then
     export FZF_DEFAULT_COMMAND='rg --files'
   fi
+
+  # local variables
+  local_file_or_dir_fzf_preview='if [ -d {} ]; then if command -v eza >/dev/null 2>&1; then eza --tree --color=always {} | head -n 200; else ls -la {}; fi; elif command -v bat >/dev/null 2>&1; then bat --style=numbers --color=always --line-range=:1024 {}; else head -n 1024 {}; fi'
 
   # multi & theme
   export FZF_DEFAULT_OPTS=$'--multi
@@ -38,18 +43,11 @@ if command -v fzf &> /dev/null; then
   --color=gutter:#363a4f
   --border
   --layout=reverse'
-  # preview: 根据 bat 是否存在选择预览命令
-  if command -v bat &>/dev/null; then
-    local_fzf_preview='bat --style=numbers --color=always --line-range=:1024 {}'
-  else
-    local_fzf_preview='head -n 1024 {}'
-  fi
   # preview configure
   export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS
-  --preview='$local_fzf_preview'
+  --preview='$local_file_or_dir_fzf_preview'
   --preview-window='down,50%,border-top,wrap,hidden'
   --bind='ctrl-/:toggle-preview,ctrl-e:preview-down,ctrl-y:preview-up'"
-  unset local_fzf_preview
 
   # Ctrl-R
   export FZF_CTRL_R_OPTS="$FZF_CTRL_R_OPTS \
@@ -58,7 +56,13 @@ if command -v fzf &> /dev/null; then
 
   # Ctrl-T
   export FZF_CTRL_T_OPTS="$FZF_CTRL_T_OPTS \
+  --preview='$local_file_or_dir_fzf_preview' \
+  --preview-window='down,50%,border-top,wrap,hidden' \
+  --bind='ctrl-/:toggle-preview,ctrl-e:preview-down,ctrl-y:preview-up' \
   --height=80%"
+
+  # unset local variables
+  unset local_file_or_dir_fzf_preview
 
   # 快速编辑文件
   fe() {
