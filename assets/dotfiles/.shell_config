@@ -120,11 +120,15 @@ fi
 
 #{{{> zoxide
 if command -v zoxide &> /dev/null; then
-  eval "$(zoxide init zsh)"
+  if [[ -n "$ZSH_VERSION" ]]; then
+    eval "$(zoxide init zsh)"
+  elif [[ -n "$BASH_VERSION" ]]; then
+    eval "$(zoxide init bash)"
+  fi
 fi
 #<}}}
 
-#{{{> startship
+#{{{> starship
 if command -v starship &> /dev/null; then
   if [[ -n "$ZSH_VERSION" ]]; then
     eval "$(starship init zsh)"
@@ -135,11 +139,21 @@ fi
 #<}}}
 
 #{{{> uv
+# uv
 if command -v uv &> /dev/null; then
-  eval "$(uv generate-shell-completion zsh)"
+  if [[ -n "$ZSH_VERSION" ]]; then
+    eval "$(uv generate-shell-completion zsh)"
+  elif [[ -n "$BASH_VERSION" ]]; then
+    eval "$(uv generate-shell-completion bash)"
+  fi
 fi
+# uvx
 if command -v uvx &> /dev/null; then
-  eval "$(uvx --generate-shell-completion zsh)"
+  if [[ -n "$ZSH_VERSION" ]]; then
+    eval "$(uvx --generate-shell-completion zsh)"
+  elif [[ -n "$BASH_VERSION" ]]; then
+    eval "$(uvx --generate-shell-completion bash)"
+  fi
 fi
 #<}}}
 
