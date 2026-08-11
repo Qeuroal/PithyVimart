@@ -176,9 +176,9 @@ function configure_shell() {
 #<}}}
 
 function main () {
-  import_configure "$HOME/.gitconfig" "# import gitconfig" "preimport_gitconfig"
-  import_configure "$HOME/.ssh/config" "# import sshconfig" "preimport_sshconfig"
-  import_configure "$HOME/.tmux.conf" "# import tmux.conf" "import_tmux_conf"
+  import_configure "$HOME/.gitconfig" "# PITHY: import gitconfig" "preimport_gitconfig"
+  import_configure "$HOME/.ssh/config" "# PITHY: import sshconfig" "preimport_sshconfig"
+  import_configure "$HOME/.tmux.conf" "# PITHY: import tmux.conf" "import_tmux_conf"
 
   link_dotfiles
   configure_shell
