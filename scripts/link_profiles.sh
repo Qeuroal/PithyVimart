@@ -15,8 +15,8 @@ function link_starship_profiles() {
     mkdir -p "$HOME/.config"
   fi
 
-  clprint "info" "ln -sf `realpath $PWD/assets/dotfiles/profiles/starship.toml` $config_path"
-  ln -sf `realpath $PWD/assets/dotfiles/profiles/starship.toml` $config_path
+  clprint "info" "ln -sf `realpath $PWD/assets/dotfiles/profiles/starship/starship.toml` $config_path"
+  ln -sf `realpath $PWD/assets/dotfiles/profiles/starship/starship.toml` $config_path
 }
 
 function main() {
