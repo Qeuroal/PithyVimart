@@ -49,7 +49,7 @@ function preimport_gitconfig ()
     local destfilepath="$1"
     local import_signal="$2"
 
-    sed_improt_prelude "$destfilepath" "$import_signal" '[include]\n	path = ~/.config/pithy_configs/.gitconfig'
+    sed_improt_prelude "$destfilepath" "$import_signal" '[include]\n	path = ~/.config/pithy_configs/profiles/git/.gitconfig'
   }
 
 function preimport_sshconfig ()
@@ -61,7 +61,7 @@ function preimport_sshconfig ()
     local destfilepath="$1"
     local import_signal="$2"
 
-    sed_improt_prelude "$destfilepath" "$import_signal" 'Include ~/.config/pithy_configs/.sshconfig\n'
+    sed_improt_prelude "$destfilepath" "$import_signal" 'Include ~/.config/pithy_configs/profiles/ssh/.sshconfig\n'
   }
 
 function import_tmux_conf ()
@@ -73,7 +73,7 @@ function import_tmux_conf ()
     local destfilepath="$1"
     local import_signal="$2"
 
-    echo 'source-file ~/.config/pithy_configs/.tmux.conf' | tee -a ${destfilepath} > /dev/null
+    echo 'source-file ~/.config/pithy_configs/profiles/tmux/.tmux.conf' | tee -a ${destfilepath} > /dev/null
     clprint "info" "Success to import configure to $destfilepath"
   }
 
