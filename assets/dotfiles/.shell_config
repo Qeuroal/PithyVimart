@@ -3,169 +3,20 @@
 PITHY_DOTFILES_PATH="$HOME/.config/pithy_configs"
 PITHY_CUSTOM_CONFIG_PATH="$HOME/.config/pithy_custom_config"
 
+if [[ -n "$ZSH_VERSION" ]]; then
+  [[ -e "$PITHY_DOTFILES_PATH/profiles/zshrc" ]] && source "$PITHY_DOTFILES_PATH/profiles/zshrc"
+elif [[ -n "$BASH_VERSION" ]]; then
+  [[ -e "$PITHY_DOTFILES_PATH/profiles/bashrc" ]] && source "$PITHY_DOTFILES_PATH/profiles/bashrc"
+fi
 
-#{{{> bootstrap: import prints
-[[ -e "$PITHY_DOTFILES_PATH/utils/prints" ]] && source "$PITHY_DOTFILES_PATH/utils/prints"
-#<}}}
-
-#{{{> import env
 # WARNING: The environment variables must be imported first.
 [[ -e "$PITHY_DOTFILES_PATH/.env_config" ]] && source "$PITHY_DOTFILES_PATH/.env_config"
 # import aliases
 [[ -e "$PITHY_DOTFILES_PATH/.aliases" ]] && source "$PITHY_DOTFILES_PATH/.aliases"
-# import utils/sed
-[[ -e "$PITHY_DOTFILES_PATH/utils/seds" ]] && source "$PITHY_DOTFILES_PATH/utils/seds"
-# import utils/lsofs
-[[ -e "$PITHY_DOTFILES_PATH/utils/lsofs" ]] && source "$PITHY_DOTFILES_PATH/utils/lsofs"
-# import utils/finds
-[[ -e "$PITHY_DOTFILES_PATH/utils/finds" ]] && source "$PITHY_DOTFILES_PATH/utils/finds"
-# import utils/cfgs
-[[ -e "$PITHY_DOTFILES_PATH/utils/cfgs" ]] && source "$PITHY_DOTFILES_PATH/utils/cfgs"
-#<}}}
-
-#{{{> fzf
-if command -v fzf &> /dev/null; then
-  if [[ -n "$ZSH_VERSION" ]]; then
-    source <(fzf --zsh)
-  elif [[ -n "$BASH_VERSION" ]]; then
-    eval "$(fzf --bash)"
-  fi
-
-  # FZF_DEFAULT_COMMAND
-  if command -v fd &> /dev/null; then
-    export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
-  elif command -v rg &> /dev/null; then
-    export FZF_DEFAULT_COMMAND='rg --files'
-  fi
-
-  # local variables
-  local_file_or_dir_fzf_preview='if [ -d {} ]; then if command -v eza >/dev/null 2>&1; then eza --tree --color=always {} | head -n 200; else ls -la {}; fi; elif command -v bat >/dev/null 2>&1; then bat --style=numbers --color=always --line-range=:1024 {}; else head -n 1024 {}; fi'
-
-  # multi & theme
-  export FZF_DEFAULT_OPTS=$'--multi
-  --color=fg:#cad3f5,bg:#24273a,hl:#ed8796,fg+:#cad3f5,bg+:#363a4f
-  --color=hl+:#ed8796,info:#c6a0f6,prompt:#c6a0f6,pointer:#f4dbd6
-  --color=marker:#f7e6e2,spinner:#f4dbd6,header:#ed8796,border:#5b6078
-  --color=gutter:#363a4f
-  --border
-  --layout=reverse'
-  # preview configure
-  export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS
-  --preview='$local_file_or_dir_fzf_preview'
-  --preview-window='down,50%,border-top,wrap,hidden'
-  --bind='ctrl-/:toggle-preview,ctrl-e:preview-down,ctrl-y:preview-up'"
-
-  # Ctrl-R
-  export FZF_CTRL_R_OPTS="$FZF_CTRL_R_OPTS \
-  --height=80% \
-  --no-preview"
-
-  # Ctrl-T
-  export FZF_CTRL_T_OPTS="$FZF_CTRL_T_OPTS \
-  --preview='$local_file_or_dir_fzf_preview' \
-  --preview-window='down,50%,border-top,wrap,hidden' \
-  --bind='ctrl-/:toggle-preview,ctrl-e:preview-down,ctrl-y:preview-up' \
-  --height=80%"
-
-  # unset local variables
-  unset local_file_or_dir_fzf_preview
-
-  # 快速编辑文件
-  fe() {
-    local files
-    IFS=$'\n' files=($(fzf --query="$1" --multi --select-1 --exit-0))
-    [[ -n "$files" ]] && ${EDITOR:-vi} "${files[@]}"
-  }
-  # 搜索并杀死进程
-  fkill() {
-    local pid
-    pid=$(ps -ef | sed 1d | fzf -m --no-preview | awk '{print $2}')
-    if [[ "x$pid" != "x" ]]; then
-      echo $pid | xargs kill -${1:-9}
-    fi
-  }
-  # 从 ~/.ssh/config 选择主机连接
-  fssh() {
-    local host
-    host=$(grep "^Host " ~/.ssh/config | awk '{print $2}' | fzf --no-multi --no-preview)
-    if [[ -n "$host" ]]; then
-      ssh "$host"
-    fi
-  }
-  # tmux attach session by fzf
-  tt() {
-    local session
-
-    session=$(
-      tmux list-sessions -F '#{session_name}' 2>/dev/null |
-        fzf --no-multi --no-preview
-    ) || return
-
-    if [[ -n "$TMUX" ]]; then
-      tmux switch-client -t "$session"
-    else
-      tmux attach-session -t "$session"
-    fi
-  }
-fi
-#<}}}
-
-#{{{> bat
-if command -v bat &> /dev/null; then
-  if bat --list-themes | grep -qx 'Catppuccin Macchiato'; then
-    export BAT_THEME='Catppuccin Macchiato'
-  fi
-fi
-#<}}}
-
-#{{{> zoxide
-if command -v zoxide &> /dev/null; then
-  if [[ -n "$ZSH_VERSION" ]]; then
-    eval "$(zoxide init zsh)"
-  elif [[ -n "$BASH_VERSION" ]]; then
-    eval "$(zoxide init bash)"
-  fi
-fi
-#<}}}
-
-#{{{> starship
-if command -v starship &> /dev/null; then
-  if [[ -n "$ZSH_VERSION" ]]; then
-    eval "$(starship init zsh)"
-  elif [[ -n "$BASH_VERSION" ]]; then
-    eval "$(starship init bash)"
-  fi
-fi
-#<}}}
-
-#{{{> uv
-# uv
-if command -v uv &> /dev/null; then
-  if [[ -n "$ZSH_VERSION" ]]; then
-    eval "$(uv generate-shell-completion zsh)"
-  elif [[ -n "$BASH_VERSION" ]]; then
-    eval "$(uv generate-shell-completion bash)"
-  fi
-fi
-# uvx
-if command -v uvx &> /dev/null; then
-  if [[ -n "$ZSH_VERSION" ]]; then
-    eval "$(uvx --generate-shell-completion zsh)"
-  elif [[ -n "$BASH_VERSION" ]]; then
-    eval "$(uvx --generate-shell-completion bash)"
-  fi
-fi
-#<}}}
-
-#{{{> set
-# prevent tmux exiting with Ctrl-d
-if [[ "$(uname)" = 'Linux' ]]; then
-  set -o ignoreeof
-  ignoreeof=3
-elif [[ "$(uname)" = 'Darwin' ]]; then
-  set -o ignoreeof
-fi
-#<}}}
+# import cli stack
+[[ -e "$PITHY_DOTFILES_PATH/profiles/cli_stack/setup" ]] && source "$PITHY_DOTFILES_PATH/profiles/cli_stack/setup"
+# import utils
+[[ -e "$PITHY_DOTFILES_PATH/utils/setup" ]] && source "$PITHY_DOTFILES_PATH/utils/setup"
 
 #{{{> import custom user config
 # WARNING: The user environment variables must be imported last

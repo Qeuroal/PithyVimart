@@ -1,0 +1,13 @@
+
+# prevent exiting with Ctrl-d
+set -o ignoreeof
+IGNOREEOF=3
+
+# ignore upper and lowercase when TAB completion
+bind "set completion-ignore-case on"
+
+# 使用 Emacs 编辑模式
+set -o emacs
+
+# ctrl+v 等价于 ctrl+x ctrl+e
+bind '"\C-v": edit-and-execute-command'

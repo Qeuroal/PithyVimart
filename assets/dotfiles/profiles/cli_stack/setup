@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+PITHY_STACKS_PATH=$PITHY_DOTFILES_PATH/profiles/cli_stack
+
+[[ -e "$PITHY_STACKS_PATH/starship" ]] && source "$PITHY_STACKS_PATH/starship"
+[[ -e "$PITHY_STACKS_PATH/fzf" ]] && source "$PITHY_STACKS_PATH/fzf"
+[[ -e "$PITHY_STACKS_PATH/bat" ]] && source "$PITHY_STACKS_PATH/bat"
+[[ -e "$PITHY_STACKS_PATH/uv" ]] && source "$PITHY_STACKS_PATH/uv"
+[[ -e "$PITHY_STACKS_PATH/zoxide" ]] && source "$PITHY_STACKS_PATH/zoxide"
+
+unset PITHY_STACKS_PATH

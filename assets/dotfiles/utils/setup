@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+PITHY_UTILS_PATH="$PITHY_DOTFILES_PATH/utils"
+
+[[ -e "$PITHY_UTILS_PATH/prints" ]] && source "$PITHY_UTILS_PATH/prints"
+# import utils/sed
+[[ -e "$PITHY_UTILS_PATH/seds" ]] && source "$PITHY_UTILS_PATH/seds"
+# import utils/lsofs
+[[ -e "$PITHY_UTILS_PATH/lsofs" ]] && source "$PITHY_UTILS_PATH/lsofs"
+# import utils/finds
+[[ -e "$PITHY_UTILS_PATH/finds" ]] && source "$PITHY_UTILS_PATH/finds"
+# import utils/cfgs
+[[ -e "$PITHY_UTILS_PATH/cfgs" ]] && source "$PITHY_UTILS_PATH/cfgs"
+
+unset PITHY_UTILS_PATH
