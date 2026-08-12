@@ -86,3 +86,25 @@ tt() {
     tmux attach-session -t "$session"
   fi
 }
+# tmux
+tks() {
+  local session
+  local reply
+
+  session=$(
+    tmux list-sessions -F '#{session_name}' 2>/dev/null |
+    fzf --no-multi --no-preview
+  ) || return
+
+  printf 'Kill tmux session "%s"? [y/N] ' "$session" >/dev/tty
+  IFS= read -r reply </dev/tty || return
+
+  case "$reply" in
+    y|Y|yes|YES|Yes)
+      tmux kill-session -t "$session"
+      ;;
+    *)
+      printf 'Cancelled.\n'
+      ;;
+  esac
+}
