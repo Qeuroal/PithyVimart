@@ -88,23 +88,27 @@ tt() {
 }
 # tmux
 tks() {
+  local sessions
   local session
   local reply
 
-  session=$(
+  sessions=$(
     tmux list-sessions -F '#{session_name}' 2>/dev/null |
-    fzf --no-multi --no-preview
+    fzf --multi --no-preview
   ) || return
 
-  printf 'Kill tmux session "%s"? [y/N] ' "$session" >/dev/tty
+  printf 'Kill selected tmux sessions? [y/N] ' >/dev/tty
   IFS= read -r reply </dev/tty || return
 
   case "$reply" in
-    y|Y|yes|YES|Yes)
-      tmux kill-session -t "$session"
-      ;;
+    y|Y|yes|YES|Yes) ;;
     *)
       printf 'Cancelled.\n'
+      return 0
       ;;
   esac
+
+  while IFS= read -r session; do
+    [[ -n "$session" ]] && tmux kill-session -t "$session"
+  done <<< "$sessions"
 }
