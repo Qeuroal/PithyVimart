@@ -9,6 +9,7 @@ SHELL := /bin/bash
 	sa set_all \
 	sd set_dotfiles \
 	st set_templates \
+	sp set_profiles \
 	fr fresh \
 	clean \
 	call cleanall \
@@ -36,7 +37,7 @@ ul unlocal:
 build: set_all
 	@bash scripts/install.sh
 
-sa set_all: set_dotfiles set_templates
+sa set_all: set_dotfiles set_templates set_profiles
 
 sd set_dotfiles:
 	@bash scripts/set_dotfiles.sh
@@ -44,6 +45,9 @@ sd set_dotfiles:
 st set_templates:
 	@rm -rf ~/.editorconfig
 	@ln -sf `realpath ./assets/templates/.editorconfig` ~/.editorconfig
+
+sp set_profiles:
+	@bash scripts/link_profiles.sh
 
 fr fresh:
 	@rm -rf ~/.local/share/nvim/

@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+if ! command -v bat &> /dev/null; then
+  return 0
+fi
+
+if bat --list-themes | grep -qx 'Catppuccin Macchiato'; then
+  export BAT_THEME='Catppuccin Macchiato'
+fi

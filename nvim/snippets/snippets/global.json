@@ -18,6 +18,13 @@
       "- et/noet: expandtab/noexpandtab\n",
       "NOTE: `:e` reload file"
     ]
+  },
+  "copilot": {
+    "prefix": ["gcd"],
+    "body": [
+      "copilot:${1:disable}"
+    ],
+    "description": "Copilot disable"
   }
 }
 

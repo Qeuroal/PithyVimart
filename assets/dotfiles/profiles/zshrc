@@ -1,0 +1,40 @@
+# history
+HISTFILE=~/.zsh_history
+export HISTORY_IGNORE="(ls|cd|cd -|cd ..|z)"
+HISTSIZE=10000
+SAVEHIST=10000
+
+setopt append_history
+setopt share_history
+setopt hist_ignore_dups
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt extended_history
+
+# autosuggestions
+{
+  AUTOSUGGESTIONS="$HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
+  [[ -r "$AUTOSUGGESTIONS" ]] && source "$AUTOSUGGESTIONS"
+  unset AUTOSUGGESTIONS
+}
+
+# prevent exiting with Ctrl-d
+set -o ignoreeof
+
+# 初始化 zsh 补全系统
+autoload -Uz compinit
+compinit
+
+# ignore upper and lowercase when TAB completion
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+
+# 使用 Emacs 编辑模式
+bindkey -e
+
+# 允许 >> 自动创建文件
+setopt APPEND_CREATE
+
+# ctrl+v 等价于 ctrl+x ctrl+e
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey '^V' edit-command-line

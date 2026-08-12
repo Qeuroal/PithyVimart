@@ -1,51 +1,37 @@
-# vim:ft=bash:tw=80:ts=4:et:shiftwidth=4:
+# vim:ft=bash:tw=120:et:
 
 PITHY_DOTFILES_PATH="$HOME/.config/pithy_configs"
 PITHY_CUSTOM_CONFIG_PATH="$HOME/.config/pithy_custom_config"
 
-
-# import utils/prints
-[[ -e "$PITHY_DOTFILES_PATH/utils/prints" ]] && source "$PITHY_DOTFILES_PATH/utils/prints"
-
-# import env
 # WARNING: The environment variables must be imported first.
-[[ -e "$PITHY_DOTFILES_PATH/.env_config" ]] && source $PITHY_DOTFILES_PATH/.env_config
+[[ -e "$PITHY_DOTFILES_PATH/.env_config" ]] && source "$PITHY_DOTFILES_PATH/.env_config"
+
+# If not running interactively, don't do anything
+if [[ $- != *i* ]]; then
+  [[ -f "$PITHY_CUSTOM_CONFIG_PATH" ]] && { source "$PITHY_CUSTOM_CONFIG_PATH" || true; }
+  return 0
+fi
+
+if [[ -n "$ZSH_VERSION" ]]; then
+  [[ -e "$PITHY_DOTFILES_PATH/profiles/zshrc" ]] && source "$PITHY_DOTFILES_PATH/profiles/zshrc"
+elif [[ -n "$BASH_VERSION" ]]; then
+  [[ -e "$PITHY_DOTFILES_PATH/profiles/bashrc" ]] && source "$PITHY_DOTFILES_PATH/profiles/bashrc"
+fi
 
 # import aliases
-[[ -e "$PITHY_DOTFILES_PATH/.aliases" ]] && source $PITHY_DOTFILES_PATH/.aliases
+[[ -e "$PITHY_DOTFILES_PATH/.aliases" ]] && source "$PITHY_DOTFILES_PATH/.aliases"
+# import cli stack
+[[ -e "$PITHY_DOTFILES_PATH/profiles/cli_stack/setup" ]] && source "$PITHY_DOTFILES_PATH/profiles/cli_stack/setup"
+# import utils
+[[ -e "$PITHY_DOTFILES_PATH/utils/setup" ]] && source "$PITHY_DOTFILES_PATH/utils/setup"
 
-# import utils/sed
-[[ -e "$PITHY_DOTFILES_PATH/utils/seds" ]] && source "$PITHY_DOTFILES_PATH/utils/seds"
-
-# import utils/lsofs
-[[ -e "$PITHY_DOTFILES_PATH/utils/lsofs" ]] && source "$PITHY_DOTFILES_PATH/utils/lsofs"
-
-# import utils/finds
-[[ -e "$PITHY_DOTFILES_PATH/utils/finds" ]] && source "$PITHY_DOTFILES_PATH/utils/finds"
-
-# import utils/cfgs
-[[ -e "$PITHY_DOTFILES_PATH/utils/cfgs" ]] && source "$PITHY_DOTFILES_PATH/utils/cfgs"
-
-# fzf:FZF_DEFAULT_COMMAND
-if type rg &> /dev/null; then
-    export FZF_DEFAULT_COMMAND='rg --files'
-    export FZF_DEFAULT_OPTS='-m'
-fi
-
-# prevent tmux exiting with Ctrl-d
-if [[ "$(uname)" = 'Linux' ]]; then
-    set -o ignoreeof
-    ignoreeof=3
-elif [[ "$(uname)" = 'Darwin' ]]; then
-    set -o ignoreeof
-fi
-
-# import custom user config
+#{{{> import custom user config
 # WARNING: The user environment variables must be imported last
 if [[ -f "$PITHY_CUSTOM_CONFIG_PATH" ]]; then
-    # `|| True`: 显示忽略用户自定义配置状态
-    source "$PITHY_CUSTOM_CONFIG_PATH" || True
+  # `|| true`: 显示忽略用户自定义配置状态
+  source "$PITHY_CUSTOM_CONFIG_PATH" || true
 fi
+#<}}}
 
 # 显式返回 0, 确保整个脚本加载完的状态是绿色的
 # 为保证及时纠错, 暂时关闭此模式

@@ -49,7 +49,7 @@ function preimport_gitconfig ()
     local destfilepath="$1"
     local import_signal="$2"
 
-    sed_improt_prelude "$destfilepath" "$import_signal" '[include]\n	path = ~/.config/pithy_configs/.gitconfig'
+    sed_improt_prelude "$destfilepath" "$import_signal" '[include]\n	path = ~/.config/pithy_configs/profiles/git/.gitconfig'
   }
 
 function preimport_sshconfig ()
@@ -61,7 +61,7 @@ function preimport_sshconfig ()
     local destfilepath="$1"
     local import_signal="$2"
 
-    sed_improt_prelude "$destfilepath" "$import_signal" 'Include ~/.config/pithy_configs/.sshconfig\n'
+    sed_improt_prelude "$destfilepath" "$import_signal" 'Include ~/.config/pithy_configs/profiles/ssh/.sshconfig\n'
   }
 
 function import_tmux_conf ()
@@ -73,7 +73,7 @@ function import_tmux_conf ()
     local destfilepath="$1"
     local import_signal="$2"
 
-    echo 'source-file ~/.config/pithy_configs/.tmux.conf' | tee -a ${destfilepath} > /dev/null
+    echo 'source-file ~/.config/pithy_configs/profiles/tmux/.tmux.conf' | tee -a ${destfilepath} > /dev/null
     clprint "info" "Success to import configure to $destfilepath"
   }
 
@@ -171,14 +171,14 @@ function link_dotfiles() {
 function configure_shell() {
   configure_shell_config ".zshrc"
   configure_shell_config ".bashrc"
-  configure_shell_config ".bash_profile"
+  # configure_shell_config ".bash_profile"
 }
 #<}}}
 
 function main () {
-  import_configure "$HOME/.gitconfig" "# import gitconfig" "preimport_gitconfig"
-  import_configure "$HOME/.ssh/config" "# import sshconfig" "preimport_sshconfig"
-  import_configure "$HOME/.tmux.conf" "# import tmux.conf" "import_tmux_conf"
+  import_configure "$HOME/.gitconfig" "# PITHY: import gitconfig" "preimport_gitconfig"
+  import_configure "$HOME/.ssh/config" "# PITHY: import sshconfig" "preimport_sshconfig"
+  import_configure "$HOME/.tmux.conf" "# PITHY: import tmux.conf" "import_tmux_conf"
 
   link_dotfiles
   configure_shell
