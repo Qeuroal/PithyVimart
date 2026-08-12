@@ -97,7 +97,7 @@ tks() {
     fzf --multi --no-preview
   ) || return
 
-  printf 'Kill selected tmux sessions? [y/N] ' >/dev/tty
+  printf 'Kill selected tmux sessions:\n%s\n>>> Confirm? [y/N] ' "$sessions" >/dev/tty
   IFS= read -r reply </dev/tty || return
 
   case "$reply" in
