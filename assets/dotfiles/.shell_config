@@ -3,14 +3,21 @@
 PITHY_DOTFILES_PATH="$HOME/.config/pithy_configs"
 PITHY_CUSTOM_CONFIG_PATH="$HOME/.config/pithy_custom_config"
 
+# WARNING: The environment variables must be imported first.
+[[ -e "$PITHY_DOTFILES_PATH/.env_config" ]] && source "$PITHY_DOTFILES_PATH/.env_config"
+
+# If not running interactively, don't do anything
+if [[ $- != *i* ]]; then
+  [[ -f "$PITHY_CUSTOM_CONFIG_PATH" ]] && { source "$PITHY_CUSTOM_CONFIG_PATH" || true; }
+  return 0
+fi
+
 if [[ -n "$ZSH_VERSION" ]]; then
   [[ -e "$PITHY_DOTFILES_PATH/profiles/zshrc" ]] && source "$PITHY_DOTFILES_PATH/profiles/zshrc"
 elif [[ -n "$BASH_VERSION" ]]; then
   [[ -e "$PITHY_DOTFILES_PATH/profiles/bashrc" ]] && source "$PITHY_DOTFILES_PATH/profiles/bashrc"
 fi
 
-# WARNING: The environment variables must be imported first.
-[[ -e "$PITHY_DOTFILES_PATH/.env_config" ]] && source "$PITHY_DOTFILES_PATH/.env_config"
 # import aliases
 [[ -e "$PITHY_DOTFILES_PATH/.aliases" ]] && source "$PITHY_DOTFILES_PATH/.aliases"
 # import cli stack
