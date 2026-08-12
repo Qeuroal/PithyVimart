@@ -55,6 +55,7 @@ fe() {
   IFS=$'\n' files=($(fzf --query="$1" --multi --select-1 --exit-0))
   [[ -n "$files" ]] && ${EDITOR:-vi} "${files[@]}"
 }
+
 # 搜索并杀死进程
 fkill() {
   local pid
@@ -63,6 +64,7 @@ fkill() {
     echo $pid | xargs kill -${1:-9}
   fi
 }
+
 # 从 ~/.ssh/config 选择主机连接
 fssh() {
   local host
@@ -71,6 +73,7 @@ fssh() {
     ssh "$host"
   fi
 }
+
 # tmux attach session by fzf
 tt() {
   local session
@@ -86,6 +89,7 @@ tt() {
     tmux attach-session -t "$session"
   fi
 }
+
 # tmux
 tks() {
   local sessions
