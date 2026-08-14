@@ -12,6 +12,7 @@ if [[ $- != *i* ]]; then
   return 0
 fi
 
+# load zshrc/bashrc
 if [[ -n "$ZSH_VERSION" ]]; then
   [[ -e "$PITHY_DOTFILES_PATH/profiles/zshrc" ]] && source "$PITHY_DOTFILES_PATH/profiles/zshrc"
 elif [[ -n "$BASH_VERSION" ]]; then
@@ -24,6 +25,11 @@ fi
 [[ -e "$PITHY_DOTFILES_PATH/profiles/cli_stack/setup" ]] && source "$PITHY_DOTFILES_PATH/profiles/cli_stack/setup"
 # import utils
 [[ -e "$PITHY_DOTFILES_PATH/utils/setup" ]] && source "$PITHY_DOTFILES_PATH/utils/setup"
+
+# load zshrc_post
+if [[ -n "$ZSH_VERSION" ]]; then
+  [[ -e "$PITHY_DOTFILES_PATH/profiles/zshrc_post" ]] && source "$PITHY_DOTFILES_PATH/profiles/zshrc_post"
+fi
 
 #{{{> import custom user config
 # WARNING: The user environment variables must be imported last

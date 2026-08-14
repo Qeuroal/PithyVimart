@@ -35,17 +35,3 @@ bindkey '^W' backward-kill-word
 autoload -Uz edit-command-line
 zle -N edit-command-line
 bindkey '^V' edit-command-line
-
-# plugins
-{
-  ZSH_PLUGINS_PATH="$HOME/.zsh/"
-
-  # zsh-autosuggestions
-  [[ -r "$ZSH_PLUGINS_PATH/zsh-autosuggestions/zsh-autosuggestions.zsh" ]] && source "$ZSH_PLUGINS_PATH/zsh-autosuggestions/zsh-autosuggestions.zsh"
-  # # zsh-autocomplete
-  # [[ -r "$ZSH_PLUGINS_PATH/zsh-autocomplete/zsh-autocomplete.plugin.zsh" ]] && source "$ZSH_PLUGINS_PATH/zsh-autocomplete/zsh-autocomplete.plugin.zsh"
-  # zsh-syntax-highlighting
-  [[ -r "$ZSH_PLUGINS_PATH/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]] && source "$ZSH_PLUGINS_PATH/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-
-  unset ZSH_PLUGINS_PATH
-}

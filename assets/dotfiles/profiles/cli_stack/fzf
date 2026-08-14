@@ -4,7 +4,7 @@ if ! command -v fzf &> /dev/null; then
   return 0
 fi
 
-if [[ -n "$ZSH_VERSION" ]]; then
+if [[ -n "$ZSH_VERSION" && -t 0 ]]; then
   source <(fzf --zsh)
 elif [[ -n "$BASH_VERSION" ]]; then
   eval "$(fzf --bash)"
