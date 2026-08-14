@@ -4,7 +4,7 @@ if ! command -v fzf &> /dev/null; then
   return 0
 fi
 
-if [[ -n "$ZSH_VERSION" ]]; then
+if [[ -n "$ZSH_VERSION" && -t 0 ]]; then
   source <(fzf --zsh)
 elif [[ -n "$BASH_VERSION" ]]; then
   eval "$(fzf --bash)"
@@ -78,10 +78,17 @@ fssh() {
 tt() {
   local session
 
-  session=$(
-    tmux list-sessions -F '#{session_name}' 2>/dev/null |
-    fzf --no-multi --no-preview
-  ) || return
+  if (( $# > 1 )); then
+    printf 'Usage: tt [session]\n' >&2
+    return 2
+  elif (( $# == 1 )); then
+    session=$1
+  else
+    session=$(
+      tmux list-sessions -F '#{session_name}' 2>/dev/null |
+      fzf --no-multi --no-preview
+    ) || return
+  fi
 
   if [[ -n "$TMUX" ]]; then
     tmux switch-client -t "$session"
@@ -90,16 +97,20 @@ tt() {
   fi
 }
 
-# tmux
+# tmux kill sessions by arguments or fzf
 tks() {
   local sessions
   local session
   local reply
 
-  sessions=$(
-    tmux list-sessions -F '#{session_name}' 2>/dev/null |
-    fzf --multi --no-preview
-  ) || return
+  if (( $# > 0 )); then
+    sessions=$(printf '%s\n' "$@")
+  else
+    sessions=$(
+      tmux list-sessions -F '#{session_name}' 2>/dev/null |
+      fzf --multi --no-preview
+    ) || return
+  fi
 
   printf 'Kill selected tmux sessions:\n%s\n>>> Confirm? [y/N] ' "$sessions" >/dev/tty
   IFS= read -r reply </dev/tty || return

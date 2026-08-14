@@ -9,5 +9,8 @@ bind "set completion-ignore-case on"
 # 使用 Emacs 编辑模式
 set -o emacs
 
+# Ctrl-W 按标点划分单词并向后删除
+bind '"\C-w": backward-kill-word'
+
 # ctrl+v 等价于 ctrl+x ctrl+e
 bind '"\C-v": edit-and-execute-command'
