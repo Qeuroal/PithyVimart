@@ -194,8 +194,8 @@ vimcmd_visual_symbol = '[❮](bold fg:yellow)'
 show_milliseconds = true
 format = " $duration "
 style = "bg:lavender"
-disabled = false
-show_notifications = true
+disabled = true
+show_notifications = false
 min_time_to_notify = 45000
 
 [palettes.catppuccin_mocha]
