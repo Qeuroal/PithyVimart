@@ -56,6 +56,12 @@ fe() {
   [[ -n "$files" ]] && ${EDITOR:-vi} "${files[@]}"
 }
 
+# 搜索进程
+fps() {
+  ps -eo user=,command= |
+    fzf --multi --no-preview
+}
+
 # 搜索并杀死进程
 fkill() {
   local pid
