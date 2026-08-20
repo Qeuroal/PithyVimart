@@ -142,8 +142,7 @@ Install the [PithyVimart](https://github.com/qeuroal/Pithyvimart) with [PowerShe
    ```
 
 > [!TIP]
-> proxy
->
+> **proxy**
 > - POWERSHELL: `$Env:http_proxy="http://127.0.0.1:7890";$Env:https_proxy="http://127.0.0.1:7890";$Env:socket_proxy="http://127.0.0.1:7890";$Env:all_proxy="http://127.0.0.1:7890"`
 > - CMD: `set "http_proxy=http://127.0.0.1:7890" & set "https_proxy=http://127.0.0.1:7890" & set "all_proxy=http://127.0.0.1:7890" & set "socket_proxy=http://127.0.0.1:7890"`
 
@@ -290,8 +289,7 @@ return {
 1. 重新打开项目, 允许即可
 
 > [!TIP]
-> trust 文件格式
->
+> **trust 文件格式**
 > - 拒绝为: `! <项目目录>/.lazy.lua`
 > - 允许为: `<xxx> <项目目录>/.lazy.lua`
 
@@ -301,6 +299,16 @@ return {
 
 > [!TIP]
 > 该文件为 **唯一** 的导入外部配置的文件.
+
+## 使用 EditorConfig
+
+在项目中创建 `.editorconfig` 文件.
+
+- 总控文件: `$HOME/.editorconfig`
+
+### refs
+
+- [EditorConfig 官方网站](https://editorconfig.org/)
 
 # 资料相关
 
@@ -332,9 +340,7 @@ return {
 # QAs
 
 - neovim default setting
-
-[见 https://neovim.io/doc/user/vim_diff.html#nvim-defaults](https://neovim.io/doc/user/vim_diff.html#nvim-defaults)
-
+    [见 https://neovim.io/doc/user/vim_diff.html#nvim-defaults](https://neovim.io/doc/user/vim_diff.html#nvim-defaults)
 - 如何查看配置路径
 
    ```vim
@@ -378,7 +384,9 @@ return {
 
    And the following line to your shell config (`~/.bashrc`, `~/.zshrc`, ...):
 
+   ```bash
    export PATH="$PATH:/opt/nvim/"
+   ```
 
    If the `./nvim.appimage` command fails, try:
 
@@ -525,8 +533,7 @@ return {
    * Trying 142.250.x.x...
    ```
 
-> 补充知识
->
+> **补充知识**
 > - `http_proxy / https_proxy`: 绝大多数命令行工具（`curl`, `git`, `npm`）都认这两个.
 > - `all_proxy`: 通常被 `curl` 和 `wget` 作为备选方案使用.
 > - `socket_proxy`: 这个变量不是标准的 Windows 或 Linux 环境变量. 虽然您设置成功了, 但绝大多数软件 (如 Chrome, Git, Curl) 不会自动读取它. 除非使用的特定软件明确说明需要读取名为 `socket_proxy` 的变量，否则它可能只是个摆设。
