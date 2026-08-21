@@ -1,6 +1,6 @@
 # plugins
 {
-  ZSH_PLUGINS_PATH="$HOME/.zsh/"
+  ZSH_PLUGINS_PATH="$HOME/.zsh/plugins"
 
   # zsh-autosuggestions
   [[ -r "$ZSH_PLUGINS_PATH/zsh-autosuggestions/zsh-autosuggestions.zsh" ]] && source "$ZSH_PLUGINS_PATH/zsh-autosuggestions/zsh-autosuggestions.zsh"
