@@ -306,6 +306,17 @@ return {
 
 - 总控文件: `$HOME/.editorconfig`
 
+### help
+
+- 查看当前文件读取到的全部 EditorConfig 属性
+   ```vim
+   :lua print(vim.inspect(vim.b.editorconfig))
+   ```
+- 查看向上所有可能找到的文件：
+  ```vim
+  :lua local p=vim.fs.dirname(vim.api.nvim_buf_get_name(0)); vim.print(vim.fs.find(".editorconfig", { path=p, upward=true, limit=math.huge }))
+  ```
+
 ### refs
 
 - [EditorConfig 官方网站](https://editorconfig.org/)

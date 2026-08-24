@@ -15,6 +15,7 @@ SHELL := /bin/bash
 	call cleanall \
 	ccache cleancache \
 	clean_outdated_link \
+	ip install_plugins \
 	gcf gitconfig \
 	gm gitmerge \
 	gs gitsubmodule \
@@ -73,6 +74,9 @@ clean_outdated_link:
 	@bash -c '([[ -L ~/.tmux.conf ]] && echo "unlinking ~/.tmux.conf" && unlink ~/.tmux.conf) || echo "no ~/.tmux.conf symlink to remove."'
 	@bash -c '([[ -L ~/.custom_gitconfig ]] && echo "unlinking ~/.custom_gitconfig" && unlink ~/.custom_gitconfig) || echo "no ~/.custom_gitconfig symlink to remove."'
 	@bash -c '([[ -L ~/.ssh/.custom_sshconfig ]] && echo "unlinking ~/.ssh/.custom_sshconfig" && unlinking ~/.ssh/.custom_sshconfig) || echo "no ~/.ssh/.custom_sshconfig symlink to remove."'
+
+ip install_plugins:
+	@bash scripts/install_plugins.sh
 
 GITMERGE_INFO ?=
 gm gitmerge:
