@@ -30,9 +30,10 @@ export FZF_DEFAULT_OPTS=$'--multi
 --layout=reverse'
 # preview configure
 export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS
+--prompt='P> '
 --preview='$local_file_or_dir_fzf_preview'
 --preview-window='down,50%,border-top,wrap,hidden'
---bind='ctrl-/:toggle-preview,ctrl-e:preview-down,ctrl-y:preview-up'"
+--bind='ctrl-/:transform:[[ {fzf:prompt} == \"P> \" ]] && echo \"toggle-preview+change-prompt(P+> )\" || echo \"toggle-preview+change-prompt(P> )\",ctrl-e:transform:[[ {fzf:prompt} == \"P+> \" ]] && echo preview-down || echo end-of-line,ctrl-y:preview-up'"
 
 # Ctrl-R
 export FZF_CTRL_R_OPTS="$FZF_CTRL_R_OPTS \
@@ -41,9 +42,10 @@ export FZF_CTRL_R_OPTS="$FZF_CTRL_R_OPTS \
 
 # Ctrl-T
 export FZF_CTRL_T_OPTS="$FZF_CTRL_T_OPTS \
+--prompt='P> ' \
 --preview='$local_file_or_dir_fzf_preview' \
 --preview-window='down,50%,border-top,wrap,hidden' \
---bind='ctrl-/:toggle-preview,ctrl-e:preview-down,ctrl-y:preview-up' \
+--bind='ctrl-/:transform:[[ {fzf:prompt} == \"P> \" ]] && echo \"toggle-preview+change-prompt(P+> )\" || echo \"toggle-preview+change-prompt(P> )\",ctrl-e:transform:[[ {fzf:prompt} == \"P+> \" ]] && echo preview-down || echo end-of-line,ctrl-y:preview-up' \
 --height=80%"
 
 # unset local variables
