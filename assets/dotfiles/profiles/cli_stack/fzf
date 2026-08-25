@@ -32,7 +32,7 @@ export FZF_DEFAULT_OPTS=$'--multi
 export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS
 --preview='$local_file_or_dir_fzf_preview'
 --preview-window='down,50%,border-top,wrap,hidden'
---bind='ctrl-/:toggle-preview,ctrl-e:preview-down,ctrl-y:preview-up'"
+--bind='ctrl-/:toggle-preview,ctrl-e:end-of-line,ctrl-d:preview-page-down,ctrl-u:preview-page-up'"
 
 # Ctrl-R
 export FZF_CTRL_R_OPTS="$FZF_CTRL_R_OPTS \
@@ -43,7 +43,7 @@ export FZF_CTRL_R_OPTS="$FZF_CTRL_R_OPTS \
 export FZF_CTRL_T_OPTS="$FZF_CTRL_T_OPTS \
 --preview='$local_file_or_dir_fzf_preview' \
 --preview-window='down,50%,border-top,wrap,hidden' \
---bind='ctrl-/:toggle-preview,ctrl-e:preview-down,ctrl-y:preview-up' \
+--bind='ctrl-/:toggle-preview,ctrl-e:end-of-line,ctrl-d:preview-page-down,ctrl-u:preview-page-up' \
 --height=80%"
 
 # unset local variables
