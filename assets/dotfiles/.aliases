@@ -148,6 +148,7 @@ alias killport='function _killport() { lsof -ti :$1 | xargs kill -9; }; _killpor
 alias localip='ifconfig | grep -Eo "inet (addr:)?([0-9]*\.){3}[0-9]*" | grep -Eo "([0-9]*\.){3}[0-9]*" | grep -v "127.0.0.1"'
 # ip
 alias ipst='curl ipinfo.io'
+alias ipgeo='curl ping0.cc/geo'
 
 ########
 # 端口
