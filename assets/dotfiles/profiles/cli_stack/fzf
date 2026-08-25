@@ -65,18 +65,38 @@ fps() {
 # 搜索并杀死进程
 fkill() {
   local signal="${1:-9}"
-  local pids process_pid kill_error
+  local selected_processes
+  local confirm_processes
+  local process_pid
+  local process_line
+  local kill_error
+  local reply
 
-  pids=$(ps -ef | sed 1d | fzf -m --no-preview | awk '{print $2}')
-  [[ -z "$pids" ]] && return 0
+  selected_processes=$(ps -ef | sed 1d | fzf -m --no-preview)
+  [[ -z "$selected_processes" ]] && return 0
 
-  while IFS= read -r process_pid; do
-    [[ -z "$process_pid" ]] && continue
+  confirm_processes=$(printf '%s\n' "$selected_processes" |
+    awk '{ printf "- %s  %s  %s\n", $2, $8, $1 }')
+  printf 'Kill selected processes (PID, process, user):\n%s\n>>> Confirm? [y/N] ' \
+    "$confirm_processes" >/dev/tty
+  IFS= read -r reply </dev/tty || return
+
+  case "$reply" in
+    y|Y|yes|YES|Yes) ;;
+    *)
+      printf 'Cancelled.\n'
+      return 0
+      ;;
+  esac
+
+  while IFS= read -r process_line; do
+    [[ -z "$process_line" ]] && continue
+    process_pid=$(printf '%s\n' "$process_line" | awk '{print $2}')
 
     if ! kill_error=$(kill "-$signal" "$process_pid" 2>&1); then
       case "$kill_error" in
         *[Pp]ermission*|*[Nn]ot\ permitted*)
-          printf '权限不足，无法终止进程 %s。请手动执行：sudo kill -%s %s\n' \
+          printf '权限不足, 无法终止进程 %s. 请手动执行: sudo kill -%s %s\n' \
             "$process_pid" "$signal" "$process_pid"
           ;;
         *)
@@ -84,7 +104,7 @@ fkill() {
           ;;
       esac
     fi
-  done <<< "$pids"
+  done <<< "$selected_processes"
 }
 
 # 从 ~/.ssh/config 选择主机连接
