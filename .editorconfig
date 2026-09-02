@@ -3,24 +3,24 @@ root = true
 [*]
 insert_final_newline = true
 indent_style = space
-indent_size = 2
+tab_width = 2
 charset = utf-8
 
 [scripts/*]
-indent_size = 2
+tab_width = 2
 
 [scripts/prints.sh]
-indent_size = 2
+tab_width = 2
 
 [Makefile]
 indent_style = tab
 
 [assets/dotfiles/*]
-indent_size = 2
+tab_width = 2
 
 [assets/dotfiles/.custom_gitconfig]
 indent_style = tab
 
 [*.md]
-indent_size = 3
+tab_width = 3
 

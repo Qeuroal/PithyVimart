@@ -9,13 +9,16 @@
   "modeline": {
     "prefix": ["gml"],
     "body": [
-      "vim:ft=${1:bash}:tw=${2:120}:ts=${3:4}:${4:et}:shiftwidth=${5:4}:${0}"
+      "vim:ft=${1:bash}:tw=${2:120}:ts=${3:4}:sts=${4:-1}:sw=${5:0}:${6:et}:fdm=${7:marker}:${0}"
     ],
     "description": [
       "Vim modeline, Requiring Manual Annotation\n",
+      "- ft: filetype\n",
       "- tw: textwidth\n",
       "- ts: tabstop\n",
+      "- sw: shiftwidth\n",
       "- et/noet: expandtab/noexpandtab\n",
+      "- fdm: foldmethod\n",
       "NOTE: `:e` reload file"
     ]
   },
