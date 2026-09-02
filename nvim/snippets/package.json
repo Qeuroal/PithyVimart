@@ -42,6 +42,10 @@
       {
         "language": "editorconfig",
         "path": "./snippets/editorconfig.json"
+      },
+      {
+        "language": "toml",
+        "path": "./snippets/toml/stylua.json"
       }
     ]
   }

@@ -1,6 +1,6 @@
 {
   "EditorConfig": {
-    "prefix": "editorconfig_",
+    "prefix": "editorconfig",
     "body": [
       "root = true",
       "",
