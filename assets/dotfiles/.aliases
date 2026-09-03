@@ -131,7 +131,9 @@ if command -v lazygit &> /dev/null; then
   alias lg='lazygit'
 fi
 # fzf
-alias gcb='git branch | fzf --no-multi --preview '"'"'git show --color=always {-1}'"'"' | cut -c 3- | xargs git checkout'
+if command -v fzf &> /dev/null; then
+  alias gcb='git branch | fzf --no-multi --preview '"'"'git show --color=always {-1}'"'"' | cut -c 3- | xargs git checkout'
+fi
 
 # mkdir
 alias mkdir='mkdir -p'                # 自动创建父目录
