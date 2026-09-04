@@ -1,12 +1,13 @@
 #!/usr/bin/env bash
 
-clashcfg() {
-  local target_file="$1"
-  local dest_path="$HOME/.config/clash/config.yaml"
+vpncfg() {
+  local target_file="${1:-}"
+  local vpn_client="${2:-mihomo}"
+  local dest_path="$HOME/.config/$vpn_client/config.yaml"
 
   # Check if argument is empty
-  if [[ -z "$target_file" ]]; then
-    echo "Usage: clashcfg <target_file>"
+  if [[ -z "$target_file" || $# -gt 2 ]]; then
+    echo "Usage: vpncfg <target_file> [client]"
     return 1
   fi
 
@@ -18,4 +19,77 @@ clashcfg() {
 
   # Copy file
   cp -i "$target_file" "$dest_path"
+}
+
+function sshcfgip() {
+  local ssh_config="$HOME/.ssh/config"
+  local target_hostname="${1:-}" selected_host="${2:-}"
+  local current_hostname reply temp_file
+
+  if [[ -z "$target_hostname" || $# -gt 2 ]]; then
+    printf 'Usage: sshcfgip <new-ip-or-hostname> [host]\n' >&2
+    return 1
+  elif [[ ! -f "$ssh_config" ]]; then
+    printf 'SSH config not found: %s\n' "$ssh_config" >&2
+    return 1
+  fi
+
+  if [[ -z "$selected_host" ]]; then
+    if ! command -v fzf &> /dev/null; then
+      printf 'fzf is unavailable; specify a Host as the second argument.\n' >&2
+      return 1
+    fi
+    selected_host=$(
+      awk 'tolower($1) == "host" {
+        for (i = 2; i <= NF; i++) if ($i !~ /[*!?]/) print $i
+      }' "$ssh_config" | fzf --no-multi --no-preview --prompt='SSH host> '
+    ) || return
+  fi
+
+  current_hostname=$(awk -v host="$selected_host" '
+    tolower($1) == "host" {
+      found = 0
+      for (i = 2; i <= NF; i++) if ($i == host) found = 1
+    }
+    found && tolower($1) == "hostname" { print $2; exit }
+  ' "$ssh_config")
+  if [[ -z "$current_hostname" ]]; then
+    printf 'Host not found or has no HostName: %s\n' "$selected_host" >&2
+    return 1
+  fi
+
+  printf 'Update %s: %s -> %s? [y/N] ' \
+    "$selected_host" "$current_hostname" "$target_hostname" >/dev/tty
+  IFS= read -r reply </dev/tty || return
+  case "$reply" in
+    y|Y|yes|YES|Yes) ;;
+    *) printf 'Cancelled.\n'; return 0 ;;
+  esac
+
+  temp_file=$(mktemp "${ssh_config}.tmp.XXXXXX") || return 1
+  if ! awk -v host="$selected_host" -v hostname="$target_hostname" '
+    tolower($1) == "host" {
+      found = 0
+      for (i = 2; i <= NF; i++) if ($i == host) found = 1
+    }
+    found && !updated && tolower($1) == "hostname" {
+      sub($2, hostname)
+      updated = 1
+    }
+    { print }
+    END { if (!updated) exit 1 }
+  ' "$ssh_config" > "$temp_file"; then
+    rm -f "$temp_file"
+    printf 'Failed to generate the updated SSH config.\n' >&2
+    return 1
+  fi
+
+  cp -p "$ssh_config" "${ssh_config}.bak" && mv "$temp_file" "$ssh_config" || {
+    rm -f "$temp_file"
+    printf 'Failed to install the updated SSH config.\n' >&2
+    return 1
+  }
+
+  printf 'Updated %s: %s -> %s (backup: %s.bak)\n' \
+    "$selected_host" "$current_hostname" "$target_hostname" "$ssh_config"
 }
