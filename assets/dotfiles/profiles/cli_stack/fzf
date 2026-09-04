@@ -107,9 +107,15 @@ fkill() {
   done <<< "$selected_processes"
 }
 
-# 从 ~/.ssh/config 选择主机连接
+# 有参数时直接连接；无参数时从 ~/.ssh/config 选择主机连接
 fssh() {
   local host
+
+  if (( $# > 0 )); then
+    ssh "$@"
+    return
+  fi
+
   host=$(grep "^Host " ~/.ssh/config | awk '{print $2}' | fzf --no-multi --no-preview)
   if [[ -n "$host" ]]; then
     ssh "$host"
