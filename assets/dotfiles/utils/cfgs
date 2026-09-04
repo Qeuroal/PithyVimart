@@ -1,12 +1,13 @@
 #!/usr/bin/env bash
 
-mihomocfg() {
-  local target_file="$1"
-  local dest_path="$HOME/.config/mihomo/config.yaml"
+vpncfg() {
+  local target_file="${1:-}"
+  local vpn_client="${2:-mihomo}"
+  local dest_path="$HOME/.config/$vpn_client/config.yaml"
 
   # Check if argument is empty
-  if [[ -z "$target_file" ]]; then
-    echo "Usage: mihomocfg <target_file>"
+  if [[ -z "$target_file" || $# -gt 2 ]]; then
+    echo "Usage: vpncfg <target_file> [client]"
     return 1
   fi
 
