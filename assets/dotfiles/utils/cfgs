@@ -26,8 +26,8 @@ function sshcfgip() {
   local target_hostname="${1:-}" selected_host="${2:-}"
   local current_hostname reply temp_file
 
-  if [[ -z "$target_hostname" || $# -gt 2 ]]; then
-    printf 'Usage: sshcfgip <new-ip-or-hostname> [host]\n' >&2
+  if [[ $# -gt 2 ]]; then
+    printf 'Usage: sshcfgip [new-ip-or-hostname] [host]\n' >&2
     return 1
   elif [[ ! -f "$ssh_config" ]]; then
     printf 'SSH config not found: %s\n' "$ssh_config" >&2
@@ -56,6 +56,16 @@ function sshcfgip() {
   if [[ -z "$current_hostname" ]]; then
     printf 'Host not found or has no HostName: %s\n' "$selected_host" >&2
     return 1
+  fi
+
+  if [[ -z "$target_hostname" ]]; then
+    printf 'New IP or hostname for %s (current: %s): ' \
+      "$selected_host" "$current_hostname" >/dev/tty
+    IFS= read -r target_hostname </dev/tty || return
+    if [[ -z "$target_hostname" ]]; then
+      printf 'Cancelled: new IP or hostname is empty.\n'
+      return 0
+    fi
   fi
 
   printf 'Update %s: %s -> %s? [y/N] ' \

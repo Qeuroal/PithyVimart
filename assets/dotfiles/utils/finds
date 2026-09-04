@@ -2,18 +2,36 @@
 
 function lssshcfg() {
   # Params:
-  # - match_pattern
+  # - host
 
-  local sed_match_pattern="um"
+  local selected_host
   local target_file="$HOME/.ssh/config"
-  if [ $# -eq 1 ]; then
-    sed_match_pattern=$1
-  else
-    echo "ERROR: Expect to match 2 params (IP and Host)."
+
+  if [[ $# -gt 1 ]]; then
+    printf 'Usage: lssshcfg [host]\n' >&2
     return 3
+  elif [[ ! -f "$target_file" ]]; then
+    printf 'SSH config not found: %s\n' "$target_file" >&2
+    return 1
+  elif [[ $# -eq 1 ]]; then
+    selected_host=$1
+  else
+    if ! command -v fzf &> /dev/null; then
+      printf 'fzf is unavailable; specify a Host as an argument.\n' >&2
+      return 1
+    fi
+    selected_host=$(
+      awk 'tolower($1) == "host" {
+        for (i = 2; i <= NF; i++) if ($i !~ /[*!?]/) print $i
+      }' "$target_file" | fzf --no-multi --no-preview --prompt='SSH host> '
+    ) || return
   fi
 
-  local sed_match_value=$(cat $target_file | grep -v "# "| grep -E -A 3 -w "$sed_match_pattern\$" | sed 's/^--$/============================================================/')
-  clprint "info" "Match Value:\n\n$sed_match_value"
+  awk -v host="$selected_host" '
+    tolower($1) == "host" {
+      if (found) exit
+      for (i = 2; i <= NF; i++) if ($i == host) found = 1
+    }
+    found && $0 !~ /^[[:space:]]*#/ { print }
+  ' "$target_file"
 }
-
