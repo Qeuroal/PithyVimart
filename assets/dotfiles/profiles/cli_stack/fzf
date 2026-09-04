@@ -108,17 +108,17 @@ fkill() {
 }
 
 # 有参数时直接连接；无参数时从 ~/.ssh/config 选择主机连接
-fssh() {
+ssh() {
   local host
 
   if (( $# > 0 )); then
-    ssh "$@"
+    command ssh "$@"
     return
   fi
 
   host=$(grep "^Host " ~/.ssh/config | awk '{print $2}' | fzf --no-multi --no-preview)
   if [[ -n "$host" ]]; then
-    ssh "$host"
+    command ssh "$host"
   fi
 }
 
