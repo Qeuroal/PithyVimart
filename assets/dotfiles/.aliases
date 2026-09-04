@@ -389,3 +389,8 @@ cudapy() {
 # bak
 ######
 bak() { cp -a -- "${1%/}" "${1%/}.${2:-bak}"; }
+
+######
+# gtop
+######
+alias gtop='LANG=en_US.utf8 TERM=xterm-256color gtop'
