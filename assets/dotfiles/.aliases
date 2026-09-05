@@ -3,8 +3,8 @@
 ###########
 # command
 ###########
-# command -v
 alias cmv='command -v'
+alias cm='command'
 
 ##########
 # proxy
