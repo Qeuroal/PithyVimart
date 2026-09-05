@@ -98,8 +98,8 @@ alias gloglc='git rev-parse HEAD'                           # 获取最后提交
 glogp() { git log --oneline -n "${1:-20}"; }                # 简洁格式最近 20 条, NOTE: -n -1 表示全部
 glogg() { git log --graph --oneline --all -n "${1:-20}"; }  # 图形化日志, NOTE: -n -1 表示全部
 # 分支操作
-alias gb='git branch'     # 列出本地分支
-alias gba='git branch -a' # 列出所有分支（含远程）
+alias gb='git branch -vv'     # 列出本地分支
+alias gba='git branch -avv' # 列出所有分支（含远程）
 alias gco='git checkout'  # 切换分支/文件
 # 远程操作
 alias gcl='git clone'                     # 克隆仓库
