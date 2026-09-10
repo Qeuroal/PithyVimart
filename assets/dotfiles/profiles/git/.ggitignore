@@ -7,4 +7,4 @@ WARNING_*
 ERROR_*
 *.log
 .codex
-
+.vscode
