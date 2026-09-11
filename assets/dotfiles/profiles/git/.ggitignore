@@ -8,3 +8,4 @@ ERROR_*
 *.log
 .codex
 .vscode
+__pycache__
