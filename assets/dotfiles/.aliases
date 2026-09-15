@@ -186,8 +186,9 @@ function y() {
   rm -f -- "$tmp"
 }
 
-# aider
-aidc() { aider --model "${1:-deepseek/deepseek-v4-pro}" --set-env all_proxy="" --commit; }
+# ai help
+## ai agent commit
+aic() { aider --model "${1:-deepseek/deepseek-v4-pro}" --set-env all_proxy="" --commit; }
 
 # navigation
 alias cd.='cd $(realpath .)'
