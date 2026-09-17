@@ -118,7 +118,7 @@ Install the [PithyVimart](https://github.com/qeuroal/Pithyvimart) with [PowerShe
    ```powershell
    # required
    Move-Item $env:LOCALAPPDATA\nvim $env:LOCALAPPDATA\nvim.bak
-   
+
    # optional but recommended, which makes a backup
    Move-Item $env:LOCALAPPDATA\nvim-data $env:LOCALAPPDATA\nvim-data.bak
    ```
@@ -177,7 +177,7 @@ Install the [PithyVimart](https://github.com/qeuroal/Pithyvimart) with [PowerShe
 
 ### 使用 .lazy.lua 文件
 
-有一个不太为人所知的功能叫做本地配置, 它允许 `.lazy.lua` 在项目根目录下的一个文件中编写项目特定的配置, 当你在 NeoVim 中打开项目时, 这些设置就会被加载.
+通过本地配置功能，可以在项目根目录的 `.lazy.lua` 文件中编写项目配置。当你在 Neovim 中打开项目并允许加载该文件后，这些设置就会生效。
 
 **项目特定配置**
 
@@ -191,17 +191,17 @@ vim.g.autoformat = false
 return {}
 ```
 
-`~/.config/nvim/lua/plugins/` 就像你在目录中编写插件配置时, 即使表格为空, 也 ***必须*** 在文件末尾添加一个 `return` 语句一样 `{}`.
+与 `~/.config/nvim/lua/plugins/` 中的插件配置一样，文件末尾必须返回一个表，即使是空表 `return {}`。
 
 然后, 如果您关闭 NeoVim 并在项目目录中重新打开它, 您会看到一个提示, 询问您是否信任该 `.lazy.lua` 文件:
 
-```lua
+```text
 ~/my-project/.lazy.lua is not trusted.
    [i]gnore, (v)iew, (d)eny, (a)llow:
 ```
 
-这是因为它是一个 Lua 脚本, 可以执行任意代码, 您可以按下a允许键, 然后设置 `.lazy.lua` 将被加载.
-在上面的示例代码中, 我们将 `tabstop` 和设置 `shiftwidth` 为 4, 并禁用自动格式化, 您可以根据需要向此文件添加更多设置.
+这是因为 `.lazy.lua` 是一个可以执行任意代码的 Lua 脚本。确认信任该文件后，可以按下 `a` 允许加载。
+在上面的示例中，我们将 `tabstop` 和 `shiftwidth` 设置为 4，并禁用自动格式化。你可以根据需要添加更多设置。
 
 **项目特定的插件配置**
 
@@ -241,7 +241,7 @@ vim.api.nvim_create_autocmd("FileType", {
 return {}
 ```
 
-在这个例子中, 我们创建了一个 `autocmd` 文件 Json 类型, 并将 `tabstop` 和设置 `shiftwidth` 为 2, 并启用 Json 文件的自动格式化.当您处理使用紧凑缩进样式（在本例中为 2 个空格）的 Json 文件项目时, 这将非常有用.
+在这个例子中，我们为 JSON 文件类型创建了一个自动命令，将 `tabstop` 和 `shiftwidth` 设置为 2，并启用自动格式化，适用于使用 2 个空格缩进的 JSON 文件。
 
 > 参考[这里](https://kezhenxu94.me/blog/lazyvim-project-specific-settings)
 
@@ -300,13 +300,16 @@ return {
 ### help
 
 - 查看当前文件读取到的全部 EditorConfig 属性
+
    ```vim
    :lua print(vim.inspect(vim.b.editorconfig))
    ```
+
 - 查看向上所有可能找到的文件：
-  ```vim
-  :lua local p=vim.fs.dirname(vim.api.nvim_buf_get_name(0)); vim.print(vim.fs.find(".editorconfig", { path=p, upward=true, limit=math.huge }))
-  ```
+
+   ```vim
+   :lua local p=vim.fs.dirname(vim.api.nvim_buf_get_name(0)); vim.print(vim.fs.find(".editorconfig", { path=p, upward=true, limit=math.huge }))
+   ```
 
 ### refs
 
@@ -314,30 +317,8 @@ return {
 
 # 资料相关
 
-## Nerd Fonts 字体
 
-### 下载
-
-- [Nerd Fonts 下载网址](https://www.nerdfonts.com/font-downloads): 包含所有常用的 Nerd Fonts 字体
-- JetBrainsMono Nerd Font [点击下载](https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.zip)
-
-### 手动安装
-
-- MacOS
-
-   1. 将字体所在文件夹移动到 `~/Library/Fonts` 目录
-   1. 运行命令: `fc-cache -vf`
-   1. 查看字体列表: `fc-list`
-
-- Linux:
-
-   1. 将字体所在文件夹移动到 `~/.local/share/fonts` 目录
-   1. 运行命令: `fc-cache -vf`
-   1. 查看字体列表: `fc-list`
-
-- Windows:
-
-   1. 选中字体文件, 右键-安装
+- Nerd Fonts 字体: 字体下载与安装方法见 [Nerd Fonts 字体](docs/font.md)
 
 # QAs
 
