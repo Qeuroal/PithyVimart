@@ -208,7 +208,9 @@ sshr() { [[ -z "$1" ]] && { echo "⚠️ 缺少服务器地址!"; return 1; }; s
 ############
 # Changing "ls" to "eza"
 alias ls='command ls --color=auto'
-alias la='command ls -a'  # all files and dirs
+alias ll='command ls -l --color=auto'
+alias la='command ls -a --color=auto'  # all files and dirs
+alias ll='command ls -l --color=auto'  # all files and dirs
 alias lla='command ls -al'  # long format for all files and dirs
 if command -v eza &> /dev/null; then
   alias ls='eza --color=always --group-directories-first'                 # ls
