@@ -1,4 +1,4 @@
-# Common
+# General
 
 - Neovim 默认设置: 见[官方说明](https://neovim.io/doc/user/vim_diff.html#nvim-defaults).
 - 如何查看配置路径
@@ -14,11 +14,11 @@
    :write ++p
    ```
 
-- Error running markdownlint-cli2: ENOENT: no such file or directory
-
-   安装 `markdownlint-cli2`, 具体见[依赖安装说明](../README.md#markdownlint-cli2).
-
 - 插件运行异常: 在 Neovim 中执行 `:checkhealth <插件名>`, 查看报错信息.
+
+## Error running markdownlint-cli2: ENOENT: no such file or directory
+
+安装 `markdownlint-cli2`, 具体见[依赖安装说明](../README.md#markdownlint-cli2).
 
 ## 重新信任 `.lazy.lua`
 
@@ -145,7 +145,7 @@
       sudo apt install neovim
       ```
 
-# MacOS
+# macOS
 
 - macOS 上的 Option(Alt)快捷键不生效
 
@@ -158,7 +158,42 @@
       option_as_alt = "OnlyLeft"
       ```
 
-# windows
+## `<leader>tm` 预览公式报错: 缺少 `standalone.cls`
+
+Snacks 会将公式单独编译成 PDF, 再转换成图片显示. 即使已安装 `pdflatex`, 缺少所需的 LaTeX 宏包也会导致预览失败.
+
+在终端执行以下命令, 查看 Snacks 公式预览的编译错误:
+
+```bash
+rg -n -g '*.log' 'LaTeX Error|Emergency stop|Fatal error' ~/.cache/nvim/snacks/image/
+```
+
+输出包含日志路径, 行号和错误内容. 缓存中可能保留旧日志, 排查时注意文件的修改时间.
+
+如果出现以下错误, 说明当前 LaTeX 环境缺少 `standalone` 文档类:
+
+```text
+! LaTeX Error: File `standalone.cls' not found.
+```
+
+安装 LaTeX 扩展宏包
+
+```bash
+sudo port install texlive-latex-extra
+```
+
+`texlive-latex-extra` 包含 `standalone` 和 `preview`, 用于生成独立的公式 PDF 并裁剪页面.
+
+安装后执行以下命令, 确认两者均能输出文件路径:
+
+```bash
+kpsewhich standalone.cls
+kpsewhich preview.sty
+```
+
+重新打开 Neovim, 按 `<leader>tm` 开启公式预览, 将光标移出公式所在行查看结果.
+
+# Windows
 
 - 缺失 `VCRUNTIME140.dll`
 
