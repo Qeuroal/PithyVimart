@@ -168,7 +168,9 @@ Install the [PithyVimart](https://github.com/qeuroal/Pithyvimart) with [PowerShe
 #### markdownlint-cli2
 
 - archlinux: `sudo pacman -S --noconfirm markdownlint-cli2`
-- macos: `brew install markdownlint-cli2`
+- macos:
+   - `brew install markdownlint-cli2`
+   - `npm install -g markdownlint-cli2`
 - ubuntu: `sudo apt install markdownlint`
 
 # 定制配置

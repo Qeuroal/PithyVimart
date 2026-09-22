@@ -63,6 +63,7 @@ alias vipc="vi $PITHY_CUSTOM_CONFIG_PATH"
 # alias ocurl='command curl'
 # alias curl='command curl -fsS'
 alias curla='command curl -A "Google Chrome" -JL'
+alias curlc='command curl -A "Google Chrome" -L -C -'
 alias curlo='command curl -A "Google Chrome" -JLO' # --clobber 专门用于强制覆盖, -J 不会覆盖同名文件
 # curl git file
 curlg() { curla "$(echo "$1" | sed 's/github\.com/raw.githubusercontent.com/' | sed 's|/blob/|/|')"; }
@@ -207,8 +208,10 @@ sshr() { [[ -z "$1" ]] && { echo "⚠️ 缺少服务器地址!"; return 1; }; s
 # ls & eza
 ############
 # Changing "ls" to "eza"
-alias la='ls -a'  # all files and dirs
-alias lla='ls -al'  # long format for all files and dirs
+alias ls='command ls --color=auto'
+alias ll='command ls -l --color=auto'
+alias la='command ls -a --color=auto'  # all files and dirs
+alias lla='command ls -al --color=auto'  # long format for all files and dirs
 if command -v eza &> /dev/null; then
   alias ls='eza --color=always --group-directories-first'                 # ls
   alias la='eza -a --color=always --group-directories-first'              # all files and dirs
