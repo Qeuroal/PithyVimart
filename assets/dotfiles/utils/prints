@@ -9,6 +9,14 @@ to_lower() {
 }
 
 # A locally built tput may be on PATH but unable to load its shared libraries.
+# Do not export LD_LIBRARY_PATH="$HOME/.local/lib:$LD_LIBRARY_PATH" here:
+# this file is sourced, so the setting would also affect other programs started
+# by the shell and could make them load incompatible local libraries. The actual
+# library directory also depends on the user's installation prefix. If needed,
+# users can configure it themselves after verifying that directory, using
+# "${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}" to avoid an empty path component
+# (which the Linux dynamic linker treats as the current working directory).
+# For optional colors, fall back to a working tput or plain text instead.
 _pithy_tput=""
 if [[ -n "${TERM:-}" && "$TERM" != "dumb" ]]; then
   for _pithy_tput_candidate in tput /usr/bin/tput /bin/tput; do
