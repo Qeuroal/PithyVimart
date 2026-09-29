@@ -44,9 +44,9 @@ function is_exist_file()
 
 #{{{> print PithyVimart logo
 function print_logo() {
-  local color="$(tput setaf 6)"
-  local normal="$(tput sgr0)"
-  printf "${color}"
+  local color="${FG_CYAN:-}"
+  local normal="${C_RESET:-}"
+  printf "%s" "$color"
   echo ''
   echo '________ _____ _____ ______           ___    _______                             _____ '
   echo '___  __ \___(_)__  /____  /_ _____  ____ |  / /___(_)_______ ___ ______ ___________  /_'
@@ -58,7 +58,7 @@ function print_logo() {
   echo 'Finish vimart installment!'
   echo 'Just enjoy it!'
   echo ''
-  printf "${normal}"
+  printf "%s" "$normal"
 }
 #<}}}
 
