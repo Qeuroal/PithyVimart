@@ -8,29 +8,48 @@ to_lower() {
   echo "$@" | tr '[:upper:]' '[:lower:]'
 }
 
-if [[ -n "$TERM" && "$TERM" != "dumb" ]]; then
+# A locally built tput may be on PATH but unable to load its shared libraries.
+# Do not export LD_LIBRARY_PATH="$HOME/.local/lib:$LD_LIBRARY_PATH" here:
+# this file is sourced, so the setting would also affect other programs started
+# by the shell and could make them load incompatible local libraries. The actual
+# library directory also depends on the user's installation prefix. If needed,
+# users can configure it themselves after verifying that directory, using
+# "${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}" to avoid an empty path component
+# (which the Linux dynamic linker treats as the current working directory).
+# For optional colors, fall back to a working tput or plain text instead.
+_pithy_tput=""
+if [[ -n "${TERM:-}" && "$TERM" != "dumb" ]]; then
+  for _pithy_tput_candidate in tput /usr/bin/tput /bin/tput; do
+    if "$_pithy_tput_candidate" sgr0 >/dev/null 2>&1; then
+      _pithy_tput="$_pithy_tput_candidate"
+      break
+    fi
+  done
+fi
+
+if [[ -n "$_pithy_tput" ]]; then
   # reset / style
-  C_RESET="$(tput sgr0)"
-  C_BOLD="$(tput bold)"
-  C_UNDERLINE="$(tput smul)"
+  C_RESET="$("$_pithy_tput" sgr0 2>/dev/null || :)"
+  C_BOLD="$("$_pithy_tput" bold 2>/dev/null || :)"
+  C_UNDERLINE="$("$_pithy_tput" smul 2>/dev/null || :)"
   # foreground
-  FG_BLACK="$(tput setaf 0)"
-  FG_RED="$(tput setaf 1)"
-  FG_GREEN="$(tput setaf 2)"
-  FG_YELLOW="$(tput setaf 3)"
-  FG_BLUE="$(tput setaf 4)"
-  FG_PURPLE="$(tput setaf 5)"
-  FG_CYAN="$(tput setaf 6)"
-  FG_WHITE="$(tput setaf 7)"
+  FG_BLACK="$("$_pithy_tput" setaf 0 2>/dev/null || :)"
+  FG_RED="$("$_pithy_tput" setaf 1 2>/dev/null || :)"
+  FG_GREEN="$("$_pithy_tput" setaf 2 2>/dev/null || :)"
+  FG_YELLOW="$("$_pithy_tput" setaf 3 2>/dev/null || :)"
+  FG_BLUE="$("$_pithy_tput" setaf 4 2>/dev/null || :)"
+  FG_PURPLE="$("$_pithy_tput" setaf 5 2>/dev/null || :)"
+  FG_CYAN="$("$_pithy_tput" setaf 6 2>/dev/null || :)"
+  FG_WHITE="$("$_pithy_tput" setaf 7 2>/dev/null || :)"
   # background
-  BG_BLACK="$(tput setab 0)"
-  BG_RED="$(tput setab 1)"
-  BG_GREEN="$(tput setab 2)"
-  BG_YELLOW="$(tput setab 3)"
-  BG_BLUE="$(tput setab 4)"
-  BG_PURPLE="$(tput setab 5)"
-  BG_CYAN="$(tput setab 6)"
-  BG_WHITE="$(tput setab 7)"
+  BG_BLACK="$("$_pithy_tput" setab 0 2>/dev/null || :)"
+  BG_RED="$("$_pithy_tput" setab 1 2>/dev/null || :)"
+  BG_GREEN="$("$_pithy_tput" setab 2 2>/dev/null || :)"
+  BG_YELLOW="$("$_pithy_tput" setab 3 2>/dev/null || :)"
+  BG_BLUE="$("$_pithy_tput" setab 4 2>/dev/null || :)"
+  BG_PURPLE="$("$_pithy_tput" setab 5 2>/dev/null || :)"
+  BG_CYAN="$("$_pithy_tput" setab 6 2>/dev/null || :)"
+  BG_WHITE="$("$_pithy_tput" setab 7 2>/dev/null || :)"
 else
   # no color
   C_RESET=""
@@ -55,6 +74,8 @@ else
   BG_CYAN=""
   BG_WHITE=""
 fi
+
+unset _pithy_tput _pithy_tput_candidate
 
 _cl_color() {
   case "$1" in
