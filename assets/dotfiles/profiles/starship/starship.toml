@@ -1,8 +1,6 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
 format = """
-[](red)\
-$os\
 ${custom.username_local}\
 ${custom.username_ssh}\
 $directory\
@@ -40,7 +38,7 @@ continuation_prompt = '▶▶ '
 
 [os]
 disabled = false
-style = "bg:red fg:crust"
+format = '$symbol'
 
 [os.symbols]
 Windows = ""
@@ -64,16 +62,16 @@ Debian = "󰣚"
 Redhat = "󱄛"
 RedHatEnterprise = "󱄛"
 
-# Color the username by session type without a separate hostname segment.
+# Color the OS icon and username together without a hostname segment.
 [custom.username_local]
 when = ''' test -z "$SSH_CONNECTION$SSH_CLIENT$SSH_TTY" '''
-command = "id -un"
-format = '[ $output](bg:red fg:crust)[](bg:peach fg:red)'
+command = ''' printf '%s %s' "$(starship module os)" "$(id -un)" '''
+format = '[](red)[$output](bg:red fg:crust)[](bg:peach fg:red)'
 
 [custom.username_ssh]
 when = ''' test -n "$SSH_CONNECTION$SSH_CLIENT$SSH_TTY" '''
-command = "id -un"
-format = '[](bg:maroon fg:red)[ $output](bg:maroon fg:crust)[](bg:peach fg:maroon)'
+command = ''' printf '%s %s' "$(starship module os)" "$(id -un)" '''
+format = '[](maroon)[$output](bg:maroon fg:crust)[](bg:peach fg:maroon)'
 
 [directory]
 style = "bg:peach fg:crust"
