@@ -75,12 +75,12 @@ format = '[ $user]($style)'
 [custom.host_local]
 when = ''' test -z "$SSH_CONNECTION$SSH_CLIENT$SSH_TTY" '''
 command = "true"
-format = '[ ](bg:red)[](bg:peach fg:red)'
+format = '[](bg:peach fg:red)'
 
 [custom.host_ssh]
 when = ''' test -n "$SSH_CONNECTION$SSH_CLIENT$SSH_TTY" '''
 command = "true"
-format = '[](bg:pink fg:red)[ ](bg:pink)[](bg:peach fg:pink)'
+format = '[](bg:maroon fg:red)[](bg:peach fg:maroon)'
 
 [directory]
 style = "bg:peach fg:crust"
