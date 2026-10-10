@@ -185,10 +185,11 @@ vimcmd_replace_symbol = '[❮](bold fg:lavender)'
 vimcmd_visual_symbol = '[❮](bold fg:yellow)'
 
 [cmd_duration]
-show_milliseconds = true
+min_time = 60000
+show_milliseconds = false
 format = " $duration "
 style = "bg:lavender"
-disabled = true
+disabled = false
 show_notifications = false
 min_time_to_notify = 45000
 
