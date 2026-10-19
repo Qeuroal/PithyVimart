@@ -1,3 +1,3 @@
 return {
-  { import = "pithyvim.plugins.extras.ui.mini-indentscope" },
+  -- { import = "pithyvim.plugins.extras.ui.mini-indentscope" },
 }
