@@ -343,6 +343,8 @@ count() { find "${1:-.}" -type f | wc -l; }
 bigfiles() { find . -type f -size +${1:-100}M -exec ls -lh {} \; | awk '{ print $9 ": " $5 }'; }
 # 查看磁盘
 alias blkst='lsblk -o NAME,SIZE,FSTYPE,LABEL,MOUNTPOINTS,MODEL,TRAN'
+# 挂载
+alias mountu='sudo mount -o uid=$(id -u),gid=$(id -g),umask=022'
 
 ################
 # task-spooler
