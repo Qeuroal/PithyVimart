@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+skillup() {
+  for repo in "$HOME"/.agents/skills/*/; do
+    [ -d "$repo/.git" ] || continue
+    echo ">>> Updating ${repo%/}"
+    git -C "$repo" pull --ff-only || return 1
+  done
+}
