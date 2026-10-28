@@ -11,5 +11,7 @@ PITHY_UTILS_PATH="$PITHY_DOTFILES_PATH/utils"
 [[ -e "$PITHY_UTILS_PATH/finds" ]] && source "$PITHY_UTILS_PATH/finds"
 # import utils/cfgs
 [[ -e "$PITHY_UTILS_PATH/cfgs" ]] && source "$PITHY_UTILS_PATH/cfgs"
+# import utils/agents
+[[ -e "$PITHY_UTILS_PATH/agents" ]] && source "$PITHY_UTILS_PATH/agents"
 
 unset PITHY_UTILS_PATH
