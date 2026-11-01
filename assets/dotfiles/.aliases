@@ -327,6 +327,9 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 
   # task-spooler
   alias ts='tsp'
+
+  # sudo
+  alias svi='sudo -E nvim'
 fi
 
 ############
