@@ -48,38 +48,30 @@
 
 - 必选项
 
-   - [neovim](https://github.com/neovim/neovim/blob/master/INSTALL.md#install-from-download)
-
-      步骤:
-
-      1. 下载 Latest stable release ([macos x64](https://github.com/neovim/neovim/releases/latest/download/nvim-macos-x86_64.tar.gz), [macos arm](https://github.com/neovim/neovim/releases/latest/download/nvim-macos-arm64.tar.gz), [linux](https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz))
-      1. 解压, 并修改文件名为nvim
-
-         ```bash
-         tar -zxvf ./<目标文件> [-C <目标目录>]
-         mv <解压出的文件夹名> nvim
-         ```
-
-      1. 移动解压的目录到 `/usr/local/`
-
-         ```bash
-         sudo mv ./nvim /usr/local
-         ```
-
-      1. 链接可执行文件 nvim 到 `/usr/bin/`
-
-         ```bash
-         sudo ln -sf /usr/local/bin/nvim /usr/bin/nvim
-         ```
-
-      1. 重启终端
+    - [neovim](https://github.com/neovim/neovim/blob/master/INSTALL.md#install-from-download). 手动安装步骤:
+        1. 下载 Latest stable release ([macos x64](https://github.com/neovim/neovim/releases/latest/download/nvim-macos-x86_64.tar.gz), [macos arm](https://github.com/neovim/neovim/releases/latest/download/nvim-macos-arm64.tar.gz), [linux](https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz))
+        1. 解压, 并修改文件名为nvim
+            ```bash
+            tar -zxvf ./<目标文件> [-C <目标目录>]
+            mv <解压出的文件夹名> nvim
+            ```
+        1. 移动解压的目录到 `/usr/local/`
+            ```bash
+            sudo mv ./nvim /usr/local
+            ```
+        1. 链接可执行文件 nvim 到 `/usr/bin/`
+            ```bash
+            sudo ln -sf /usr/local/bin/nvim /usr/bin/nvim
+            ```
+        1. 重启终端
+    - ripgrep
+    - fd
+    - node
 
 - 可选项
-
-   - eza
-
-      - Linux下载地址: [https://github.com/eza-community/eza/releases/latest/download/eza_x86_64-unknown-linux-gnu.zip](https://github.com/eza-community/eza/releases/latest/download/eza_x86_64-unknown-linux-gnu.zip)
-      - MacOS 下载: `brew install eza`
+    - eza
+        - Linux下载地址: [https://github.com/eza-community/eza/releases/latest/download/eza_x86_64-unknown-linux-gnu.zip](https://github.com/eza-community/eza/releases/latest/download/eza_x86_64-unknown-linux-gnu.zip)
+        - MacOS 下载: `brew install eza`
 
 > [!TIP]
 > **proxy**
@@ -90,44 +82,36 @@
 ### 依赖项
 
 - 必选项
-
-   - neovim ([官网](https://github.com/neovim/neovim/blob/master/INSTALL.md#install-from-download), [win64](https://github.com/neovim/neovim/releases/latest/download/nvim-win64.msi))
-   - git
-   - mingw ([官网](https://www.mingw-w64.org/downloads/), [github](https://github.com/niXman/mingw-builds-binaries))
-   - npm (node.js) ([官网](https://nodejs.cn/download/))
-   - rg (ripgrep) ([官网](https://github.com/BurntSushi/ripgrep/releases/))
+    - neovim ([官网](https://github.com/neovim/neovim/blob/master/INSTALL.md#install-from-download), [win64](https://github.com/neovim/neovim/releases/latest/download/nvim-win64.msi))
+    - git
+    - mingw ([官网](https://www.mingw-w64.org/downloads/), [github](https://github.com/niXman/mingw-builds-binaries))
+    - npm (node.js) ([官网](https://nodejs.cn/download/))
+    - rg (ripgrep) ([官网](https://github.com/BurntSushi/ripgrep/releases/))
 
 ### 安装步骤
 
 Install the [PithyVimart](https://github.com/qeuroal/Pithyvimart) with [PowerShell](https://github.com/PowerShell/PowerShell)
 
 - Make a backup of your current Neovim files:
+    ```powershell
+    # required
+    Move-Item $env:LOCALAPPDATA\nvim $env:LOCALAPPDATA\nvim.bak
 
-   ```powershell
-   # required
-   Move-Item $env:LOCALAPPDATA\nvim $env:LOCALAPPDATA\nvim.bak
-
-   # optional but recommended, which makes a backup
-   Move-Item $env:LOCALAPPDATA\nvim-data $env:LOCALAPPDATA\nvim-data.bak
-   ```
-
+    # optional but recommended, which makes a backup
+    Move-Item $env:LOCALAPPDATA\nvim-data $env:LOCALAPPDATA\nvim-data.bak
+    ```
 - Clone the starter
-
-   ```powershell
-   git clone https://github.com/qeuroal/pithyvimart.git $env:LOCALAPPDATA\nvim
-   ```
-
+    ```powershell
+    git clone https://github.com/qeuroal/pithyvimart.git $env:LOCALAPPDATA\nvim
+    ```
 - **(optional but not recommended)** Remove the `.git` folder, so you can add it to your own repo later
-
-   ```powershell
-   Remove-Item $env:LOCALAPPDATA\nvim\.git -Recurse -Force
-   ```
-
+    ```powershell
+    Remove-Item $env:LOCALAPPDATA\nvim\.git -Recurse -Force
+    ```
 - Start Neovim!
-
-   ```powershell
-   nvim
-   ```
+    ```powershell
+    nvim
+    ```
 
 > [!TIP]
 > **proxy**
@@ -157,8 +141,8 @@ Install the [PithyVimart](https://github.com/qeuroal/Pithyvimart) with [PowerShe
 
 - archlinux: `sudo pacman -S --noconfirm markdownlint-cli2`
 - macos:
-   - `brew install markdownlint-cli2`
-   - `npm install -g markdownlint-cli2`
+    - `brew install markdownlint-cli2`
+    - `npm install -g markdownlint-cli2`
 - ubuntu: `sudo apt install markdownlint`
 
 # 定制配置
@@ -290,16 +274,13 @@ return {
 ### help
 
 - 查看当前文件读取到的全部 EditorConfig 属性
-
-   ```vim
-   :lua print(vim.inspect(vim.b.editorconfig))
-   ```
-
+    ```vim
+    :lua print(vim.inspect(vim.b.editorconfig))
+    ```
 - 查看向上所有可能找到的文件：
-
-   ```vim
-   :lua local p=vim.fs.dirname(vim.api.nvim_buf_get_name(0)); vim.print(vim.fs.find(".editorconfig", { path=p, upward=true, limit=math.huge }))
-   ```
+    ```vim
+    :lua local p=vim.fs.dirname(vim.api.nvim_buf_get_name(0)); vim.print(vim.fs.find(".editorconfig", { path=p, upward=true, limit=math.huge }))
+    ```
 
 ### refs
 
@@ -311,4 +292,4 @@ return {
 
 # QAs
 
-常见问题与解决方法见 [QAs](docs/QAs.md)。
+常见问题与解决方法见 [QAs](./docs/QAs.md)。

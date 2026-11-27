@@ -87,76 +87,75 @@
 
 - Python module
 
-   - archlinux
+    - archlinux
 
-      The Python module is available from the community repository:
+        The Python module is available from the community repository:
 
-      ```bash
-      sudo pacman -S python-pynvim
-      ```
+        ```bash
+        sudo pacman -S python-pynvim
+        ```
 
-   - ubuntu
+    - ubuntu
 
-      Python (`:python`) support is installable via the package manager on Debian unstable.
+        Python (`:python`) support is installable via the package manager on Debian unstable.
 
-      ```bash
-      sudo apt-get install python3-neovim
-      ```
+        ```bash
+        sudo apt-get install python3-neovim
+        ```
 
-   - fedora
+    - fedora
 
-      Neovim is in [Fedora](https://src.fedoraproject.org/rpms/neovim) starting with Fedora 25:
+        Neovim is in [Fedora](https://src.fedoraproject.org/rpms/neovim) starting with Fedora 25:
 
-      ```bash
-      sudo dnf install -y neovim python3-neovim
-      ```
+        ```bash
+        sudo dnf install -y neovim python3-neovim
+        ```
 
-      You can also get nightly builds of git master from the [Copr automated build system](https://copr.fedoraproject.org/coprs/agriffis/neovim-nightly/):
+        You can also get nightly builds of git master from the [Copr automated build system](https://copr.fedoraproject.org/coprs/agriffis/neovim-nightly/):
 
-      ```bash
-      dnf copr enable agriffis/neovim-nightly
-      dnf install -y neovim python3-neovim
-      ```
+        ```bash
+        dnf copr enable agriffis/neovim-nightly
+        dnf install -y neovim python3-neovim
+        ```
 
-      See the [blog post](https://arongriffis.com/2019-03-02-neovim-nightly-builds) for information on how these are built.
+        See the [blog post](https://arongriffis.com/2019-03-02-neovim-nightly-builds) for information on how these are built.
 
 - Ruby modules
 
-   - archlinux
+    - archlinux
 
-      (currently only supported in `neovim-git`) are available from the AUR as [`ruby-neovim`](https://aur.archlinux.org/packages/ruby-neovim).
+        (currently only supported in `neovim-git`) are available from the AUR as [`ruby-neovim`](https://aur.archlinux.org/packages/ruby-neovim).
 
 - `/nvim/lazy/mason.nvim/lua/mason-core/installer/init.lua:249: Installation failed for Package(name=ruff ↪) error=spawn: python3 failed with exit code 1 and signal 0`
 
-   ruff often relies on Python virtual environments for installation. If you are on an Ubuntu or Debian-based system, the python3-venv package might be missing. Install it using:
+    ruff often relies on Python virtual environments for installation. If you are on an Ubuntu or Debian-based system, the python3-venv package might be missing. Install it using:
 
-   ```bash
-   sudo apt install python3-venv
-   ```
+    ```bash
+    sudo apt install python3-venv
+    ```
 
 - nvim 版本太低
 
-   - archlinux: `yay -S neovim-git`
-   - ubuntu
-
-      ```bash
-      sudo add-apt-repository ppa:neovim-ppa/stable
-      sudo apt update
-      sudo apt install neovim
-      ```
+    - archlinux: `yay -S neovim-git`
+    - ubuntu
+        ```bash
+        sudo add-apt-repository ppa:neovim-ppa/stable
+        sudo apt update
+        sudo apt install neovim
+        ```
 
 # macOS
 
 - macOS 上的 Option(Alt)快捷键不生效
 
-   在我们的配置中, Mac 系统的 Option 键对应的是 Windows 系统的 Alt 键, 如果你的 Option 键没有反应, 通常需要设置一下你的终端, 将 Option 键设置为 Meta 键.
-   - iTerm2: 设置方式为 Preference -> Profiles -> Default --> Keys --> Left Option key --> 选中 Esc+
-   - alacritty: 设置 `[window]` 的 `option_as_alt` 为 `OnlyLeft`, 如下所示:
+    在我们的配置中, Mac 系统的 Option 键对应的是 Windows 系统的 Alt 键, 如果你的 Option 键没有反应, 通常需要设置一下你的终端, 将 Option 键设置为 Meta 键.
+    - iTerm2: 设置方式为 Preference -> Profiles -> Default --> Keys --> Left Option key --> 选中 Esc+
+    - alacritty: 设置 `[window]` 的 `option_as_alt` 为 `OnlyLeft`, 如下所示:
 
-      ```toml
-      [window]
-      option_as_alt = "OnlyLeft"
-      ```
+        ```toml
+        [window]
+        option_as_alt = "OnlyLeft"
+        ```
 
 ## `<leader>tm` 预览公式报错: 缺少 `standalone.cls`
 
@@ -196,40 +195,39 @@ kpsewhich preview.sty
 # Windows
 
 - 缺失 `VCRUNTIME140.dll`
-
-   1. If you are missing `VCRUNTIME140.dll`, install the [Visual Studio 2015 C++ redistributable](https://support.microsoft.com/en-us/kb/2977003) (choose x86_64 or x86 depending on your system).
-   1. Choose a package (**nvim-winXX.zip**) from the [releases page](https://github.com/neovim/neovim/releases).
-   1. Unzip the package. Any location is fine, administrator privileges are _not_ required.
-   1. `$VIMRUNTIME` will be set to that location automatically.
-   1. Run `nvim.exe` from a terminal.
+    1. If you are missing `VCRUNTIME140.dll`, install the [Visual Studio 2015 C++ redistributable](https://support.microsoft.com/en-us/kb/2977003) (choose x86_64 or x86 depending on your system).
+    1. Choose a package (**nvim-winXX.zip**) from the [releases page](https://github.com/neovim/neovim/releases).
+    1. Unzip the package. Any location is fine, administrator privileges are _not_ required.
+    1. `$VIMRUNTIME` will be set to that location automatically.
+    1. Run `nvim.exe` from a terminal.
 
 - Windows 系统无法使用 `nvim` 编辑文件
 
-   将 Neovim 的 `bin` 文件夹(例如 `C:\Program Files\nvim\bin`)添加到 `PATH` 环境变量中, 然后重新打开终端.
+    将 Neovim 的 `bin` 文件夹(例如 `C:\Program Files\nvim\bin`)添加到 `PATH` 环境变量中, 然后重新打开终端.
 
 - 拼写检查无效
 
-   If `:set spell` does not work, create the `C:/Users/foo/AppData/Local/nvim/site/spell` folder.
+    If `:set spell` does not work, create the `C:/Users/foo/AppData/Local/nvim/site/spell` folder.
 
-   You can then copy your spell files over (for English, located [here](https://github.com/vim/vim/blob/master/runtime/spell/en.utf-8.spl) and [here](https://github.com/vim/vim/blob/master/runtime/spell/en.utf-8.sug));
+    You can then copy your spell files over (for English, located [here](https://github.com/vim/vim/blob/master/runtime/spell/en.utf-8.spl) and [here](https://github.com/vim/vim/blob/master/runtime/spell/en.utf-8.sug));
 
 - For Python plugins you need the `pynvim` module. "Virtual envs" are recommended.
 
-   1. After activating the virtual env do `pip install pynvim` (in _both_). Edit your `init.vim` so that it contains the path to the env's Python executable:
+    1. After activating the virtual env do `pip install pynvim` (in _both_). Edit your `init.vim` so that it contains the path to the env's Python executable:
 
-      ```vim
-      let g:python3_host_prog='C:/Users/foo/Envs/neovim3/Scripts/python.exe'
-      ```
+        ```vim
+        let g:python3_host_prog='C:/Users/foo/Envs/neovim3/Scripts/python.exe'
+        ```
 
-   2. Run `:checkhealth` and read `:help provider-python`.
+    2. Run `:checkhealth` and read `:help provider-python`.
 
 - Windows 的 Ubuntu 子系统(WSL)安装插件时提示 `could not find executable "unzip" in path`
 
-   缺少压缩解压工具, 安装 `zip` 和 `unzip` 即可:
+    缺少压缩解压工具, 安装 `zip` 和 `unzip` 即可:
 
-   ```bash
-   sudo apt-get install zip unzip
-   ```
+    ```bash
+    sudo apt-get install zip unzip
+    ```
 
 ## Ghostscript 已安装, 但 Snacks 找不到 `gs`
 
@@ -285,16 +283,13 @@ C:\Users\你的用户名\bin\gs.cmd
 观察输出中的前几行:
 
 - 成功标志: 如果你看到类似下面的字样, 说明环境变量生效了
-
-   ```bash
-   * Uses proxy env variable http_proxy == 'http://127.0.0.1:7890' * Trying 127.0.0.1:7890... * Connected to 127.0.0.1 (127.0.0.1) port 7890
-   ```
-
+    ```bash
+    * Uses proxy env variable http_proxy == 'http://127.0.0.1:7890' * Trying 127.0.0.1:7890... * Connected to 127.0.0.1 (127.0.0.1) port 7890
+    ```
 - 失败标志: 如果你看到它直接去连接 Google 的 IP, 说明代理没被识别, 或者被忽略了
-
-   ```bash
-   * Trying 142.250.x.x...
-   ```
+    ```bash
+    * Trying 142.250.x.x...
+    ```
 
 > **补充知识**
 > - `http_proxy / https_proxy`: 绝大多数命令行工具(`curl`, `git`, `npm`)都认这两个.
