@@ -2,31 +2,77 @@
 //    https://github.com/DavidAnson/markdownlint/blob/main/schema/.markdownlint.jsonc
 //    https://github.com/DavidAnson/markdownlint/blob/main/doc/
 {
-  "MD004": false,
+  "default": true,
+
+  // 标题统一使用前置 #
+  "MD003": {
+    "style": "atx"
+  },
+
+  // 子列表与父级列表使用不同的标记符号
+  "MD004": {
+    "style": "dash"
+  },
+
+  // 无序列表每级缩进 4 个空格，第一级不缩进
   "MD007": {
     // Spaces for indent
-    "indent": 3,
+    "indent": 4,
     // Whether to indent the first level of the list
-    "start_indented": false,
-    // Spaces for first level indent (when start_indented is set)
-    "start_indent": 3
+    "start_indented": false
   },
+
+  // 禁止使用 Tab 字符
+  "MD010": true,
+
+  // 最多允许连续 2 个空行
   "MD012": {
-    // Consecutive blank lines
     "maximum": 2
   },
-  "MD013": {
-    "line_length": -1,
-  },
+
+  // 不限制行长度
   "MD013": false,
+
+  // 允许重复标题
   "MD024": false,
+
+  // 允许多个一级标题
   "MD025": false,
+
+  // 允许标题末尾使用标点
   "MD026": false,
+
+  // 允许引用块之间存在空行
   "MD028": false,
+
+  // 允许围栏式代码块前后无空行
+  "MD031": false,
+  // 允许列表前后无空行
+  "MD032": false,
+
+  // 允许 HTML 标签
   "MD033": false,
+
+  // 允许直接书写 URL
   "MD034": false,
+
+  // 允许使用强调文本作为视觉标题
   "MD036": false,
+
+  // 强制使用围栏式代码块
+  "MD046": {
+    "style": "fenced"
+  },
+
+  // 强制使用反引号作为代码围栏
+  "MD048": {
+    "style": "backtick"
+  },
+
+  // 不检查链接锚点有效性
   "MD051": false,
+
+  // 不检查链接文本的描述性
   "MD059": false
 }
 
